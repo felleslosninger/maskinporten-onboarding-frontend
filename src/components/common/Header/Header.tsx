@@ -4,6 +4,7 @@ import styles from './styles.module.scss';
 import Logo from '../../../assets/logo.svg';
 import {Link} from "react-router-dom";
 import {ReactComponent as BedriftSvg} from '../../../assets/ikoner/SVG/Næringsliv.svg';
+import {ReactComponent as PersonSvg} from '../../../assets/ikoner/SVG/Person.svg';
 import {getCookie} from "typescript-cookie";
 import jwt_decode from "jwt-decode";
 import {IdToken} from "../../../types/tokens";
@@ -16,11 +17,13 @@ function Header() {
 
     const idToken = getCookie('token.id');
 
-    /*fetch("/user").then(res => {
+    fetch("/user").then(res => {
         return res.json();
     }).then(res => {
         console.log(res)
-    });*/
+    }).catch(err => {
+        console.log("Error")
+    });
 
     //const {authenticated, user} = useUser();
 
@@ -36,16 +39,17 @@ function Header() {
                 <img src={Logo} alt={"Logo"} className={styles.logo} />
                 {user ?
                     <div className={styles.userInfo}>
-                        <BedriftSvg />
                         <Label>
                             {user!!.name} for {user!!.authorization_details[0].reportees[0].Name}
                         </Label>
+                        <BedriftSvg className={styles.loginSvg} />
                     </div>
                     :
                     <Link to={"/logginn"}>
                         <Label size={"medium"}>
                             LOGG INN
                         </Label>
+                        <PersonSvg className={styles.loginSvg} />
                     </Link>
                 }
             </div>

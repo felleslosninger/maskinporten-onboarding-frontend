@@ -1,6 +1,7 @@
 @import "src/style/variables";
 
 .page {
+  width: 100%;
   max-width: $content-width-max;
   padding: 2rem;
 }
@@ -9,6 +10,8 @@
   background-color: $colors-white;
   text-align: left;
   padding: 2rem 5rem;
+  border: 1px solid lightgray;
+  filter: drop-shadow(0.2rem 0.2rem 0.25rem lightgray);
 }
 
 .cardHeader {
@@ -29,6 +32,17 @@
 
   .boldText {
     font-weight: bold;
+  }
+
+  .svg {
+    height: 4rem;
+    margin: 1rem 0;
+  }
+
+  .loginButton {
+    padding: 1rem 2rem;
+    background-color: $colors-semantic-action-default !important;
+    color: $colors-white;
   }
 
 }

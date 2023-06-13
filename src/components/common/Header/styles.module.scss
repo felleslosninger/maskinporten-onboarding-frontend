@@ -23,10 +23,18 @@
 
   a {
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   label {
     color: $colors-interface-info-900;
+
+    &:hover {
+      cursor: pointer;
+      border-bottom: 1px solid #022F51;
+    }
   }
 }
 
@@ -47,3 +55,15 @@
   }
 }
 
+.loginSvg {
+  height: 1.5rem;
+  width: 1.5rem;
+  padding: 0.5rem;
+  background-color: $colors-interface-info-900;
+  border-radius: 50%;
+  margin-left: 1rem;
+
+  g, path {
+    fill: $colors-white;
+  }
+}
