@@ -1,0 +1,34 @@
+@import "src/style/variables";
+
+.page {
+  max-width: $content-width-max;
+  padding: 2rem;
+}
+
+.card {
+  background-color: $colors-white;
+  text-align: left;
+  padding: 2rem 5rem;
+}
+
+.cardHeader {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid lightgray;
+}
+
+.cardContent {
+  padding: 2rem 0;
+
+  .heading {
+    margin-bottom: 1rem;
+  }
+
+  .loginHelp {
+    margin: 2rem 0;
+  }
+
+  .boldText {
+    font-weight: bold;
+  }
+
+}

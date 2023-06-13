@@ -1,5 +1,5 @@
 
-type AutorizationDetails = {
+type AuthorizationDetails = {
     resource: string,
     type: string,
     resource_name: string,
@@ -18,7 +18,7 @@ export type AccessToken = {
     pid: string,
     client_id: string,
     acr: string,
-    authorization_details: AutorizationDetails[],
+    authorization_details: AuthorizationDetails[],
     scope: string,
     exp: number,
     iat: number,
@@ -39,7 +39,7 @@ export type IdToken = {
     nonce: string,
     aud: string,
     acr: string,
-    authorization_details: AutorizationDetails[],
+    authorization_details: AuthorizationDetails[],
     auth_time: number,
     name: string,
     exp: number,

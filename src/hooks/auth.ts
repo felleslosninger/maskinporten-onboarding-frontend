@@ -3,6 +3,8 @@ import axios from "axios";
 import {getCookie, setCookie} from "typescript-cookie";
 import jwt_decode from "jwt-decode";
 import {IdToken} from "../types/tokens";
+import {isAuthenticated} from "../components/auth/tokenRefresh";
+import {useState} from "react";
 
 export const QK_TOKEN = 'QK_TOKEN';
 
@@ -10,9 +12,10 @@ export const useTokens = (code?: string, redirect_url?: string) => {
     return useQuery({
         queryKey: [QK_TOKEN],
         queryFn: async () => {
-            const idCookie = getCookie('token.id');
-            if (idCookie) {
-                return jwt_decode<IdToken>(idCookie);
+            const authenticated = isAuthenticated();
+            if (authenticated) {
+                const idCookie = getCookie('token.id');
+                return jwt_decode<IdToken>(idCookie!!);
             }
 
             const tokens = await axios.post('https://test.ansattporten.no/token', null, {
@@ -36,4 +39,10 @@ export const useTokens = (code?: string, redirect_url?: string) => {
     })
 }
 
-export
+// Get logged in user with the possibility of not being logged in
+export const useUser = () => {
+    const [authenticated, setAuthenticated] = useState(isAuthenticated());
+    const idToken = getCookie('token.id');
+    const user = authenticated ? jwt_decode<IdToken>(idToken!!) : null;
+    return { authenticated, user };
+}

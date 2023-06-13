@@ -2,9 +2,14 @@ import React, {ComponentType, FC} from 'react';
 import {Navigate, useLocation, useSearchParams} from 'react-router-dom';
 import {getCookie} from "typescript-cookie";
 import {useTokens} from "../../hooks/auth";
+import {IdToken} from "../../types/tokens";
+
+export interface AuthProps {
+    id: IdToken;
+}
 
 const withAuth = <P extends object>(
-    Component: ComponentType<P>,
+    Component: ComponentType<P & AuthProps>,
 ): FC<P> => (props) => {
     const hasToken = getCookie('token.access') as string;
     const [searchParams] = useSearchParams();

@@ -1,8 +1,7 @@
 import React from 'react';
-import { Route, Routes, Link } from 'react-router-dom';
-import Auth from '../../auth/Auth';
-import Callback from '../../auth/Callback';
 import {QueryClientProvider, QueryClient} from "@tanstack/react-query";
+import Layout from "../Layout/Layout";
+import "@digdir/design-system-tokens/brand/digdir/tokens.css";
 import './App.css';
 
 function App() {
@@ -11,11 +10,7 @@ function App() {
     return (
         <QueryClientProvider client={queryClient}>
             <div className="App">
-                <Routes>
-                    <Route path={"/"} element={<Link to={"/logginn"}>Logg inn</Link>} />
-                    <Route path={"/logginn"} element={<Auth />} />
-                    <Route path={"/authenticated"} element={<Callback />} />
-                </Routes>
+                <Layout />
             </div>
         </QueryClientProvider>
   );

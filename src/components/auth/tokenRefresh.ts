@@ -15,6 +15,11 @@ const setRefreshToken = (token: string) => {
     setCookie('token.refresh', token);
 }
 
+export const isAuthenticated = () => {
+    const idToken = getCookie('token.id');
+    return !!(idToken && getToken() && !isTokenExpired());
+}
+
 const isTokenExpired = () => {
     const token = getToken();
     if (!token) {

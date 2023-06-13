@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@digdir/design-system-react": "^0.15.0",
+    "@digdir/design-system-tokens": "^0.1.3",
     "@tanstack/react-query": "^5.0.0-alpha.55",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
@@ -48,5 +50,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {
+    "prettier": "^2.8.7",
+    "sass": "^1.60.0"
+  },
+  "proxy": "http://localhost:8080"
 }

@@ -1,10 +1,10 @@
 import React from "react";
-import withAuth from "./withAuth";
+import withAuth, {AuthProps} from "./withAuth";
 
 
 function Callback() {
 
-    return <div>Authenticated</div>;
+    return <div></div>;
 }
 
-export default withAuth(Callback);
+export default Callback;
