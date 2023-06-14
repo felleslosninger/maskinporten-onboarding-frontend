@@ -25,6 +25,14 @@ function Header() {
         console.log("Error")
     });
 
+    fetch("/proxy/path/random").then(res => {
+        return res.json();
+    }).then(res => {
+        console.log(res)
+    }).catch(err => {
+        console.log("Error")
+    });
+
     //const {authenticated, user} = useUser();
 
     useEffect(() => {

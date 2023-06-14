@@ -1,4 +1,5 @@
 spring:
+
   security:
     oauth2:
       client:
@@ -17,6 +18,11 @@ spring:
             token-uri: https://test.ansattporten.no/token
             issuer-uri: https://test.ansattporten.no
             user-info-uri: https://test.ansattporten.no/userInfo
+  cloud:
+    gateway:
+      proxy:
+        sensitive:
+          - "Cookie"
 
 server:
   max-http-header-size: 10000000
