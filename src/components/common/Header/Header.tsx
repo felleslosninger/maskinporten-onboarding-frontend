@@ -25,7 +25,7 @@ function Header() {
         console.log("Error")
     });
 
-    fetch("/proxy/path/random").then(res => {
+    fetch("/datasharing/client").then(res => {
         return res.json();
     }).then(res => {
         console.log(res)

@@ -38,7 +38,7 @@ public class TestController {
     @Autowired
     private OAuth2AuthorizedClientManager authorizedClientManager;
 
-    @GetMapping("/proxy/path/**")
+    @GetMapping("/datasharing/**")
     public ResponseEntity<?> proxyPath(ProxyExchange<byte[]> proxy, Authentication authentication,
                                        HttpServletRequest servletRequest,
                                        HttpServletResponse servletResponse) {
@@ -53,7 +53,8 @@ public class TestController {
 
         OAuth2AccessToken accessToken = authorizedClient.getAccessToken();
 
-        return proxy.uri("http://localhost:9090" + "/proxy/test")
+
+        return proxy.uri("http://localhost:9090" + proxy.path())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer "+accessToken.getTokenValue())
                 .get();
     }
