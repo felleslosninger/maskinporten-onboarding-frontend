@@ -7,6 +7,7 @@ import {isAuthenticated} from "../components/auth/tokenRefresh";
 import {useState} from "react";
 
 export const QK_TOKEN = 'QK_TOKEN';
+export const QK_USER = 'QK_USER';
 
 export const useTokens = (code?: string, redirect_url?: string) => {
     return useQuery({
@@ -41,8 +42,15 @@ export const useTokens = (code?: string, redirect_url?: string) => {
 
 // Get logged in user with the possibility of not being logged in
 export const useUser = () => {
-    const [authenticated, setAuthenticated] = useState(isAuthenticated());
-    const idToken = getCookie('token.id');
-    const user = authenticated ? jwt_decode<IdToken>(idToken!!) : null;
-    return { authenticated, user };
+    return useQuery({
+        queryKey: [QK_USER],
+        queryFn: async () => {
+            const res = await axios.get<IdToken>('/user')
+            const user = res.data;
+            const isAuthenticated = !!user;
+
+            return { isAuthenticated, user };
+        },
+        retry: 0
+    });
 }

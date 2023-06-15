@@ -4,12 +4,9 @@ import {Link} from "react-router-dom";
 import { Button } from '@digdir/design-system-react';
 import { ReactComponent as MpSvg } from '../../../assets/ikoner/SVG/Maskinporten.svg';
 import styles from './styles.module.scss';
+import {login} from "../../auth/login";
 
 function Landingpage() {
-
-    const onClick = () => {
-        window.location.href = "http://localhost:8080/authenticate"
-    }
 
     return (
         <div className={styles.page}>
@@ -30,7 +27,7 @@ function Landingpage() {
                         For å ta i bruk Maskinporten som konsument må du først logge inn med Ansattporten.
                     </Ingress>
                     <MpSvg className={styles.svg} />
-                    <Button className={styles.loginButton} onClick={onClick}>
+                    <Button className={styles.loginButton} onClick={login}>
                         Logg inn
                     </Button>
                     <div className={styles.loginHelp}>

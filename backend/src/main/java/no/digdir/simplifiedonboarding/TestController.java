@@ -8,6 +8,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.client.OAuth2AuthorizeRequest;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientManager;
@@ -26,7 +27,11 @@ public class TestController {
 
     @GetMapping("/user")
     public Map<String, Object> getTest(@AuthenticationPrincipal OAuth2User principal) {
-        return principal.getAttributes();
+        if (principal != null) {
+            return principal.getAttributes();
+        }
+        System.out.println("USER NOT FOUND");
+        return null;
     }
 
     @GetMapping("/authenticate")
@@ -57,5 +62,12 @@ public class TestController {
                 .header(HttpHeaders.AUTHORIZATION, "Bearer "+accessToken.getTokenValue())
                 .get();
     }
+/*
+    @GetMapping("/isAuthenticated")
+    public boolean getIsAuthenticated() {
+        this.authorizedClientManager.
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return !(authentication == null);
+    }*/
 
 }
