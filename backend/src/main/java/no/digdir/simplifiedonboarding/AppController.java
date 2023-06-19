@@ -3,6 +3,7 @@ package no.digdir.simplifiedonboarding;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.mvc.ProxyExchange;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 @RestController
-public class TestController {
+public class AppController {
+
+    @Value("${proxy.uri}")
+    private String proxyUri;
+
+    @Value("${frontend.uri}")
+    private String frontendUri;
 
     @GetMapping("/user")
     public Map<String, Object> getAuthenticatedUser(@AuthenticationPrincipal OAuth2User principal) {
@@ -32,7 +39,7 @@ public class TestController {
 
     @GetMapping("/authenticate")
     public void method(HttpServletResponse httpServletResponse) {
-        httpServletResponse.setHeader("Location", "http://localhost:3000/dashboard");
+        httpServletResponse.setHeader("Location", frontendUri + "/dashboard");
         httpServletResponse.setStatus(302);
     }
 
@@ -55,7 +62,7 @@ public class TestController {
         OAuth2AccessToken accessToken = authorizedClient.getAccessToken();
 
 
-        return proxy.uri("http://localhost:9090" + proxy.path())
+        return proxy.uri(proxyUri + proxy.path())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer "+accessToken.getTokenValue())
                 .get();
     }
