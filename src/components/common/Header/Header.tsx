@@ -9,7 +9,6 @@ import {login} from "../../auth/login";
 
 function Header() {
     const { data, isLoading } = useUser();
-
     return (
         <header className={styles.header}>
             <div className={styles.content}>

@@ -18,6 +18,12 @@ function Dashboard({ id }: AuthProps) {
             <Ingress>
                 Her kan du se alle scopes som er tildelt {id.authorization_details[0].reportees[0].Name}
             </Ingress>
+
+            <div className={styles.accordionListHeader}>
+                <Heading size={"medium"}>
+                    APIer
+                </Heading>
+            </div>
             {
                 clientsData &&
                 scopesData &&
