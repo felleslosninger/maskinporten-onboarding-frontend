@@ -4,9 +4,12 @@ import {getCookie, setCookie} from "typescript-cookie";
 import jwt_decode from "jwt-decode";
 import {IdToken} from "../types/tokens";
 import {isAuthenticated} from "../components/auth/tokenRefresh";
+import {doc} from "prettier";
+import debug = doc.debug;
 
 export const QK_TOKEN = 'QK_TOKEN';
 export const QK_USER = 'QK_USER';
+
 
 export const useTokens = (code?: string, redirect_url?: string) => {
     return useQuery({
@@ -45,8 +48,15 @@ export const useUser = () => {
         queryKey: [QK_USER],
         queryFn: async () => {
             try {
-                const res = await axios.get<IdToken>('/user');
-                const user = res.data;
+
+                const res = await fetch("/user", {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    redirect: "manual", // do not follow redirect
+                });
+
+                const user = await res.json();
                 const isAuthenticated = !!user;
 
                 return { isAuthenticated, user };

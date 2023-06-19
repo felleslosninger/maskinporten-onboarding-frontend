@@ -43,21 +43,4 @@ public class SecurityConfig {
         return bean;
     }
 
-    /*
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/user");
-    }*/
-
-    /*
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests((authz) -> authz
-                .requestMatchers("/user").authenticated()
-                .anyRequest().
-        );
-        return http.build();
-    }
-    */
-
 }
