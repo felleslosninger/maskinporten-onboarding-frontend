@@ -5,6 +5,7 @@ import Auth from "../../auth/Auth";
 import Callback from "../../auth/Callback";
 import styles from './styles.module.scss';
 import Landingpage from "../../landing/Landingpage/Landingpage";
+import Dashboard from "../../dashboard/Dashboard";
 
 function Layout() {
 
@@ -15,7 +16,7 @@ function Layout() {
                 <Routes>
                     <Route path={"/"} element={<Landingpage />} />
                     <Route path={"/logginn"} element={<Auth />} />
-                    <Route path={"/authenticated"} element={<Callback />} />
+                    <Route path={"/dashboard"} element={<Dashboard />} />
                 </Routes>
             </div>
         </div>

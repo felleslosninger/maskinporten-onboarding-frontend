@@ -1,13 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {useUser} from "../../../hooks/auth";
 import styles from './styles.module.scss';
 import Logo from '../../../assets/logo.svg';
-import {Link} from "react-router-dom";
 import {ReactComponent as BedriftSvg} from '../../../assets/ikoner/SVG/Næringsliv.svg';
 import {ReactComponent as PersonSvg} from '../../../assets/ikoner/SVG/Person.svg';
-import {getCookie} from "typescript-cookie";
-import jwt_decode from "jwt-decode";
-import {IdToken} from "../../../types/tokens";
 import {Button, Label} from "@digdir/design-system-react";
 import {login} from "../../auth/login";
 

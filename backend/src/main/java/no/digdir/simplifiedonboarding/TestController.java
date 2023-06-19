@@ -36,7 +36,7 @@ public class TestController {
 
     @GetMapping("/authenticate")
     public void method(HttpServletResponse httpServletResponse) {
-        httpServletResponse.setHeader("Location", "http://localhost:3000");
+        httpServletResponse.setHeader("Location", "http://localhost:3000/dashboard");
         httpServletResponse.setStatus(302);
     }
 

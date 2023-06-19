@@ -7,7 +7,7 @@ router.post('/scope/client', function(req, res, next) {
     "client_id": "64067a31-e9a1-48c2-b2e1-989255eaf864",
       "consumer_orgno": "00998877",
     "description": "Description for client",
-      "scopes": [ "scope1", "scope2" ]
+      "scopes": [ "svv:kjoretoy/kjoretoyopplysninger" ]
   }
   res.send(client);
 });
@@ -17,18 +17,18 @@ router.get('/client', function(req, res, next) {
     "client_id": "64067a31-e9a1-48c2-b2e1-989255eaf864",
     "consumer_orgno": "00998877",
     "description": "Description for client",
-    "scopes": [ "scope1", "scope2" ]
+    "scopes": [ "svv:kjoretoy/kjoretoyopplysninger" ]
   }, {
     "client_id": "uuid",
     "consumer_orgno": "00998877",
     "description": "Description for second client",
-    "scopes": [ "scope1" ]
+    "scopes": [ "svv:kjoretoy/kjoretoyopplysninger" ]
   }]
   res.send(clients);
 });
 
 router.get('/scope/access', function(req, res, next) {
-  var scope = ["scope1", "scope2" ]
+  var scope = ["svv:kjoretoy/kjoretoyopplysninger", "entur:skyss/apc" ]
   res.send(scope);
 });
 

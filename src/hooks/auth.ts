@@ -4,7 +4,6 @@ import {getCookie, setCookie} from "typescript-cookie";
 import jwt_decode from "jwt-decode";
 import {IdToken} from "../types/tokens";
 import {isAuthenticated} from "../components/auth/tokenRefresh";
-import {useState} from "react";
 
 export const QK_TOKEN = 'QK_TOKEN';
 export const QK_USER = 'QK_USER';
@@ -45,11 +44,17 @@ export const useUser = () => {
     return useQuery({
         queryKey: [QK_USER],
         queryFn: async () => {
-            const res = await axios.get<IdToken>('/user')
-            const user = res.data;
-            const isAuthenticated = !!user;
+            try {
+                const res = await axios.get<IdToken>('/user');
+                const user = res.data;
+                const isAuthenticated = !!user;
 
-            return { isAuthenticated, user };
+                return { isAuthenticated, user };
+            } catch (err) {
+                const user = null;
+                const isAuthenticated = false;
+                return { isAuthenticated, user };
+            }
         },
         retry: 0
     });

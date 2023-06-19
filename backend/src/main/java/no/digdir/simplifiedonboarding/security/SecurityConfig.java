@@ -43,10 +43,11 @@ public class SecurityConfig {
         return bean;
     }
 
+    /*
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring().requestMatchers("/user");
-    }
+    }*/
 
     /*
     @Bean

@@ -1,48 +1,24 @@
 @import "src/style/variables";
 
-.page {
-  width: 100%;
-  max-width: $content-width-max;
-  padding: 2rem;
+.heading {
+  margin-bottom: 1rem;
 }
 
-.card {
-  background-color: $colors-white;
-  text-align: left;
-  padding: 2rem 5rem;
-  border: 1px solid lightgray;
-  filter: drop-shadow(0.2rem 0.2rem 0.25rem lightgray);
+.loginHelp {
+  margin: 2rem 0;
 }
 
-.cardHeader {
-  padding-bottom: 1rem;
-  border-bottom: 1px solid lightgray;
+.boldText {
+  font-weight: bold;
 }
 
-.cardContent {
-  padding: 2rem 0;
+.svg {
+  height: 4rem;
+  margin: 1rem 0;
+}
 
-  .heading {
-    margin-bottom: 1rem;
-  }
-
-  .loginHelp {
-    margin: 2rem 0;
-  }
-
-  .boldText {
-    font-weight: bold;
-  }
-
-  .svg {
-    height: 4rem;
-    margin: 1rem 0;
-  }
-
-  .loginButton {
-    padding: 1rem 2rem;
-    background-color: $colors-semantic-action-default !important;
-    color: $colors-white;
-  }
-
+.loginButton {
+  padding: 1rem 2rem;
+  background-color: $colors-semantic-action-default !important;
+  color: $colors-white;
 }
