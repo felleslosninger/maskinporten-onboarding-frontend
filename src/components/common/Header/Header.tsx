@@ -1,25 +1,41 @@
 import React from 'react';
 import {useUser} from "../../../hooks/auth";
 import styles from './styles.module.scss';
-import Logo from '../../../assets/logo.svg';
+import { ReactComponent as Logo } from '../../../assets/logo.svg';
 import {ReactComponent as BedriftSvg} from '../../../assets/ikoner/SVG/Næringsliv.svg';
 import {ReactComponent as PersonSvg} from '../../../assets/ikoner/SVG/Person.svg';
 import {Button, Label} from "@digdir/design-system-react";
 import {login} from "../../auth/login";
+import StyledLink from "../StyledLink/StyledLink";
 
 function Header() {
     const { data, isLoading } = useUser();
     return (
         <header className={styles.header}>
             <div className={styles.content}>
-                <img src={Logo} alt={"Logo"} className={styles.logo} />
+                <Logo className={styles.logo} />
                 {!isLoading && data!!.isAuthenticated ?
-                    <div className={styles.userInfo}>
-                        <Label>
-                            {data!!.user!!.name} for {data!!.user!!.authorization_details[0].reportees[0].Name}
-                        </Label>
-                        <BedriftSvg className={styles.loginSvg} />
-                    </div>
+                    <>
+                        <div className={styles.headerLinks}>
+                            <StyledLink to={"/dashboard"}>
+                                oversikt
+                            </StyledLink>
+                            <StyledLink to={"/"}>
+                                onboardingsguide
+                            </StyledLink>
+                        </div>
+                        <div className={styles.userInfo}>
+                            <div>
+                                <Label>
+                                    {data!!.user!!.name}
+                                </Label>
+                                <Label>
+                                    {data!!.user!!.authorization_details[0].reportees[0].Name}
+                                </Label>
+                            </div>
+                            <BedriftSvg className={styles.loginSvg} />
+                        </div>
+                    </>
                     :
                     <Button onClick={login}>
                         <Label size={"medium"}>

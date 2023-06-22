@@ -19,6 +19,11 @@
 
   .logo {
     width: 3rem;
+    height: fit-content;
+
+    g {
+      fill: $colors-semantic-action-default
+    }
   }
 
   a {
@@ -30,12 +35,18 @@
 
   label {
     color: $colors-interface-info-900;
-
-    &:hover {
-      cursor: pointer;
-      border-bottom: 1px solid #022F51;
-    }
   }
+
+  button label:hover {
+    cursor: pointer;
+    border-bottom: 1px solid #022F51;
+  }
+}
+
+.headerLinks {
+  display: flex;
+  gap: 2rem;
+  font-size: 1.25rem;
 }
 
 .userInfo {
@@ -52,6 +63,7 @@
   div {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
   }
 }
 

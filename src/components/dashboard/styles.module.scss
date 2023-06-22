@@ -1,9 +1,39 @@
+@import "src/style/variables";
 
 .accordionListHeader {
   display: flex;
   justify-content: space-between;
   margin-top: 1rem;
-  padding-left: 2rem;
-  border-bottom: 1px solid gray;
+  padding: 2rem;
   position: sticky;
+}
+
+.infoContainer {
+  padding: 0 2rem;
+}
+
+.envPicker {
+  display: flex;
+  align-items: center;
+}
+
+.picker {
+  margin-left: 0.5rem;
+  padding: 0.3rem;
+  border-radius: 0.3rem;
+  background-color: $colors-gray;
+
+  button {
+    border: 0;
+    font-size: 1rem;
+    padding: 0.3rem 0.8rem;
+    color: $colors-interface-info-900;
+    border-radius: 0.3rem;
+    cursor: pointer;
+
+    &.active {
+      color: $colors-white;
+      background-color: $colors-interface-info-900;
+    }
+  }
 }

@@ -1,0 +1,28 @@
+@import "src/style/variables";
+
+.container {
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  border: 1px solid $colors-gray;
+  border-radius: 0.3rem;
+  box-shadow: 0.5rem 0.5rem 0.75rem lightgray;
+  margin: 2rem 0;
+}
+
+.textSection {
+  display: flex;
+  flex-direction: column;
+
+  label:first-child {
+    margin-bottom: 1rem;
+  }
+}
+
+.illustration {
+  width: 7rem;
+  height: fit-content;
+  margin-left: 1rem;
+}
