@@ -1,0 +1,21 @@
+name: Deploy to staging
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+
+  build:
+    name: Build image
+    uses: Informasjonsforvaltning/workflows/.github/workflows/build-push.yaml@main
+    with:
+      app_name: simplified-onboarding
+      environment: staging
+      build_env: true
+      build_env_name: BINARY
+      build_env_value: simplified-onboarding
+    secrets:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GCP_SA_DIGDIR_FDK_GCR_KEY: ${{ secrets.GCP_SA_DIGDIR_FDK_GCR_KEY }}
