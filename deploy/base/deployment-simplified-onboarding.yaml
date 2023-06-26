@@ -1,0 +1,35 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simplified-onboarding
+  labels:
+    app: simplified-onboarding
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simplified-onboarding
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: simplified-onboarding
+      annotations:
+        prometheus.io/scrape: "false"
+    spec:
+      containers:
+        - name: simplified-onboarding
+          image: simplified-onboarding
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /hello
+              port: 8080
+          readinessProbe:
+            httpGet:
+              path: /hello
+              port: 8080
