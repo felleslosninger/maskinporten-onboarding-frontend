@@ -1,5 +1,5 @@
 proxy:
-  uri: http://localhost:9090
+  uri: https://integrasjon-ver2.difi.no
 frontend:
   uri: http://localhost:3000
 spring:
@@ -13,6 +13,7 @@ spring:
             authorization-grant-type: authorization_code
             scope:
               - openid
+              - idporten:dcr.datasharing
             client-authentication-method: client_secret_basic
 
         provider:
