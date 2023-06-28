@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import {ApiClient} from "../../../types/api";
 import styles from '../ClientDescription/styles.module.scss';
-import { Paragraph } from "@digdir/design-system-react";
-import InvertedButton from "../../common/Button/InvertedButton";
+import {Button, Paragraph} from "@digdir/design-system-react";
+import { CheckmarkIcon } from '@navikt/aksel-icons';
 
 interface ClientDescriptionProps {
     client: ApiClient;
@@ -36,9 +36,12 @@ const ClientDescription = (props: ClientDescriptionProps) => {
                             {props.client.client_id}
                         </Paragraph>
                     </div>
-                    <InvertedButton onClick={onCopyButtonClick}>
+                    <Button variant={"outline"}
+                            onClick={onCopyButtonClick}
+                            icon={copied ? <CheckmarkIcon /> : null}
+                    >
                         { copied ? "Kopiert" : "Kopier" }
-                    </InvertedButton>
+                    </Button>
                 </div>
             </div>
         </div>

@@ -37,7 +37,7 @@ function Header() {
                         </div>
                     </>
                     :
-                    <Button onClick={login}>
+                    <Button className={styles.loginButton} variant={"quiet"} onClick={login}>
                         <Label size={"medium"}>
                             LOGG INN
                         </Label>

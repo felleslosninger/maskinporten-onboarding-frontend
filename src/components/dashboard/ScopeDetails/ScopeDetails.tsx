@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import {ApiClients, ApiScope} from "../../../types/api";
 import styles from './styles.module.scss';
-import {Accordion, Button, Heading, Label, Paragraph, Popover, TextField} from "@digdir/design-system-react";
+import {Accordion, Button, Heading, Label, Paragraph, Popover, Select, TextField} from "@digdir/design-system-react";
 import KlientSVG from "../../../assets/klient_opprettet.svg";
 import TilgangSvg from "../../../assets/tilgang_gitt.svg";
 import ClientDescription from "../ClientDescription/ClientDescription";
-import InvertedButton from "../../common/Button/InvertedButton";
 import Modal from "../../common/Modal/Modal";
+import NewClientModal from "../NewClientModal/NewClientModal";
 
 interface ScopeDetailProps {
     scope: ApiScope;
@@ -16,14 +16,14 @@ interface ScopeDetailProps {
 
 function ScopeDetails(props: ScopeDetailProps) {
     const [showPopover, setShowPopover] = useState(false);
-    const hasClient = props.clients.some(client => client.scopes.includes(props.scope.name));
     const [showModal, setShowModal] = useState(false);
+    const hasClient = props.clients.some(client => client.scopes.includes(props.scope.name));
 
     const renderNoClientBox = () => {
         return (
             <div className={styles.noClientBox}>
                 <Label>
-                    Dette APIet er tildelt din organisasjon, men har ikke ingen klient registrert.
+                    Dette APIet er tildelt din organisasjon, men har ingen klient registrert.
                 </Label>
                 <Label>
                     Opprett en ny klient via knappen nedenfor.
@@ -34,6 +34,11 @@ function ScopeDetails(props: ScopeDetailProps) {
 
     return (
         <Accordion.Item>
+            <NewClientModal env={props.env}
+                            scope={props.scope.name}
+                            open={showModal}
+                            closeModal={() => setShowModal(false)}
+            />
             <Accordion.Header level={4} className={styles.headerRow}>
                 <div>
                     <Heading size={"xsmall"}>
@@ -52,6 +57,7 @@ function ScopeDetails(props: ScopeDetailProps) {
                              onMouseLeave={() => setShowPopover(false)}
                         />
                     }
+                    variant={"info"}
                     open={showPopover}
                     className={styles.statusbox}
                     placement={"top"}
@@ -62,26 +68,22 @@ function ScopeDetails(props: ScopeDetailProps) {
             <Accordion.Content>
                 {
                     hasClient
-                    ? props.clients.map((client) => client.scopes.includes(props.scope.name) ? <ClientDescription client={client} /> : null)
+                    ? props.clients.map((client) => client.scopes.includes(props.scope.name) ? <ClientDescription client={client} key={client.client_id} /> : null)
                     : renderNoClientBox()
                 }
-                <Button className={styles.opprettButton} onClick={() => setShowModal(true)}>
-                    Opprett Klient
-                </Button>
-            </Accordion.Content>
-            <Modal open={showModal} closeModal={() => setShowModal(false)} title={"Opprett ny klient"}>
-                <TextField value={props.env} disabled />
-                <TextField value={props.scope.name} disabled />
-                <TextField />
-                <div>
-                    <InvertedButton onClick={() => setShowModal(false)}>
-                        Avbryt
-                    </InvertedButton>
-                    <Button>
-                        Opprett klient
+                <div className={styles.buttonRow}>
+                    <Button className={styles.opprettButton} onClick={() => setShowModal(true)}>
+                        Opprett Klient
                     </Button>
+                    {
+                        hasClient &&
+                        <>
+                            <Button variant={"outline"}>Kom i gang med virksomhetssertifikat</Button>
+                            <Button variant={"outline"}>Kom i gang med nøkler</Button>
+                        </>
+                    }
                 </div>
-            </Modal>
+            </Accordion.Content>
         </Accordion.Item>
     );
 }

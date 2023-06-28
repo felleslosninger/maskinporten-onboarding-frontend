@@ -6,6 +6,7 @@ interface ContainerProps {
     header: string;
     category: string;
     children: ReactNode | ReactNode[];
+    className?: string;
 }
 
 function SkjemaContainer(props: ContainerProps) {
@@ -20,7 +21,7 @@ function SkjemaContainer(props: ContainerProps) {
                         {props.header}
                     </Heading>
                 </div>
-                <div className={styles.cardContent}>
+                <div className={`${styles.cardContent} ${props.className}`}>
                     {props.children}
                 </div>
             </div>

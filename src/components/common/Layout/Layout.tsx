@@ -1,11 +1,10 @@
 import React from "react";
 import Header from "../Header/Header";
-import {Link, Route, Routes} from "react-router-dom";
-import Auth from "../../auth/Auth";
-import Callback from "../../auth/Callback";
-import styles from './styles.module.scss';
+import {Route, Routes} from "react-router-dom";
 import Landingpage from "../../landing/Landingpage/Landingpage";
 import Dashboard from "../../dashboard/Dashboard";
+import Footer from "../Footer/Footer";
+import styles from './styles.module.scss';
 
 function Layout() {
 
@@ -15,10 +14,10 @@ function Layout() {
             <div className={styles.content}>
                 <Routes>
                     <Route path={"/"} element={<Landingpage />} />
-                    <Route path={"/logginn"} element={<Auth />} />
                     <Route path={"/dashboard"} element={<Dashboard />} />
                 </Routes>
             </div>
+            <Footer />
         </div>
     )
 }

@@ -10,7 +10,11 @@ import OnboardingCard from "./OnboardingCard/OnboardingCard";
 function Dashboard({ id }: AuthProps) {
     const { data: scopesData, isLoading: isScopesLoading } = useScopes();
     const { data: clientsData, isLoading: isClientsLoading } = useClients();
+    const [minLoadtimeOver, setMinLoadtimeOver] = useState(false);
     const [env, setEnv] = useState("test");
+    const isLoading = isScopesLoading || isClientsLoading || !minLoadtimeOver;
+
+    setTimeout(() => setMinLoadtimeOver(true), 1000);
 
     return (
         <ContentContainer>
@@ -44,9 +48,18 @@ function Dashboard({ id }: AuthProps) {
             </div>
             <Accordion color={"neutral"}>
                 {
+                    isLoading &&
+                    <>
+                        <span className={styles.skeleton} />
+                        <span className={styles.skeleton} />
+                    </>
+
+                }
+                {
+                    !isLoading &&
                     clientsData &&
                     scopesData &&
-                    scopesData.map(scope => <ScopeDetails scope={scope} clients={clientsData} env={env} />)
+                    scopesData.map(scope => <ScopeDetails scope={scope} clients={clientsData} env={env} key={scope.name} />)
                 }
             </Accordion>
         </ContentContainer>

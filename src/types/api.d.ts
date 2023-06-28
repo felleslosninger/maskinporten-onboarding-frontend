@@ -1,3 +1,5 @@
+import exp from "constants";
+
 export type ApiScope = {
     name: string;
     active: boolean;
@@ -16,3 +18,8 @@ export type ApiClient = {
 }
 
 export type ApiClients = [client: ApiClient]
+
+export type RequestApiClientBody = {
+    description: string;
+    scopes: string[];
+}

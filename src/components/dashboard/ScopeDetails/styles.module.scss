@@ -26,6 +26,11 @@
   height: 3rem;
 }
 
+.buttonRow {
+  display: flex;
+  gap: 1rem;
+}
+
 .opprettButton {
   margin-left: 2rem;
   margin-bottom: 1rem;

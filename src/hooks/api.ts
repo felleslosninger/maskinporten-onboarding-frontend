@@ -1,6 +1,6 @@
-import {useQuery} from "@tanstack/react-query";
+import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import axios from "axios";
-import {ApiClients, ApiScopes} from "../types/api";
+import {ApiClient, ApiClients, ApiScopes, RequestApiClientBody} from "../types/api";
 
 export const QK_SCOPES = 'QK_SCOPES';
 export const QK_CLIENTS = 'QK_CLIENTS';
@@ -12,7 +12,7 @@ export const useScopes = () => {
             const res = await axios.get<ApiScopes>("/datasharing/scope/access");
             return res.data;
         }
-    })
+    });
 };
 
 export const useClients = () => {
@@ -22,5 +22,18 @@ export const useClients = () => {
             const res = await axios.get<ApiClients>("/datasharing/client");
             return res.data;
         }
-    })
+    });
+}
+
+export const useClientMutation = () => {
+    const client = useQueryClient();
+     return useMutation({
+        mutationFn: (newClient: RequestApiClientBody) => {
+            return axios.post<ApiClient>("/datasharing/scope/client", newClient);
+        },
+        onSuccess: (res) => {
+            client.invalidateQueries({queryKey: [QK_CLIENTS]});
+            return res;
+        }
+    });
 }

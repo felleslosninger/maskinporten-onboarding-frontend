@@ -1,16 +1,14 @@
 import React from 'react';
-import {Heading, Ingress, Label, Paragraph} from "@digdir/design-system-react";
+import {Heading, Ingress, Paragraph} from "@digdir/design-system-react";
 import {Link} from "react-router-dom";
 import { Button } from '@digdir/design-system-react';
 import { ReactComponent as MpSvg } from '../../../assets/ikoner/SVG/Maskinporten.svg';
 import styles from './styles.module.scss';
 import {login} from "../../auth/login";
-import SkjemaContainer from "../../common/SkjemaContainer/SkjemaContainer";
 
 function Landingpage() {
-
     return (
-        <SkjemaContainer header={"Velkommen til Forenklet Onboarding"} category={"Kom i gang"}>
+        <div className={styles.container}>
             <Heading size={"large"} className={styles.heading}>
                 Logg inn for å ta i bruk Maskinporten
             </Heading>
@@ -35,7 +33,7 @@ function Landingpage() {
             <Paragraph className={styles.boldText}>
                 Noe mer tekst? Hjelp?
             </Paragraph>
-        </SkjemaContainer>
+        </div>
     )
 }
 
