@@ -1,11 +1,5 @@
 import {useQuery} from "@tanstack/react-query";
-import axios from "axios";
-import {getCookie, setCookie} from "typescript-cookie";
-import jwt_decode from "jwt-decode";
 import {IdToken} from "../types/tokens";
-import {isAuthenticated} from "../components/auth/tokenRefresh";
-import {doc} from "prettier";
-import debug = doc.debug;
 
 export const QK_USER = 'QK_USER';
 

@@ -2,6 +2,7 @@ import React from 'react';
 import {QueryClientProvider, QueryClient} from "@tanstack/react-query";
 import Layout from "../Layout/Layout";
 import "@digdir/design-system-tokens/brand/digdir/tokens.css";
+import "@altinn/figma-design-tokens/dist/tokens.css";
 import './App.css';
 
 function App() {

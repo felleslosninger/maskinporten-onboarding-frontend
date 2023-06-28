@@ -1,0 +1,33 @@
+@import "src/style/variables";
+
+.container {
+  border-radius: 1rem;
+  background-color: $colors-gray;
+  width: fit-content;
+  margin-bottom: 1rem;
+}
+
+.content {
+  padding: 0 2rem;
+
+  div p:first-child {
+    font-weight: bold;
+  }
+}
+
+.topRow {
+  padding: 1rem 0;
+  border-bottom: 1px solid lightgray;
+}
+
+.bottomRow {
+  display: flex;
+  align-items: center;
+  padding: 1rem 0;
+
+  button {
+    color: $colors-semantic-action-default;
+    margin-left: 2rem;
+    border: 1px solid $colors-semantic-action-default;
+  }
+}

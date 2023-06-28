@@ -1,0 +1,9 @@
+@import "src/style/variables";
+
+.content {
+  width: 100%;
+  max-width: $content-width-max;
+  padding: 2rem;
+  text-align: left;
+}
+

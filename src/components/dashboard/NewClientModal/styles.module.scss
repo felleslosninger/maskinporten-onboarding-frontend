@@ -1,0 +1,71 @@
+@import "src/style/variables";
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
+
+.modalButtons {
+  display: flex;
+  gap: 1rem;
+}
+
+.successContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.responseInfo {
+  border-radius: 1rem;
+  background-color: $colors-gray;
+  flex-basis: 0;
+  flex-grow: 1;
+}
+
+.responseInfoContent {
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+
+  div {
+    padding: 1rem 0;
+    border-bottom: 1px solid lightgray;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    label {
+      font-weight: bold;
+    }
+  }
+}
+
+.usageInfo {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 0;
+  flex-grow: 1;
+
+  label {
+    margin-bottom: 1rem;
+  }
+}
+
+.usageButtons {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+}

@@ -24,12 +24,6 @@ import java.io.IOException;
 @Configuration
 public class WebConfiguration implements WebMvcConfigurer {
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**").allowedMethods("*");
-        registry.addMapping("/**").allowedHeaders("*");
-        registry.addMapping("/**").allowedOrigins("*");
-    }
 
     //  https://docs.spring.io/spring-security/reference/servlet/oauth2/client/authorization-grants.html#_using_the_access_token
     @Bean
