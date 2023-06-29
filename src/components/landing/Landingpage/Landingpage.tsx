@@ -37,23 +37,26 @@ function Landingpage() {
                     </Accordion.Header>
                     <Accordion.Content>
                         <Paragraph>
-                            Da kan det være at du ikke har riktig rolle i Altinn for å kunne se tilganger gitt din
-                            virksomhet. Enkelte roller i enhetsregisteret har tilgang
+                            Da kan det være at du ikke har riktig rolle i Altinn for å kunne se og administrere API-tilganger gitt din
+                            virksomhet. Enkelte roller i Enhetsregisteret har forhåndsdefinert tilgang, se listen over roller under
+                            <Link to={"https://www.altinn.no/hjelp/skjema/alle-altinn-roller/"}>Hovedadministrator</Link>.
+                        </Paragraph><Paragraph>
+                            Rollen "Eksplisitt tjenestedelegering" vil også gi deg tilgang til å administrere API-tilganger.
                         </Paragraph>
-                        <Link to={"/"}>
+                        <Link to={"https://tt02.altinn.no/api/metadata/rolerequirements?serviceCode=5613&serviceEditionCode=1"}>
                             Les mer her
                         </Link>
                     </Accordion.Content>
-                </Accordion.Item>
+                </Accordion.Item>◊
                 <Accordion.Item>
                     <Accordion.Header>
                         <Label size={"large"}>Hvem kan jeg kontakte for tilgang?</Label>
                     </Accordion.Header>
                     <Accordion.Content>
                         <Paragraph>
-                            Daglig leder i din virksomhet vil ha høyest rettighet til å videreføre tilganger innad i
-                            din virksomhet. Virksomheten din kan også ha satt opp andre roller, som f.eks
-                            Tilgangsstyrer, som også kan bistå med dette. Av personvernsmessige årsaker kan
+                            Daglig leder eller andre som har rollen <Link to={"https://www.altinn.no/hjelp/skjema/alle-altinn-roller/"}>hovedadministrator</Link> i din virksomhet vil ha høyest rettighet til dele ut tilganger.
+                            Virksomheten din kan også ha satt opp andre roller, som f.eks
+                            <Link to={"https://www.altinn.no/hjelp/skjema/alle-altinn-roller/"}>Tilgangsstyrer</Link> som også innehar "Eksplisitt tjenestedelegering"-rollen, som også kan bistå med dette. Av personvernsmessige årsaker kan
                             vi ikke si noe spesifikt om hvem i din bedrift som har disse rollene og kan gi deg tilgang.
                         </Paragraph>
                     </Accordion.Content>
