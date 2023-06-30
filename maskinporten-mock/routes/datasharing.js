@@ -36,7 +36,7 @@ router.post('/scope/client', function (req, res, next) {
 });
 
 // For å hente ut alle maskinporten-integrasjoner tilhøyrende innlogga bruker sin organsiasjon:
-router.get('/client', function (req, res, next) {
+router.get('/consumer/client', function (req, res, next) {
     var clients = [{
         "client_id": "64067a31-e9a1-48c2-b2e1-989255eaf864",
         "consumer_orgno": "00998877",
@@ -52,14 +52,14 @@ router.get('/client', function (req, res, next) {
 });
 
 // lista opp alle scopes som organisasjonen har fått tilgang til
-router.get('/scope/access', function (req, res, next) {
+router.get('/consumer/scope/access', function (req, res, next) {
     var scope = [{
         "name": "svv:kjoretoy/kjoretoyopplysninger",
         "active": true,
         "prefix": "svv",
         "subscope": "api",
         "description": "Gir tilgang tli svv sitt kjøretøysregister."
-        }, {
+    }, {
         "name": "pilot:datasett",
         "active": true,
         "prefix": "pilot",
@@ -73,7 +73,7 @@ router.get('/scope/access', function (req, res, next) {
 // FOR TILBYDER:
 //
 // For å registrere tilgang til scope for ny konsument:
-router.put('/scope/access', function (req, res, next) {
+router.post('/consumer/scope/access', function (req, res, next) {
     /**
      * BODY:
      * {
@@ -91,4 +91,4 @@ router.put('/scope/access', function (req, res, next) {
 // kun diskutert litt - meir naturleg lista opp scopes som organisasjonen EIG sjølv
 
 
-    module.exports = router;
+module.exports = router;
