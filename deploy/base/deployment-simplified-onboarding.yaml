@@ -24,12 +24,12 @@ spec:
           image: simplified-onboarding
           imagePullPolicy: Always
           ports:
-            - containerPort: 8080
+            - containerPort: 3000
           livenessProbe:
             httpGet:
-              path: /hello
-              port: 8080
+              path: /
+              port: 3000
           readinessProbe:
             httpGet:
-              path: /hello
-              port: 8080
+              path: /
+              port: 3000
