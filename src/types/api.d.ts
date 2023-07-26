@@ -1,18 +1,20 @@
 import exp from "constants";
 
 export type ApiScope = {
-    name: string;
-    active: boolean;
-    prefix: string;
-    subscope: string;
+    consumer_orgno: string;
+    created: string;
+    last_updated: string;
+    owner_orgno: string;
+    scope: string;
+    state: string;
     description: string;
 }
 
 export type ApiScopes = ApiScope[];
 
 export type ApiClient = {
-    client_id: string;
-    consumer_orgno: string;
+    clientId: string;
+    consumerOrgnr: string;
     description: string;
     scopes: [scope: string];
 }

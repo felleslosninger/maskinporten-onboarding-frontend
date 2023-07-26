@@ -17,7 +17,7 @@ interface ScopeDetailProps {
 function ScopeDetails(props: ScopeDetailProps) {
     const [showPopover, setShowPopover] = useState(false);
     const [showModal, setShowModal] = useState(false);
-    const hasClient = props.clients.some(client => client.scopes.includes(props.scope.name));
+    const hasClient = props.clients.some(client => client.scopes.includes(props.scope.scope));
 
     const renderNoClientBox = () => {
         return (
@@ -35,14 +35,14 @@ function ScopeDetails(props: ScopeDetailProps) {
     return (
         <Accordion.Item>
             <NewClientModal env={props.env}
-                            scope={props.scope.name}
+                            scope={props.scope.scope}
                             open={showModal}
                             closeModal={() => setShowModal(false)}
             />
             <Accordion.Header level={4} className={styles.headerRow}>
                 <div>
                     <Heading size={"xsmall"}>
-                        {props.scope.name}
+                        {props.scope.scope}
                     </Heading>
                     <Paragraph>
                         {props.scope.description}
@@ -68,7 +68,7 @@ function ScopeDetails(props: ScopeDetailProps) {
             <Accordion.Content>
                 {
                     hasClient
-                    ? props.clients.map((client) => client.scopes.includes(props.scope.name) ? <ClientDescription client={client} key={client.client_id} /> : null)
+                    ? props.clients.map((client) => client.scopes.includes(props.scope.scope) ? <ClientDescription client={client} key={client.clientId} /> : null)
                     : renderNoClientBox()
                 }
                 <div className={styles.buttonRow}>

@@ -29,7 +29,7 @@ export const useClientMutation = () => {
     const client = useQueryClient();
      return useMutation({
         mutationFn: (newClient: RequestApiClientBody) => {
-            return axios.post<ApiClient>("/api/datasharing/consumer/scope/client", newClient);
+            return axios.post<ApiClient>("/api/datasharing/consumer/client", newClient);
         },
         onSuccess: (res) => {
             client.invalidateQueries({queryKey: [QK_CLIENTS]});

@@ -12,7 +12,7 @@ const ClientDescription = (props: ClientDescriptionProps) => {
     const [copied, setCopied] = useState(false);
 
     const onCopyButtonClick = () => {
-        navigator.clipboard.writeText(props.client.client_id);
+        navigator.clipboard.writeText(props.client.clientId);
         setCopied(true);
     }
 
@@ -33,7 +33,7 @@ const ClientDescription = (props: ClientDescriptionProps) => {
                             client-id:
                         </Paragraph>
                         <Paragraph>
-                            {props.client.client_id}
+                            {props.client.clientId}
                         </Paragraph>
                     </div>
                     <Button variant={"outline"}

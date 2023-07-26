@@ -59,7 +59,7 @@ function Dashboard({ id }: AuthProps) {
                     !isLoading &&
                     clientsData &&
                     scopesData &&
-                    scopesData.map(scope => <ScopeDetails scope={scope} clients={clientsData} env={env} key={scope.name} />)
+                    scopesData.map(scope => <ScopeDetails scope={scope} clients={clientsData} env={env} key={scope.scope} />)
                 }
             </Accordion>
         </ContentContainer>

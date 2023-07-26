@@ -70,7 +70,7 @@ function NewClientModal(props: Props) {
                     </div>
                     <div>
                         <Label>Client-id:</Label>
-                        <Paragraph>{data!!.data.client_id}</Paragraph>
+                        <Paragraph>{data!!.data.clientId}</Paragraph>
                     </div>
                 </div>
             </div>
