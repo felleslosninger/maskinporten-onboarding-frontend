@@ -1,4 +1,4 @@
 
 export const login = () => {
-    window.location.href = 'http://localhost:8080/authenticate';
+    window.location.href = 'http://localhost:8080/api/authenticate';
 }
