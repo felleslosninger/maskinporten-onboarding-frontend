@@ -1,4 +1,5 @@
 
 export const login = () => {
-    window.location.href = 'http://localhost:8080/api/authenticate';
+    //@ts-ignore
+    window.location.href = `${window.env.SIMPLIFIED_ONBOARDING_API_URL}/api/authenticate`;
 }
