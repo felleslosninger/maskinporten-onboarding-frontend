@@ -14,6 +14,7 @@ COPY public ./public
 RUN npm run build
 
 FROM node:18.12.1-alpine
+RUN apk add gettext
 
 ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 ENV PATH=$PATH:/home/node/.npm-global/bin
