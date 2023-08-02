@@ -14,6 +14,7 @@ COPY public ./public
 RUN npm run build
 
 FROM node:18.12.1-alpine
+RUN apk add gettext
 
 ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 ENV PATH=$PATH:/home/node/.npm-global/bin
@@ -31,5 +32,8 @@ WORKDIR /app
 
 COPY --chown=app:app --from=build /app/build ./
 
+COPY --chown=app:app entrypoint.sh template.config.js ./
+RUN dos2unix entrypoint.sh && chmod +x entrypoint.sh
+
+ENTRYPOINT ["./entrypoint.sh"]
 EXPOSE 3000
-CMD serve -s
