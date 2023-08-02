@@ -17,7 +17,7 @@ function Onboardingpage() {
                   Opprette klient
               </Heading>
               <Paragraph className={styles.paragraph}>
-                  Det første du må gjøre for å ta i bruk tilgangen du har fått er å opprette en klient, det kan du gjøre
+                  Det første du må gjøre for å ta i bruk tilgangen du har fått, er å opprette en klient. Det kan du gjøre
                   fra {link("/dashboard", "oversikten")} over tilganger.
               </Paragraph>
 
