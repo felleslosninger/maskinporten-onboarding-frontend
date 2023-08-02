@@ -6,11 +6,12 @@ interface LinkProps {
     to: string;
     children: ReactNode | ReactNode[];
     icon?: ReactComponentElement<any>;
+    className?: string;
 }
 
 function StyledLink(props: LinkProps) {
     return (
-        <Link to={props.to} className={styles.link}>
+        <Link to={props.to} className={`${styles.link} ${props.className}`}>
             { props.icon && props.icon }
             { props.children }
         </Link>

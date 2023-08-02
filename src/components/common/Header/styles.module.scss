@@ -43,6 +43,23 @@
   display: flex;
   gap: 2rem;
   font-size: 1.25rem;
+
+  a {
+    color: $colors-semantic-action-default;
+  }
+
+  a:hover {
+    border-bottom: 2px solid #0062BA;
+  }
+
+  .active {
+    border-bottom: 2px solid #0062BA;
+  }
+
+  .inactive {
+    border-bottom: none;
+  }
+
 }
 
 .userInfo {
