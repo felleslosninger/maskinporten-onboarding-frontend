@@ -49,4 +49,4 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 `awk '{ gsub(/"/,"\\\"") } 1' java-example | awk '{ print "\x22"$0"\x22,"}'`
 
-To escape " and create a valid json array
+To escape " and create a valid json array from the content of java-example-fiel
