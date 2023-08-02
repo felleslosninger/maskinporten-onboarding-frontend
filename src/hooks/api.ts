@@ -5,11 +5,14 @@ import {ApiClient, ApiClients, ApiScopes, RequestApiClientBody} from "../types/a
 export const QK_SCOPES = 'QK_SCOPES';
 export const QK_CLIENTS = 'QK_CLIENTS';
 
+const axiosConfig = {withCredentials: true}
+
 export const useScopes = () => {
     return useQuery({
         queryKey: [QK_SCOPES],
         queryFn: async () => {
-            const res = await axios.get<ApiScopes>("/api/datasharing/consumer/scope/access");
+            // @ts-ignore
+            const res = await axios.get<ApiScopes>(`${window.env.SIMPLIFIED_ONBOARDING_API_URL}/api/datasharing/consumer/scope/access`, axiosConfig);
             return res.data;
         }
     });
@@ -19,7 +22,8 @@ export const useClients = () => {
     return useQuery({
         queryKey: [QK_CLIENTS],
         queryFn: async () => {
-            const res = await axios.get<ApiClients>("/api/datasharing/consumer/client");
+            // @ts-ignore
+            const res = await axios.get<ApiClients>(`${window.env.SIMPLIFIED_ONBOARDING_API_URL}/api/datasharing/consumer/client`, axiosConfig);
             return res.data;
         }
     });
@@ -29,7 +33,8 @@ export const useClientMutation = () => {
     const client = useQueryClient();
      return useMutation({
         mutationFn: (newClient: RequestApiClientBody) => {
-            return axios.post<ApiClient>("/api/datasharing/consumer/client", newClient);
+            // @ts-ignore
+            return axios.post<ApiClient>(`${window.env.SIMPLIFIED_ONBOARDING_API_URL}/api/datasharing/consumer/client`, newClient, axiosConfig);
         },
         onSuccess: (res) => {
             client.invalidateQueries({queryKey: [QK_CLIENTS]});

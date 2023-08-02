@@ -11,10 +11,12 @@ export const useUser = () => {
         queryFn: async () => {
             try {
 
-                const res = await fetch("/api/user", {
+                // @ts-ignore
+                const res = await fetch(`${window.env.SIMPLIFIED_ONBOARDING_API_URL}/api/user`, {
                     headers: {
                         "Content-Type": "application/json",
                     },
+                    credentials: "include",
                     redirect: "manual", // do not follow redirect
                 });
 
