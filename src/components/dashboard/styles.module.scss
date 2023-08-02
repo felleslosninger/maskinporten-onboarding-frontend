@@ -30,6 +30,7 @@
     color: $colors-interface-info-900;
     border-radius: 0.3rem;
     cursor: pointer;
+    background-color: transparent;
 
     &.active {
       color: $colors-white;
