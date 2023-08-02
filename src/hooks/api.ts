@@ -21,7 +21,8 @@ export const useClients = () => {
         queryFn: async () => {
             const res = await axios.get<ApiClients>("/api/datasharing/consumer/client");
             return res.data;
-        }
+        },
+        retry: 0
     });
 }
 

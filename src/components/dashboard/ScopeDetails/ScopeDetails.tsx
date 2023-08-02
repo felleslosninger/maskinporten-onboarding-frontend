@@ -1,11 +1,10 @@
 import React, {useState} from "react";
 import {ApiClients, ApiScope} from "../../../types/api";
 import styles from './styles.module.scss';
-import {Accordion, Button, Heading, Label, Paragraph, Popover, Select, TextField} from "@digdir/design-system-react";
+import {Accordion, Button, Heading, Label, Paragraph, Popover} from "@digdir/design-system-react";
 import KlientSVG from "../../../assets/klient_opprettet.svg";
 import TilgangSvg from "../../../assets/tilgang_gitt.svg";
 import ClientDescription from "../ClientDescription/ClientDescription";
-import Modal from "../../common/Modal/Modal";
 import NewClientModal from "../NewClientModal/NewClientModal";
 
 interface ScopeDetailProps {

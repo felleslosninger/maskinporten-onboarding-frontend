@@ -1,0 +1,49 @@
+@import "src/style/variables";
+
+.selectionContainer {
+
+  input {
+    padding: 0.5rem !important;
+    width: fit-content;
+  }
+}
+
+.smallHeading {
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+.codeExampleBox {
+  width: 100%;
+  background-color: $colors-white;
+  border-radius: 0.5rem;
+  border: 2px solid $colors-gray;
+}
+
+.codeExampleTabs {
+  display: flex;
+  gap: 1rem;
+  border-bottom: 2px solid $colors-gray;
+
+  span {
+    padding: 1rem 2rem 0 2rem;
+    cursor: pointer;
+
+    &.active {
+      color: $colors-semantic-action-default;
+    }
+
+    &:hover::after, &.active::after {
+      display: inline-block;
+      content: "";
+      height: 0.1rem;
+      width: 100%;
+      background-color: $colors-semantic-action-default;
+
+    }
+  }
+}
+
+.codeExampleContent {
+  padding: 1rem;
+}

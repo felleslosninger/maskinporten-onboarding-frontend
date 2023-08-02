@@ -20,7 +20,7 @@ function Header() {
                             <StyledLink to={"/dashboard"}>
                                 oversikt
                             </StyledLink>
-                            <StyledLink to={"/"}>
+                            <StyledLink to={"/guide"}>
                                 onboardingsguide
                             </StyledLink>
                         </div>

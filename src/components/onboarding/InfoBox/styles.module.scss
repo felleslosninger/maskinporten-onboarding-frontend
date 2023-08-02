@@ -1,0 +1,10 @@
+@import "src/style/variables";
+
+.box {
+  padding: 1rem 2rem;
+  background-color: $colors-white;
+  border-radius: 0.5rem;
+  width: fit-content;
+  border: 1px solid $colors-semantic-action-default;
+  margin-bottom: 5rem;
+}
