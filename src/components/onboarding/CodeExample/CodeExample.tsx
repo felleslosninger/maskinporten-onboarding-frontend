@@ -24,12 +24,24 @@ function CodeExample(props: Props) {
         }
     });
 
-    const processCode = (codeArray: string[]): string[] => {
-        const newArray = [...codeArray] ;
-        if (selectValue) {
-            newArray.splice(0, 0, `Tilpasset klient i test med client id ${selectValue}`);
+    const processCode = (codeString: string): string => {
+
+        if (selectValue && data) {
+            let client = data.find((client) => {
+                return selectValue == client.clientId;
+            });
+            let s = codeString.replaceAll("__CLIENT_ID__", client!!.clientId)
+                .replaceAll("__SCOPE__", client!!.scopes.join(" ,"));
+            return s
+
+
+        } else {
+            let s = codeString.replaceAll("__CLIENT_ID__", "client-uuid")
+                .replaceAll("__SCOPE__", "scope:withprefix");
+            return s;
         }
-        return newArray;
+
+
     }
 
     return (
@@ -65,7 +77,7 @@ function CodeExample(props: Props) {
                                            wrapLines={false}
                                            wrapLongLines={false}
                                            language={examples.at(selectedTab)!!.lang}>
-                            {processCode(examples.at(selectedTab)!!.code).join("\n")}
+                            {processCode(examples.at(selectedTab)!!.code.join("\n"))}
                         </SyntaxHighlighter>
                     }
                 </div>
