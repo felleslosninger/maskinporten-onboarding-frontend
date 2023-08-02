@@ -7,9 +7,12 @@ import {ReactComponent as PersonSvg} from '../../../assets/ikoner/SVG/Person.svg
 import {Button, Label} from "@digdir/design-system-react";
 import {login} from "../../auth/login";
 import StyledLink from "../StyledLink/StyledLink";
+import {useLocation} from "react-router-dom";
 
 function Header() {
     const { data, isLoading } = useUser();
+    const location = useLocation();
+
     return (
         <header className={styles.header}>
             <div className={styles.content}>
@@ -17,10 +20,12 @@ function Header() {
                 {!isLoading && data!!.isAuthenticated ?
                     <>
                         <div className={styles.headerLinks}>
-                            <StyledLink to={"/dashboard"}>
+                            <StyledLink to={"/dashboard"}
+                                        className={location.pathname === "/dashboard" ? styles.active : styles.inactive}>
                                 oversikt
                             </StyledLink>
-                            <StyledLink to={"/guide"}>
+                            <StyledLink to={"/guide"}
+                                        className={location.pathname === "/guide" ? styles.active : styles.inactive}>
                                 onboardingsguide
                             </StyledLink>
                         </div>
