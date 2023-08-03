@@ -5,18 +5,45 @@ import {Heading, Select} from "@digdir/design-system-react";
 import CodeLanguage from "./CodeLanguage";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import {bold} from "../../util/textTransforms";
+import { KeyHorizontalIcon, ClipboardIcon, BranchingIcon } from '@navikt/aksel-icons';
+import {ApiClient} from "../../../types/api";
 
 interface Props {
     children: ReactNode[] | ReactNode;
 }
 
 function CodeExample(props: Props) {
-    const { data } = useClients();
+    const { data: testClients } = useClients("test");
+    const { data: prodClients } = useClients("ver2");
     const [ selectValue, setSelectValue] = useState<string>();
     const [ selectedTab, setSelectedTab ] = useState(0);
-    const client_ids = data?.map(client => {
-        return {value: client.clientId, label: client.description}
+
+    const formatLabel = (client: ApiClient, env: string) => (
+        <div className={styles.selectFormattedBox}>
+            {bold(client.clientId)}
+            <span>
+                <ClipboardIcon />
+                {client.description}
+            </span>
+            <span>
+                <KeyHorizontalIcon />
+                {client.scopes.length > 1 ? `${client.scopes[0]}...` : client.scopes[0]}
+            </span>
+            <span>
+                <BranchingIcon />
+                {env}
+            </span>
+        </div>
+    );
+
+    const testClient_ids = testClients?.map(client => {
+        return {value: "TEST:" + client.clientId, label: client.clientId, formattedLabel: formatLabel(client, "test")}
     });
+    const prodClient_ids = prodClients?.map(client => {
+        return {value: "PROD:" + client.clientId, label: client.clientId, formattedLabel: formatLabel(client, "ver2")}
+    });
+    const client_ids = testClient_ids && prodClient_ids && testClient_ids.concat(prodClient_ids);
 
     const examples =  React.Children.map(props.children, child => {
         if (React.isValidElement(child) && (child as React.ReactElement<any>).type === CodeLanguage) {
@@ -26,10 +53,12 @@ function CodeExample(props: Props) {
 
     const processCode = (codeString: string): string => {
 
-        if (selectValue && data) {
-            let client = data.find((client) => {
-                return selectValue == client.clientId;
+        if (selectValue && testClients && prodClients) {
+            const clients = testClients.concat(prodClients);
+            let client = clients.find((client) => {
+                return selectValue.split(":")[1] === client.clientId;
             });
+
             let s = codeString.replaceAll("__CLIENT_ID__", client!!.clientId)
                 .replaceAll("__SCOPE__", client!!.scopes.join(" ,"));
             return s
@@ -52,7 +81,9 @@ function CodeExample(props: Props) {
                         Hvilken tilgang skal du ta i bruk?
                     </Heading>
                     <div className={styles.selectionContainer}>
-                        <Select options={client_ids} onChange={(value) => setSelectValue(value)} />
+                        <Select value={selectValue}
+                                options={client_ids}
+                                onChange={(value) => setSelectValue(value)} />
                     </div>
                 </div>
             )}

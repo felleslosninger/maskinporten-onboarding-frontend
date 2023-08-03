@@ -6,15 +6,22 @@ import styles from './styles.module.scss';
 import ScopeDetails from "./ScopeDetails/ScopeDetails";
 import ContentContainer from "../common/ContentContainer/ContentContainer";
 import OnboardingCard from "./OnboardingCard/OnboardingCard";
+import {useQueryClient} from "@tanstack/react-query";
 
 function Dashboard({ id }: AuthProps) {
-    const { data: scopesData, isLoading: isScopesLoading } = useScopes();
-    const { data: clientsData, isLoading: isClientsLoading } = useClients();
+    const queryClient = useQueryClient();
     const [minLoadtimeOver, setMinLoadtimeOver] = useState(false);
     const [env, setEnv] = useState("test");
+    const { data: scopesData, isLoading: isScopesLoading } = useScopes(env);
+    const { data: clientsData, isLoading: isClientsLoading } = useClients(env);
     const isLoading = isScopesLoading || isClientsLoading || !minLoadtimeOver;
 
-    setTimeout(() => setMinLoadtimeOver(true), 1000);
+    setTimeout(() => setMinLoadtimeOver(true), 600);
+
+    const onEnvChanged = (env: string) => {
+        setEnv(env);
+        queryClient.clear();
+    }
 
     return (
         <ContentContainer>
@@ -37,10 +44,10 @@ function Dashboard({ id }: AuthProps) {
                         Valgt miljø:
                     </Label>
                     <div className={styles.picker}>
-                        <button className={`${env === "test" ? styles.active : ""}`} onClick={() => setEnv("test")}>
+                        <button className={`${env === "test" ? styles.active : ""}`} onClick={() => onEnvChanged("test")}>
                             TEST
                         </button>
-                        <button className={`${env === "prod" ? styles.active : ""}`} onClick={() => setEnv("prod")}>
+                        <button className={`${env === "ver2" ? styles.active : ""}`} onClick={() => onEnvChanged("ver2")}>
                             PROD
                         </button>
                     </div>

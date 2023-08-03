@@ -67,20 +67,13 @@ function ScopeDetails(props: ScopeDetailProps) {
             <Accordion.Content>
                 {
                     hasClient
-                    ? props.clients.map((client) => client.scopes.includes(props.scope.scope) ? <ClientDescription client={client} key={client.clientId} /> : null)
+                    ? props.clients.map((client) => client.scopes.includes(props.scope.scope) ? <ClientDescription client={client} env={props.env} key={client.clientId} /> : null)
                     : renderNoClientBox()
                 }
                 <div className={styles.buttonRow}>
                     <Button className={styles.opprettButton} onClick={() => setShowModal(true)}>
                         Opprett Klient
                     </Button>
-                    {
-                        hasClient &&
-                        <>
-                            <Button variant={"outline"}>Kom i gang med virksomhetssertifikat</Button>
-                            <Button variant={"outline"}>Kom i gang med nøkler</Button>
-                        </>
-                    }
                 </div>
             </Accordion.Content>
         </Accordion.Item>

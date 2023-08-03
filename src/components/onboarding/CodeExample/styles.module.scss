@@ -47,3 +47,19 @@
 .codeExampleContent {
   padding: 1rem;
 }
+
+.selectFormattedBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.25rem;
+
+  span {
+    display: flex;
+    align-items: center;
+
+    svg {
+      margin-right: 0.25rem;
+    }
+  }
+}
