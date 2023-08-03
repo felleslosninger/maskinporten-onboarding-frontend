@@ -3,12 +3,15 @@ import {ApiClient} from "../../../types/api";
 import styles from '../ClientDescription/styles.module.scss';
 import {Button, Paragraph} from "@digdir/design-system-react";
 import { CheckmarkIcon } from '@navikt/aksel-icons';
+import {useClientDeleteMutation} from "../../../hooks/api";
 
 interface ClientDescriptionProps {
     client: ApiClient;
+    env: string;
 }
 
 const ClientDescription = (props: ClientDescriptionProps) => {
+    const { mutate: deleteClient } = useClientDeleteMutation(props.env);
     const [copied, setCopied] = useState(false);
 
     const onCopyButtonClick = () => {
@@ -16,16 +19,29 @@ const ClientDescription = (props: ClientDescriptionProps) => {
         setCopied(true);
     }
 
+    const onDelete = () => {
+        deleteClient(props.client.clientId);
+    }
+
     return (
         <div className={styles.container}>
             <div className={styles.content}>
                 <div className={styles.topRow}>
-                    <Paragraph>
-                        klient-beskrivelse:
-                    </Paragraph>
-                    <Paragraph>
-                        {props.client.description}
-                    </Paragraph>
+                    <div>
+                        <Paragraph>
+                            klient-beskrivelse:
+                        </Paragraph>
+                        <Paragraph>
+                            {props.client.description}
+                        </Paragraph>
+                    </div>
+                    <Button variant={"filled"}
+                            color={"danger"}
+                            onClick={onDelete}
+                            icon={copied ? <CheckmarkIcon /> : null}
+                    >
+                        Slett
+                    </Button>
                 </div>
                 <div className={styles.bottomRow}>
                     <div>

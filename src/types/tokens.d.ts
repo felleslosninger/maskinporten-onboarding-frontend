@@ -11,24 +11,6 @@ type AuthorizationDetails = {
     }>
 }
 
-export type AccessToken = {
-    sub: string,
-    iss: string,
-    client_amr: string,
-    pid: string,
-    client_id: string,
-    acr: string,
-    authorization_details: AuthorizationDetails[],
-    scope: string,
-    exp: number,
-    iat: number,
-    jti: string,
-    consumer: {
-        authority: string,
-        ID: string
-    }
-}
-
 export type IdToken = {
     sub: string,
     amr: Array<string>,

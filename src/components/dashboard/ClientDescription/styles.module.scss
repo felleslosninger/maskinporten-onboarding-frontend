@@ -16,8 +16,14 @@
 }
 
 .topRow {
+  display: flex;
+  align-items: center;
   padding: 1rem 0;
   border-bottom: 1px solid lightgray;
+
+  button {
+    margin-left: auto;
+  }
 }
 
 .bottomRow {
@@ -26,8 +32,6 @@
   padding: 1rem 0;
 
   button {
-    color: $colors-semantic-action-default;
     margin-left: 2rem;
-    border: 1px solid $colors-semantic-action-default;
   }
 }

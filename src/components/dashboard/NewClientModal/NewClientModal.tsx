@@ -3,6 +3,8 @@ import styles from "./styles.module.scss";
 import {Alert, Button, Label, Paragraph, Spinner, TextField} from "@digdir/design-system-react";
 import Modal from "../../common/Modal/Modal";
 import {useClientMutation} from "../../../hooks/api";
+import StyledLink from "../../common/StyledLink/StyledLink";
+import {bold} from "../../util/textTransforms";
 
 interface Props {
     env: string;
@@ -12,7 +14,7 @@ interface Props {
 }
 
 function NewClientModal(props: Props) {
-    const { mutate: addClient, isSuccess, isError, isIdle, data } = useClientMutation();
+    const { mutate: addClient, isSuccess, isError, isIdle, data } = useClientMutation(props.env);
     const isLoading = !isIdle && !isError && !isSuccess;
     const ref = React.createRef<HTMLInputElement>();
 
@@ -54,36 +56,38 @@ function NewClientModal(props: Props) {
 
     const renderSuccessScreen = () => (
         <div className={styles.successContainer}>
-            <div className={styles.responseInfo}>
-                <div className={styles.responseInfoContent}>
-                    <div>
-                        <Label>Miljø:</Label>
-                        <Paragraph>{props.env}</Paragraph>
-                    </div>
-                    <div>
-                        <Label>API tilgang:</Label>
-                        <Paragraph>{props.scope}</Paragraph>
-                    </div>
-                    <div>
-                        <Label>Klient beskrivelse:</Label>
-                        <Paragraph>{data!!.data.description}</Paragraph>
-                    </div>
-                    <div>
-                        <Label>Client-id:</Label>
-                        <Paragraph>{data!!.data.clientId}</Paragraph>
+            <div>
+                <div className={styles.responseInfo}>
+                    <div className={styles.responseInfoContent}>
+                        <div>
+                            <Label>Miljø:</Label>
+                            <Paragraph>{props.env}</Paragraph>
+                        </div>
+                        <div>
+                            <Label>API tilgang:</Label>
+                            <Paragraph>{props.scope}</Paragraph>
+                        </div>
+                        <div>
+                            <Label>Klient beskrivelse:</Label>
+                            <Paragraph>{data!!.data.description}</Paragraph>
+                        </div>
+                        <div>
+                            <Label>Client-id:</Label>
+                            <Paragraph>{data!!.data.clientId}</Paragraph>
+                        </div>
                     </div>
                 </div>
+                <Button className={styles.closeModalButton} variant={"outline"} onClick={props.closeModal}>
+                    Tilbake til oversikten
+                </Button>
             </div>
             <div className={styles.usageInfo}>
-                <Label>Ta i bruk klient?</Label>
-                <Paragraph>Du kan laste opp nøkler her, men du kan også benytte viksomhetssertifikat</Paragraph>
+                <Label>{bold("Ta i bruk klient?")}</Label>
+                <Paragraph>
+                    Følg var onboardingsguide for informasjon om hvordan du kan ta i bruk klienten din
+                </Paragraph>
                 <div className={styles.usageButtons}>
-                    <Button variant={"outline"}>
-                        Last opp nøkler
-                    </Button>
-                    <Button variant={"outline"} onClick={props.closeModal}>
-                        Tilbake til oversikten
-                    </Button>
+                    <StyledLink to={"/guide"}>Gå til Onboardingsguiden</StyledLink>
                 </div>
             </div>
         </div>

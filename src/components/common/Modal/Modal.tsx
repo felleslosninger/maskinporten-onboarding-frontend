@@ -21,6 +21,11 @@ function Modal(props: ModalProps) {
         }
     }, [props.open]);
 
+    // Enable scroll if modal is closed unexpectedly
+    useEffect( () => () => {
+        document.body.style.overflow = 'unset'
+    }, [] );
+
     if (props.open) {
         return (
             <div className={styles.modalOverlay} onClick={props.closeModal}>
