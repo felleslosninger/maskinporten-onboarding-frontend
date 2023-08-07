@@ -4,6 +4,7 @@ import styles from '../ClientDescription/styles.module.scss';
 import {Button, Paragraph} from "@digdir/design-system-react";
 import { CheckmarkIcon } from '@navikt/aksel-icons';
 import {useClientDeleteMutation} from "../../../hooks/api";
+import ConfirmAlert from "../../common/ConfirmAlert/ConfirmAlert";
 
 interface ClientDescriptionProps {
     client: ApiClient;
@@ -13,18 +14,23 @@ interface ClientDescriptionProps {
 const ClientDescription = (props: ClientDescriptionProps) => {
     const { mutate: deleteClient } = useClientDeleteMutation(props.env);
     const [copied, setCopied] = useState(false);
+    const [ modalOpen, setModalOpen ] = useState(false);
 
     const onCopyButtonClick = () => {
         navigator.clipboard.writeText(props.client.clientId);
         setCopied(true);
     }
 
-    const onDelete = () => {
-        deleteClient(props.client.clientId);
-    }
-
     return (
         <div className={styles.container}>
+            {modalOpen &&
+                <ConfirmAlert title={"Ekstra bekreftelse er påkrevet for denne handlingen"}
+                              open={modalOpen}
+                              confirmText={"SLETT"}
+                              closeModal={() => setModalOpen(false)}
+                              onConfirm={() => deleteClient(props.client.clientId)}
+                />
+            }
             <div className={styles.content}>
                 <div className={styles.topRow}>
                     <div>
@@ -37,8 +43,7 @@ const ClientDescription = (props: ClientDescriptionProps) => {
                     </div>
                     <Button variant={"filled"}
                             color={"danger"}
-                            onClick={onDelete}
-                            icon={copied ? <CheckmarkIcon /> : null}
+                            onClick={() => setModalOpen(true)}
                     >
                         Slett
                     </Button>

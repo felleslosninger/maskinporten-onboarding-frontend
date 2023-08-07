@@ -1,7 +1,7 @@
 import React, {ReactNode, useState} from "react";
 import styles from "./styles.module.scss";
 import {useClients} from "../../../hooks/api";
-import {Heading, Select} from "@digdir/design-system-react";
+import {Heading, Paragraph, Select} from "@digdir/design-system-react";
 import CodeLanguage from "./CodeLanguage";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
@@ -10,6 +10,7 @@ import { KeyHorizontalIcon, ClipboardIcon, BranchingIcon } from '@navikt/aksel-i
 import {ApiClient} from "../../../types/api";
 
 interface Props {
+    title: string;
     children: ReactNode[] | ReactNode;
 }
 
@@ -63,7 +64,6 @@ function CodeExample(props: Props) {
                 .replaceAll("__SCOPE__", client!!.scopes.join(" ,"));
             return s
 
-
         } else {
             let s = codeString.replaceAll("__CLIENT_ID__", "client-uuid")
                 .replaceAll("__SCOPE__", "scope:withprefix");
@@ -75,17 +75,27 @@ function CodeExample(props: Props) {
 
     return (
         <>
+            <Heading size={"large"}>
+                {props.title}
+            </Heading>
+
             {client_ids && (
-                <div>
-                    <Heading className={styles.smallHeading} size={"small"}>
-                        Hvilken tilgang skal du ta i bruk?
-                    </Heading>
-                    <div className={styles.selectionContainer}>
-                        <Select value={selectValue}
-                                options={client_ids}
-                                onChange={(value) => setSelectValue(value)} />
+                <>
+                    <Paragraph>
+                        Ved å legge inn hvilken tilgang du skal ta i bruk kan vi gi deg kodeeksempler som du kan bruke.
+                    </Paragraph>
+                    <div>
+                        <Heading className={styles.smallHeading} size={"small"}>
+                            Hvilken tilgang skal du ta i bruk?
+                        </Heading>
+                        <div className={styles.selectionContainer}>
+                            <Select value={selectValue}
+                                    options={client_ids}
+                                    onChange={(value) => setSelectValue(value)} />
+                        </div>
                     </div>
-                </div>
+                </>
+
             )}
             <Heading className={styles.smallHeading} size={"small"}>
                 Kode-eksempel:

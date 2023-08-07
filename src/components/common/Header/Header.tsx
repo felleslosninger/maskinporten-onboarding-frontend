@@ -2,7 +2,7 @@ import React from 'react';
 import {useUser} from "../../../hooks/auth";
 import styles from './styles.module.scss';
 import { ReactComponent as Logo } from '../../../assets/logo.svg';
-import {ReactComponent as BedriftSvg} from '../../../assets/ikoner/SVG/Næringsliv.svg';
+import {ReactComponent as BedriftSvg} from '../../../assets/bedrift.svg';
 import {ReactComponent as PersonSvg} from '../../../assets/ikoner/SVG/Person.svg';
 import {Button, Label} from "@digdir/design-system-react";
 import {login} from "../../auth/login";
@@ -31,10 +31,10 @@ function Header() {
                         </div>
                         <div className={styles.userInfo}>
                             <div>
-                                <Label>
+                                <Label size={"small"}>
                                     {data!!.user!!.name}
                                 </Label>
-                                <Label>
+                                <Label size={"small"}>
                                     {data!!.user!!.authorization_details[0].reportees[0].Name}
                                 </Label>
                             </div>

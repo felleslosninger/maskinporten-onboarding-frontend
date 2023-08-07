@@ -18,11 +18,11 @@
   justify-content: space-between;
 
   .logo {
-    width: 3rem;
+    width: 2.5rem;
     height: fit-content;
 
     g {
-      fill: $colors-semantic-action-default
+      fill: $colors-interface-highlight
     }
   }
 
@@ -45,15 +45,15 @@
   font-size: 1.25rem;
 
   a {
-    color: $colors-semantic-action-default;
+    color: $colors-interface-highlight;
   }
 
   a:hover {
-    border-bottom: 2px solid #0062BA;
+    border-bottom: 2px solid $colors-interface-highlight;
   }
 
   .active {
-    border-bottom: 2px solid #0062BA;
+    border-bottom: 2px solid $colors-interface-highlight;
   }
 
   .inactive {
@@ -83,14 +83,11 @@
 .loginSvg {
   height: 1.5rem;
   width: 1.5rem;
-  padding: 0.5rem;
-  background-color: $colors-interface-info-900;
+  padding: 0.25rem;
+  background-color: transparent;
   border-radius: 50%;
   margin-left: 1rem;
-
-  g, path {
-    fill: $colors-white;
-  }
+  fill: white;
 }
 
 .loginButton {
