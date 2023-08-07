@@ -13,8 +13,9 @@ function Landingpage() {
                 Velkommen til Forenklet Onboarding
             </Heading>
             <Ingress>
-                Her kan du enkelt ta i bruk API-tilgangene din virksomhet har fått. Du kan se alle dine
-                tilganger, opprette klienter og ta disse i bruk.
+                Her kan du enkelt ta i bruk API-tilgangene din virksomhet har fått i Maskinporten.
+                Som konsument av et Maskinporten-beskyttet API, kan du her se alle dine tilganger, opprette klienter
+                og få hjelp til å ta disse i bruk.
             </Ingress>
             <Ingress>
                 Vi bruker Ansattporten,
