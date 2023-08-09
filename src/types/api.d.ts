@@ -25,3 +25,11 @@ export type RequestApiClientBody = {
     description: string;
     scopes: string[];
 }
+
+export type ApiConfig = {
+    [env: string]: {
+        authorization_server: string;
+        issuer: string;
+        token_endpoint: string;
+    }
+}

@@ -1,6 +1,7 @@
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import axios from "axios";
-import {ApiClient, ApiClients, ApiScopes, RequestApiClientBody} from "../types/api";
+import {ApiClient, ApiClients, ApiConfig, ApiScopes, RequestApiClientBody} from "../types/api";
+import {QK_CONFIG} from "./auth";
 
 export const QK_SCOPES = 'QK_SCOPES';
 export const QK_CLIENTS = 'QK_CLIENTS';
@@ -71,5 +72,28 @@ export const useClientDeleteMutation = (env: string) => {
             client.invalidateQueries({queryKey: [QK_CLIENTS]});
             return res;
         }
+    });
+}
+
+/* NOT CURRENTLY IN USE */
+export const useAllClientsInEnvironments = () => {
+    return useQuery({
+        queryKey: [QK_CONFIG, QK_SCOPES],
+        queryFn: async () => {
+            const configPath = `${baseUrl}/api/config`;
+            const configRes = await axios.get<ApiConfig>(configPath, axiosConfig);
+            const envs = Object.keys(configRes.data);
+
+            const clients: ApiClient[] = [];
+
+            for (let env in envs) {
+                const path = `${baseUrl}/api/${env}/datasharing/consumer/client`;
+                const res = await axios.get<ApiClients>(path, axiosConfig);
+                clients.concat(res.data);
+            }
+
+            return clients;
+        },
+        retry: 0
     });
 }

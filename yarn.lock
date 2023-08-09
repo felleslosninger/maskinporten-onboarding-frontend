@@ -1293,22 +1293,22 @@
   resolved "https://registry.yarnpkg.com/@csstools/selector-specificity/-/selector-specificity-2.2.0.tgz#2cbcf822bf3764c9658c4d2e568bd0c0cb748016"
   integrity sha512-+OJ9konv95ClSTOJCmMZqpd5+YGsB2S+x6w3E1oaM8UuR5j8nTNHYSz8c9BEPGDOCMQYIEEGlVPj/VY64iTbGw==
 
-"@digdir/design-system-react@^0.20.0":
-  version "0.20.0"
-  resolved "https://registry.yarnpkg.com/@digdir/design-system-react/-/design-system-react-0.20.0.tgz#4ed3b6b00808c5d40b81d43134e684723cce4eeb"
-  integrity sha512-toEg0V97ZWXt7bPLql8oin8jkUO3O6mPnu0WuwEqyr7BjL9VntAu2QcZQmp8alv4kD19TMdhqwpfdrVbDqvQiA==
+"@digdir/design-system-react@^0.22.0":
+  version "0.22.0"
+  resolved "https://registry.yarnpkg.com/@digdir/design-system-react/-/design-system-react-0.22.0.tgz#0a320af4ffc99f7b959e57f8252b93f0b4fe1260"
+  integrity sha512-+OOId9JrBzpX05tYp8tK9kikcMj0eOItz5WqvwoE5x4UEcGqjuHv2Pktj25S74jVJ7ZT4NJPQ3qyN/6NsSRYug==
   dependencies:
     "@altinn/figma-design-tokens" "^6.0.1"
-    "@digdir/design-system-tokens" "^0.1.6"
+    "@digdir/design-system-tokens" "^0.2.0"
     "@floating-ui/react" "0.24.1"
     "@navikt/aksel-icons" "^3.2.4"
     "@navikt/ds-icons" "^2.3.0"
     react-number-format "5.2.2"
 
-"@digdir/design-system-tokens@^0.1.6":
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/@digdir/design-system-tokens/-/design-system-tokens-0.1.6.tgz#ab3b8b854154515bd725a21439ea1df6e0bcef5c"
-  integrity sha512-H9M6KmMUymOYIWNXzCCgmTPQOWv369Ib/NEDd0LkFGyHbLCjTzgC3mSkfBiAcqGXph2T2YCDfoI58hY5WRCU/Q==
+"@digdir/design-system-tokens@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@digdir/design-system-tokens/-/design-system-tokens-0.2.0.tgz#c7b4352b4aba36563b69854ec303dc340048a1e7"
+  integrity sha512-3+hFuICTNVeMxBqnJmiRK7YWC06jk6/xja9uUlk5RtlhlqJ5Yyj1NvUM6HT5dCfbkvIEIuF/gkd7wTaystpOlA==
 
 "@eslint-community/eslint-utils@^4.2.0":
   version "4.4.0"

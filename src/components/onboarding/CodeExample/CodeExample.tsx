@@ -8,6 +8,7 @@ import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import {bold} from "../../util/textTransforms";
 import { KeyHorizontalIcon, ClipboardIcon, BranchingIcon } from '@navikt/aksel-icons';
 import {ApiClient} from "../../../types/api";
+import {useConfig} from "../../../hooks/auth";
 
 interface Props {
     title: string;
@@ -15,8 +16,9 @@ interface Props {
 }
 
 function CodeExample(props: Props) {
-    const { data: testClients } = useClients("test");
-    const { data: prodClients } = useClients("ver2");
+    const { data: config } = useConfig();
+    const { data: testClients } = useClients(config? Object.keys(config)[0] : "test");
+    const { data: prodClients } = useClients(config? Object.keys(config)[1] : "ver2");
     const [ selectValue, setSelectValue] = useState<string>();
     const [ selectedTab, setSelectedTab ] = useState(0);
 
