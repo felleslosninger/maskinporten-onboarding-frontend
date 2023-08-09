@@ -10,11 +10,11 @@ function Footer() {
                 <StyledLink to={"/"} icon={<FigureIcon />}>
                     Tilgjengelighet
                 </StyledLink>
-                <StyledLink to={"mailto:hjelp@etaten.no"} icon={<EnvelopeClosedIcon />}>
-                    hjelp@etaten.no
+                <StyledLink to={"mailto:servicedesk@digdir.no"} icon={<EnvelopeClosedIcon />}>
+                    servicedesk@digdir.no
                 </StyledLink>
-                <StyledLink to={"tel:+4712345678"} icon={<PhoneIcon />}>
-                    (+47) 12 34 56 78
+                <StyledLink to={"tel:+4795736103"} icon={<PhoneIcon />}>
+                    (+47) 95 73 61 03
                 </StyledLink>
             </div>
         </div>

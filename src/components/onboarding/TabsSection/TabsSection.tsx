@@ -50,7 +50,6 @@ function TabsSection() {
             <CodeExample title={"Se kode-eksempel JWT-grant"}>
                 <CodeLanguage title={"Node.js"} language={"javascript"} code={sertificateCode.node} />
                 <CodeLanguage title={"Java"} language={"java"} code={sertificateCode.java} />
-                <CodeLanguage title={"Python"} language={"python"} code={sertificateCode.python} />
             </CodeExample>
 
 
@@ -85,9 +84,7 @@ function TabsSection() {
             </InfoBox>
 
             <CodeExample title={"Se kode-eksempel JWT-grant"}>
-                <CodeLanguage title={"Node.js"} language={"javascript"} code={keyCode.node} />
                 <CodeLanguage title={"Java"} language={"java"} code={keyCode.java} />
-                <CodeLanguage title={"Python"} language={"python"} code={keyCode.python} />
             </CodeExample>
         </>
     );
@@ -141,12 +138,6 @@ function TabsSection() {
                     <li>Bruk det returnerte tokenet som bearer-token mot tjenesten.</li>
                 </ol>
             </InfoBox>
-
-            <CodeExample title={"Se kode-eksempel JWT-grant"}>
-                <CodeLanguage title={"Node.js"} language={"javascript"} code={otherCode.node} />
-                <CodeLanguage title={"Java"} language={"java"} code={otherCode.java} />
-                <CodeLanguage title={"Python"} language={"python"} code={otherCode.python} />
-            </CodeExample>
         </>
     )
 
