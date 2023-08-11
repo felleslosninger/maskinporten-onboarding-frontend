@@ -93,8 +93,8 @@ function TabsSection() {
                 Andre fremgangsmåter
             </Heading>
             <Paragraph className={styles.paragraph}>
-                Du kan også bruke et manuelt opplastet virksomhetssertifikat eller automatisere via Maskinportens
-                selvbetjenings-API.
+                Du kan også automatisere via Maskinportens
+                selvbetjenings-API eller bruke et manuelt opplastet virksomhetssertifikat.
             </Paragraph>
 
             <Heading size={"large"} className={styles.largeHeader}>
