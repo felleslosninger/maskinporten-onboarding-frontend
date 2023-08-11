@@ -47,7 +47,6 @@ function TabsSection() {
             </InfoBox>
 
             <CodeExample title={"Se kode-eksempel JWT-grant"}>
-                <CodeLanguage title={"Node.js"} language={"javascript"} code={sertificateCode.node}/>
                 <CodeLanguage title={"Java"} language={"java"} code={sertificateCode.java}/>
             </CodeExample>
         </>
