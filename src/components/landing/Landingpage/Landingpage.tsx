@@ -6,6 +6,8 @@ import {ReactComponent as MpSvg} from '../../../assets/ikoner/SVG/Maskinporten.s
 import styles from './styles.module.scss';
 import {login} from "../../auth/login";
 
+const enkelttjenestenavn = "Selvbetjening av integrasjoner i ID-porten/Maskinporten";
+
 function Landingpage() {
     return (
         <div className={styles.container}>
@@ -42,8 +44,7 @@ function Landingpage() {
                             API-tilganger gitt din virksomhet.
                         </Paragraph>
                         <Paragraph>
-                            Tjenesten krever at du har rettighet til enkelttjenesten "Selvbetjening av integrasjoner i
-                            ID-porten/Maskinporten" på vegne av virksomheten.
+                            Tjenesten krever at du har rettighet til enkelttjenesten "{enkelttjenestenavn}" på vegne av virksomheten.
                             Du kan se om du har denne rettigheten ved å logge inn i Altinn, velge rett virksomhet og navigere til Profil.
                             Under fanen "Skjema og tjenester du har rettighet til" vil denne komme opp under "Har tilgang til disse N enkelttjenestene".
                         </Paragraph>
@@ -62,19 +63,24 @@ function Landingpage() {
                 </Accordion.Header>
                 <Accordion.Content>
                     <Paragraph>
-                        Daglig leder eller andre som har rollen <Link
+                        Dersom du allerede er tilknyttet din virksomhet gjennom en eksisterende rolle eller tjeneste i Altinn kan du <Link
+                        to={"https://www.altinn.no/hjelp/profil/sporre-om-rettighet/slik-spor-du-om-rettighet/"}>etterspørre rettigheten</Link>.
+                        Enkelttjenesten som etterspørres er da "{enkelttjenestenavn}".
+                    </Paragraph>
+                    <Paragraph>
+                        Dersom du ikke har tilknytning til virksomheten i dag i Altinn, vil det være daglig leder eller andre som har rollen <Link
                         to={"https://www.altinn.no/hjelp/skjema/alle-altinn-roller/"}>hovedadministrator</Link> i
                         din virksomhet vil ha høyest rettighet til dele ut tilganger.
-                        Virksomheten din kan også ha satt opp rollen
-                        <Link
-                            to={"https://www.altinn.no/hjelp/skjema/alle-altinn-roller/"}> Tilgangsstyrer</Link> som
-                        også kan bistå med dette gitt at personen også innehar "Eksplisitt
-                        tjenestedelegering"-rollen. https://www.altinn.no/hjelp/profil/roller-og-rettigheter/hvordan-gi-rettigheter-til-andre/
-
                     </Paragraph>
-                    <Paragraph>Av personvernsmessige årsaker kan
-                        vi ikke si noe spesifikt om hvem i din bedrift som har disse rollene og kan gi deg
-                        tilgang.</Paragraph>
+                    <Paragraph>Virksomheten din kan også ha satt opp rollen <Link
+                            to={"https://www.altinn.no/hjelp/profil/roller-og-rettigheter/hvordan-gi-rettigheter-til-andre/"}>tilgangsstyrer</Link> som
+                        også kan bistå med dette.
+                    </Paragraph>
+                    <Paragraph>Fremgangsmåten for å tildele en enkelttjeneste er beskrevet <Link
+                            to={"https://www.altinn.no/hjelp/profil/roller-og-rettigheter/hvordan-gi-rettigheter-til-andre/"}>her</Link> og
+                        vil være lik for hovedadminstrator og tilgangsstyrer.
+                    </Paragraph>
+                    <Paragraph>Av sikkerhets- og personvernsmessige årsaker kan vi ikke informere om hvem i din bedrift som har disse rollene.</Paragraph>
                 </Accordion.Content>
             </Accordion.Item>
         </Accordion>
