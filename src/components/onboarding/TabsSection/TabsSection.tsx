@@ -118,27 +118,10 @@ function TabsSection() {
                 Med manuelt opplastet virksomhetssertifikat
             </Heading>
             <Paragraph className={styles.paragraph}>
-                Dersom du kun ønsker å ha <strong>ett</strong> gyldig virksomhetssertifikat å signere med for hver klient kan du laste
-                dette opp (her eller i samarbeidsportalen). Da referer du til serfifikatet i grant
-                og singerer med akkuart det. Se kode-eksempel lengre ned på siden.
+                Dersom du kun ønsker å ha <strong>ett</strong> gyldig virksomhetssertifikat å signere med for hver klient, støtter vi dessverre ikke
+                dette for øyeblikket som en del av forenklet onboarding-løsningen. I dette tilfellet, ta kontakt med servicedesk@digdir.no for å få
+                tilgang til Samarbeidsportalen.
             </Paragraph>
-
-            <InfoBox>
-                {bold("Forutsetninger:")}
-                <Paragraph className={styles.paragraph}>
-                    [TEST-]virksomhetssertifikat. {link("/", "Hvordan skaffer jeg et virksomhetssertifikat?")}
-                </Paragraph>
-                <Heading size={"medium"}>
-                    Fremgangsmåte
-                </Heading>
-                <ol className={styles.orderedList}>
-                    <li>Lag klient med virksomhetssertifikat.</li>
-                    <li>Lag JWT-grant og referer til kid.</li>
-                    <li>Signer med det samme virksomhetssertifikatet som du lastet opp i steg 1.</li>
-                    <li>Send til maskinporten.</li>
-                    <li>Bruk det returnerte tokenet som bearer-token mot tjenesten.</li>
-                </ol>
-            </InfoBox>
         </>
     )
 
