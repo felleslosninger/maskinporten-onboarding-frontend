@@ -100,17 +100,17 @@ function TabsSection() {
                 Via selvbetjenings-API
             </Heading>
             <Paragraph className={styles.paragraph}>
-                Dette er den beste måten for virksomheten som vil implementere inn- og utmelding av klienter
-                automatisk. Dersom du har mange servere og ønsker å ha kortlevde, unike nøkler, kan dette være svært relevant.
-                Maskinporten har et eget API knyttet til administrasjon av klienter som er beskrevet i deres {link("https://docs.digdir.no/docs/Maskinporten/maskinporten_sjolvbetjening_api", "dokumentasjon", true)}.
+                Dersom du har mange servere og ønsker å ha kortlevde, unike nøkler, kan du benytte deg av Maskinportens
+                selvbetjenings-API. Dette gir mulighet for å automatisere inn- og utmelding av klienter,
+                men kan kreve mer av et platform- eller utviklingsteam.Dersom din virksomhet har et eget
+                Kubernets-cluster, har NAV open-sourcet sin cluster operator {link("https://github.com/nais/digdirator", "digdirator", true)} som automatiserer prosessen.
             </Paragraph>
-            <Paragraph>Dette kan være ekstra relevant for deg som drifter eget Kubernets-cluster.
-                Her har NAV open-sourcet sin cluster operator {link("https://github.com/nais/digdirator", "digdirator", true)} som automatiserer prosessen.
-            </Paragraph>
-
             <Paragraph className={styles.paragraph}>
-                Selvbetjenings-APIet er igjen sikret med Maskinporten og krever en klient med scope `idporten:scopes.write`.Denne løsningen for forenklet onboarding støtter foreløpig ikke prosessen videre her og du må
-                sende en forespørsel til servicedesk@digdir.no. {link("https://docs.digdir.no/docs/Maskinporten/maskinporten_sjolvbetjening_api#tilgang-administrasjon-av-api", "Se mer informasjon", true)}.
+                Selvbetjenings-API er dokumentert {link("https://docs.digdir.no/docs/Maskinporten/maskinporten_sjolvbetjening_api", "her", true)}.
+                Pålogging til APIet er igjen sikret med Maskinporten og krever en egen klient med scope `idporten:scopes.write`.
+                Denne løsningen for forenklet onboarding støtter foreløpig ikke prosessen videre for å få tak i denne
+                tilgangen og du må sende en forespørsel til servicedesk@digdir.no. Se mer informasjon
+                {link("https://docs.digdir.no/docs/Maskinporten/maskinporten_sjolvbetjening_api#tilgang-administrasjon-av-api", "her", true)}.
             </Paragraph>
 
             <Heading size={"large"} className={styles.largeHeader}>
