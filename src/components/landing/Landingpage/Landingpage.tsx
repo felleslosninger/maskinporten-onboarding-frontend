@@ -70,7 +70,7 @@ function Landingpage() {
                     <Paragraph>
                         Dersom du ikke har tilknytning til virksomheten i dag i Altinn, vil det være daglig leder eller andre som har rollen <Link
                         to={"https://www.altinn.no/hjelp/skjema/alle-altinn-roller/"}>hovedadministrator</Link> i
-                        din virksomhet vil ha høyest rettighet til dele ut tilganger.
+                        din virksomhet som vil ha høyest rettighet til dele ut tilganger.
                     </Paragraph>
                     <Paragraph>Virksomheten din kan også ha satt opp rollen <Link
                             to={"https://www.altinn.no/hjelp/profil/roller-og-rettigheter/hvordan-gi-rettigheter-til-andre/"}>tilgangsstyrer</Link> som
