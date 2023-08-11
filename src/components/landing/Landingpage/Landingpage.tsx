@@ -19,7 +19,7 @@ function Landingpage() {
             </Ingress>
             <Ingress>
                 Vi bruker Ansattporten,
-                som er en nasjonal løsning fra Digdir, for å bekrefte at du har de nødvendige rettighetene fra din
+                som er en nasjonal løsning fra Digdir, for å bekrefte at du har de nødvendige rettighetene i din
                 virksomhet til å gjøre dette.
             </Ingress>
             <div className={styles.loginRow}>
@@ -39,44 +39,47 @@ function Landingpage() {
                     <Accordion.Content>
                         <Paragraph>
                             Da kan det være at du ikke har riktig rolle i Altinn for å kunne se og administrere
-                            API-tilganger gitt din
-                            virksomhet. Enkelte roller i Enhetsregisteret har forhåndsdefinert tilgang, se listen over
-                            roller under
-                            <Link
-                                to={"https://www.altinn.no/hjelp/skjema/alle-altinn-roller/"}> Hovedadministrator</Link>.
-                        </Paragraph><Paragraph>
-                        Rollen "Eksplisitt tjenestedelegering" vil også gi deg tilgang til å administrere API-tilganger.
-                    </Paragraph>
-                        <Link
-                            to={"https://tt02.altinn.no/api/metadata/rolerequirements?serviceCode=5613&serviceEditionCode=1"}>
-                            Les mer her
-                        </Link>
-                    </Accordion.Content>
-                </Accordion.Item>
-                <Accordion.Item>
-                    <Accordion.Header>
-                        <Label size={"large"}>Hvem kan jeg kontakte for tilgang?</Label>
-                    </Accordion.Header>
-                    <Accordion.Content>
-                        <Paragraph>
-                            Daglig leder eller andre som har rollen <Link
-                            to={"https://www.altinn.no/hjelp/skjema/alle-altinn-roller/"}>hovedadministrator</Link> i
-                            din virksomhet vil ha høyest rettighet til dele ut tilganger.
-                            Virksomheten din kan også ha satt opp rollen
-                            <Link
-                                to={"https://www.altinn.no/hjelp/skjema/alle-altinn-roller/"}> Tilgangsstyrer</Link> som
-                            også kan bistå med dette gitt at personen også innehar "Eksplisitt
-                            tjenestedelegering"-rollen.
-
+                            API-tilganger gitt din virksomhet.
                         </Paragraph>
-                        <Paragraph>Av personvernsmessige årsaker kan
-                            vi ikke si noe spesifikt om hvem i din bedrift som har disse rollene og kan gi deg
-                            tilgang.</Paragraph>
-                    </Accordion.Content>
-                </Accordion.Item>
-            </Accordion>
-        </div>
-    )
+                        <Paragraph>
+                            Tjenesten krever at du har rettighet til enkelttjenesten "Selvbetjening av integrasjoner i
+                            ID-porten/Maskinporten" på vegne av virksomheten.
+                            Du kan se om du har denne rettigheten ved å logge inn i Altinn, velge rett virksomhet og navigere til Profil.
+                            Under fanen "Skjema og tjenester du har rettighet til" vil denne komme opp under "Har tilgang til disse N enkelttjenestene".
+                        </Paragraph>
+
+                        <Paragraph>
+                        Enkelte selskapsrollerroller fra Enhetsregisteret, for eksempel daglig leder, har forhåndsdefinert tilgang til løsningen , se
+                        den fulle listen over disse under fanen
+                        <Link
+                            to={"https://www.altinn.no/hjelp/skjema/alle-altinn-roller/"}> Hovedadministrator</Link> her.
+                    </Paragraph>
+                </Accordion.Content>
+            </Accordion.Item>
+            <Accordion.Item>
+                <Accordion.Header>
+                    <Label size={"large"}>Hvem kan jeg kontakte for tilgang?</Label>
+                </Accordion.Header>
+                <Accordion.Content>
+                    <Paragraph>
+                        Daglig leder eller andre som har rollen <Link
+                        to={"https://www.altinn.no/hjelp/skjema/alle-altinn-roller/"}>hovedadministrator</Link> i
+                        din virksomhet vil ha høyest rettighet til dele ut tilganger.
+                        Virksomheten din kan også ha satt opp rollen
+                        <Link
+                            to={"https://www.altinn.no/hjelp/skjema/alle-altinn-roller/"}> Tilgangsstyrer</Link> som
+                        også kan bistå med dette gitt at personen også innehar "Eksplisitt
+                        tjenestedelegering"-rollen. https://www.altinn.no/hjelp/profil/roller-og-rettigheter/hvordan-gi-rettigheter-til-andre/
+
+                    </Paragraph>
+                    <Paragraph>Av personvernsmessige årsaker kan
+                        vi ikke si noe spesifikt om hvem i din bedrift som har disse rollene og kan gi deg
+                        tilgang.</Paragraph>
+                </Accordion.Content>
+            </Accordion.Item>
+        </Accordion>
+</div>
+)
 }
 
 export default Landingpage;
