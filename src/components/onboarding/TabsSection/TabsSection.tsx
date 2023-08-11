@@ -5,10 +5,9 @@ import InfoBox from "../InfoBox/InfoBox";
 import {bold, link} from "../../util/textTransforms";
 import CodeExample from "../CodeExample/CodeExample";
 import CodeLanguage from "../CodeExample/CodeLanguage";
-import { TasklistIcon, KeyHorizontalIcon, BagdeIcon } from "@navikt/aksel-icons";
+import {TasklistIcon, KeyHorizontalIcon, BagdeIcon} from "@navikt/aksel-icons";
 import sertificateCode from "../CodeExample/sertificateCode.json";
 import keyCode from "../CodeExample/keyCode.json";
-import otherCode from "../CodeExample/otherCode.json";
 
 
 
@@ -48,8 +47,8 @@ function TabsSection() {
             </InfoBox>
 
             <CodeExample title={"Se kode-eksempel JWT-grant"}>
-                <CodeLanguage title={"Node.js"} language={"javascript"} code={sertificateCode.node} />
-                <CodeLanguage title={"Java"} language={"java"} code={sertificateCode.java} />
+                <CodeLanguage title={"Node.js"} language={"javascript"} code={sertificateCode.node}/>
+                <CodeLanguage title={"Java"} language={"java"} code={sertificateCode.java}/>
             </CodeExample>
         </>
     );
@@ -73,7 +72,8 @@ function TabsSection() {
                     Fremgangsmåte
                 </Heading>
                 <ol className={styles.orderedList}>
-                    <li>Lag klient med med nøkkelpar fra for eksempel {link("https://mkjwk.org", "mkjwk.org", true)}.</li>
+                    <li>Lag klient med med nøkkelpar fra for eksempel {link("https://mkjwk.org", "mkjwk.org", true)}.
+                    </li>
                     <li>Lag JWT-grant og referer til kid.</li>
                     <li>Signer med privatnøkkelen opprettet i steg 1.</li>
                     <li>Send til maskinporten.</li>
@@ -82,7 +82,7 @@ function TabsSection() {
             </InfoBox>
 
             <CodeExample title={"Se kode-eksempel JWT-grant"}>
-                <CodeLanguage title={"Java"} language={"java"} code={keyCode.java} />
+                <CodeLanguage title={"Java"} language={"java"} code={keyCode.java}/>
             </CodeExample>
         </>
     );
@@ -93,29 +93,32 @@ function TabsSection() {
                 Andre fremgangsmåter
             </Heading>
             <Paragraph className={styles.paragraph}>
-                Du kan også bruke manuelt opplastet virksomhetssertifikat eller selvbetjenings-API.
+                Du kan også bruke et manuelt opplastet virksomhetssertifikat eller automatisere via Maskinportens
+                selvbetjenings-API.
             </Paragraph>
 
             <Heading size={"large"} className={styles.largeHeader}>
                 Via selvbetjenings-API
             </Heading>
             <Paragraph className={styles.paragraph}>
-                Dette er den beste måten for virksomheten som vil implementere inn-og utmelding av klienter
-                automatisk og ønsker å opprette unike kortlevende nøkkelpart kan du bruke
-                maskinporten sitt eget API. Se feks NAV sin digdirator som gjør dette som en del av
-                sin platform https://github.com/nais/digdirator/tree/master.
+                Dette er den beste måten for virksomheten som vil implementere inn- og utmelding av klienter
+                automatisk. Dersom du har mange servere og ønsker å ha kortlevde, unike nøkler, kan dette være svært relevant.
+                Maskinporten har et eget API knyttet til administrasjon av klienter som er beskrevet i deres {link("https://docs.digdir.no/docs/Maskinporten/maskinporten_sjolvbetjening_api", "dokumentasjon", true)}.
             </Paragraph>
+            <Paragraph>Dette kan være ekstra relevant for deg som drifter eget Kubernets-cluster.
+                Her har NAV open-sourcet sin cluster operator {link("https://github.com/nais/digdirator", "digdirator", true)} som automatiserer prosessen.
+            </Paragraph>
+
             <Paragraph className={styles.paragraph}>
-                Dette kan du dessverre ikke gjøre via Forenklet onboarding. Ta kontakt
-                med servicedesk@digdir.no og be om klient for administrasjon av
-                Maskinporten-APIer og ta dette i bruk via Samarbeidsportalen.
+                Selvbetjenings-APIet er igjen sikret med Maskinporten og krever en klient med scope `idporten:scopes.write`.Denne løsningen for forenklet onboarding støtter foreløpig ikke prosessen videre her og du må
+                sende en forespørsel til servicedesk@digdir.no. {link("https://docs.digdir.no/docs/Maskinporten/maskinporten_sjolvbetjening_api#tilgang-administrasjon-av-api", "Se mer informasjon", true)}.
             </Paragraph>
 
             <Heading size={"large"} className={styles.largeHeader}>
                 Med manuelt opplastet virksomhetssertifikat
             </Heading>
             <Paragraph className={styles.paragraph}>
-                Dersom du kun ønsker å ha ett gyldig virksomhetssertifikat å signere med kan du laste
+                Dersom du kun ønsker å ha <strong>ett</strong> gyldig virksomhetssertifikat å signere med for hver klient kan du laste
                 dette opp (her eller i samarbeidsportalen). Da referer du til serfifikatet i grant
                 og singerer med akkuart det. Se kode-eksempel lengre ned på siden.
             </Paragraph>
@@ -142,16 +145,19 @@ function TabsSection() {
     return (
         <div className={styles.tabsContainer}>
             <div className={styles.tabs}>
-                <div className={`${styles.tab} ${selectedTab === 1 ? styles.active : styles.inactive}`} onClick={() => setSelectedTab(1)}>
-                    <BagdeIcon />
+                <div className={`${styles.tab} ${selectedTab === 1 ? styles.active : styles.inactive}`}
+                     onClick={() => setSelectedTab(1)}>
+                    <BagdeIcon/>
                     <Label size={"large"}>Virksomhetssertifikat</Label>
                 </div>
-                <div className={`${styles.tab} ${selectedTab === 2 ? styles.active : styles.inactive}`} onClick={() => setSelectedTab(2)}>
-                    <KeyHorizontalIcon />
+                <div className={`${styles.tab} ${selectedTab === 2 ? styles.active : styles.inactive}`}
+                     onClick={() => setSelectedTab(2)}>
+                    <KeyHorizontalIcon/>
                     <Label size={"large"}>Manuelt opplastede nøkler</Label>
                 </div>
-                <div className={`${styles.tab} ${selectedTab === 3 ? styles.active : styles.inactive}`} onClick={() => setSelectedTab(3)}>
-                    <TasklistIcon />
+                <div className={`${styles.tab} ${selectedTab === 3 ? styles.active : styles.inactive}`}
+                     onClick={() => setSelectedTab(3)}>
+                    <TasklistIcon/>
                     <Label size={"large"}>Andre fremgangsmåter</Label>
                 </div>
             </div>
