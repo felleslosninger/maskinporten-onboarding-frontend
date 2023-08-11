@@ -12,7 +12,6 @@ declare global {
     interface Window {
         env: {
             SIMPLIFIED_ONBOARDING_API_URL: string;
-            ENVIRONMENTS: string[];
         }
     }
 }
@@ -78,19 +77,29 @@ export const useClientDeleteMutation = (env: string) => {
 /* NOT CURRENTLY IN USE */
 export const useAllClientsInEnvironments = () => {
     return useQuery({
-        queryKey: [QK_CONFIG, QK_SCOPES],
+        queryKey: [QK_CONFIG, QK_CLIENTS],
         queryFn: async () => {
             const configPath = `${baseUrl}/api/config`;
             const configRes = await axios.get<ApiConfig>(configPath, axiosConfig);
             const envs = Object.keys(configRes.data);
 
-            const clients: ApiClient[] = [];
+            let clients: ApiClient[] = [];
 
-            for (let env in envs) {
+            const requests = envs.map((env) => {
                 const path = `${baseUrl}/api/${env}/datasharing/consumer/client`;
-                const res = await axios.get<ApiClients>(path, axiosConfig);
-                clients.concat(res.data);
-            }
+                return axios.get<ApiClients>(path, axiosConfig)
+                    .then((res) => {
+                        res.data.forEach((client) => {
+                            client.env = env;
+                        });
+                        return res.data;
+                    });
+            })
+
+            const responses = await axios.all(requests);
+            responses.forEach((res) => {
+                clients = clients.concat(res);
+            });
 
             return clients;
         },

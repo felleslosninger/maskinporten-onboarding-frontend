@@ -1,6 +1,6 @@
 import React, {ReactNode, useState} from "react";
 import styles from "./styles.module.scss";
-import {useClients} from "../../../hooks/api";
+import {useAllClientsInEnvironments} from "../../../hooks/api";
 import {Heading, Paragraph, Select} from "@digdir/design-system-react";
 import CodeLanguage from "./CodeLanguage";
 import SyntaxHighlighter from "react-syntax-highlighter";
@@ -17,12 +17,11 @@ interface Props {
 
 function CodeExample(props: Props) {
     const { data: config } = useConfig();
-    const { data: testClients } = useClients(config? Object.keys(config)[0] : "test");
-    const { data: prodClients } = useClients(config? Object.keys(config)[1] : "ver2");
+    const { data: clients } = useAllClientsInEnvironments();
     const [ selectValue, setSelectValue] = useState<string>();
     const [ selectedTab, setSelectedTab ] = useState(0);
 
-    const formatLabel = (client: ApiClient, env: string) => (
+    const formatLabel = (client: ApiClient) => (
         <div className={styles.selectFormattedBox}>
             {bold(client.clientId)}
             <span>
@@ -35,18 +34,18 @@ function CodeExample(props: Props) {
             </span>
             <span>
                 <BranchingIcon />
-                {env}
+                {client.env}
             </span>
         </div>
     );
 
-    const testClient_ids = testClients?.map(client => {
-        return {value: "TEST:" + client.clientId, label: client.clientId, formattedLabel: formatLabel(client, "test")}
+    const client_ids = clients?.map(client => {
+        return {
+            label: client.clientId,
+            formattedLabel: formatLabel(client),
+            value: `${client.env}:${client.clientId}`
+        };
     });
-    const prodClient_ids = prodClients?.map(client => {
-        return {value: "PROD:" + client.clientId, label: client.clientId, formattedLabel: formatLabel(client, "ver2")}
-    });
-    const client_ids = testClient_ids && prodClient_ids && testClient_ids.concat(prodClient_ids);
 
     const examples =  React.Children.map(props.children, child => {
         if (React.isValidElement(child) && (child as React.ReactElement<any>).type === CodeLanguage) {
@@ -54,25 +53,26 @@ function CodeExample(props: Props) {
         }
     });
 
-    const processCode = (codeString: string): string => {
-
-        if (selectValue && testClients && prodClients) {
-            const clients = testClients.concat(prodClients);
-            let client = clients.find((client) => {
-                return selectValue.split(":")[1] === client.clientId;
-            });
-
-            let s = codeString.replaceAll("__CLIENT_ID__", client!!.clientId)
-                .replaceAll("__SCOPE__", client!!.scopes.join(" ,"));
-            return s
-
-        } else {
-            let s = codeString.replaceAll("__CLIENT_ID__", "client-uuid")
-                .replaceAll("__SCOPE__", "scope:withprefix");
-            return s;
+    const makeFieldMap = (client?: ApiClient) => {
+        return {
+            __CLIENT_ID__: client?.clientId || "client-uuid",
+            __SCOPE__: client?.scopes.join(",") || "scope:withprefix",
+            __MASKINPORTEN_URL__: (client && config?.[client?.env].authorization_server) || "__MASKINPORTEN_URL__",
+            __MASKINPORTEN_TOKEN_URL__: (client && config?.[client.env].token_endpoint) || "__MASKINPORTEN_TOKEN_URL__",
         }
+    }
 
+    const processCode = (codeString: string): string => {
+        const client =  clients?.find((client) => {
+            return selectValue === `${client.env}:${client.clientId}`;
+        });
 
+        const fieldMap = makeFieldMap(client);
+        Object.entries(fieldMap).forEach(([key, value]) => {
+            codeString = codeString.replaceAll(key, value);
+        });
+
+        return codeString;
     }
 
     return (
@@ -81,7 +81,7 @@ function CodeExample(props: Props) {
                 {props.title}
             </Heading>
 
-            {client_ids && (
+            {client_ids && client_ids.length > 0 && (
                 <>
                     <Paragraph>
                         Ved å legge inn hvilken tilgang du skal ta i bruk kan vi gi deg kodeeksempler som du kan bruke.

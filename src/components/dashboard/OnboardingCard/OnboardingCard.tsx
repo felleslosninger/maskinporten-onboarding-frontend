@@ -11,7 +11,7 @@ function OnboardingCard() {
                 <Label>
                     Trenger du hjelp til å komme i gang?
                 </Label>
-                <StyledLink to={"/dashboard"}>
+                <StyledLink to={"/guide"}>
                     Gå til Onboardingsguiden
                 </StyledLink>
             </div>

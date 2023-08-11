@@ -51,8 +51,6 @@ function TabsSection() {
                 <CodeLanguage title={"Node.js"} language={"javascript"} code={sertificateCode.node} />
                 <CodeLanguage title={"Java"} language={"java"} code={sertificateCode.java} />
             </CodeExample>
-
-
         </>
     );
 

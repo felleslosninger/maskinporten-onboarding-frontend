@@ -17,6 +17,7 @@ export type ApiClient = {
     consumerOrgnr: string;
     description: string;
     scopes: [scope: string];
+    env: string;
 }
 
 export type ApiClients = [client: ApiClient]
