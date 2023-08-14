@@ -6,17 +6,19 @@ import styles from './styles.module.scss';
 
 function OnboardingCard() {
     return (
-        <div className={styles.container}>
-            <div className={styles.textSection}>
-                <Label>
-                    Trenger du hjelp til å komme i gang?
-                </Label>
-                <StyledLink to={"/guide"}>
-                    Gå til Onboardingsguiden
-                </StyledLink>
+        <StyledLink to={"/guide"} className={styles.link}>
+            <div className={styles.container}>
+                <div className={styles.textSection}>
+                    <Label>
+                        Trenger du hjelp til å komme i gang?
+                    </Label>
+                    <StyledLink>
+                        Gå til Onboardingsguiden
+                    </StyledLink>
+                </div>
+                <FokusSvg className={styles.illustration} />
             </div>
-            <FokusSvg className={styles.illustration} />
-        </div>
+        </StyledLink>
     );
 }
 

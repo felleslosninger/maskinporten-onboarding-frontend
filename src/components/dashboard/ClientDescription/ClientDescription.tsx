@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {ApiClient} from "../../../types/api";
 import styles from '../ClientDescription/styles.module.scss';
 import {Button, Paragraph} from "@digdir/design-system-react";
-import { CheckmarkIcon } from '@navikt/aksel-icons';
+import {CheckmarkIcon, TrashIcon} from '@navikt/aksel-icons';
 import {useClientDeleteMutation} from "../../../hooks/api";
 import ConfirmAlert from "../../common/ConfirmAlert/ConfirmAlert";
 
@@ -13,13 +13,15 @@ interface ClientDescriptionProps {
 
 const ClientDescription = (props: ClientDescriptionProps) => {
     const { mutate: deleteClient } = useClientDeleteMutation(props.env);
-    const [copied, setCopied] = useState(false);
+    // const [copied, setCopied] = useState(false);
     const [ modalOpen, setModalOpen ] = useState(false);
 
+    /* IKKE LENGRE I BRUK
     const onCopyButtonClick = () => {
         navigator.clipboard.writeText(props.client.clientId);
         setCopied(true);
     }
+    */
 
     return (
         <div className={styles.container}>
@@ -41,11 +43,12 @@ const ClientDescription = (props: ClientDescriptionProps) => {
                             {props.client.description}
                         </Paragraph>
                     </div>
-                    <Button variant={"filled"}
+                    <Button variant={"quiet"}
                             color={"danger"}
                             onClick={() => setModalOpen(true)}
+                            title={"Slett integrasjon"}
                     >
-                        Slett
+                        <TrashIcon />
                     </Button>
                 </div>
                 <div className={styles.bottomRow}>
@@ -57,12 +60,6 @@ const ClientDescription = (props: ClientDescriptionProps) => {
                             {props.client.clientId}
                         </Paragraph>
                     </div>
-                    <Button variant={"outline"}
-                            onClick={onCopyButtonClick}
-                            icon={copied ? <CheckmarkIcon /> : null}
-                    >
-                        { copied ? "Kopiert" : "Kopier" }
-                    </Button>
                 </div>
             </div>
         </div>

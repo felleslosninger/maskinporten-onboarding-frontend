@@ -1,5 +1,10 @@
 @import "src/style/variables";
 
+.link {
+  border-bottom: none;
+  margin: 2rem 0;
+}
+
 .container {
   padding: 2rem;
   display: flex;
@@ -9,7 +14,10 @@
   border: 1px solid $colors-gray;
   border-radius: 0.3rem;
   box-shadow: 0.5rem 0.5rem 0.75rem lightgray;
-  margin: 2rem 0;
+
+  label {
+    cursor: pointer;
+  }
 }
 
 .textSection {
