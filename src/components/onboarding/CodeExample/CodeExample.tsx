@@ -84,7 +84,7 @@ function CodeExample(props: Props) {
             {client_ids && client_ids.length > 0 && (
                 <>
                     <Paragraph>
-                        Ved å legge inn hvilken tilgang du skal ta i bruk kan vi gi deg kodeeksempler som du kan bruke.
+                        Ved å legge inn hvilken tilgang du skal ta i bruk kan vi gi deg bedre kodeeksempler.
                     </Paragraph>
                     <div>
                         <Heading className={styles.smallHeading} size={"small"}>

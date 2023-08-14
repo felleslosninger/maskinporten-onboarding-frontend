@@ -72,7 +72,7 @@ function ScopeDetails(props: ScopeDetailProps) {
                 }
                 <div className={styles.buttonRow}>
                     <Button className={styles.opprettButton} onClick={() => setShowModal(true)}>
-                        Opprett Klient
+                        Opprett klient
                     </Button>
                 </div>
             </Accordion.Content>
