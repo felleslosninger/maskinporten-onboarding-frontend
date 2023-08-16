@@ -1,7 +1,7 @@
 import React from 'react';
 import {Accordion, Heading, Ingress, Label, Paragraph} from "@digdir/design-system-react";
 import {Link} from "react-router-dom";
-import {Button} from '@digdir/design-system-react';
+import {Button, Tag} from '@digdir/design-system-react';
 import {ReactComponent as MpSvg} from '../../../assets/ikoner/SVG/Maskinporten.svg';
 import styles from './styles.module.scss';
 import {login} from "../../auth/login";
@@ -13,8 +13,9 @@ function Landingpage() {
     return (
         <div className={styles.container}>
             <Heading size={"xlarge"} className={styles.heading}>
-                Velkommen til Forenklet Onboarding
+                Velkommen til Forenklet Onboarding<Tag color={"secondary"} variant={"outlined"}>Pilot</Tag>
             </Heading>
+
             <Ingress>
                 Her kan du enkelt ta i bruk API-tilgangene din virksomhet har fått i Maskinporten.
                 Som konsument av et Maskinporten-beskyttet API, kan du her se alle dine tilganger, opprette klienter
