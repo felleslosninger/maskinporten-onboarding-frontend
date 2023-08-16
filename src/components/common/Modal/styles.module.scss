@@ -1,0 +1,44 @@
+@import "src/style/variables";
+
+.modalOverlay {
+  z-index: 99;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  position: fixed;
+  backdrop-filter: blur(0.5rem);
+}
+
+.modal {
+  width: 100%;
+  max-width: $content-width-max;
+  padding: 2rem;
+}
+
+.closeButton {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}
+
+.card {
+  background-color: $colors-white;
+  text-align: left;
+  padding: 2rem 5rem;
+  border: 1px solid lightgray;
+  filter: drop-shadow(0.2rem 0.2rem 0.25rem lightgray);
+}
+
+.cardHeader {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid lightgray;
+}
+
+.cardContent {
+  padding: 2rem 0;
+}

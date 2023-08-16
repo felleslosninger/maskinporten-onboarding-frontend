@@ -1,0 +1,51 @@
+@import "src/style/variables";
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid gray;
+  cursor: pointer;
+}
+
+.headerRow {
+  span {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+}
+
+.contentRow {
+  padding: 0 2rem 2rem 2rem;
+}
+
+.statusIcon {
+  margin-left: auto;
+  width: 3rem;
+  height: 3rem;
+}
+
+.buttonRow {
+  display: flex;
+  gap: 1rem;
+}
+
+.opprettButton {
+  margin-left: 2rem;
+  margin-bottom: 1rem;
+}
+
+.noClientBox {
+  border-radius: 1rem;
+  background-color: $colors-gray;
+  width: fit-content;
+  padding: 2rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+
+  label:first-child {
+    margin-bottom: 0.5rem;
+  }
+}

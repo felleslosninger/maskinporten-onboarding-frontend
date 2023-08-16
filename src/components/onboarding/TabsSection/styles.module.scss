@@ -1,0 +1,72 @@
+@import "src/style/variables";
+
+.tabsContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tabs {
+  width: 100%;
+  max-width: $content-text-width-max;
+  padding: 0 2rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.tab {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  cursor: pointer;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+
+  svg {
+    height: 2rem;
+    width: 2rem;
+  }
+
+  label {
+    cursor: pointer;
+  }
+
+  &.active {
+    background-color: #e6eff8;
+  }
+
+  &.inactive {
+    box-shadow: 0.1rem -0.1rem 0.5rem lightgray;
+  }
+}
+
+.tabsContentContainer {
+  width: 100%;
+  background-color: #e6eff8;
+  display: flex;
+  justify-content: center;
+}
+
+.tabsContent {
+  width: 100%;
+  max-width: $content-text-width-max;
+  padding: 3rem 2rem;
+  text-align: left;
+}
+
+.largeHeader {
+  margin-bottom: 1rem !important;
+}
+
+.paragraph {
+  margin-bottom: 2rem !important;
+}
+
+.orderedList {
+
+  li {
+    margin-top: 0.25rem;
+  }
+}

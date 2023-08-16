@@ -1,0 +1,54 @@
+@import "src/style/variables";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-width: 50rem;
+  width: 100%;
+  padding: 2rem;
+  text-align: left;
+
+  p {
+    margin-bottom: 1rem;
+  }
+}
+
+.heading {
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+.boldText {
+  font-weight: bold;
+}
+
+.svg {
+  height: 4rem;
+}
+
+.loginRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.loginButton {
+  padding: 0.5rem 1rem;
+  min-width: fit-content;
+
+  label {
+    color: $colors-white;
+    cursor: pointer;
+  }
+}
+
+.faq {
+  margin-top: 5rem;
+
+  label {
+    cursor: pointer;
+  }
+}
