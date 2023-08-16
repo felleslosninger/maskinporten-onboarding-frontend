@@ -6,6 +6,7 @@ import {ReactComponent as MpSvg} from '../../../assets/ikoner/SVG/Maskinporten.s
 import styles from './styles.module.scss';
 import {login} from "../../auth/login";
 
+
 const enkelttjenestenavn = "Selvbetjening av integrasjoner i ID-porten/Maskinporten";
 
 function Landingpage() {
@@ -81,6 +82,28 @@ function Landingpage() {
                         vil være lik for hovedadminstrator og tilgangsstyrer.
                     </Paragraph>
                     <Paragraph>Av sikkerhets- og personvernsmessige årsaker kan vi ikke informere om hvem i din bedrift som har disse rollene.</Paragraph>
+                </Accordion.Content>
+            </Accordion.Item>
+            <Accordion.Item>
+                <Accordion.Header>
+                    <Label size={"large"}>Hva betyr det at dette er en pilot?</Label>
+                </Accordion.Header>
+                <Accordion.Content>
+                    <Paragraph>
+                        At denne løsningen er en pilot vil si at vi i Digdir ser potenisialet for at dette skal bli en del av våre
+                        nasjonale fellesløsninger. Løsningen bygger på eksisterende Maskinporten-APIer og sikkerhetsvurderinger.
+                    </Paragraph>
+                    <Paragraph>
+                        Piloten er laget slik at alle klienter som administeres i piloten også kan administeres via dagens offisielle løsing,
+                        Samarbeidsportalen. Så dersom behovet for forenklet onboarding viser seg å ikke være tilstede, vil klientene fortsatt fungere
+                        men videre administrasjon må skje i samarbeidsportalen. Det er altså ingen risiko for deobbeltarbeid eller
+                        migrering forbundet med bruk av dette som pilotløsning.
+                    </Paragraph>
+                    <Paragraph>
+                        Gi oss gjerne en tilbakemelding om du har ris eller ros til løsningen. Du kan lage en feedback-sak til oss
+                        på <Link to={"https://github.com/fellesdatakatalog/api-access-request-gui/issues"}>github</Link>
+                        eller sende en mail til servicedesk@digdir.no med emne Forenklet onboarding.
+                    </Paragraph>
                 </Accordion.Content>
             </Accordion.Item>
         </Accordion>
