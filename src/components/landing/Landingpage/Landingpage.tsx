@@ -96,12 +96,12 @@ function Landingpage() {
                     </Paragraph>
                     <Paragraph>
                         Piloten er laget slik at alle klienter som administeres i piloten også kan administeres via dagens offisielle løsing,
-                        Samarbeidsportalen. Så dersom behovet for forenklet onboarding viser seg å ikke være tilstede, vil klientene fortsatt fungere
-                        men videre administrasjon må skje i samarbeidsportalen. Det er altså ingen risiko for dobbeltarbeid eller
-                        migrering forbundet med bruk av dette som pilotløsning.
+                        Samarbeidsportalen. Om behovet for forenklet onboarding ikke er tilstede, vil klientene fortsatt fungere,
+                        men videre administrasjon må skje i Samarbeidsportalen. Det er altså ingen risiko for dobbeltarbeid eller
+                        migrering forbundet med bruk av piloten.
                     </Paragraph>
                     <Paragraph>
-                        Gi oss gjerne en tilbakemelding om du har ris eller ros til løsningen. Du kan lage en feedback-sak til oss
+                        Gi oss gjerne en tilbakemelding om du har ris eller ros. Du kan lage en feedback-sak til oss
                         på <Link to={"https://github.com/fellesdatakatalog/api-access-request-gui/issues"}>github</Link> eller
                         sende en mail til servicedesk@digdir.no med emne Forenklet onboarding.
                     </Paragraph>
