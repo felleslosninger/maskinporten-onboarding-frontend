@@ -1,11 +1,12 @@
 import React from 'react';
 import {Accordion, Heading, Ingress, Label, Paragraph} from "@digdir/design-system-react";
 import {Link} from "react-router-dom";
-import {Button} from '@digdir/design-system-react';
+import {Button, Tag} from '@digdir/design-system-react';
 import {ReactComponent as MpSvg} from '../../../assets/ikoner/SVG/Maskinporten.svg';
 import styles from './styles.module.scss';
 import {login} from "../../auth/login";
 import OnboardingCard from "../../common/OnboardingCard/OnboardingCard";
+
 
 const enkelttjenestenavn = "Selvbetjening av integrasjoner i ID-porten/Maskinporten";
 
@@ -13,8 +14,9 @@ function Landingpage() {
     return (
         <div className={styles.container}>
             <Heading size={"xlarge"} className={styles.heading}>
-                Velkommen til Forenklet Onboarding
+                Velkommen til Forenklet Onboarding<Tag color={"secondary"} variant={"outlined"}>Pilot</Tag>
             </Heading>
+
             <Ingress>
                 Her kan du enkelt ta i bruk API-tilgangene din virksomhet har fått i Maskinporten.
                 Som konsument av et Maskinporten-beskyttet API, kan du her se alle dine tilganger, opprette klienter
@@ -83,6 +85,28 @@ function Landingpage() {
                         vil være lik for hovedadminstrator og tilgangsstyrer.
                     </Paragraph>
                     <Paragraph>Av sikkerhets- og personvernsmessige årsaker kan vi ikke informere om hvem i din bedrift som har disse rollene.</Paragraph>
+                </Accordion.Content>
+            </Accordion.Item>
+            <Accordion.Item>
+                <Accordion.Header>
+                    <Label size={"large"}>Hva betyr det at dette er en pilot?</Label>
+                </Accordion.Header>
+                <Accordion.Content>
+                    <Paragraph>
+                        At denne løsningen er en pilot vil si at vi i Digdir ser potenisialet for at dette skal bli en del av våre
+                        nasjonale fellesløsninger. Løsningen bygger på eksisterende Maskinporten-APIer og sikkerhetsvurderinger.
+                    </Paragraph>
+                    <Paragraph>
+                        Piloten er laget slik at alle klienter som administeres i piloten også kan administeres via dagens offisielle løsing,
+                        Samarbeidsportalen. Om behovet for forenklet onboarding ikke er tilstede, vil klientene fortsatt fungere,
+                        men videre administrasjon må skje i Samarbeidsportalen. Det er altså ingen risiko for dobbeltarbeid eller
+                        migrering forbundet med bruk av piloten.
+                    </Paragraph>
+                    <Paragraph>
+                        Gi oss gjerne en tilbakemelding om du har ris eller ros. Du kan lage en feedback-sak til oss
+                        på <Link to={"https://github.com/fellesdatakatalog/api-access-request-gui/issues"}>github</Link> eller
+                        sende en mail til servicedesk@digdir.no med emne Forenklet onboarding.
+                    </Paragraph>
                 </Accordion.Content>
             </Accordion.Item>
         </Accordion>

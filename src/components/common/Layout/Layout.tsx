@@ -6,6 +6,7 @@ import Onboardingpage from "../../onboarding/Onboardingpage";
 import Dashboard from "../../dashboard/Dashboard";
 import Footer from "../Footer/Footer";
 import styles from './styles.module.scss';
+import Termspage from "../../terms/Termspage";
 
 function Layout() {
 
@@ -17,6 +18,7 @@ function Layout() {
                     <Route path={"/"} element={<Landingpage />} />
                     <Route path={"/dashboard"} element={<Dashboard />} />
                     <Route path={"/guide"} element={<Onboardingpage />} />
+                    <Route path={"/terms"} element={<Termspage />} />
                 </Routes>
             </div>
             <Footer />

@@ -35,6 +35,10 @@ function Header() {
                                         className={location.pathname === "/guide" ? styles.active : styles.inactive}>
                                 onboardingsguide
                             </StyledLink>
+                            <StyledLink to={"/terms"}
+                                        className={location.pathname === "/terms" ? styles.active : styles.inactive}>
+                                vilkår
+                            </StyledLink>
                         </div>
                         {isLoggedIn ?
                             <div className={styles.userInfo}>
