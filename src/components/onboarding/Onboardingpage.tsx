@@ -3,12 +3,13 @@ import styles from "./styles.module.scss";
 import {Heading, Paragraph} from "@digdir/design-system-react";
 import TabsSection from "./TabsSection/TabsSection";
 import {bold, link} from "../util/textTransforms";
+import ContentContainer from "../common/ContentContainer/ContentContainer";
 
 function Onboardingpage() {
 
   return (
       <div className={styles.container}>
-          <div className={styles.content}>
+          <ContentContainer className={styles.content}>
               <Heading size={"xlarge"}>
                   Onboardingsguide
               </Heading>
@@ -28,7 +29,7 @@ function Onboardingpage() {
               <Heading className={styles.subheader} size={"large"}>
                   Velg integrasjonsmetode du vil se guide for
               </Heading>
-          </div>
+          </ContentContainer>
           <TabsSection />
       </div>
 

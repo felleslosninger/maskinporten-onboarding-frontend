@@ -3,11 +3,12 @@ import styles from './styles.module.scss';
 
 interface ContentContainerProps {
     children: ReactNode | ReactNode[];
+    className?: string;
 }
 
 function ContentContainer(props: ContentContainerProps) {
     return (
-        <div className={styles.content}>
+        <div className={`${props.className} ${styles.content}`}>
             {props.children}
         </div>
     );

@@ -1,16 +1,7 @@
 @import "src/style/variables";
 
 .container {
-  width: 100%;
-  flex-direction: column;
-  display: flex;
-  align-items: center;
-}
-
-.content {
   max-width: $content-text-width-max;
-  padding: 2rem;
-  text-align: left;
 }
 
 .subheader {
