@@ -44,6 +44,7 @@ function Header() {
                             </div>
                             <BedriftSvg className={styles.loginSvg} />
                         </div>
+
                     </>
                     :
                     <Button className={styles.loginButton} variant={"quiet"} onClick={login}>
