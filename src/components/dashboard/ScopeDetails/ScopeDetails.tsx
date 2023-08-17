@@ -33,11 +33,13 @@ function ScopeDetails(props: ScopeDetailProps) {
 
     return (
         <Accordion.Item>
-            <NewClientModal env={props.env}
-                            scope={props.scope.scope}
-                            open={showModal}
-                            closeModal={() => setShowModal(false)}
-            />
+            {showModal &&
+                <NewClientModal env={props.env}
+                                scope={props.scope.scope}
+                                open={showModal}
+                                closeModal={() => setShowModal(false)}
+                />
+            }
             <Accordion.Header level={4} className={styles.headerRow}>
                 <div>
                     <Heading size={"xsmall"}>

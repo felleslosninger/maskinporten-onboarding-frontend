@@ -5,6 +5,7 @@ import {Button} from '@digdir/design-system-react';
 import {ReactComponent as MpSvg} from '../../../assets/ikoner/SVG/Maskinporten.svg';
 import styles from './styles.module.scss';
 import {login} from "../../auth/login";
+import OnboardingCard from "../../common/OnboardingCard/OnboardingCard";
 
 const enkelttjenestenavn = "Selvbetjening av integrasjoner i ID-porten/Maskinporten";
 
@@ -24,11 +25,12 @@ function Landingpage() {
                 som er en nasjonal løsning fra Digdir, for å bekrefte at du har de nødvendige rettighetene i din
                 virksomhet til å gjøre dette.
             </Ingress>
+
             <div className={styles.loginRow}>
                 <MpSvg className={styles.svg}/>
                 <Button className={styles.loginButton} onClick={login}>
                     <Label size={"large"}>
-                        Logg inn med Ansattporten
+                        Logg inn
                     </Label>
                 </Button>
             </div>

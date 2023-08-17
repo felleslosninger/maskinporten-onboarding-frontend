@@ -24,6 +24,7 @@ export type ApiClients = [client: ApiClient]
 
 export type RequestApiClientBody = {
     description: string;
+    keys?: string;
     scopes: string[];
 }
 
