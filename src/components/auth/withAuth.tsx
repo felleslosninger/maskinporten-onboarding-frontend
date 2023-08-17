@@ -1,12 +1,12 @@
 import React, {ComponentType, FC} from 'react';
 import {Navigate} from 'react-router-dom';
 import {useConfig, useUser} from "../../hooks/auth";
-import {IdToken} from "../../types/tokens";
+import {Userinfo} from "../../types/tokens";
 import {Spinner} from "@digdir/design-system-react";
 import {ApiConfig} from "../../types/api";
 
 export interface AuthProps {
-    id: IdToken;
+    id: Userinfo;
     config: ApiConfig;
 }
 

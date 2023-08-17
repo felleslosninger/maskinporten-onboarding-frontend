@@ -35,7 +35,7 @@ function Dashboard({ id, config }: AuthProps) {
                     API-tilganger i Maskinporten
                 </Heading>
                 <Ingress>
-                    Her kan du se API-tilganger gitt til {id.authorization_details[0].reportees[0].Name} .
+                    Her kan du se API-tilganger gitt til {id.reporteeName} .
                 </Ingress>
                 <OnboardingCard />
             </div>
