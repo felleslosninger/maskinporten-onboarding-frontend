@@ -1,13 +1,11 @@
 import React from 'react';
 import {Accordion, Heading, Ingress, Label, Paragraph} from "@digdir/design-system-react";
-import {Link} from "react-router-dom";
 import {Button, Tag} from '@digdir/design-system-react';
 import {ReactComponent as MpSvg} from '../../../assets/ikoner/SVG/Maskinporten.svg';
 import styles from './styles.module.scss';
 import {login} from "../../auth/login";
-import OnboardingCard from "../../common/OnboardingCard/OnboardingCard";
 import ContentContainer from "../../common/ContentContainer/ContentContainer";
-
+import {link} from "../../util/textTransforms";
 
 const enkelttjenestenavn = "Selvbetjening av integrasjoner i ID-porten/Maskinporten";
 
@@ -56,10 +54,10 @@ function Landingpage() {
                         </Paragraph>
 
                         <Paragraph>
-                            Enkelte selskapsrollerroller fra Enhetsregisteret, for eksempel daglig leder, har forhåndsdefinert tilgang til løsningen , se
-                            den fulle listen over disse under fanen
-                            <Link
-                                to={"https://www.altinn.no/hjelp/skjema/alle-altinn-roller/"}> Hovedadministrator</Link> her.
+                            Enkelte selskapsroller fra Enhetsregisteret, for eksempel daglig leder, har forhåndsdefinert tilgang til løsningen , se
+                            den fulle listen over disse under fanen {" "}
+                            {link("https://www.altinn.no/hjelp/skjema/alle-altinn-roller/", "Hovedadministrator", true)}
+                            her.
                         </Paragraph>
                     </Accordion.Content>
                 </Accordion.Item>
@@ -69,22 +67,24 @@ function Landingpage() {
                     </Accordion.Header>
                     <Accordion.Content>
                         <Paragraph>
-                            Dersom du allerede er tilknyttet din virksomhet gjennom en eksisterende rolle eller tjeneste i Altinn kan du <Link
-                            to={"https://www.altinn.no/hjelp/profil/sporre-om-rettighet/slik-spor-du-om-rettighet/"}>etterspørre rettigheten</Link>.
-                            Enkelttjenesten som etterspørres er da "{enkelttjenestenavn}".
+                            Dersom du allerede er tilknyttet din virksomhet gjennom en eksisterende rolle
+                            eller tjeneste i Altinn kan du {" "}
+                            {link("https://www.altinn.no/hjelp/profil/sporre-om-rettighet/slik-spor-du-om-rettighet/", "etterspørre rettigheten", true)}
+                            . Enkelttjenesten som etterspørres er da "{enkelttjenestenavn}".
                         </Paragraph>
                         <Paragraph>
-                            Dersom du ikke har tilknytning til virksomheten i dag i Altinn, vil det være daglig leder eller andre som har rollen <Link
-                            to={"https://www.altinn.no/hjelp/skjema/alle-altinn-roller/"}>hovedadministrator</Link> i
-                            din virksomhet som vil ha høyest rettighet til dele ut tilganger.
+                            Dersom du ikke har tilknytning til virksomheten i dag i Altinn, vil det være
+                            daglig leder eller andre som har rollen {" "}
+                            {link("https://www.altinn.no/hjelp/skjema/alle-altinn-roller/", "hovedadministrator", true)}
+                            {" "} i din virksomhet som vil ha høyest rettighet til dele ut tilganger.
                         </Paragraph>
-                        <Paragraph>Virksomheten din kan også ha satt opp rollen <Link
-                            to={"https://www.altinn.no/hjelp/profil/roller-og-rettigheter/hvordan-gi-rettigheter-til-andre/"}>tilgangsstyrer</Link> som
-                            også kan bistå med dette.
+                        <Paragraph>Virksomheten din kan også ha satt opp rollen {" "}
+                            {link("https://www.altinn.no/hjelp/profil/roller-og-rettigheter/hvordan-gi-rettigheter-til-andre/", "tilgangsstyrer", true)}
+                            {" "} som også kan bistå med dette.
                         </Paragraph>
-                        <Paragraph>Fremgangsmåten for å tildele en enkelttjeneste er beskrevet <Link
-                            to={"https://www.altinn.no/hjelp/profil/roller-og-rettigheter/hvordan-gi-rettigheter-til-andre/"}>her</Link> og
-                            vil være lik for hovedadminstrator og tilgangsstyrer.
+                        <Paragraph>Fremgangsmåten for å tildele en enkelttjeneste er beskrevet {" "}
+                            {link("https://www.altinn.no/hjelp/profil/roller-og-rettigheter/hvordan-gi-rettigheter-til-andre/", "her", true)}
+                            {" "} og vil være lik for hovedadminstrator og tilgangsstyrer.
                         </Paragraph>
                         <Paragraph>Av sikkerhets- og personvernsmessige årsaker kan vi ikke informere om hvem i din bedrift som har disse rollene.</Paragraph>
                     </Accordion.Content>
@@ -105,9 +105,10 @@ function Landingpage() {
                             migrering forbundet med bruk av piloten.
                         </Paragraph>
                         <Paragraph>
-                            Gi oss gjerne en tilbakemelding om du har ris eller ros. Du kan lage en feedback-sak til oss
-                            på <Link to={"https://github.com/fellesdatakatalog/api-access-request-gui/issues"}>github</Link> eller
-                            sende en mail til servicedesk@digdir.no med emne Forenklet onboarding.
+                            Gi oss gjerne en tilbakemelding om du har ris eller ros. Du kan
+                            lage en feedback-sak til oss på {" "}
+                            {link("https://github.com/fellesdatakatalog/api-access-request-gui/issues", "github", true)}
+                            {" "} eller sende en mail til servicedesk@digdir.no med emne Forenklet onboarding.
                         </Paragraph>
                     </Accordion.Content>
                 </Accordion.Item>

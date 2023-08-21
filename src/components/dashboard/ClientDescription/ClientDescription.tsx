@@ -13,15 +13,8 @@ interface ClientDescriptionProps {
 
 const ClientDescription = (props: ClientDescriptionProps) => {
     const { mutate: deleteClient } = useClientDeleteMutation(props.env);
-    // const [copied, setCopied] = useState(false);
     const [ modalOpen, setModalOpen ] = useState(false);
 
-    /* IKKE LENGRE I BRUK
-    const onCopyButtonClick = () => {
-        navigator.clipboard.writeText(props.client.clientId);
-        setCopied(true);
-    }
-    */
 
     return (
         <div className={styles.container}>
@@ -37,7 +30,7 @@ const ClientDescription = (props: ClientDescriptionProps) => {
                 <div className={styles.topRow}>
                     <div>
                         <Paragraph>
-                            klient-beskrivelse:
+                            integrasjonsbeskrivelse:
                         </Paragraph>
                         <Paragraph>
                             {props.client.description}

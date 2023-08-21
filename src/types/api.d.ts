@@ -1,4 +1,5 @@
 import exp from "constants";
+import {JWK} from "jose";
 
 export type ApiScope = {
     consumer_orgno: string;
@@ -16,6 +17,7 @@ export type ApiClient = {
     clientId: string;
     consumerOrgnr: string;
     description: string;
+    keys: [JWK];
     scopes: [scope: string];
     env: string;
 }
@@ -24,7 +26,7 @@ export type ApiClients = [client: ApiClient]
 
 export type RequestApiClientBody = {
     description: string;
-    keys?: string;
+    keys?: JWK[];
     scopes: string[];
 }
 

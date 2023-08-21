@@ -1,4 +1,4 @@
-import React, {ReactNode, useState} from "react";
+import React, {ReactNode, useEffect, useState} from "react";
 import styles from "./styles.module.scss";
 import {useAllClientsInEnvironments} from "../../../hooks/api";
 import {Heading, Paragraph, Select} from "@digdir/design-system-react";
@@ -54,11 +54,12 @@ function CodeExample(props: Props) {
     });
 
     const makeFieldMap = (client?: ApiClient) => {
+        const conf = (client && config) ? config[client.env] : config?.["test"];
         return {
-            __CLIENT_ID__: client?.clientId || "client-uuid",
-            __SCOPE__: client?.scopes.join(",") || "scope:withprefix",
-            __MASKINPORTEN_URL__: (client && config?.[client?.env].authorization_server) || "__MASKINPORTEN_URL__",
-            __MASKINPORTEN_TOKEN_URL__: (client && config?.[client.env].token_endpoint) || "__MASKINPORTEN_TOKEN_URL__",
+            __CLIENT_ID__: client?.clientId || "<CLIENT-UUID>",
+            __SCOPE__: client?.scopes.join(",") || "<SCOPE:WITHPREFIX>",
+            __MASKINPORTEN_URL__: conf?.authorization_server || "__MASKINPORTEN_URL__",
+            __MASKINPORTEN_TOKEN_URL__: conf?.token_endpoint || "__MASKINPORTEN_TOKEN_URL__",
         }
     }
 

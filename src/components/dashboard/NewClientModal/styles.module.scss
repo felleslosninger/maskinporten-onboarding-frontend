@@ -19,13 +19,32 @@
 
 .modalButtons {
   display: flex;
+  align-items: center;
   margin-top: auto;
   padding: 0 0.5rem;
   gap: 1rem;
 }
 
+.alert  {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  svg {
+    height: 1.5rem;
+    width: 1.5rem;
+
+    path {
+      fill: $colors-danger-red;
+    }
+  }
+
+}
+
 .keyTextArea {
-  height: 7rem;
+  textarea {
+    height: 10rem;
+  }
 }
 
 .radioButtons {
@@ -78,6 +97,26 @@
 
 .usageButtons {
   margin-top: 1rem;
+}
+
+.integrationSelect {
+  display: flex;
+  gap: 5rem;
+}
+
+.integrationInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.kid {
+  padding: 0.5rem;
+  background-color: $colors-gray;
+  border-radius: 0.5rem;
+  border: 1px solid $colors-gray;
+  color: $colors-interface-highlight;
+  margin: 0.5rem 0;
+  width: fit-content;
 }
 
 

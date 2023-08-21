@@ -1,6 +1,7 @@
 import React, {createRef, useEffect, useState} from "react";
 import styles from "./styles.module.scss";
 import {
+    Alert,
     Button,
     Label,
     Paragraph, RadioGroup,
@@ -14,6 +15,9 @@ import StyledLink from "../../common/StyledLink/StyledLink";
 import {bold} from "../../util/textTransforms";
 import {RequestApiClientBody} from "../../../types/api";
 import {CSSTransition} from 'react-transition-group';
+import { customAlphabet } from 'nanoid'
+import {exportJWK, importSPKI} from "jose";
+import {XMarkOctagonFillIcon} from "@navikt/aksel-icons";
 
 interface Props {
     env: string;
@@ -31,6 +35,9 @@ function NewClientModal(props: Props) {
     const [publicKey, setPublicKey] = useState("");
     const [isNext, setIsNext] = useState(true);
     const [chosenIntegration, setChosenIntegration] = useState(false)
+    const [kid, setKid] = useState("");
+    const [errorMessage, setErrorMessage] = useState<string>();
+    const nanoid = customAlphabet("abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ", 10);
 
     useEffect(() => {
         if (isSuccess) {
@@ -38,25 +45,35 @@ function NewClientModal(props: Props) {
         }
     }, [isSuccess]);
 
-    const handleSubmit = () => {
+    useEffect(() => {
+        if (isError) {
+            setErrorMessage("Ukjent feil under opprettelse");
+        }
+    }, [isError]);
+
+    const handleSubmit = async () => {
+        setErrorMessage(undefined);
         const requestBody: RequestApiClientBody = {
             description: description,
             scopes: [props.scope]
         }
 
         if (useKeys) {
-            requestBody.keys = publicKey;
+            try {
+                const key = await importSPKI(publicKey, "RS256", { extractable: true });
+                const jwk = await exportJWK(key);
+                jwk.alg = "RS256";
+                jwk.kid = kid;
+                jwk.use = "sig";
+                requestBody.keys = [jwk];
+            } catch (e) {
+                setErrorMessage("Du har lastet opp en ugyldig public key");
+                return;
+            }
         }
 
         addClient(requestBody);
     }
-
-    const errorClassNames = {
-        enter: styles.errorMessageEnter,
-        enterActive: styles.errorMessageEnterActive,
-        exit: styles.errorMessageExit,
-        exitActive: styles.errorMessageExitActive
-    };
 
     const nextClassNames = {
         enter: styles.rightToLeftEnter,
@@ -75,6 +92,7 @@ function NewClientModal(props: Props) {
     const onForrige = () => {
         setUseKeys(false);
         setChosenIntegration(false);
+        setErrorMessage(undefined);
         setIsNext(false);
         setStep(1);
     }
@@ -85,32 +103,57 @@ function NewClientModal(props: Props) {
     }
 
     const onChangeIntegration = (val: string | undefined) => {
-        val === "true" ? setUseKeys(true) : setUseKeys(false);
+        if (val === "true") {
+
+            setUseKeys(true);
+            setKid(nanoid(10));
+        } else {
+            setUseKeys(false);
+        }
+        setErrorMessage(undefined);
         setChosenIntegration(true);
     }
 
     const renderInputScreenTwo = () => (
         <>
-            <div>
+            <div className={styles.integrationSelect}>
                 <div className={styles.radioButtons}>
                     <RadioGroup items={[
-                                    {value: "true", label: "Bruk JWK nøkler"},
-                                    {value: "false", label: "Jeg bruker virksomhetssertifikat"}
+                                    {value: "true", label: "Med manuelt opplastede nøkler"},
+                                    {value: "false", label: "Signere direkte med virksomhetssertifikat"}
                                 ]}
                                 name={"keys"}
                                 description={"Hvordan vil du integrere med tjenesten?"}
                                 onChange={onChangeIntegration}
                     />
                 </div>
+                <div className={styles.integrationInfo}>
+                    {useKeys &&
+                        <>
+                            <Label size={"large"}>Nøkkelen din får følgende KID:</Label>
+                            <Label size={"large"} className={styles.kid}>{kid}</Label>
+                            <Label size={"small"}>Vi støtter kun RSA256 nøkler.</Label>
+                        </>
+                    }
+                </div>
             </div>
 
             {useKeys &&
-                <TextArea label={"Legg til JWK nøkkel"}
-                          required
-                          className={styles.keyTextArea}
-                          value={publicKey}
-                          onChange={(e) => setPublicKey(e.target.value)}
-                />
+                <div className={styles.keyTextArea}>
+                    <TextArea label={"Legg til JWK nøkkel"}
+                              required
+                              value={publicKey}
+                              placeholder={"-----BEGIN RSA PUBLIC KEY-----\n" +
+                                  "MIIBCgKCAQEA+xGZ/wcz9ugFpP07Nspo6U17l0YhFiFpxxU4pTk3Lifz9R3zsIsu\n" +
+                                  "ERwta7+fWIfxOo208ett/jhskiVodSEt3QBGh4XBipyWopKwZ93HHaDVZAALi/2A\n" +
+                                  "+xTBtWdEo7XGUujKDvC2/aZKukfjpOiUI8AhLAfjmlcD/UZ1QPh0mHsglRNCmpCw\n" +
+                                  "mwSXA9VNmhz+PiB+Dml4WWnKW/VHo2ujTXxq7+efMU4H2fny3Se3KYOsFPFGZ1TN\n" +
+                                  "QSYlFuShWrHPtiLmUdPoP6CV2mML1tk+l7DIIqXrQhLUKDACeM5roMx0kLhUWB8P\n" +
+                                  "+0uj1CNlNN4JRZlC7xFfqiMbFRU9Z4N6YwIDAQAB\n" +
+                                  "-----END RSA PUBLIC KEY-----"}
+                              onChange={(e) => setPublicKey(e.target.value)}
+                    />
+                </div>
             }
         </>
     );
@@ -125,7 +168,7 @@ function NewClientModal(props: Props) {
                        label={"Valgt API:"}
                        readOnly={"readonlyInfo"}
             />
-            <TextField label={"Hva skal du bruke klienten til?"}
+            <TextField label={"Hva skal du bruke integrasjonen til?"}
                        required
                        value={description}
                        onChange={e => setDescription(e.target.value)}
@@ -147,7 +190,7 @@ function NewClientModal(props: Props) {
                             <Paragraph>{props.scope}</Paragraph>
                         </div>
                         <div>
-                            <Label>Klient beskrivelse:</Label>
+                            <Label>Integrasjonsbeskrivelse:</Label>
                             <Paragraph>{data?.data.description}</Paragraph>
                         </div>
                         <div>
@@ -158,9 +201,9 @@ function NewClientModal(props: Props) {
                 </div>
             </div>
             <div className={styles.usageInfo}>
-                <Label>{bold("Ta i bruk klient?")}</Label>
+                <Label>{bold("Ta i bruk integrasjon?")}</Label>
                 <Paragraph>
-                    Følg var onboardingsguide for informasjon om hvordan du kan ta i bruk klienten din
+                    Følg var onboardingsguide for informasjon om hvordan du kan ta i bruk integrasjonen din
                 </Paragraph>
                 <div className={styles.usageButtons}>
                     <StyledLink to={"/guide"}>Gå til Onboardingsguiden</StyledLink>
@@ -174,7 +217,7 @@ function NewClientModal(props: Props) {
     return (
         <Modal open={props.open}
                closeModal={props.closeModal}
-               title={isSuccess ? "Klienten er opprettet" : `Opprett ny klient (${step} / ${steps.length - 1})`}
+               title={isSuccess ? "Integrasjonen er opprettet" : `Opprett ny integrasjon (${step} / ${steps.length - 1})`}
                className={styles.modal}
         >
             <>
@@ -218,8 +261,14 @@ function NewClientModal(props: Props) {
                                     disabled={!chosenIntegration || (useKeys && publicKey.length === 0)}
                             >
                                 {isLoading && <Spinner variant={"interaction"} title={"laster"} />}
-                                {isLoading ? "Oppretter klient" : "Opprett klient"}
+                                {isLoading ? "Oppretter integrasjon" : "Opprett integrasjon"}
                             </Button>
+                            {errorMessage &&
+                                <div className={styles.alert}>
+                                    <XMarkOctagonFillIcon />
+                                    <Label>{errorMessage}</Label>
+                                </div>
+                            }
                         </>
                     }
                     {step === 3 &&

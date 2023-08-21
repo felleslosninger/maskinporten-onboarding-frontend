@@ -1,11 +1,13 @@
 import React, {useState} from "react";
 import {ApiClients, ApiScope} from "../../../types/api";
 import styles from './styles.module.scss';
-import {Accordion, Button, Heading, Label, Paragraph, Popover} from "@digdir/design-system-react";
-import KlientSVG from "../../../assets/klient_opprettet.svg";
-import TilgangSvg from "../../../assets/tilgang_gitt.svg";
+import {Accordion, Button, Label} from "@digdir/design-system-react";
 import ClientDescription from "../ClientDescription/ClientDescription";
 import NewClientModal from "../NewClientModal/NewClientModal";
+import {
+    Buldings2Icon, InformationSquareIcon, KeyHorizontalFillIcon, TerminalIcon
+} from '@navikt/aksel-icons';
+import {useEnhet} from "../../../hooks/brreg";
 
 interface ScopeDetailProps {
     scope: ApiScope;
@@ -14,18 +16,19 @@ interface ScopeDetailProps {
 }
 
 function ScopeDetails(props: ScopeDetailProps) {
-    const [showPopover, setShowPopover] = useState(false);
+    const { data: enhet, isLoading, isError } = useEnhet(props.scope.owner_orgno);
     const [showModal, setShowModal] = useState(false);
-    const hasClient = props.clients.some(client => client.scopes.includes(props.scope.scope));
+    const currentClients = props.clients.filter(client => client.scopes.includes(props.scope.scope));
+
 
     const renderNoClientBox = () => {
         return (
             <div className={styles.noClientBox}>
                 <Label>
-                    Dette APIet er tildelt din organisasjon, men har ingen klient registrert.
+                    Dette APIet er tildelt din organisasjon, men har ingen integrasjon registrert.
                 </Label>
                 <Label>
-                    Opprett en ny klient via knappen nedenfor.
+                    Opprett en ny integrasjon via knappen nedenfor.
                 </Label>
             </div>
         );
@@ -41,40 +44,42 @@ function ScopeDetails(props: ScopeDetailProps) {
                 />
             }
             <Accordion.Header level={4} className={styles.headerRow}>
-                <div>
-                    <Heading size={"xsmall"}>
-                        {props.scope.scope}
-                    </Heading>
-                    <Paragraph>
-                        {props.scope.description}
-                    </Paragraph>
+                <div className={styles.scopeInfo}>
+                    <div className={styles.scopeInfoTop}>
+                        <Label>
+                            <Buldings2Icon />
+                            {isError && props.scope.owner_orgno}
+                            {isLoading && <span className={styles.placeholderText}>{props.scope.owner_orgno}</span>}
+                            {enhet && enhet.navn}
+                        </Label>
+                        <Label>
+                            <KeyHorizontalFillIcon />
+                            {props.scope.scope}
+                        </Label>
+                    </div>
+                    <Label>
+                        <InformationSquareIcon />
+                        <div className={styles.desc}>
+                            {props.scope.description}
+                        </div>
+                    </Label>
                 </div>
-                <Popover
-                    trigger={
-                        <img src={hasClient ? KlientSVG : TilgangSvg}
-                             alt={""}
-                             className={styles.statusIcon}
-                             onMouseEnter={() => setShowPopover(true)}
-                             onMouseLeave={() => setShowPopover(false)}
-                        />
-                    }
-                    variant={"info"}
-                    open={showPopover}
-                    className={styles.statusbox}
-                    placement={"top"}
-                >
-                    {hasClient ? "Klient opprettet" : "Tilgang er gitt, men klient er ikke opprettet"}
-                </Popover>
+                <div className={styles.statusIcon}>
+                    <TerminalIcon />
+                    <Label>
+                        {currentClients.length} {currentClients.length === 1 ? "integrasjon" : "integrasjoner"}
+                    </Label>
+                </div>
             </Accordion.Header>
             <Accordion.Content>
                 {
-                    hasClient
+                    currentClients.length > 0
                     ? props.clients.map((client) => client.scopes.includes(props.scope.scope) ? <ClientDescription client={client} env={props.env} key={client.clientId} /> : null)
                     : renderNoClientBox()
                 }
                 <div className={styles.buttonRow}>
                     <Button className={styles.opprettButton} onClick={() => setShowModal(true)}>
-                        Opprett klient
+                        Opprett integrasjon
                     </Button>
                 </div>
             </Accordion.Content>
