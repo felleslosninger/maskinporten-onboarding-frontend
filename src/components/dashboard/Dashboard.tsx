@@ -8,7 +8,7 @@ import ContentContainer from "../common/ContentContainer/ContentContainer";
 import OnboardingCard from "../common/OnboardingCard/OnboardingCard";
 import {useQueryClient} from "@tanstack/react-query";
 
-function Dashboard({ id, config }: AuthProps) {
+function Dashboard({ user, config }: AuthProps) {
     const queryClient = useQueryClient();
     const [minLoadtimeOver, setMinLoadtimeOver] = useState(false);
     const [env, setEnv] = useState(Object.keys(config)[0]);
@@ -35,7 +35,7 @@ function Dashboard({ id, config }: AuthProps) {
                     API-tilganger i Maskinporten
                 </Heading>
                 <Ingress>
-                    Her kan du se API-tilganger gitt til {id.reporteeName} .
+                    Her kan du se API-tilganger gitt til {user.reporteeName} .
                 </Ingress>
                 <OnboardingCard />
             </div>
