@@ -47,7 +47,7 @@ function Header() {
                                         {data!!.user!!.name}
                                     </Label>
                                     <Label size={"small"}>
-                                        {data!!.user!!.authorization_details[0].reportees[0].Name}
+                                        {data!!.user!!.reporteeName}
                                     </Label>
                                 </div>
                                 <BedriftSvg className={styles.loginSvg} />
