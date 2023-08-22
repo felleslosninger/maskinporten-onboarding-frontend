@@ -9,6 +9,11 @@
 }
 
 .headerRow {
+
+  * {
+    cursor: pointer;
+  }
+
   span {
     display: flex;
     align-items: center;
@@ -35,8 +40,7 @@
 }
 
 .buttonRow {
-  display: flex;
-  gap: 1rem;
+  margin-top: 2rem;
 }
 
 .opprettButton {

@@ -1300,22 +1300,21 @@
   resolved "https://registry.yarnpkg.com/@csstools/selector-specificity/-/selector-specificity-2.2.0.tgz#2cbcf822bf3764c9658c4d2e568bd0c0cb748016"
   integrity sha512-+OJ9konv95ClSTOJCmMZqpd5+YGsB2S+x6w3E1oaM8UuR5j8nTNHYSz8c9BEPGDOCMQYIEEGlVPj/VY64iTbGw==
 
-"@digdir/design-system-react@^0.22.0":
-  version "0.22.0"
-  resolved "https://registry.yarnpkg.com/@digdir/design-system-react/-/design-system-react-0.22.0.tgz#0a320af4ffc99f7b959e57f8252b93f0b4fe1260"
-  integrity sha512-+OOId9JrBzpX05tYp8tK9kikcMj0eOItz5WqvwoE5x4UEcGqjuHv2Pktj25S74jVJ7ZT4NJPQ3qyN/6NsSRYug==
+"@digdir/design-system-react@^0.23.0":
+  version "0.23.0"
+  resolved "https://registry.yarnpkg.com/@digdir/design-system-react/-/design-system-react-0.23.0.tgz#401e87b4afb5c60b9dc0a8e0ff23e092a1d69fae"
+  integrity sha512-hi8WmZKCTNKo5gt0MNMLqHaDbtizmIAP4bgFLsvUJ79WsNhu9s56DicEe2aohh80eMnzIdiLjx7w08usnh7HSA==
   dependencies:
     "@altinn/figma-design-tokens" "^6.0.1"
-    "@digdir/design-system-tokens" "^0.2.0"
+    "@digdir/design-system-tokens" "^0.3.0"
     "@floating-ui/react" "0.24.1"
     "@navikt/aksel-icons" "^3.2.4"
-    "@navikt/ds-icons" "^2.3.0"
     react-number-format "5.2.2"
 
-"@digdir/design-system-tokens@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@digdir/design-system-tokens/-/design-system-tokens-0.2.0.tgz#c7b4352b4aba36563b69854ec303dc340048a1e7"
-  integrity sha512-3+hFuICTNVeMxBqnJmiRK7YWC06jk6/xja9uUlk5RtlhlqJ5Yyj1NvUM6HT5dCfbkvIEIuF/gkd7wTaystpOlA==
+"@digdir/design-system-tokens@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@digdir/design-system-tokens/-/design-system-tokens-0.3.0.tgz#04a95d16b7091a476ad04891ad65afa7b86085df"
+  integrity sha512-syDgF99DpGFF5bJeDx7dCe/qAY7cz+w+JlsA1CUlPA/AB3IK2EbUoxXdXUPCa1ewGBE0aqsOBPHm6AtJE/OPEA==
 
 "@eslint-community/eslint-utils@^4.2.0":
   version "4.4.0"
@@ -1707,11 +1706,6 @@
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/@navikt/aksel-icons/-/aksel-icons-4.4.0.tgz#c5a5086226e7a738da887f253b0d37675db0e2ac"
   integrity sha512-0ocpEXeg8doTfVBnjqqxvuMcBrAzUKMKBUewlJ1hyma53VLWVBfDQZqlr/9QvvWyN5wx8Go4jrwVye3AViXirg==
-
-"@navikt/ds-icons@^2.3.0":
-  version "2.9.8"
-  resolved "https://registry.yarnpkg.com/@navikt/ds-icons/-/ds-icons-2.9.8.tgz#b6f22493a3b836e00762dcc0a4397c64beb634e0"
-  integrity sha512-5IdVN4rmpXnznQMUz5YPxDoY17nykV3Oy/YCpq6gF69JRbhjwgQ+4LI/eV1tFFLaM/EW73qFCaEzhP0DY3prEw==
 
 "@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1":
   version "5.1.1-v1"

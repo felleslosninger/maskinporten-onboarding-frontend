@@ -1,10 +1,12 @@
 import React, {useState} from "react";
 import {ApiClient} from "../../../types/api";
 import styles from '../ClientDescription/styles.module.scss';
-import {Button, Paragraph} from "@digdir/design-system-react";
-import {CheckmarkIcon, TrashIcon} from '@navikt/aksel-icons';
+import {Button, Heading, Ingress, Paragraph, Popover} from "@digdir/design-system-react";
+import {BagdeIcon, KeyHorizontalIcon, TrashIcon} from '@navikt/aksel-icons';
 import {useClientDeleteMutation} from "../../../hooks/api";
 import ConfirmAlert from "../../common/ConfirmAlert/ConfirmAlert";
+import {bold} from "../../util/textTransforms";
+import CopyField from "../../common/CopyField/CopyField";
 
 interface ClientDescriptionProps {
     client: ApiClient;
@@ -14,7 +16,7 @@ interface ClientDescriptionProps {
 const ClientDescription = (props: ClientDescriptionProps) => {
     const { mutate: deleteClient } = useClientDeleteMutation(props.env);
     const [ modalOpen, setModalOpen ] = useState(false);
-
+    const [ showPopover, setShowPopover] = useState(false);
 
     return (
         <div className={styles.container}>
@@ -27,33 +29,41 @@ const ClientDescription = (props: ClientDescriptionProps) => {
                 />
             }
             <div className={styles.content}>
-                <div className={styles.topRow}>
-                    <div>
-                        <Paragraph>
-                            integrasjonsbeskrivelse:
-                        </Paragraph>
-                        <Paragraph>
-                            {props.client.description}
-                        </Paragraph>
-                    </div>
-                    <Button variant={"quiet"}
-                            color={"danger"}
-                            onClick={() => setModalOpen(true)}
-                            title={"Slett integrasjon"}
+                <div className={styles.icon}
+                     onMouseOver={() => setShowPopover(true)}
+                     onMouseLeave={() => setShowPopover(false)}
+                >
+                    <Popover
+                        placement={"top"}
+                        variant={"info"}
+                        trigger={props.client.keys ? <KeyHorizontalIcon /> : <BagdeIcon />}
+                        open={showPopover}
                     >
-                        <TrashIcon />
-                    </Button>
+                        Denne integrasjonen bruker {props.client.keys ? "nøkler" : "virksomhetssertifikat"}
+                    </Popover>
                 </div>
-                <div className={styles.bottomRow}>
-                    <div>
-                        <Paragraph>
-                            client-id:
-                        </Paragraph>
-                        <Paragraph>
-                            {props.client.clientId}
-                        </Paragraph>
-                    </div>
+                <div className={styles.info}>
+                    <Heading size={"small"}>{props.client.description}</Heading>
+                    <Ingress>
+                        {bold("KlientId:")}
+                        <CopyField copyValue={props.client.clientId}>{props.client.clientId}</CopyField>
+                    </Ingress>
+                    {props.client.keys &&
+                        <Ingress>
+                            {bold("KID:")}
+                            <CopyField copyValue={props.client.keys[0].kid!!}>{props.client.keys[0].kid}</CopyField>
+                        </Ingress>
+                    }
                 </div>
+
+                <Button variant={"quiet"}
+                        color={"danger"}
+                        className={styles.deleteButton}
+                        onClick={() => setModalOpen(true)}
+                        title={"Slett integrasjon"}
+                >
+                    <TrashIcon />
+                </Button>
             </div>
         </div>
     );

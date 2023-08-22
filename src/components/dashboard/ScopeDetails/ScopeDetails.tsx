@@ -46,13 +46,13 @@ function ScopeDetails(props: ScopeDetailProps) {
             <Accordion.Header level={4} className={styles.headerRow}>
                 <div className={styles.scopeInfo}>
                     <div className={styles.scopeInfoTop}>
-                        <Label>
+                        <Label size={"large"}>
                             <Buldings2Icon />
                             {isError && props.scope.owner_orgno}
                             {isLoading && <span className={styles.placeholderText}>{props.scope.owner_orgno}</span>}
                             {enhet && enhet.navn}
                         </Label>
-                        <Label>
+                        <Label size={"large"}>
                             <KeyHorizontalFillIcon />
                             {props.scope.scope}
                         </Label>

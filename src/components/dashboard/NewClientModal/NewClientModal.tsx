@@ -4,10 +4,11 @@ import {
     Alert,
     Button,
     Label,
-    Paragraph, RadioGroup,
+    Paragraph,
     Spinner,
     TextArea,
-    TextField
+    TextField,
+    Radio
 } from "@digdir/design-system-react";
 import Modal from "../../common/Modal/Modal";
 import {useClientMutation} from "../../../hooks/api";
@@ -118,14 +119,10 @@ function NewClientModal(props: Props) {
         <>
             <div className={styles.integrationSelect}>
                 <div className={styles.radioButtons}>
-                    <RadioGroup items={[
-                                    {value: "true", label: "Med manuelt opplastede nøkler"},
-                                    {value: "false", label: "Signere direkte med virksomhetssertifikat"}
-                                ]}
-                                name={"keys"}
-                                description={"Hvordan vil du integrere med tjenesten?"}
-                                onChange={onChangeIntegration}
-                    />
+                    <Radio.Group onChange={onChangeIntegration} legend={"Hvordan vil du integrere med tjenesten?"}>
+                        <Radio value={"true"}>Med manuelt opplastede nøkler</Radio>
+                        <Radio value={"false"}>Signere direkte med virksomhetssertifikat</Radio>
+                    </Radio.Group>
                 </div>
                 <div className={styles.integrationInfo}>
                     {useKeys &&

@@ -1,0 +1,26 @@
+@import "src/style/variables";
+
+.box {
+  width: fit-content;
+  background-color: $colors-white;
+  border-radius: 1rem;
+  padding: 0.25rem 0.5rem;
+  border: 0.25rem solid $colors-gray;
+  transition: border 0.15s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    border: 0.25rem solid $colors-interface-highlight;
+  }
+
+  &.clicked {
+    border: 0.25rem solid $colors-success;
+  }
+
+}
+
+.popoverContent {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
