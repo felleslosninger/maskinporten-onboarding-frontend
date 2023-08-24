@@ -137,7 +137,7 @@ function NewClientModal(props: Props) {
 
             {useKeys &&
                 <div className={styles.keyTextArea}>
-                    <TextArea label={"Legg til JWK nøkkel"}
+                    <TextArea label={"Legg til public-delen av nøkkelen du vil bruke"}
                               required
                               value={publicKey}
                               placeholder={"-----BEGIN RSA PUBLIC KEY-----\n" +
