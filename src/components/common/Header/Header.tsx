@@ -5,9 +5,10 @@ import { ReactComponent as Logo } from '../../../assets/logo.svg';
 import {ReactComponent as BedriftSvg} from '../../../assets/bedrift.svg';
 import {ReactComponent as PersonSvg} from '../../../assets/ikoner/SVG/Person.svg';
 import {Button, Label} from "@digdir/design-system-react";
-import {login} from "../../auth/login";
+import {login, logout} from "../../auth/login";
 import StyledLink from "../StyledLink/StyledLink";
 import {useLocation} from "react-router-dom";
+import {Dropdown} from "../Dropdown";
 
 function Header() {
     const { data, isLoading } = useUser();
@@ -41,24 +42,51 @@ function Header() {
                             </StyledLink>
                         </div>
                         {isLoggedIn ?
-                            <div className={styles.userInfo}>
-                                <div>
-                                    <Label size={"small"}>
-                                        {data!!.user!!.name}
-                                    </Label>
-                                    <Label size={"small"}>
-                                        {data!!.user!!.reporteeName}
-                                    </Label>
-                                </div>
-                                <BedriftSvg className={styles.loginSvg} />
-                            </div>
+                            <Dropdown>
+                                <Dropdown.Trigger>
+                                    <Button className={styles.userInfo} variant={"quiet"}>
+                                        <div>
+                                            <Label size={"small"}>
+                                                {data!!.user!!.name}
+                                            </Label>
+                                            <Label size={"small"}>
+                                                {data!!.user!!.reporteeName}
+                                            </Label>
+                                        </div>
+                                        <BedriftSvg className={styles.loginSvg} />
+                                    </Button>
+                                </Dropdown.Trigger>
+                                <Dropdown.Menu>
+                                    <Dropdown.Item onSelect={logout}>
+                                        Logg ut
+                                    </Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
                             :
-                            <Button className={styles.loginButton} variant={"quiet"} onClick={login}>
-                            <Label size={"medium"}>
-                                LOGG INN
-                            </Label>
-                                <PersonSvg className={styles.loginSvg} />
-                            </Button>
+                            <Dropdown>
+                                <Dropdown.Trigger>
+                                    <Button className={styles.loginButton} variant={"quiet"}>
+                                        <Label size={"medium"}>
+                                            LOGG INN
+                                        </Label>
+                                        <PersonSvg className={styles.loginSvg} />
+                                    </Button>
+                                </Dropdown.Trigger>
+                                <Dropdown.Menu>
+                                    <Dropdown.Item onSelect={() => login(true)}>
+                                        <Label size={"medium"}>
+                                            ...som daglig leder
+                                        </Label>
+                                        <PersonSvg className={styles.loginSvg} />
+                                    </Dropdown.Item>
+                                    <Dropdown.Item onSelect={() => login(false)}>
+                                        <Label size={"medium"}>
+                                            ...med annen tilgang
+                                        </Label>
+                                        <PersonSvg className={styles.loginSvg} />
+                                    </Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
                         }
                     </>
             </div>

@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {ApiClient} from "../../../types/api";
 import styles from '../ClientDescription/styles.module.scss';
-import {Button, Heading, Ingress, Paragraph, Popover} from "@digdir/design-system-react";
+import {Button, Heading, Popover} from "@digdir/design-system-react";
 import {BagdeIcon, KeyHorizontalIcon, TrashIcon} from '@navikt/aksel-icons';
 import {useClientDeleteMutation} from "../../../hooks/api";
 import ConfirmAlert from "../../common/ConfirmAlert/ConfirmAlert";
@@ -43,16 +43,16 @@ const ClientDescription = (props: ClientDescriptionProps) => {
                     </Popover>
                 </div>
                 <div className={styles.info}>
-                    <Heading size={"small"}>{props.client.description}</Heading>
-                    <Ingress>
+                    <Heading size={"xsmall"}>{props.client.description}</Heading>
+                    <div>
                         {bold("KlientId:")}
                         <CopyField copyValue={props.client.clientId}>{props.client.clientId}</CopyField>
-                    </Ingress>
+                    </div>
                     {props.client.keys &&
-                        <Ingress>
-                            {bold("KID:")}
+                        <div>
+                            {bold("Key-id (kid):")}
                             <CopyField copyValue={props.client.keys[0].kid!!}>{props.client.keys[0].kid}</CopyField>
-                        </Ingress>
+                        </div>
                     }
                 </div>
 

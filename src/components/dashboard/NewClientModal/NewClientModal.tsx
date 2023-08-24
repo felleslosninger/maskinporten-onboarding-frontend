@@ -127,7 +127,7 @@ function NewClientModal(props: Props) {
                 <div className={styles.integrationInfo}>
                     {useKeys &&
                         <>
-                            <Label size={"large"}>Nøkkelen din får følgende KID:</Label>
+                            <Label size={"large"}>Nøkkelen din får følgende key-id (kid):</Label>
                             <Label size={"large"} className={styles.kid}>{kid}</Label>
                             <Label size={"small"}>Vi støtter kun RSA256 nøkler.</Label>
                         </>

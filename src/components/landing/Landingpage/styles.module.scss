@@ -9,17 +9,16 @@
   width: 100%;
   padding: 2rem;
   text-align: left;
+}
 
-  p {
-    margin-bottom: 1rem;
-  }
+.errorMessage {
+  width: 100%;
 }
 
 .heading {
   display: flex;
   gap: 1rem;
-  margin-top: 3rem;
-  margin-bottom: 1rem;
+  margin-top: 3rem !important;
 
   span {
     height: fit-content;
@@ -35,6 +34,7 @@
 }
 
 .loginRow {
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -44,12 +44,6 @@
 .loginButton {
   padding: 0.5rem 1rem;
   min-width: fit-content;
-  white-space: nowrap;
-
-  label {
-    color: $colors-white;
-    cursor: pointer;
-  }
 }
 
 .faq {
