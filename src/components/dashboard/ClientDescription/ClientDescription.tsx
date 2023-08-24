@@ -39,7 +39,7 @@ const ClientDescription = (props: ClientDescriptionProps) => {
                         trigger={props.client.keys ? <KeyHorizontalIcon /> : <BagdeIcon />}
                         open={showPopover}
                     >
-                        Denne integrasjonen bruker {props.client.keys ? "nøkler" : "virksomhetssertifikat"}
+                        Denne integrasjonen bruker {props.client.keys ? "nøkkel" : "virksomhetssertifikat"}
                     </Popover>
                 </div>
                 <div className={styles.info}>
@@ -50,7 +50,7 @@ const ClientDescription = (props: ClientDescriptionProps) => {
                     </div>
                     {props.client.keys &&
                         <div>
-                            {bold("KID:")}
+                            {bold("Key-id (kid):")}
                             <CopyField copyValue={props.client.keys[0].kid!!}>{props.client.keys[0].kid}</CopyField>
                         </div>
                     }

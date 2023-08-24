@@ -120,14 +120,14 @@ function NewClientModal(props: Props) {
             <div className={styles.integrationSelect}>
                 <div className={styles.radioButtons}>
                     <Radio.Group onChange={onChangeIntegration} legend={"Hvordan vil du integrere med tjenesten?"}>
-                        <Radio value={"true"}>Med manuelt opplastede nøkler</Radio>
+                        <Radio value={"true"}>Med manuelt opplastet nøkkel</Radio>
                         <Radio value={"false"}>Signere direkte med virksomhetssertifikat</Radio>
                     </Radio.Group>
                 </div>
                 <div className={styles.integrationInfo}>
                     {useKeys &&
                         <>
-                            <Label size={"large"}>Nøkkelen din får følgende KID:</Label>
+                            <Label size={"large"}>Nøkkelen din får følgende key-id (kid):</Label>
                             <Label size={"large"} className={styles.kid}>{kid}</Label>
                             <Label size={"small"}>Vi støtter kun RSA256 nøkler.</Label>
                         </>
@@ -137,7 +137,7 @@ function NewClientModal(props: Props) {
 
             {useKeys &&
                 <div className={styles.keyTextArea}>
-                    <TextArea label={"Legg til JWK nøkkel"}
+                    <TextArea label={"Legg til public-delen av nøkkelen du vil bruke"}
                               required
                               value={publicKey}
                               placeholder={"-----BEGIN RSA PUBLIC KEY-----\n" +
