@@ -90,10 +90,6 @@
   fill: white;
 }
 
-.loginButton {
-
-  label:hover {
-    cursor: pointer;
-    border-bottom: 1px solid #022F51;
-  }
+.loginButton label {
+  cursor: pointer;
 }

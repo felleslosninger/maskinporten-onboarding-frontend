@@ -1,7 +1,7 @@
 import React from "react";
 import {Label} from "@digdir/design-system-react";
 import {ReactComponent as FokusSvg} from "../../../assets/fokus.svg";
-import StyledLink from "../../common/StyledLink/StyledLink";
+import StyledLink from "../StyledLink/StyledLink";
 import styles from './styles.module.scss';
 
 function OnboardingCard() {

@@ -4,17 +4,51 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  max-width: 100%;
+  height: 27rem;
+  position: relative;
+}
 
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  max-width: 100%;
 }
 
 .modalButtons {
   display: flex;
+  align-items: center;
+  margin-top: auto;
+  padding: 0 0.5rem;
   gap: 1rem;
+}
+
+.alert  {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  svg {
+    height: 1.5rem;
+    width: 1.5rem;
+
+    path {
+      fill: $colors-danger-red;
+    }
+  }
+
+}
+
+.keyTextArea {
+  textarea {
+    height: 10rem;
+  }
+}
+
+.radioButtons {
+  width: fit-content;
 }
 
 .successContainer {
@@ -65,7 +99,67 @@
   margin-top: 1rem;
 }
 
-.closeModalButton {
-  margin-top: 1rem;
-  margin-left: 1rem;
+.integrationSelect {
+  display: flex;
+  gap: 5rem;
+}
+
+.integrationInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.kid {
+  padding: 0.5rem;
+  background-color: $colors-gray;
+  border-radius: 0.5rem;
+  border: 1px solid $colors-gray;
+  color: $colors-interface-highlight;
+  margin: 0.5rem 0;
+  width: fit-content;
+}
+
+
+.rightToLeft {
+  position: absolute;
+}
+
+.rightToLeftEnter {
+  transform: translateX(120%);
+}
+
+.rightToLeftEnterActive {
+  transform: translateX(0);
+  transition:all 1s ease;
+}
+
+.rightToLeftExit {
+  transform: translateX(0);
+}
+
+.rightToLeftExitActive {
+  transform: translateX(-120%);
+  transition:all 1s ease;
+}
+
+.leftToRight {
+  position: absolute;
+}
+
+.leftToRightEnter {
+  transform: translateX(-120%);
+}
+
+.leftToRightEnterActive {
+  transform: translateX(0);
+  transition:all 1s ease;
+}
+
+.leftToRightExit {
+  transform: translateX(0);
+}
+
+.leftToRightExitActive {
+  transform: translateX(120%);
+  transition:all 1s ease;
 }

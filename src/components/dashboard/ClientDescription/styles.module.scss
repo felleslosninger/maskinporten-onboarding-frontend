@@ -2,12 +2,15 @@
 
 .container {
   border-radius: 1rem;
-  background-color: $colors-gray;
-  width: fit-content;
+  padding: 3rem 0;
+  background-color: $colors-lightgray;
   margin-bottom: 1rem;
 }
 
 .content {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
   padding: 0 2rem;
 
   div p:first-child {
@@ -15,28 +18,31 @@
   }
 }
 
-.topRow {
+.icon svg {
   display: flex;
   align-items: center;
-  padding: 1rem 0;
-  border-bottom: 1px solid lightgray;
+  justify-content: center;
+  height: 4rem;
+  width: 4rem;
+}
 
-  button {
-    margin-left: auto;
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 
-    svg {
-      height: 1.5rem;
-      width: 1.5rem;
-    }
+  p {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
 }
 
-.bottomRow {
-  display: flex;
-  align-items: center;
-  padding: 1rem 0;
+.deleteButton {
+  margin-left: auto;
 
-  button {
-    margin-left: 2rem;
+  svg {
+    height: 1.5rem;
+    width: 1.5rem;
   }
 }

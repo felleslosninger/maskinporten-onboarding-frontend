@@ -1,10 +1,24 @@
-import React, {useState} from "react";
+import React, {createRef, useEffect, useState} from "react";
 import styles from "./styles.module.scss";
-import {Alert, Button, Label, Paragraph, Spinner, TextField} from "@digdir/design-system-react";
+import {
+    Alert,
+    Button,
+    Label,
+    Paragraph,
+    Spinner,
+    TextArea,
+    TextField,
+    Radio
+} from "@digdir/design-system-react";
 import Modal from "../../common/Modal/Modal";
 import {useClientMutation} from "../../../hooks/api";
 import StyledLink from "../../common/StyledLink/StyledLink";
 import {bold} from "../../util/textTransforms";
+import {RequestApiClientBody} from "../../../types/api";
+import {CSSTransition} from 'react-transition-group';
+import { customAlphabet } from 'nanoid'
+import {exportJWK, importSPKI} from "jose";
+import {XMarkOctagonFillIcon} from "@navikt/aksel-icons";
 
 interface Props {
     env: string;
@@ -16,41 +30,146 @@ interface Props {
 function NewClientModal(props: Props) {
     const { mutate: addClient, isSuccess, isError, isIdle, data } = useClientMutation(props.env);
     const isLoading = !isIdle && !isError && !isSuccess;
-    const ref = React.createRef<HTMLInputElement>();
+    const [useKeys, setUseKeys] = useState(false);
+    const [step, setStep] = useState(1);
+    const [description, setDescription] = useState("");
+    const [publicKey, setPublicKey] = useState("");
+    const [isNext, setIsNext] = useState(true);
+    const [chosenIntegration, setChosenIntegration] = useState(false)
+    const [kid, setKid] = useState("");
+    const [errorMessage, setErrorMessage] = useState<string>();
+    const nanoid = customAlphabet("abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ", 10);
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        addClient({ description: ref.current?.value || "", scopes: [props.scope] });
+    useEffect(() => {
+        if (isSuccess) {
+            setStep(3);
+        }
+    }, [isSuccess]);
+
+    useEffect(() => {
+        if (isError) {
+            setErrorMessage("Ukjent feil under opprettelse");
+        }
+    }, [isError]);
+
+    const handleSubmit = async () => {
+        setErrorMessage(undefined);
+        const requestBody: RequestApiClientBody = {
+            description: description,
+            scopes: [props.scope]
+        }
+
+        if (useKeys) {
+            try {
+                const key = await importSPKI(publicKey, "RS256", { extractable: true });
+                const jwk = await exportJWK(key);
+                jwk.alg = "RS256";
+                jwk.kid = kid;
+                jwk.use = "sig";
+                requestBody.keys = [jwk];
+            } catch (e) {
+                setErrorMessage("Du har lastet opp en ugyldig public key");
+                return;
+            }
+        }
+
+        addClient(requestBody);
     }
 
-    const renderInputScreen = () => (
+    const nextClassNames = {
+        enter: styles.rightToLeftEnter,
+        enterActive: styles.rightToLeftEnterActive,
+        exit: styles.rightToLeftExit,
+        exitActive: styles.rightToLeftExitActive
+    };
+
+    const prevClassNames = {
+        enter: styles.leftToRightEnter,
+        enterActive: styles.leftToRightEnterActive,
+        exit: styles.leftToRightExit,
+        exitActive: styles.leftToRightExitActive
+    };
+
+    const onForrige = () => {
+        setUseKeys(false);
+        setChosenIntegration(false);
+        setErrorMessage(undefined);
+        setIsNext(false);
+        setStep(1);
+    }
+
+    const onNeste = () => {
+        setIsNext(true);
+        setStep(2);
+    }
+
+    const onChangeIntegration = (val: string | undefined) => {
+        if (val === "true") {
+
+            setUseKeys(true);
+            setKid(nanoid(10));
+        } else {
+            setUseKeys(false);
+        }
+        setErrorMessage(undefined);
+        setChosenIntegration(true);
+    }
+
+    const renderInputScreenTwo = () => (
         <>
-            {
-                isError &&
-                <Alert severity={"danger"}>
-                    Noe gikk galt under innsendingen, vennligst prøv igjen senere
-                </Alert>
-            }
-            <form onSubmit={handleSubmit}>
-                <TextField label={"Valgt miljø:"}
-                           value={props.env}
-                           readOnly={"readonlyInfo"}
-                />
-                <TextField value={props.scope}
-                           label={"Valgt API:"}
-                           readOnly={"readonlyInfo"}
-                />
-                <TextField label={"Hva skal du bruke klienten til?"} required ref={ref} />
-                <div className={styles.modalButtons}>
-                    <Button variant={"outline"} onClick={props.closeModal}>
-                        Avbryt
-                    </Button>
-                    <Button type={"submit"}>
-                        {isLoading && <Spinner variant={"interaction"} title={"laster"} />}
-                        {isLoading ? "Oppretter klient" : "Opprett klient"}
-                    </Button>
+            <div className={styles.integrationSelect}>
+                <div className={styles.radioButtons}>
+                    <Radio.Group onChange={onChangeIntegration} legend={"Hvordan vil du integrere med tjenesten?"}>
+                        <Radio value={"true"}>Med manuelt opplastede nøkler</Radio>
+                        <Radio value={"false"}>Signere direkte med virksomhetssertifikat</Radio>
+                    </Radio.Group>
                 </div>
-            </form>
+                <div className={styles.integrationInfo}>
+                    {useKeys &&
+                        <>
+                            <Label size={"large"}>Nøkkelen din får følgende KID:</Label>
+                            <Label size={"large"} className={styles.kid}>{kid}</Label>
+                            <Label size={"small"}>Vi støtter kun RSA256 nøkler.</Label>
+                        </>
+                    }
+                </div>
+            </div>
+
+            {useKeys &&
+                <div className={styles.keyTextArea}>
+                    <TextArea label={"Legg til JWK nøkkel"}
+                              required
+                              value={publicKey}
+                              placeholder={"-----BEGIN RSA PUBLIC KEY-----\n" +
+                                  "MIIBCgKCAQEA+xGZ/wcz9ugFpP07Nspo6U17l0YhFiFpxxU4pTk3Lifz9R3zsIsu\n" +
+                                  "ERwta7+fWIfxOo208ett/jhskiVodSEt3QBGh4XBipyWopKwZ93HHaDVZAALi/2A\n" +
+                                  "+xTBtWdEo7XGUujKDvC2/aZKukfjpOiUI8AhLAfjmlcD/UZ1QPh0mHsglRNCmpCw\n" +
+                                  "mwSXA9VNmhz+PiB+Dml4WWnKW/VHo2ujTXxq7+efMU4H2fny3Se3KYOsFPFGZ1TN\n" +
+                                  "QSYlFuShWrHPtiLmUdPoP6CV2mML1tk+l7DIIqXrQhLUKDACeM5roMx0kLhUWB8P\n" +
+                                  "+0uj1CNlNN4JRZlC7xFfqiMbFRU9Z4N6YwIDAQAB\n" +
+                                  "-----END RSA PUBLIC KEY-----"}
+                              onChange={(e) => setPublicKey(e.target.value)}
+                    />
+                </div>
+            }
+        </>
+    );
+
+    const renderInputScreenOne = () => (
+        <>
+            <TextField label={"Valgt miljø:"}
+                       value={props.env}
+                       readOnly={"readonlyInfo"}
+            />
+            <TextField value={props.scope}
+                       label={"Valgt API:"}
+                       readOnly={"readonlyInfo"}
+            />
+            <TextField label={"Hva skal du bruke integrasjonen til?"}
+                       required
+                       value={description}
+                       onChange={e => setDescription(e.target.value)}
+            />
         </>
     )
 
@@ -68,23 +187,20 @@ function NewClientModal(props: Props) {
                             <Paragraph>{props.scope}</Paragraph>
                         </div>
                         <div>
-                            <Label>Klient beskrivelse:</Label>
-                            <Paragraph>{data!!.data.description}</Paragraph>
+                            <Label>Integrasjonsbeskrivelse:</Label>
+                            <Paragraph>{data?.data.description}</Paragraph>
                         </div>
                         <div>
                             <Label>Client-id:</Label>
-                            <Paragraph>{data!!.data.clientId}</Paragraph>
+                            <Paragraph>{data?.data.clientId}</Paragraph>
                         </div>
                     </div>
                 </div>
-                <Button className={styles.closeModalButton} variant={"outline"} onClick={props.closeModal}>
-                    Tilbake til oversikten
-                </Button>
             </div>
             <div className={styles.usageInfo}>
-                <Label>{bold("Ta i bruk klient?")}</Label>
+                <Label>{bold("Ta i bruk integrasjon?")}</Label>
                 <Paragraph>
-                    Følg var onboardingsguide for informasjon om hvordan du kan ta i bruk klienten din
+                    Følg var onboardingsguide for informasjon om hvordan du kan ta i bruk integrasjonen din
                 </Paragraph>
                 <div className={styles.usageButtons}>
                     <StyledLink to={"/guide"}>Gå til Onboardingsguiden</StyledLink>
@@ -93,18 +209,74 @@ function NewClientModal(props: Props) {
         </div>
     );
 
+    const steps = [renderInputScreenOne, renderInputScreenTwo, renderSuccessScreen];
+
     return (
         <Modal open={props.open}
                closeModal={props.closeModal}
-               title={isSuccess ? "Klienten er opprettet" : "Opprett ny klient"}
+               title={isSuccess ? "Integrasjonen er opprettet" : `Opprett ny integrasjon (${step} / ${steps.length - 1})`}
                className={styles.modal}
         >
-            {isSuccess ? renderSuccessScreen() : renderInputScreen()}
+            <>
+                {steps.map((render, index) => {
+                    const ref = createRef<HTMLDivElement>();
+                    return (
+                        <CSSTransition in={step === index + 1}
+                                       key={index}
+                                       timeout={1000}
+                                       classNames={isNext ? nextClassNames : prevClassNames}
+                                       nodeRef={ref}
+                                       mountOnEnter
+                                       unmountOnExit
+                        >
+                            <div className={`${styles.form} ${isNext ? styles.rightToLeft : styles.leftToRight}`}
+                                 ref={ref}
+                            >
+                                {render()}
+                            </div>
+                        </CSSTransition>
+                    );
+                })}
+
+                <div className={styles.modalButtons}>
+                    {step === 1 &&
+                        <>
+                            <Button variant={"outline"} onClick={props.closeModal}>
+                                Avbryt
+                            </Button>
+                            <Button onClick={onNeste} disabled={description.length === 0}>
+                                Neste
+                            </Button>
+                        </>
+                    }
+                    {step === 2 &&
+                        <>
+                            <Button variant={"outline"} onClick={onForrige}>
+                                Forrige
+                            </Button>
+                            <Button onClick={handleSubmit}
+                                    disabled={!chosenIntegration || (useKeys && publicKey.length === 0)}
+                            >
+                                {isLoading && <Spinner variant={"interaction"} title={"laster"} />}
+                                {isLoading ? "Oppretter integrasjon" : "Opprett integrasjon"}
+                            </Button>
+                            {errorMessage &&
+                                <div className={styles.alert}>
+                                    <XMarkOctagonFillIcon />
+                                    <Label>{errorMessage}</Label>
+                                </div>
+                            }
+                        </>
+                    }
+                    {step === 3 &&
+                        <Button variant={"outline"} onClick={props.closeModal}>
+                            Tilbake til oversikten
+                        </Button>
+                    }
+                </div>
+            </>
         </Modal>
     );
-
-
-
 }
 
 export default NewClientModal;

@@ -1,5 +1,5 @@
 import {useQuery} from "@tanstack/react-query";
-import {IdToken} from "../types/tokens";
+import {Userinfo} from "../types/tokens";
 import {ApiConfig} from "../types/api";
 import axios from "axios";
 
@@ -14,7 +14,7 @@ export const useUser = () => {
         queryKey: [QK_USER],
         queryFn: async () => {
             try {
-                const res = await fetch(`${window.env.SIMPLIFIED_ONBOARDING_API_URL}/api/user`, {
+                const res = await fetch(`${window.env.SIMPLIFIED_ONBOARDING_API_URL}/api/userinfo`, {
                     headers: {
                         "Content-Type": "application/json",
                     },
@@ -22,7 +22,7 @@ export const useUser = () => {
                     redirect: "manual", // do not follow redirect
                 });
 
-                const user = await res.json() as IdToken;
+                const user = await res.json() as Userinfo;
                 const isAuthenticated = !!user;
 
                 return { isAuthenticated, user };

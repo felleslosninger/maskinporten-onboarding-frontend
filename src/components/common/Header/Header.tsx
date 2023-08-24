@@ -12,18 +12,25 @@ import {useLocation} from "react-router-dom";
 function Header() {
     const { data, isLoading } = useUser();
     const location = useLocation();
+    const isLoggedIn = !isLoading && data!!.isAuthenticated;
 
     return (
         <header className={styles.header}>
             <div className={styles.content}>
                 <Logo className={styles.logo} />
-                {!isLoading && data!!.isAuthenticated ?
                     <>
                         <div className={styles.headerLinks}>
-                            <StyledLink to={"/dashboard"}
-                                        className={location.pathname === "/dashboard" ? styles.active : styles.inactive}>
-                                oversikt
-                            </StyledLink>
+
+                            {isLoggedIn ?
+                                <StyledLink to={"/dashboard"}
+                                            className={location.pathname === "/dashboard" ? styles.active : styles.inactive}>
+                                    oversikt
+                                </StyledLink>
+                                :
+                                <StyledLink to={"/"} className={location.pathname === "/" ? styles.active : styles.inactive}>
+                                    hjem
+                                </StyledLink>
+                            }
                             <StyledLink to={"/guide"}
                                         className={location.pathname === "/guide" ? styles.active : styles.inactive}>
                                 onboardingsguide
@@ -33,26 +40,27 @@ function Header() {
                                 vilkår
                             </StyledLink>
                         </div>
-                        <div className={styles.userInfo}>
-                            <div>
-                                <Label size={"small"}>
-                                    {data!!.user!!.name}
-                                </Label>
-                                <Label size={"small"}>
-                                    {data!!.user!!.authorization_details[0].reportees[0].Name}
-                                </Label>
+                        {isLoggedIn ?
+                            <div className={styles.userInfo}>
+                                <div>
+                                    <Label size={"small"}>
+                                        {data!!.user!!.name}
+                                    </Label>
+                                    <Label size={"small"}>
+                                        {data!!.user!!.reporteeName}
+                                    </Label>
+                                </div>
+                                <BedriftSvg className={styles.loginSvg} />
                             </div>
-                            <BedriftSvg className={styles.loginSvg} />
-                        </div>
+                            :
+                            <Button className={styles.loginButton} variant={"quiet"} onClick={login}>
+                            <Label size={"medium"}>
+                                LOGG INN
+                            </Label>
+                                <PersonSvg className={styles.loginSvg} />
+                            </Button>
+                        }
                     </>
-                    :
-                    <Button className={styles.loginButton} variant={"quiet"} onClick={login}>
-                        <Label size={"medium"}>
-                            LOGG INN
-                        </Label>
-                        <PersonSvg className={styles.loginSvg} />
-                    </Button>
-                }
             </div>
         </header>
     )
