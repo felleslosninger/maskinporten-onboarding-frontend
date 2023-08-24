@@ -120,7 +120,7 @@ function NewClientModal(props: Props) {
             <div className={styles.integrationSelect}>
                 <div className={styles.radioButtons}>
                     <Radio.Group onChange={onChangeIntegration} legend={"Hvordan vil du integrere med tjenesten?"}>
-                        <Radio value={"true"}>Med manuelt opplastede nøkler</Radio>
+                        <Radio value={"true"}>Med manuelt opplastet nøkkel</Radio>
                         <Radio value={"false"}>Signere direkte med virksomhetssertifikat</Radio>
                     </Radio.Group>
                 </div>
