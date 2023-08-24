@@ -39,7 +39,7 @@ const ClientDescription = (props: ClientDescriptionProps) => {
                         trigger={props.client.keys ? <KeyHorizontalIcon /> : <BagdeIcon />}
                         open={showPopover}
                     >
-                        Denne integrasjonen bruker {props.client.keys ? "nøkler" : "virksomhetssertifikat"}
+                        Denne integrasjonen bruker {props.client.keys ? "nøkkel" : "virksomhetssertifikat"}
                     </Popover>
                 </div>
                 <div className={styles.info}>
