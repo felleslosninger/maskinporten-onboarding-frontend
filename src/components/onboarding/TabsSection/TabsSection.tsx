@@ -34,6 +34,7 @@ function TabsSection() {
                     </li>
                     <li>
                         Det er opprett en {link("/dashboard", "ny klient ")} eller en eksisterende klient som du ønsker å gjenbruke
+                        . Denne må være opprettet med integrasjonsmetode "virksomhetssertifikat"
                     </li>
                 </ol>
                 <Heading size={"medium"}>
@@ -44,7 +45,7 @@ function TabsSection() {
                         <ol>
                             <li>Headerfeltet <code>alg</code>: RS256, RS384 eller RS512 er mulige verdier støttet av Maskinporten</li>
                             <li>Headerfeltet <code>x5c</code>: Virksomhetssertifikat </li>
-                            <li>Bodyfeltet <code>aud</code>: __MASKINPORTEN_URL__</li>
+                            <li>Bodyfeltet <code>aud</code>: Maskinporten-url*</li>
                             <li>Bodyfeltet <code>iss</code>: client-id for klienten du ønsker å bruke</li>
                             <li>Bodyfeltet <code>scope</code>: scopet knyttet til apiet du vil aksessere</li>
                             <li>Bodyfeltet <code>ita</code>: Timestamp i UTC-tid</li>
@@ -57,10 +58,10 @@ function TabsSection() {
                             Gyldige verdier må beskrives av API-tilbyder. Se mer om {link("https://docs.digdir.no/docs/Maskinporten/maskinporten_func_audience_restricted_tokens", "audience-begrensning", true)}</li>
                     </ol>
                     <li>Signer JWT-grant med virksomhetssertifikatet</li>
-                    <li>POST med content-type <code>application/x-www-form-urlencoded</code> til Maskinporten sin issuer-url __MASKINPORTEN_URL__
+                    <li>POST med content-type <code>application/x-www-form-urlencoded</code> til Maskinporten sitt token-endepunkt* og følgende queryparametre
                         <ol>
-                            <li>Parameteret <code>grant</code> med verdi <code>urn:ietf:params:oauth:grant-type:jwt-bearer</code></li>
-                            <li>Parameteret <code>assertion</code> med serialisert JWT-grant som verdi</li>
+                            <li><code>grant</code> med verdi <code>urn:ietf:params:oauth:grant-type:jwt-bearer</code></li>
+                            <li><code>assertion</code> med serialisert JWT-grant som verdi</li>
                         </ol>
                     </li>
                     <li>I POST-responsen vil du motta et JSON. Feltet <code>access_token</code> vil være autentisering
@@ -69,6 +70,11 @@ function TabsSection() {
                     </li>
                     <li>Gjør en kall til API-tjenesten med innholdet i <code>access_token</code> som en del av http-headeren </li>
                 </ol>
+
+                * Maskinporten har følgende urler i  miljøene
+                /config-info
+
+
             </InfoBox>
 
             <CodeExample title={"Eksempelkode"}>
