@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {ApiClient} from "../../../types/api";
 import styles from '../ClientDescription/styles.module.scss';
-import {Button, Heading, Ingress, Paragraph, Popover} from "@digdir/design-system-react";
+import {Button, Heading, Popover} from "@digdir/design-system-react";
 import {BagdeIcon, KeyHorizontalIcon, TrashIcon} from '@navikt/aksel-icons';
 import {useClientDeleteMutation} from "../../../hooks/api";
 import ConfirmAlert from "../../common/ConfirmAlert/ConfirmAlert";
