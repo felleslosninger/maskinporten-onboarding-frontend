@@ -50,7 +50,7 @@ const ClientDescription = (props: ClientDescriptionProps) => {
                     </Ingress>
                     {props.client.keys &&
                         <Ingress>
-                            {bold("KID:")}
+                            {bold("key-id (kid):")}
                             <CopyField copyValue={props.client.keys[0].kid!!}>{props.client.keys[0].kid}</CopyField>
                         </Ingress>
                     }
