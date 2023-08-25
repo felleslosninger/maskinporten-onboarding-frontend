@@ -39,7 +39,7 @@ function Landingpage() {
                             <Paragraph spacing>
                                 Dersom du er person i lederstilling kan du prøve det andre innloggingsvalget.
                                 Hvis ikke, eller dersom du ikke har tilgang til noen av valgene, betyr dette at du
-                                mangler rettigheter til å kunne betjene API-tilganger for din oragnisasjon.
+                                mangler rettigheter til å kunne betjene API-tilganger for din organisasjon.
                             </Paragraph>
                             <Paragraph>
                                 Dersom du likevel ønsker å benytte deg av denne tjenesten kan du {" "}
