@@ -75,13 +75,13 @@ function Header() {
                                 <Dropdown.Menu>
                                     <Dropdown.Item onSelect={() => login(true)}>
                                         <Label size={"medium"}>
-                                            ...som daglig leder
+                                            ... som daglig leder
                                         </Label>
                                         <PersonSvg className={styles.loginSvg} />
                                     </Dropdown.Item>
                                     <Dropdown.Item onSelect={() => login(false)}>
                                         <Label size={"medium"}>
-                                            ...med annen tilgang
+                                            ... med enkelttjeneste-tilgang
                                         </Label>
                                         <PersonSvg className={styles.loginSvg} />
                                     </Dropdown.Item>

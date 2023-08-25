@@ -72,11 +72,25 @@ function Landingpage() {
                     Logg inn som daglig leder
                 </Button>
                 <Button className={styles.loginButton} onClick={() =>login(false)} size={"large"}>
-                    Logg inn med annen tilgang
+                    Logg inn med enkeltjeneste-tilgang
                 </Button>
             </div>
 
             <Accordion className={styles.faq}>
+                <Accordion.Item>
+                    <Accordion.Header>
+                        <Label size={"large"}>Hva betyr enkelttjeneste-tilgang?</Label>
+                    </Accordion.Header>
+                    <Accordion.Content>
+                        <Paragraph spacing>
+                            Enkelttjeneste-tilgang beyr at du har rettighet til enkelttjenesten "{enkelttjenestenavn}" på vegne av virksomheten.
+                        </Paragraph>
+                        <Paragraph spacing>
+                            Du kan se om du har denne rettigheten ved å logge inn i Altinn, velge rett virksomhet og navigere til Profil.
+                            Under fanen "Skjema og tjenester du har rettighet til" vil denne komme opp under "Har tilgang til disse N enkelttjenestene".
+                        </Paragraph>
+                    </Accordion.Content>
+                </Accordion.Item>
                 <Accordion.Item>
                     <Accordion.Header>
                         <Label size={"large"}>Hva hvis jeg ikke får logget inn?</Label>
@@ -127,6 +141,7 @@ function Landingpage() {
                         <Paragraph>Av sikkerhets- og personvernsmessige årsaker kan vi ikke informere om hvem i din bedrift som har disse rollene.</Paragraph>
                     </Accordion.Content>
                 </Accordion.Item>
+
                 <Accordion.Item>
                     <Accordion.Header>
                         <Label size={"large"}>Hva betyr det at dette er en pilot?</Label>
