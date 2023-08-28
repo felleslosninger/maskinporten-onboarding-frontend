@@ -8,17 +8,18 @@ import {
     Spinner,
     TextArea,
     TextField,
-    Radio
+    Radio, HelpText
 } from "@digdir/design-system-react";
 import Modal from "../../common/Modal/Modal";
 import {useClientMutation} from "../../../hooks/api";
 import StyledLink from "../../common/StyledLink/StyledLink";
-import {bold} from "../../util/textTransforms";
+import {bold, link} from "../../util/textTransforms";
 import {RequestApiClientBody} from "../../../types/api";
 import {CSSTransition} from 'react-transition-group';
 import { customAlphabet } from 'nanoid'
 import {exportJWK, importSPKI} from "jose";
 import {XMarkOctagonFillIcon} from "@navikt/aksel-icons";
+import {Link} from "react-router-dom";
 
 interface Props {
     env: string;
@@ -119,7 +120,18 @@ function NewClientModal(props: Props) {
         <>
             <div className={styles.integrationSelect}>
                 <div className={styles.radioButtons}>
-                    <Radio.Group onChange={onChangeIntegration} legend={"Hvordan vil du integrere med tjenesten?"}>
+                    <Radio.Group onChange={onChangeIntegration}
+                                 legend={
+                                    <div className={styles.radioButtonLabel}>
+                                        Hvordan vil du integrere med tjenesten
+                                        <HelpText className={styles.helpText} title={"Mer info om integrasjoner"}>
+                                            HJELP JEG TRENGER NOE GOD TEKST HER
+                                            <br/>
+                                            {link("/guide", "Mer info om integrasjonsmetoder", true)}
+                                        </HelpText>
+                                    </div>
+                                 }
+                    >
                         <Radio value={"true"}>Med manuelt opplastet nøkkel</Radio>
                         <Radio value={"false"}>Signere direkte med virksomhetssertifikat</Radio>
                     </Radio.Group>

@@ -58,8 +58,8 @@ function Landingpage() {
 
             <Ingress spacing>
                 Her kan du enkelt ta i bruk API-tilgangene din virksomhet har fått i Maskinporten.
-                Som konsument av et Maskinporten-beskyttet API, kan du her se alle dine tilganger, opprette klienter
-                og få hjelp til å ta disse i bruk.
+                Som konsument av et Maskinporten-beskyttet API, kan du her se alle dine tilganger, opprette
+                integrasjoner og få hjelp til å ta disse i bruk.
             </Ingress>
             <Ingress>
                 Vi bruker Ansattporten,
@@ -152,8 +152,8 @@ function Landingpage() {
                             nasjonale fellesløsninger. Løsningen bygger på eksisterende Maskinporten-APIer og sikkerhetsvurderinger.
                         </Paragraph>
                         <Paragraph spacing>
-                            Piloten er laget slik at alle klienter som administeres i piloten også kan administeres via dagens offisielle løsing,
-                            Samarbeidsportalen. Om behovet for forenklet onboarding ikke er tilstede, vil klientene fortsatt fungere,
+                            Piloten er laget slik at alle integrasjoner som administeres i piloten også kan administeres via dagens offisielle løsing,
+                            Samarbeidsportalen. Om behovet for forenklet onboarding ikke er tilstede, vil integrasjonene fortsatt fungere,
                             men videre administrasjon må skje i Samarbeidsportalen. Det er altså ingen risiko for dobbeltarbeid eller
                             migrering forbundet med bruk av piloten.
                         </Paragraph>

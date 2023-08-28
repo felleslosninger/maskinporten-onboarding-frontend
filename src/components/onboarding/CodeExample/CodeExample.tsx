@@ -1,7 +1,7 @@
-import React, {ReactNode, useEffect, useState} from "react";
+import React, {ReactNode, useState} from "react";
 import styles from "./styles.module.scss";
 import {useAllClientsInEnvironments} from "../../../hooks/api";
-import {Heading, Paragraph, Select} from "@digdir/design-system-react";
+import {Heading, Label, Paragraph, Select} from "@digdir/design-system-react";
 import CodeLanguage from "./CodeLanguage";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
@@ -13,6 +13,8 @@ import {useConfig} from "../../../hooks/auth";
 interface Props {
     title: string;
     children: ReactNode[] | ReactNode;
+    filter: (client: ApiClient) => boolean;
+    filterText: string;
 }
 
 function CodeExample(props: Props) {
@@ -39,7 +41,7 @@ function CodeExample(props: Props) {
         </div>
     );
 
-    const client_ids = clients?.map(client => {
+    const client_ids = clients?.filter(props.filter).map(client => {
         return {
             label: client.clientId,
             formattedLabel: formatLabel(client),
@@ -60,6 +62,7 @@ function CodeExample(props: Props) {
             __SCOPE__: client?.scopes.join(",") || "<SCOPE:WITHPREFIX>",
             __MASKINPORTEN_URL__: conf?.authorization_server || "__MASKINPORTEN_URL__",
             __MASKINPORTEN_TOKEN_URL__: conf?.token_endpoint || "__MASKINPORTEN_TOKEN_URL__",
+            __KID__: client?.keys?.[0].kid || "__KID__"
         }
     }
 
@@ -91,6 +94,9 @@ function CodeExample(props: Props) {
                         <Heading className={styles.smallHeading} size={"small"}>
                             Hvilken tilgang skal du ta i bruk?
                         </Heading>
+                        <Paragraph spacing>
+                            Kun integrasjoner som bruker {props.filterText} vil dukke opp i listen under.
+                        </Paragraph>
                         <div className={styles.selectionContainer}>
                             <Select value={selectValue}
                                     options={client_ids}

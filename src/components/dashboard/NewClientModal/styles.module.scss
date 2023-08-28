@@ -41,6 +41,15 @@
 
 }
 
+.radioButtonLabel {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.helpText {
+
+}
+
 .keyTextArea {
   textarea {
     height: 10rem;
@@ -110,12 +119,12 @@
 }
 
 .kid {
-  padding: 0.5rem;
+  padding: 0.5rem !important;
   background-color: $colors-gray;
   border-radius: 0.5rem;
   border: 1px solid $colors-gray;
-  color: $colors-interface-highlight;
-  margin: 0.5rem 0;
+  color: $colors-interface-highlight !important;
+  margin: 0.5rem 0 !important;
   width: fit-content;
 }
 
