@@ -1,12 +1,10 @@
 @import "src/style/variables";
 
-
 .dropdown {
   position: relative;
 }
 
 .dropdownTrigger {
-
 }
 
 .dropdownMenu {
@@ -47,5 +45,4 @@
   &:hover {
     background-color: $colors-lightgray;
   }
-
 }

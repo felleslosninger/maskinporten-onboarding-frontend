@@ -1,7 +1,6 @@
 @import "src/style/variables";
 
 .selectionContainer {
-
   input {
     padding: 0.5rem !important;
     width: fit-content;
@@ -33,13 +32,13 @@
       color: $colors-semantic-action-default;
     }
 
-    &:hover::after, &.active::after {
+    &:hover::after,
+    &.active::after {
       display: inline-block;
       content: "";
       height: 0.1rem;
       width: 100%;
       background-color: $colors-semantic-action-default;
-
     }
   }
 }

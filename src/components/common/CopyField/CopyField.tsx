@@ -1,36 +1,42 @@
-import React, {ReactNode, useEffect, useState} from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import styles from "./styles.module.scss";
-import {Label, Popover} from "@digdir/design-system-react";
-import {CheckmarkIcon} from "@navikt/aksel-icons";
+import { Label, Popover } from "@digdir/design-system-react";
+import { CheckmarkIcon } from "@navikt/aksel-icons";
 
 interface Props {
-    copyValue: string;
-    children: ReactNode;
+  copyValue: string;
+  children: ReactNode;
 }
 
 function CopyField(props: Props) {
-    const [isCopied, setIsCopied] = useState(false);
-    const [showTooltip, setShowTooltip] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(false);
 
-    const onCopy = () => {
-        navigator.clipboard.writeText(props.copyValue);
-        setIsCopied(true);
-    }
+  const onCopy = () => {
+    navigator.clipboard.writeText(props.copyValue);
+    setIsCopied(true);
+  };
 
-    return (
-        <div className={`${styles.box} ${isCopied && styles.clicked}`}
-             onClick={onCopy}
-             onMouseEnter={() => setShowTooltip(true)}
-             onMouseLeave={() => setShowTooltip(false)}
-        >
-            <Popover trigger={<div>{props.children}</div>} open={showTooltip} placement={"top"} variant={"info"}>
-                <Label size={"small"} className={styles.popoverContent}>
-                    {isCopied && <CheckmarkIcon />}
-                    {isCopied ? "Kopiert" : "Kopier"}
-                </Label>
-            </Popover>
-        </div>
-    );
-};
+  return (
+    <div
+      className={`${styles.box} ${isCopied && styles.clicked}`}
+      onClick={onCopy}
+      onMouseEnter={() => setShowTooltip(true)}
+      onMouseLeave={() => setShowTooltip(false)}
+    >
+      <Popover
+        trigger={<div>{props.children}</div>}
+        open={showTooltip}
+        placement={"top"}
+        variant={"info"}
+      >
+        <Label size={"small"} className={styles.popoverContent}>
+          {isCopied && <CheckmarkIcon />}
+          {isCopied ? "Kopiert" : "Kopier"}
+        </Label>
+      </Popover>
+    </div>
+  );
+}
 
 export default CopyField;

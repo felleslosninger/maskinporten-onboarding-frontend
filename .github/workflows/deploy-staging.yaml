@@ -6,7 +6,6 @@ on:
       - dev
 
 jobs:
-
   build:
     name: Build image
     uses: Informasjonsforvaltning/workflows/.github/workflows/build-push.yaml@main
@@ -21,7 +20,7 @@ jobs:
       GCP_SA_DIGDIR_FDK_GCR_KEY: ${{ secrets.GCP_SA_DIGDIR_FDK_GCR_KEY }}
   deploy:
     name: Deploy to staging environment with reusable workflow
-    needs: [ build ]
+    needs: [build]
     uses: Informasjonsforvaltning/workflows/.github/workflows/kustomize-deploy.yaml@main
     with:
       app_name: simplified-onboarding
