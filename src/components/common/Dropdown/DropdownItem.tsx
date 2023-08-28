@@ -4,6 +4,7 @@ import {DropdownContext} from "./Dropdown";
 
 interface Props {
     children: ReactNode | ReactNode[];
+    className?: string;
     onSelect: () => void;
 }
 export const DropdownItem = (props: Props) => {
@@ -19,7 +20,7 @@ export const DropdownItem = (props: Props) => {
     }
 
     return (
-        <div className={styles.dropdownItem} onClick={handleClicked}>
+        <div className={`${props.className} ${styles.dropdownItem}`} onClick={handleClicked}>
             {props.children}
         </div>
     )

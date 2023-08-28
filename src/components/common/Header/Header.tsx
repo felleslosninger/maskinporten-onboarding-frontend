@@ -9,6 +9,7 @@ import {login, logout} from "../../auth/login";
 import StyledLink from "../StyledLink/StyledLink";
 import {useLocation} from "react-router-dom";
 import {Dropdown} from "../Dropdown";
+import {ChevronRightIcon, LeaveIcon} from "@navikt/aksel-icons";
 
 function Header() {
     const { data, isLoading } = useUser();
@@ -57,8 +58,9 @@ function Header() {
                                     </Button>
                                 </Dropdown.Trigger>
                                 <Dropdown.Menu>
-                                    <Dropdown.Item onSelect={logout}>
+                                    <Dropdown.Item className={styles.logoutLabel} onSelect={logout}>
                                         Logg ut
+                                        <LeaveIcon className={styles.loginSvg} />
                                     </Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
@@ -73,17 +75,17 @@ function Header() {
                                     </Button>
                                 </Dropdown.Trigger>
                                 <Dropdown.Menu>
-                                    <Dropdown.Item onSelect={() => login(true)}>
+                                    <Dropdown.Item className={styles.loginLabel} onSelect={() => login(true)}>
                                         <Label size={"medium"}>
                                             ... som daglig leder
                                         </Label>
-                                        <PersonSvg className={styles.loginSvg} />
+                                        <ChevronRightIcon className={styles.loginSvg} />
                                     </Dropdown.Item>
-                                    <Dropdown.Item onSelect={() => login(false)}>
+                                    <Dropdown.Item className={styles.loginLabel} onSelect={() => login(false)}>
                                         <Label size={"medium"}>
                                             ... med enkelttjeneste-tilgang
                                         </Label>
-                                        <PersonSvg className={styles.loginSvg} />
+                                        <ChevronRightIcon className={styles.loginSvg} />
                                     </Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>

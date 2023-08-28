@@ -89,6 +89,15 @@
   fill: white;
 }
 
+.logoutLabel {
+  color: $colors-danger-red;
+}
+
+.loginLabel label, .loginLabel path {
+  color: $colors-semantic-action-default;
+  fill: $colors-semantic-action-default;
+}
+
 .loginButton label {
   cursor: pointer;
 }

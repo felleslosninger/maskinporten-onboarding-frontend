@@ -7,6 +7,7 @@ import ScopeDetails from "./ScopeDetails/ScopeDetails";
 import ContentContainer from "../common/ContentContainer/ContentContainer";
 import OnboardingCard from "../common/OnboardingCard/OnboardingCard";
 import {useQueryClient} from "@tanstack/react-query";
+import ScopeSkeleton from "./ScopeSkeleton";
 
 function Dashboard({ user, config }: AuthProps) {
     const queryClient = useQueryClient();
@@ -66,8 +67,8 @@ function Dashboard({ user, config }: AuthProps) {
                 {
                     isLoading &&
                     <>
-                        <span className={styles.skeleton} />
-                        <span className={styles.skeleton} />
+                        <ScopeSkeleton />
+                        <ScopeSkeleton />
                     </>
 
                 }
