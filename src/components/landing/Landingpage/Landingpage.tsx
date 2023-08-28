@@ -148,7 +148,7 @@ function Landingpage() {
                 "https://www.altinn.no/hjelp/skjema/alle-altinn-roller/",
                 "Hovedadministrator",
                 true,
-              )}
+              )}{" "}
               her.
             </Paragraph>
           </Accordion.Content>
