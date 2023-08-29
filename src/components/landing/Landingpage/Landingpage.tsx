@@ -28,7 +28,7 @@ function Landingpage() {
       {error && auth && (
         <Alert className={styles.errorMessage} severity={"warning"}>
           <Heading level={2} size={"xsmall"} spacing>
-            Oops, det ser ut som du mangler rettigheter til innlogging
+            Oops, det ser ut som du mangler rettighetene som må til
           </Heading>
           {auth === "admin" ? (
             <>
@@ -43,8 +43,8 @@ function Landingpage() {
                 innehavere.
               </Paragraph>
               <Paragraph>
-                Dersom du ikke passer inn under denne beskrivelsen kan du prøve
-                å logge inn med andre tilganger.
+                Dersom du ikke kjenner deg igjen i den beskrivelsen, kan du prøve
+                å logge inn med enkelttjeneste-tilgang.
               </Paragraph>
             </>
           ) : (
@@ -52,17 +52,8 @@ function Landingpage() {
               <Paragraph spacing>
                 Dersom du er person i lederstilling kan du prøve det andre
                 innloggingsvalget. Hvis ikke, eller dersom du ikke har tilgang
-                til noen av valgene, betyr dette at du mangler rettigheter til å
-                kunne betjene API-tilganger for din organisasjon.
-              </Paragraph>
-              <Paragraph>
-                Dersom du likevel ønsker å benytte deg av denne tjenesten kan du{" "}
-                {link(
-                  "https://www.altinn.no/hjelp/profil/sporre-om-rettighet/slik-spor-du-om-rettighet/",
-                  "etterspørre rettigheten",
-                  true,
-                )}{" "}
-                hos din organisasjon for få tilgang.
+                til noen av valgene, betyr dette at du mangler rettigheter for å
+                administere å API-tilganger for din virksomhet.
               </Paragraph>
             </>
           )}
@@ -119,13 +110,13 @@ function Landingpage() {
               Du kan se om du har denne rettigheten ved å logge inn i Altinn,
               velge rett virksomhet og navigere til Profil. Under fanen "Skjema
               og tjenester du har rettighet til" vil denne komme opp under "Har
-              tilgang til disse N enkelttjenestene".
+              tilgang til disse [antall] enkelttjenestene".
             </Paragraph>
           </Accordion.Content>
         </Accordion.Item>
         <Accordion.Item>
           <Accordion.Header>
-            <Label size={"large"}>Hva hvis jeg ikke får logget inn?</Label>
+            <Label size={"large"}>Hva hvis jeg ikke får logget inn eller mangler rettigheter som må til?</Label>
           </Accordion.Header>
           <Accordion.Content>
             <Paragraph spacing>
@@ -138,7 +129,7 @@ function Landingpage() {
               har denne rettigheten ved å logge inn i Altinn, velge rett
               virksomhet og navigere til Profil. Under fanen "Skjema og
               tjenester du har rettighet til" vil denne komme opp under "Har
-              tilgang til disse N enkelttjenestene".
+              tilgang til disse [antall] enkelttjenestene".
             </Paragraph>
             <Paragraph>
               Enkelte selskapsroller fra Enhetsregisteret, for eksempel daglig
