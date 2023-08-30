@@ -1,4 +1,4 @@
 export type Userinfo = {
-    name: string,
-    reporteeName: string
-}
+  name: string;
+  reporteeName: string;
+};

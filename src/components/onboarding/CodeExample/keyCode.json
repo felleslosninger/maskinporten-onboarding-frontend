@@ -1,7 +1,5 @@
 {
-  "node": [
-
-  ],
+  "node": [],
   "java": [
     "package no.difi.oauth2.utils;",
     "",
@@ -105,7 +103,5 @@
     "}",
     ""
   ],
-  "python": [
-
-  ]
+  "python": []
 }

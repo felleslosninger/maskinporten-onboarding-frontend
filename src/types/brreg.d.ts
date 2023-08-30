@@ -1,5 +1,3 @@
-
-
 export type BrregEnhet = {
-    navn: string;
-}
+  navn: string;
+};

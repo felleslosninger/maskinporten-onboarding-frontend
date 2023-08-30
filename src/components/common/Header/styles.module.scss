@@ -22,7 +22,7 @@
     height: fit-content;
 
     g {
-      fill: $colors-interface-highlight
+      fill: $colors-interface-highlight;
     }
   }
 
@@ -36,7 +36,6 @@
   label {
     color: $colors-interface-info-900;
   }
-
 }
 
 .headerLinks {
@@ -59,7 +58,6 @@
   .inactive {
     border-bottom: none;
   }
-
 }
 
 .userInfo {
@@ -87,6 +85,16 @@
   border-radius: 50%;
   margin-left: 1rem;
   fill: white;
+}
+
+.logoutLabel {
+  color: $colors-danger-red;
+}
+
+.loginLabel label,
+.loginLabel path {
+  color: $colors-semantic-action-default;
+  fill: $colors-semantic-action-default;
 }
 
 .loginButton label {
