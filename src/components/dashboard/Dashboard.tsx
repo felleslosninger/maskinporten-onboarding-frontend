@@ -47,7 +47,7 @@ function Dashboard({ user, config }: AuthProps) {
       <div className={styles.infoContainer}>
         <Heading size={"large"}>API-tilganger i Maskinporten</Heading>
         <Ingress>
-          Her kan du se API-tilganger gitt til {user.reporteeName} .
+          Her kan du se API-tilganger gitt til {user.reporteeName}
         </Ingress>
         <OnboardingCard />
       </div>
