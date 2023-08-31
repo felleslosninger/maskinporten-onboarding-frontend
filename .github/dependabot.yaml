@@ -10,6 +10,7 @@ updates:
   # Maintain dependencies for yarn
   - package-ecosystem: "npm"
     directory: "/"
+    target-branch: "dev"
     schedule:
       interval: "weekly"
       day: "sunday"

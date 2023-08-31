@@ -138,9 +138,11 @@ function NewClientModal(props: Props) {
                   className={styles.helpText}
                   title={"Mer info om integrasjoner"}
                 >
-                  HJELP JEG TRENGER NOE GOD TEKST HER
+                  Det finnes flere måter å integrere mot Maskinporten.
+                  Bruk av nøkkel og virkomshetssertifikate er tilgjengelig
+                  via forenklet onboarding og flere via Samarbeidsportalen.
                   <br />
-                  {link("/guide", "Mer info om integrasjonsmetoder", true)}
+                  {link("/guide", "Se beskrivelse av de forskjellige metodene her", true)}
                 </HelpText>
               </div>
             }
