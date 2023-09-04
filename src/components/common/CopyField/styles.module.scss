@@ -5,16 +5,16 @@
   background-color: $colors-white;
   border-radius: 1rem;
   padding: 0.25rem 0.5rem;
-  border: 0.25rem solid $colors-gray;
+  border: 0.2rem solid $colors-gray;
   transition: border 0.15s ease-in-out;
   cursor: pointer;
 
   &:hover {
-    border: 0.25rem solid $colors-interface-highlight;
+    border: 0.2rem solid $colors-interface-highlight;
   }
 
   &.clicked {
-    border: 0.25rem solid $colors-success;
+    border: 0.2rem solid $colors-success;
   }
 }
 

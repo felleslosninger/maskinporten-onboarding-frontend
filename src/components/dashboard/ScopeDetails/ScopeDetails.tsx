@@ -11,6 +11,7 @@ import {
   TerminalIcon,
 } from "@navikt/aksel-icons";
 import { useEnhet } from "../../../hooks/brreg";
+import whitelisted from "../../../whitelisted.json";
 
 interface ScopeDetailProps {
   scope: ApiScope;
@@ -24,6 +25,14 @@ function ScopeDetails(props: ScopeDetailProps) {
   const currentClients = props.clients.filter((client) =>
     client.scopes.includes(props.scope.scope),
   );
+
+  const onMakeClient = () => {
+    if (!whitelisted.includes(props.scope.scope)) {
+      alert("Dette scopet er ikke whitelisted. Kun scopes som er whitelisted kan opprette klienter for øyeblikket.")
+      return;
+    }
+    setShowModal(true);
+  }
 
   const renderNoClientBox = () => {
     return (
@@ -93,7 +102,7 @@ function ScopeDetails(props: ScopeDetailProps) {
         <div className={styles.buttonRow}>
           <Button
             className={styles.opprettButton}
-            onClick={() => setShowModal(true)}
+            onClick={onMakeClient}
           >
             Opprett integrasjon
           </Button>
