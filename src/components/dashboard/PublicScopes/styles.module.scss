@@ -1,0 +1,47 @@
+@import "src/style/variables";
+
+.container {
+  padding: 1rem;
+}
+
+.header {
+  margin-top: 2rem;
+}
+
+.filterbox {
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+.search {
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.result {
+  width: 90%;
+  padding: 1rem;
+  gap: 1rem;
+  display: flex;
+  border-radius: 0.5rem;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $colors-lightgray;
+
+  button {
+    align-self: flex-end;
+  }
+}
+
+.resultsInfo {
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+}

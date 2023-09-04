@@ -12,6 +12,13 @@ export type ApiScope = {
 };
 
 export type ApiScopes = ApiScope[];
+export type ApiPublicScopes = ApiPublicScope[];
+
+export type ApiPublicScope = {
+  name: string;
+  description: string;
+  owner_orgno: string;
+}
 
 export type ApiClient = {
   clientId: string;

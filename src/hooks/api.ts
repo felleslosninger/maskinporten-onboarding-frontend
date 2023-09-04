@@ -3,13 +3,14 @@ import axios from "axios";
 import {
   ApiClient,
   ApiClients,
-  ApiConfig,
+  ApiConfig, ApiPublicScopes,
   ApiScopes,
   RequestApiClientBody,
 } from "../types/api";
 import { QK_CONFIG } from "./auth";
 
 export const QK_SCOPES = "QK_SCOPES";
+export const QK_PUBLIC_SCOPES = "QK_PUBLIC_SCOPES";
 export const QK_CLIENTS = "QK_CLIENTS";
 
 const axiosConfig = { withCredentials: true };
@@ -32,6 +33,18 @@ export const useScopes = (env: string) => {
       const res = await axios.get<ApiScopes>(path, axiosConfig);
       return res.data;
     },
+  });
+};
+
+export const usePublicScopes = (env: string) => {
+  return useQuery({
+    queryKey: [QK_PUBLIC_SCOPES],
+    queryFn: async () => {
+      const path = `${baseUrl}/api/${env}/scopes/all?accessible_for_all=true`;
+      const res = await axios.get<ApiPublicScopes>(path, axiosConfig);
+      return res.data;
+    },
+    retry: 0,
   });
 };
 

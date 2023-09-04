@@ -6,18 +6,20 @@ import {
   Label,
 } from "@digdir/design-system-react";
 import withAuth, { AuthProps } from "../auth/withAuth";
-import { useClients, useScopes } from "../../hooks/api";
+import {useClients, usePublicScopes, useScopes} from "../../hooks/api";
 import styles from "./styles.module.scss";
 import ScopeDetails from "./ScopeDetails/ScopeDetails";
 import ContentContainer from "../common/ContentContainer/ContentContainer";
 import OnboardingCard from "../common/OnboardingCard/OnboardingCard";
 import { useQueryClient } from "@tanstack/react-query";
 import ScopeSkeleton from "./ScopeSkeleton";
+import PublicScopes from "./PublicScopes/PublicScopes";
 
 function Dashboard({ user, config }: AuthProps) {
   const queryClient = useQueryClient();
   const [minLoadtimeOver, setMinLoadtimeOver] = useState(false);
   const [env, setEnv] = useState(Object.keys(config)[0]);
+  const { data: publicScopes } = usePublicScopes(env);
   const {
     data: scopesData,
     isLoading: isScopesLoading,
@@ -94,6 +96,9 @@ function Dashboard({ user, config }: AuthProps) {
             />
           ))}
       </Accordion>
+      {publicScopes &&
+          <PublicScopes scopeList={publicScopes} resultsPerPage={10} env={env} />
+      }
     </ContentContainer>
   );
 }
