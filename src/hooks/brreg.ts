@@ -6,7 +6,7 @@ export const QK_BRREG = "QK_BRREG";
 
 export const useEnhet = (orgnr: string) => {
   return useQuery({
-    queryKey: [QK_BRREG],
+    queryKey: [QK_BRREG, orgnr],
     queryFn: async () => {
       const path = `https://data.brreg.no/enhetsregisteret/api/enheter/${orgnr}`;
       const res = await axios.get<BrregEnhet>(path);
