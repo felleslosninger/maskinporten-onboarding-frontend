@@ -42,6 +42,7 @@ function TabsSection() {
           <Heading size={"large"}>Konfigurasjonsfelter</Heading>
           <ToggleButtonGroup
             items={items}
+            selectedValue={selectedConfig}
             onChange={(value) => setSelectedConfig(value)}
           />
         </div>
