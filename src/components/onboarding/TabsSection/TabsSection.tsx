@@ -185,7 +185,7 @@ function TabsSection() {
         filterText={"virksomhetssertifikat"}
       >
         <CodeLanguage
-          title={"Java"}
+          title={"Java 8"}
           language={"java"}
           code={sertificateCode.java}
         />
