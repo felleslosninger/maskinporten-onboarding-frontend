@@ -28,7 +28,7 @@ function ScopeDetails(props: ScopeDetailProps) {
 
   const onMakeClient = () => {
     if (!whitelisted.includes(props.scope.scope)) {
-      alert("Dette scopet er ikke whitelisted. Kun scopes som er whitelisted kan opprette klienter for øyeblikket.")
+      alert("Denne tilbyderen deltar ikke i forenklet onboarding-piloten, og du kan derfor ikke opprette integrasjonen din gjennom denne løsningen. Du må bruke Samarbeidsportalen istedenfor.")
       return;
     }
     setShowModal(true);
