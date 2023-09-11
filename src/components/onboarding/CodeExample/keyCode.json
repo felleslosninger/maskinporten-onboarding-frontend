@@ -32,7 +32,7 @@
     "        // Variable som kommer fra integrasjonen",
     "        String key_id = \"__KID__\"; // Key id (kid)",
     "        String integrasjonsid = \"__CLIENT_ID__\";",
-    "        String scope = \" __SCOPE__\";",
+    "        String scope = \"__SCOPE__\";",
     "",
     "        // Variable som avhengiger av miljø",
     "        String maskinportenAudience = \"__MASKINPORTEN_URL__\";",
