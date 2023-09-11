@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import {ApiPublicScopes} from "../../../types/api";
 import styles from "./styles.module.scss";
-import {Heading, Pagination, TextField} from "@digdir/design-system-react";
+import {Button, Heading, Label, Pagination, TextField} from "@digdir/design-system-react";
 import PublicScopeResult from "./PublicScopeResult";
+import {PlusIcon} from "@navikt/aksel-icons";
 
 
 
@@ -14,6 +15,7 @@ interface Props {
 
 function PublicScopes(props: Props) {
     const [currentPage, setCurrentPage] = useState(1);
+    const [showList, setShowList] = useState(false);
     const [filteredList, setFilteredList] = useState(props.scopeList);
     const paginatedList = filteredList.slice((currentPage - 1) * props.resultsPerPage, currentPage * props.resultsPerPage);
     const totalPages = Math.ceil(filteredList.length / props.resultsPerPage);
@@ -32,26 +34,37 @@ function PublicScopes(props: Props) {
 
     return (
       <div className={styles.container}>
-          <div className={styles.header}>
-              <Heading size={"small"} spacing>Åpne Scopes</Heading>
-          </div>
-          <div className={styles.filterbox}>
-              <TextField type={"search"}
-                         label={"Søk"}
-                         onChange={onSearch}
-                         className={styles.search}
-              />
-          </div>
-          <div className={styles.results}>
-              {paginatedList.map((scope) => (
-                  <PublicScopeResult key={scope.name} scope={scope} env={props.env} />
-              ))}
-              <Pagination nextLabel={"Neste"}
-                          previousLabel={"Forrige"}
-                          currentPage={currentPage}
-                          totalPages={totalPages}
-                          onChange={onPagination} />
-          </div>
+          {!showList &&
+              <Button variant={"quiet"} size={"large"} onClick={() => setShowList(true)}>
+                  <PlusIcon />
+                  Legg til en offentlig tilgang
+              </Button>
+          }
+          {showList &&
+            <>
+                <div className={styles.filterbox}>
+                    <Heading size={"small"} spacing>
+                        Velg tilgangen du vil legge til
+                    </Heading>
+                    <TextField type={"search"}
+                               placeholder={"Søk"}
+                               onChange={onSearch}
+                               className={styles.search}
+                    />
+                </div>
+                <div className={styles.results}>
+                    {paginatedList.map((scope) => (
+                        <PublicScopeResult key={scope.name} scope={scope} env={props.env} />
+                    ))}
+                    <Pagination nextLabel={"Neste"}
+                                previousLabel={"Forrige"}
+                                className={styles.pagination}
+                                currentPage={currentPage}
+                                totalPages={totalPages}
+                                onChange={onPagination} />
+                </div>
+            </>
+          }
       </div>
     );
 }

@@ -3,7 +3,7 @@ import axios from "axios";
 import {
   ApiClient,
   ApiClients,
-  ApiConfig, ApiPublicScopes,
+  ApiConfig, ApiPublicScope, ApiPublicScopes,
   ApiScopes,
   RequestApiClientBody,
 } from "../types/api";
@@ -41,8 +41,9 @@ export const usePublicScopes = (env: string) => {
     queryKey: [QK_PUBLIC_SCOPES],
     queryFn: async () => {
       const path = `${baseUrl}/api/${env}/scopes/all?accessible_for_all=true`;
-      const res = await axios.get<ApiPublicScopes>(path, axiosConfig);
-      return res.data;
+      const res = await axios.get<ApiScopes>(path, axiosConfig);
+      res.data.forEach(scope => scope.scope = scope.name);
+      return res.data.filter(scope => scope.allowed_integration_types.includes("maskinporten"));
     },
     retry: 0,
   });
@@ -93,7 +94,7 @@ export const useClientDeleteMutation = (env: string) => {
   });
 };
 
-/* NOT CURRENTLY IN USE */
+
 export const useAllClientsInEnvironments = () => {
   return useQuery({
     queryKey: [QK_CONFIG, QK_CLIENTS],

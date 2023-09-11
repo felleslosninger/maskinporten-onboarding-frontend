@@ -3,6 +3,7 @@ import {ApiPublicScope} from "../../../types/api";
 import NewClientModal from "../NewClientModal/NewClientModal";
 import {Button} from "@digdir/design-system-react";
 import styles from "./styles.module.scss";
+import {PlusIcon} from "@navikt/aksel-icons";
 
 interface Props {
     scope: ApiPublicScope;
@@ -24,7 +25,10 @@ function PublicScopeResult(props: Props) {
                     <strong>{props.scope.name}</strong>
                     <span>{props.scope.description}</span>
                 </div>
-                <Button onClick={() => setShowModal(true)}>Opprett integrasjon</Button>
+                <Button onClick={() => setShowModal(true)}>
+                    <PlusIcon />
+                    Ny integrasjon
+                </Button>
             </div>
         </>
     );

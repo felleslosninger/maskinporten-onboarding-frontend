@@ -2,12 +2,15 @@ import exp from "constants";
 import { JWK } from "jose";
 
 export type ApiScope = {
+  accessible_for_all: boolean;
+  allowed_integration_types: string[];
   consumer_orgno: string;
   created: string;
   last_updated: string;
   owner_orgno: string;
   scope: string;
   state: string;
+  name: string;
   description: string;
 };
 
@@ -15,6 +18,7 @@ export type ApiScopes = ApiScope[];
 export type ApiPublicScopes = ApiPublicScope[];
 
 export type ApiPublicScope = {
+  accessible_for_all: boolean;
   name: string;
   description: string;
   owner_orgno: string;

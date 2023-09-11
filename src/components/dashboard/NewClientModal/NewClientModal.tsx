@@ -10,9 +10,10 @@ import {
   TextField,
   Radio,
   HelpText,
+  Chip, Select,
 } from "@digdir/design-system-react";
 import Modal from "../../common/Modal/Modal";
-import { useClientMutation } from "../../../hooks/api";
+import {useClientMutation, usePublicScopes, useScopes} from "../../../hooks/api";
 import StyledLink from "../../common/StyledLink/StyledLink";
 import { bold, link } from "../../util/textTransforms";
 import { RequestApiClientBody } from "../../../types/api";
@@ -37,6 +38,8 @@ function NewClientModal(props: Props) {
     isIdle,
     data,
   } = useClientMutation(props.env);
+  const { data: publicScopes } = usePublicScopes(props.env);
+  const { data: privateScopes } = useScopes(props.env);
   const isLoading = !isIdle && !isError && !isSuccess;
   const [useKeys, setUseKeys] = useState(false);
   const [step, setStep] = useState(1);
@@ -46,6 +49,7 @@ function NewClientModal(props: Props) {
   const [chosenIntegration, setChosenIntegration] = useState(false);
   const [kid, setKid] = useState("");
   const [errorMessage, setErrorMessage] = useState<string>();
+  const [scopes, setScopes] = useState<string[]>([props.scope])
   const nanoid = customAlphabet(
     "abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ",
     10,
@@ -67,7 +71,7 @@ function NewClientModal(props: Props) {
     setErrorMessage(undefined);
     const requestBody: RequestApiClientBody = {
       description: description,
-      scopes: [props.scope],
+      scopes: scopes,
     };
 
     if (useKeys) {
@@ -191,6 +195,14 @@ function NewClientModal(props: Props) {
     </>
   );
 
+  const selectableScopes = () => {
+    if (!publicScopes || !privateScopes) {
+      return [{value: props.scope, label: props.scope}];
+    }
+
+    return privateScopes.concat(publicScopes).map(scope => ({value: scope.scope, label: scope.scope}))
+  }
+
   const renderInputScreenOne = () => (
     <>
       <TextField
@@ -198,11 +210,14 @@ function NewClientModal(props: Props) {
         value={props.env}
         readOnly={"readonlyInfo"}
       />
-      <TextField
-        value={props.scope}
-        label={"Valgt API:"}
-        readOnly={"readonlyInfo"}
-      />
+      <div className={styles.multiSelect}>
+        <Select options={selectableScopes()}
+                multiple
+                onChange={scope => setScopes(scope)}
+                label={"Valgte API-tilganger"}
+                value={scopes}
+        />
+      </div>
       <TextField
         label={"Hva skal du bruke integrasjonen til?"}
         required

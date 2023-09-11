@@ -70,7 +70,7 @@ function CodeExample(props: Props) {
     const conf = client && config ? config[client.env] : config?.["test"];
     return {
       __CLIENT_ID__: client?.clientId || "<CLIENT-UUID>",
-      __SCOPE__: client?.scopes.join(",") || "<SCOPE:WITHPREFIX>",
+      __SCOPE__: client?.scopes.join(" ") || "<SCOPE:WITHPREFIX>",
       __MASKINPORTEN_URL__:
         conf?.authorization_server || "__MASKINPORTEN_URL__",
       __MASKINPORTEN_TOKEN_URL__:

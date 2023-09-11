@@ -40,6 +40,15 @@
   }
 }
 
+/* Awful hack to ensure scope is always included */
+.multiSelect span > span:first-child > span:first-child > span:first-child {
+  padding-right: 0.5rem !important;
+
+  button {
+    display: none !important;
+  }
+}
+
 .radioButtonLabel {
   display: flex;
   gap: 0.5rem;
