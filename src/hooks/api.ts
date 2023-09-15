@@ -18,6 +18,7 @@ declare global {
   interface Window {
     env: {
       SIMPLIFIED_ONBOARDING_API_URL: string;
+      WHITELIST: string;
     };
   }
 }

@@ -1,3 +1,4 @@
 window.env = {
   SIMPLIFIED_ONBOARDING_API_URL: "$SIMPLIFIED_ONBOARDING_API_URL",
+  whitelist: "$WHITELIST"
 };

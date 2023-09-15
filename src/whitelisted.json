@@ -1,7 +1,0 @@
-[
-  "entur:apc.demo",
-  "entur:api.1",
-  "banenor:traffic.update.read",
-  "datanorge:test/catalog.read",
-  "datanorge:catalog.read"
-]
