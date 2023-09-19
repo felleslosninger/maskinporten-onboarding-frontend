@@ -20,14 +20,9 @@ function Dashboard({ user, config }: AuthProps) {
   const queryClient = useQueryClient();
   const [minLoadtimeOver, setMinLoadtimeOver] = useState(false);
   const [env, setEnv] = useState(Object.keys(config)[0]);
-  const [tab, setTab] = useState(1);
   const [publicScopeList, setPublicScopeList] = useState<string[]>([]);
   const [renderedScopes, setRenderedScopes] = useState<ApiScopes>([]);
-  const {
-    data: publicScopes,
-    isLoading: isPublicScopesLoading,
-    isError: isPublicScopesError,
-  } = usePublicScopes(env);
+  const {data: publicScopes} = usePublicScopes(env);
   const {
     data: scopesData,
     isLoading: isScopesLoading,
@@ -38,8 +33,8 @@ function Dashboard({ user, config }: AuthProps) {
     isLoading: isClientsLoading,
     isError: isClientsError,
   } = useClients(env);
-  const isLoading = (tab === 1 ? isScopesLoading : isPublicScopesLoading) || isClientsLoading || !minLoadtimeOver;
-  const isError = (tab === 1 ? isScopesError : isPublicScopesError) || isClientsError;
+  const isLoading = isScopesLoading || isClientsLoading || !minLoadtimeOver;
+  const isError = isScopesError || isClientsError;
 
   setTimeout(() => setMinLoadtimeOver(true), 600);
 
@@ -56,9 +51,10 @@ function Dashboard({ user, config }: AuthProps) {
   }, [clientsData, isLoading, scopesData]);
 
   useEffect(() => {
-    if (isError || isLoading) { return; }
-    tab === 1 ? setRenderedScopes(scopesData!!) : setRenderedScopes(publicScopes!!.filter(scope => publicScopeList.includes(scope.scope)));
-  }, [isError, isLoading, publicScopes, scopesData, tab, publicScopeList]);
+    const publicScopess = publicScopes?.filter(scope => publicScopeList.includes(scope.scope)) || [];
+    const privateScopes = scopesData || [];
+    setRenderedScopes(privateScopes.concat(publicScopess));
+  }, [publicScopes, scopesData, publicScopeList]);
 
 
   const onEnvChanged = (env: string) => {
@@ -79,20 +75,9 @@ function Dashboard({ user, config }: AuthProps) {
         </div>
 
         <div className={styles.accordionListHeader}>
-          <div className={styles.tabs}>
-            <Heading className={tab === 1 ? styles.active : styles.inactive}
-                     size={"small"}
-                     onClick={() => setTab(1)}
-            >
+            <Heading size={"small"}>
               Mine tilganger
             </Heading>
-            <Heading className={tab === 2 ? styles.active : styles.inactive}
-                     size={"small"}
-                     onClick={() => setTab(2)}
-            >
-              Offentlige tilganger
-            </Heading>
-          </div>
           <div className={styles.envPicker}>
             <Label>Valgt miljø:</Label>
             <ToggleButtonGroup
@@ -105,8 +90,6 @@ function Dashboard({ user, config }: AuthProps) {
             />
           </div>
         </div>
-      </ContentContainer>
-      <ContentContainer className={styles.tabContent}>
         <Accordion color={"neutral"}>
           {isLoading && (
               <>
@@ -114,7 +97,7 @@ function Dashboard({ user, config }: AuthProps) {
                 <ScopeSkeleton />
               </>
           )}
-          {((!isLoading && scopesData && scopesData.length === 0) || isError) && (
+          {!isLoading && ((scopesData && scopesData.length === 0) || isError) && (
               <div className={styles.noScopesBox}>Du har ingen scopes</div>
           )}
           {!isLoading &&
@@ -129,7 +112,7 @@ function Dashboard({ user, config }: AuthProps) {
                   />
               ))}
         </Accordion>
-        {publicScopes && tab === 2 &&
+        {publicScopes &&
             <PublicScopes scopeList={publicScopes} resultsPerPage={5} env={env} />
         }
       </ContentContainer>

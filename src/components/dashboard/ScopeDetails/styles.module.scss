@@ -88,6 +88,11 @@
   background-color: $colors-gray;
 }
 
+.publicTag {
+  width: fit-content !important;
+  height: fit-content;
+}
+
 .desc {
   display: inline-block;
   max-width: 45rem;

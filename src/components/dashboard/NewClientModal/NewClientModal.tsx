@@ -49,7 +49,7 @@ function NewClientModal(props: Props) {
   const [chosenIntegration, setChosenIntegration] = useState(false);
   const [kid, setKid] = useState("");
   const [errorMessage, setErrorMessage] = useState<string>();
-  const [scopes, setScopes] = useState<string[]>([props.scope])
+  const [scopes, setScopes] = useState<string[]>([])
   const nanoid = customAlphabet(
     "abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ",
     10,
@@ -71,7 +71,7 @@ function NewClientModal(props: Props) {
     setErrorMessage(undefined);
     const requestBody: RequestApiClientBody = {
       description: description,
-      scopes: scopes,
+      scopes: [props.scope].concat(scopes),
     };
 
     if (useKeys) {
@@ -182,7 +182,6 @@ function NewClientModal(props: Props) {
               "-----BEGIN RSA PUBLIC KEY-----\n" +
               "MIIBCgKCAQEA+xGZ/wcz9ugFpP07Nspo6U17l0YhFiFpxxU4pTk3Lifz9R3zsIsu\n" +
               "ERwta7+fWIfxOo208ett/jhskiVodSEt3QBGh4XBipyWopKwZ93HHaDVZAALi/2A\n" +
-              "+xTBtWdEo7XGUujKDvC2/aZKukfjpOiUI8AhLAfjmlcD/UZ1QPh0mHsglRNCmpCw\n" +
               "mwSXA9VNmhz+PiB+Dml4WWnKW/VHo2ujTXxq7+efMU4H2fny3Se3KYOsFPFGZ1TN\n" +
               "QSYlFuShWrHPtiLmUdPoP6CV2mML1tk+l7DIIqXrQhLUKDACeM5roMx0kLhUWB8P\n" +
               "+0uj1CNlNN4JRZlC7xFfqiMbFRU9Z4N6YwIDAQAB\n" +
@@ -200,30 +199,49 @@ function NewClientModal(props: Props) {
       return [{value: props.scope, label: props.scope}];
     }
 
-    return privateScopes.concat(publicScopes).map(scope => ({value: scope.scope, label: scope.scope}))
+    return privateScopes
+        .concat(publicScopes)
+        .filter(scope => scope.scope !== props.scope)
+        .map(scope => ({value: scope.scope, label: scope.scope}))
   }
+
 
   const renderInputScreenOne = () => (
     <>
-      <TextField
-        label={"Valgt miljø:"}
-        value={props.env}
-        readOnly={"readonlyInfo"}
-      />
-      <div className={styles.multiSelect}>
+      <div className={styles.infoFields}>
+        <div className={styles.required}>
+          <TextField
+              label={"Valgt miljø:"}
+              value={props.env}
+              readOnly={"readonlyInfo"}
+          />
+        </div>
+        <div className={styles.required}>
+          <TextField
+              label={"Valgt tilgang:"}
+              value={props.scope}
+              readOnly={"readonlyInfo"}
+          />
+        </div>
+      </div>
+      <div>
         <Select options={selectableScopes()}
                 multiple
-                onChange={scope => setScopes(scope)}
-                label={"Valgte API-tilganger"}
+                onChange={(scope) => setScopes(scope)}
+                label={"Legg til flere API-tilganger (frivillig)"}
                 value={scopes}
         />
       </div>
-      <TextField
-        label={"Hva skal du bruke integrasjonen til?"}
-        required
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
+
+      <div className={styles.required}>
+        <TextField
+            label={"Hva skal du bruke integrasjonen til?"}
+            required
+            value={description}
+            placeholder={"Beskrivelse"}
+            onChange={(e) => setDescription(e.target.value)}
+        />
+      </div>
     </>
   );
 

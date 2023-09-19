@@ -1,10 +1,9 @@
 import React, {useState} from "react";
 import {ApiPublicScopes} from "../../../types/api";
-import styles from "./styles.module.scss";
-import {Button, Heading, Label, Pagination, TextField} from "@digdir/design-system-react";
+import {Button, Heading, Pagination, TextField} from "@digdir/design-system-react";
 import PublicScopeResult from "./PublicScopeResult";
 import {PlusIcon} from "@navikt/aksel-icons";
-
+import styles from "./styles.module.scss";
 
 
 interface Props {
