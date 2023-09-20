@@ -180,7 +180,8 @@ function Landingpage() {
                 "tilgangsstyrer",
                 true,
               )}{" "}
-              som også kan bistå med dette.
+              i kombinasjon med enkelttjenesten "{enkelttjenestenavn}". Denne personen vil da kunne delegere
+              enkelttjenesten videre til andre personer.
             </Paragraph>
             <Paragraph spacing>
               Fremgangsmåten for å tildele en enkelttjeneste er beskrevet{" "}

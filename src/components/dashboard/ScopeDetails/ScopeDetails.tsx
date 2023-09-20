@@ -11,8 +11,7 @@ import {
   TerminalIcon,
 } from "@navikt/aksel-icons";
 import { useEnhet } from "../../../hooks/brreg";
-import whitelisted from "../../../whitelisted.json";
-import { freemem } from "os";
+
 
 interface ScopeDetailProps {
   scope: ApiScope;
@@ -28,10 +27,8 @@ function ScopeDetails(props: ScopeDetailProps) {
   );
 
   const onMakeClient = () => {
-    if (!whitelisted.includes(props.scope.scope)) {
-      alert(
-        "Dette scopet er ikke whitelisted. Kun scopes som er whitelisted kan opprette klienter for øyeblikket.",
-      );
+    if (window.env.WHITELIST.indexOf(props.scope.scope) == -1) {
+      alert("Denne tilbyderen deltar ikke i forenklet onboarding-piloten, og du kan derfor ikke opprette integrasjonen din gjennom denne løsningen. Du må bruke Samarbeidsportalen istedenfor.")
       return;
     }
     setShowModal(true);

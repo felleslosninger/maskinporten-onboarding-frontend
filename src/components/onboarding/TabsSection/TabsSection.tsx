@@ -115,7 +115,7 @@ function TabsSection() {
               Headerfeltet <code>x5c</code>: Virksomhetssertifikat{" "}
             </li>
             <li>
-              Bodyfeltet <code>aud</code>: Maskinporten-url*
+              Bodyfeltet <code>aud</code>: Maskinporten sin issuer-url, se miljøspesifikke url under Konfigurasjonsfelter
             </li>
             <li>
               Bodyfeltet <code>iss</code>: client-id for integrasjonen du ønsker
@@ -175,7 +175,6 @@ function TabsSection() {
             <code>Authentication: Bearer accesstoken-verdi</code>{" "}
           </li>
         </ol>
-        * Maskinporten har følgende urler i miljøene /config-info
       </InfoBox>
 
       {configBox()}
@@ -186,7 +185,7 @@ function TabsSection() {
         filterText={"virksomhetssertifikat"}
       >
         <CodeLanguage
-          title={"Java"}
+          title={"Java 8"}
           language={"java"}
           code={sertificateCode.java}
         />
@@ -257,7 +256,7 @@ function TabsSection() {
               ønsker å bruke
             </li>
             <li>
-              Bodyfeltet <code>aud</code>: Maskinporten-url*
+              Bodyfeltet <code>aud</code>: Maskinporten sin issuer-url, se miljøspesifikke url under Konfigurasjonsfelter
             </li>
             <li>
               Bodyfeltet <code>iss</code>: client-id for integrasjonen du ønsker
@@ -317,7 +316,6 @@ function TabsSection() {
             <code>Authentication: Bearer accesstoken-verdi</code>{" "}
           </li>
         </ol>
-        * Maskinporten har følgende urler i miljøene /config-info
       </InfoBox>
 
       {configBox()}
