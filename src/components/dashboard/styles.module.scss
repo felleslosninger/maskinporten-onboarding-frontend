@@ -10,9 +10,7 @@
   h1 {
     margin-left: 2rem;
   }
-
 }
-
 
 .tabs {
   display: flex;
@@ -26,16 +24,13 @@
     cursor: pointer;
   }
 
-
-
-
   .inactive {
     background-color: $colors-background-blue;
-    border-bottom: 0.20rem solid $colors-semantic-action-default;
-
+    border-bottom: 0.2rem solid $colors-semantic-action-default;
   }
 
-  .inactive, .active {
+  .inactive,
+  .active {
   }
 
   .active {
@@ -45,7 +40,6 @@
 
 .tabContent {
   flex: 1;
-
 }
 
 .infoContainer {
@@ -86,5 +80,3 @@
   align-items: center;
   justify-content: center;
 }
-
-

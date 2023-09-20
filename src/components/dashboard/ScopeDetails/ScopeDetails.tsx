@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ApiClients, ApiScope } from "../../../types/api";
 import styles from "./styles.module.scss";
-import {Accordion, Button, Label, Tag} from "@digdir/design-system-react";
+import { Accordion, Button, Label, Tag } from "@digdir/design-system-react";
 import ClientDescription from "../ClientDescription/ClientDescription";
 import NewClientModal from "../NewClientModal/NewClientModal";
 import {
@@ -12,7 +12,7 @@ import {
 } from "@navikt/aksel-icons";
 import { useEnhet } from "../../../hooks/brreg";
 import whitelisted from "../../../whitelisted.json";
-import {freemem} from "os";
+import { freemem } from "os";
 
 interface ScopeDetailProps {
   scope: ApiScope;
@@ -29,11 +29,13 @@ function ScopeDetails(props: ScopeDetailProps) {
 
   const onMakeClient = () => {
     if (!whitelisted.includes(props.scope.scope)) {
-      alert("Dette scopet er ikke whitelisted. Kun scopes som er whitelisted kan opprette klienter for øyeblikket.")
+      alert(
+        "Dette scopet er ikke whitelisted. Kun scopes som er whitelisted kan opprette klienter for øyeblikket.",
+      );
       return;
     }
     setShowModal(true);
-  }
+  };
 
   const renderNoClientBox = () => {
     return (
@@ -73,15 +75,16 @@ function ScopeDetails(props: ScopeDetailProps) {
             <Label size={"large"}>
               <KeyHorizontalFillIcon />
               {props.scope.scope}
-              {props.scope.accessible_for_all &&
-                  <Tag color={"secondary"}
-                       variant={"outlined"}
-                       size={"small"}
-                       className={styles.publicTag}
-                  >
-                    Public
-                  </Tag>
-              }
+              {props.scope.accessible_for_all && (
+                <Tag
+                  color={"secondary"}
+                  variant={"outlined"}
+                  size={"small"}
+                  className={styles.publicTag}
+                >
+                  Public
+                </Tag>
+              )}
             </Label>
           </div>
           <Label>
@@ -110,10 +113,7 @@ function ScopeDetails(props: ScopeDetailProps) {
             )
           : renderNoClientBox()}
         <div className={styles.buttonRow}>
-          <Button
-            className={styles.opprettButton}
-            onClick={onMakeClient}
-          >
+          <Button className={styles.opprettButton} onClick={onMakeClient}>
             Opprett integrasjon
           </Button>
         </div>

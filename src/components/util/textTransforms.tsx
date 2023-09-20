@@ -3,7 +3,6 @@ import React from "react";
 import { Link as DigdirLink } from "@digdir/design-system-react";
 import { Link } from "react-router-dom";
 
-
 export const bold = (text: string) => (
   <span className={styles.bold}>{text}</span>
 );

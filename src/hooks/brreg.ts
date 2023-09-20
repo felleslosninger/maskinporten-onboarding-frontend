@@ -12,6 +12,6 @@ export const useEnhet = (orgnr: string) => {
       const res = await axios.get<BrregEnhet>(path);
       return res.data;
     },
-    retry: 0
+    retry: 0,
   });
 };

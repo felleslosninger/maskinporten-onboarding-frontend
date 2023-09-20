@@ -37,12 +37,10 @@
   border: 1px solid $colors-gray;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0.2rem 0.2rem 0.75rem lightgray;
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-
-  button {
-    align-self: flex-end;
-  }
+  box-shadow: 0.2rem 0.2rem 0.75rem $colors-lightgray;
+  transition:
+    transform 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
 
   &:hover {
     transform: translateY(-0.25rem);
@@ -67,7 +65,7 @@
   height: 2rem;
 
   path {
-    fill: $colors-interface-highlight
+    fill: $colors-interface-highlight;
   }
 }
 

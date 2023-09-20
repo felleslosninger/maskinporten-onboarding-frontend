@@ -10,10 +10,15 @@ import {
   TextField,
   Radio,
   HelpText,
-  Chip, Select,
+  Chip,
+  Select,
 } from "@digdir/design-system-react";
 import Modal from "../../common/Modal/Modal";
-import {useClientMutation, usePublicScopes, useScopes} from "../../../hooks/api";
+import {
+  useClientMutation,
+  usePublicScopes,
+  useScopes,
+} from "../../../hooks/api";
 import StyledLink from "../../common/StyledLink/StyledLink";
 import { bold, link } from "../../util/textTransforms";
 import { RequestApiClientBody } from "../../../types/api";
@@ -49,7 +54,7 @@ function NewClientModal(props: Props) {
   const [chosenIntegration, setChosenIntegration] = useState(false);
   const [kid, setKid] = useState("");
   const [errorMessage, setErrorMessage] = useState<string>();
-  const [scopes, setScopes] = useState<string[]>([])
+  const [scopes, setScopes] = useState<string[]>([]);
   const nanoid = customAlphabet(
     "abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ",
     10,
@@ -142,11 +147,15 @@ function NewClientModal(props: Props) {
                   className={styles.helpText}
                   title={"Mer info om integrasjoner"}
                 >
-                  Det finnes flere måter å integrere mot Maskinporten.
-                  Bruk av nøkkel og virkomshetssertifikate er tilgjengelig
-                  via forenklet onboarding og flere via Samarbeidsportalen.
+                  Det finnes flere måter å integrere mot Maskinporten. Bruk av
+                  nøkkel og virkomshetssertifikate er tilgjengelig via forenklet
+                  onboarding og flere via Samarbeidsportalen.
                   <br />
-                  {link("/guide", "Se beskrivelse av de forskjellige metodene her", true)}
+                  {link(
+                    "/guide",
+                    "Se beskrivelse av de forskjellige metodene her",
+                    true,
+                  )}
                 </HelpText>
               </div>
             }
@@ -196,50 +205,50 @@ function NewClientModal(props: Props) {
 
   const selectableScopes = () => {
     if (!publicScopes || !privateScopes) {
-      return [{value: props.scope, label: props.scope}];
+      return [{ value: props.scope, label: props.scope }];
     }
 
     return privateScopes
-        .concat(publicScopes)
-        .filter(scope => scope.scope !== props.scope)
-        .map(scope => ({value: scope.scope, label: scope.scope}))
-  }
-
+      .concat(publicScopes)
+      .filter((scope) => scope.scope !== props.scope)
+      .map((scope) => ({ value: scope.scope, label: scope.scope }));
+  };
 
   const renderInputScreenOne = () => (
     <>
       <div className={styles.infoFields}>
         <div className={styles.required}>
           <TextField
-              label={"Valgt miljø:"}
-              value={props.env}
-              readOnly={"readonlyInfo"}
+            label={"Valgt miljø:"}
+            value={props.env}
+            readOnly={"readonlyInfo"}
           />
         </div>
         <div className={styles.required}>
           <TextField
-              label={"Valgt tilgang:"}
-              value={props.scope}
-              readOnly={"readonlyInfo"}
+            label={"Valgt tilgang:"}
+            value={props.scope}
+            readOnly={"readonlyInfo"}
           />
         </div>
       </div>
       <div>
-        <Select options={selectableScopes()}
-                multiple
-                onChange={(scope) => setScopes(scope)}
-                label={"Legg til flere API-tilganger (frivillig)"}
-                value={scopes}
+        <Select
+          options={selectableScopes()}
+          multiple
+          onChange={(scope) => setScopes(scope)}
+          label={"Legg til flere API-tilganger (frivillig)"}
+          value={scopes}
         />
       </div>
 
       <div className={styles.required}>
         <TextField
-            label={"Hva skal du bruke integrasjonen til?"}
-            required
-            value={description}
-            placeholder={"Beskrivelse"}
-            onChange={(e) => setDescription(e.target.value)}
+          label={"Hva skal du bruke integrasjonen til?"}
+          required
+          value={description}
+          placeholder={"Beskrivelse"}
+          onChange={(e) => setDescription(e.target.value)}
         />
       </div>
     </>

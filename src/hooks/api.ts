@@ -3,7 +3,9 @@ import axios from "axios";
 import {
   ApiClient,
   ApiClients,
-  ApiConfig, ApiPublicScope, ApiPublicScopes,
+  ApiConfig,
+  ApiPublicScope,
+  ApiPublicScopes,
   ApiScopes,
   RequestApiClientBody,
 } from "../types/api";
@@ -42,8 +44,10 @@ export const usePublicScopes = (env: string) => {
     queryFn: async () => {
       const path = `${baseUrl}/api/${env}/scopes/all?accessible_for_all=true`;
       const res = await axios.get<ApiScopes>(path, axiosConfig);
-      res.data.forEach(scope => scope.scope = scope.name);
-      return res.data.filter(scope => scope.allowed_integration_types.includes("maskinporten"));
+      res.data.forEach((scope) => (scope.scope = scope.name));
+      return res.data.filter((scope) =>
+        scope.allowed_integration_types.includes("maskinporten"),
+      );
     },
     retry: 0,
   });
@@ -93,7 +97,6 @@ export const useClientDeleteMutation = (env: string) => {
     },
   });
 };
-
 
 export const useAllClientsInEnvironments = () => {
   return useQuery({

@@ -22,7 +22,7 @@ export type ApiPublicScope = {
   name: string;
   description: string;
   owner_orgno: string;
-}
+};
 
 export type ApiClient = {
   clientId: string;

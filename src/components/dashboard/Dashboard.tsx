@@ -1,12 +1,13 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import {
   Accordion,
   Heading,
   Ingress,
-  Label, ToggleButtonGroup,
+  Label,
+  ToggleButtonGroup,
 } from "@digdir/design-system-react";
 import withAuth, { AuthProps } from "../auth/withAuth";
-import {useClients, usePublicScopes, useScopes} from "../../hooks/api";
+import { useClients, usePublicScopes, useScopes } from "../../hooks/api";
 import styles from "./styles.module.scss";
 import ScopeDetails from "./ScopeDetails/ScopeDetails";
 import ContentContainer from "../common/ContentContainer/ContentContainer";
@@ -14,7 +15,7 @@ import OnboardingCard from "../common/OnboardingCard/OnboardingCard";
 import { useQueryClient } from "@tanstack/react-query";
 import ScopeSkeleton from "./ScopeSkeleton";
 import PublicScopes from "./PublicScopes/PublicScopes";
-import {ApiScopes} from "../../types/api";
+import { ApiScopes } from "../../types/api";
 
 function Dashboard({ user, config }: AuthProps) {
   const queryClient = useQueryClient();
@@ -22,7 +23,7 @@ function Dashboard({ user, config }: AuthProps) {
   const [env, setEnv] = useState(Object.keys(config)[0]);
   const [publicScopeList, setPublicScopeList] = useState<string[]>([]);
   const [renderedScopes, setRenderedScopes] = useState<ApiScopes>([]);
-  const {data: publicScopes} = usePublicScopes(env);
+  const { data: publicScopes } = usePublicScopes(env);
   const {
     data: scopesData,
     isLoading: isScopesLoading,
@@ -40,28 +41,29 @@ function Dashboard({ user, config }: AuthProps) {
 
   useEffect(() => {
     const list: string[] = [];
-    !isLoading && clientsData!!.forEach(client => {
-      client.scopes.forEach(clientScope => {
-        if (!scopesData!!.some(scope => scope.scope === clientScope)) {
-          list.push(clientScope);
-        }
+    !isLoading &&
+      clientsData!!.forEach((client) => {
+        client.scopes.forEach((clientScope) => {
+          if (!scopesData!!.some((scope) => scope.scope === clientScope)) {
+            list.push(clientScope);
+          }
+        });
+        setPublicScopeList(list);
       });
-      setPublicScopeList(list);
-    });
   }, [clientsData, isLoading, scopesData]);
 
   useEffect(() => {
-    const publicScopess = publicScopes?.filter(scope => publicScopeList.includes(scope.scope)) || [];
+    const publicScopess =
+      publicScopes?.filter((scope) => publicScopeList.includes(scope.scope)) ||
+      [];
     const privateScopes = scopesData || [];
     setRenderedScopes(privateScopes.concat(publicScopess));
   }, [publicScopes, scopesData, publicScopeList]);
-
 
   const onEnvChanged = (env: string) => {
     setEnv(env);
     queryClient.clear();
   };
-
 
   return (
     <>
@@ -75,46 +77,45 @@ function Dashboard({ user, config }: AuthProps) {
         </div>
 
         <div className={styles.accordionListHeader}>
-            <Heading size={"small"}>
-              Mine tilganger
-            </Heading>
+          <Heading size={"small"}>Mine tilganger</Heading>
           <div className={styles.envPicker}>
             <Label>Valgt miljø:</Label>
             <ToggleButtonGroup
-                items={Object.keys(config).map(env => ({
-                  label: env.toUpperCase(),
-                  value: env
-                }))}
-                onChange={onEnvChanged}
-                selectedValue={env}
+              items={Object.keys(config).map((env) => ({
+                label: env.toUpperCase(),
+                value: env,
+              }))}
+              onChange={onEnvChanged}
+              selectedValue={env}
             />
           </div>
         </div>
         <Accordion color={"neutral"}>
           {isLoading && (
-              <>
-                <ScopeSkeleton />
-                <ScopeSkeleton />
-              </>
-          )}
-          {!isLoading && ((scopesData && scopesData.length === 0) || isError) && (
-              <div className={styles.noScopesBox}>Du har ingen scopes</div>
+            <>
+              <ScopeSkeleton />
+              <ScopeSkeleton />
+            </>
           )}
           {!isLoading &&
-              clientsData &&
-              scopesData &&
-              renderedScopes.map((scope) => (
-                  <ScopeDetails
-                      scope={scope}
-                      clients={clientsData}
-                      env={env}
-                      key={scope.scope}
-                  />
-              ))}
+            ((scopesData && scopesData.length === 0) || isError) && (
+              <div className={styles.noScopesBox}>Du har ingen scopes</div>
+            )}
+          {!isLoading &&
+            clientsData &&
+            scopesData &&
+            renderedScopes.map((scope) => (
+              <ScopeDetails
+                scope={scope}
+                clients={clientsData}
+                env={env}
+                key={scope.scope}
+              />
+            ))}
         </Accordion>
-        {publicScopes &&
-            <PublicScopes scopeList={publicScopes} resultsPerPage={5} env={env} />
-        }
+        {publicScopes && (
+          <PublicScopes scopeList={publicScopes} resultsPerPage={5} env={env} />
+        )}
       </ContentContainer>
     </>
   );
