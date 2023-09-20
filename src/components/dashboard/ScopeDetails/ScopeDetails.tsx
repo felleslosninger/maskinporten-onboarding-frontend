@@ -27,7 +27,7 @@ function ScopeDetails(props: ScopeDetailProps) {
   );
 
   const onMakeClient = () => {
-    if (window.env.WHITELIST.indexOf(props.scope.scope) == -1) {
+    if (window.env.WHITELIST.indexOf(props.scope.scope) === -1) {
       alert("Denne tilbyderen deltar ikke i forenklet onboarding-piloten, og du kan derfor ikke opprette integrasjonen din gjennom denne løsningen. Du må bruke Samarbeidsportalen istedenfor.")
       return;
     }

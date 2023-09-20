@@ -18,15 +18,27 @@ interface Props {
 function PublicScopeResult(props: Props) {
   const [showModal, setShowModal] = useState(false);
 
+  const onMakeClient = () => {
+    if (window.env.WHITELIST.indexOf(props.scope.name) === -1) {
+      alert("Denne tilbyderen deltar ikke i forenklet onboarding-piloten, og du kan " +
+          "derfor ikke opprette integrasjonen din gjennom denne løsningen. " +
+          "Du må bruke Samarbeidsportalen istedenfor.");
+      return;
+    }
+    setShowModal(true);
+  };
+
   return (
     <>
-      <NewClientModal
-        env={props.env}
-        scope={props.scope.name}
-        open={showModal}
-        closeModal={() => setShowModal(false)}
-      />
-      <button className={styles.result} onClick={() => setShowModal(true)}>
+      {showModal && (
+        <NewClientModal
+          env={props.env}
+          scope={props.scope.name}
+          open={showModal}
+          closeModal={() => setShowModal(false)}
+        />
+      )}
+      <button className={styles.result} onClick={onMakeClient}>
         <div className={styles.resultsInfo}>
           <div>
             <KeyHorizontalFillIcon />
