@@ -43,8 +43,8 @@ function Landingpage() {
                 innehavere.
               </Paragraph>
               <Paragraph>
-                Dersom du ikke kjenner deg igjen i den beskrivelsen, kan du prøve
-                å logge inn med enkelttjeneste-tilgang.
+                Dersom du ikke kjenner deg igjen i den beskrivelsen, kan du
+                prøve å logge inn med enkelttjeneste-tilgang.
               </Paragraph>
             </>
           ) : (
@@ -116,7 +116,10 @@ function Landingpage() {
         </Accordion.Item>
         <Accordion.Item>
           <Accordion.Header>
-            <Label size={"large"}>Hva hvis jeg ikke får logget inn eller mangler rettigheter som må til?</Label>
+            <Label size={"large"}>
+              Hva hvis jeg ikke får logget inn eller mangler rettigheter som må
+              til?
+            </Label>
           </Accordion.Header>
           <Accordion.Content>
             <Paragraph spacing>

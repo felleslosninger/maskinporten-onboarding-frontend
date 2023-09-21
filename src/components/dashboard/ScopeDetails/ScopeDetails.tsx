@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ApiClients, ApiScope } from "../../../types/api";
 import styles from "./styles.module.scss";
-import { Accordion, Button, Label } from "@digdir/design-system-react";
+import { Accordion, Button, Label, Tag } from "@digdir/design-system-react";
 import ClientDescription from "../ClientDescription/ClientDescription";
 import NewClientModal from "../NewClientModal/NewClientModal";
 import {
@@ -11,6 +11,7 @@ import {
   TerminalIcon,
 } from "@navikt/aksel-icons";
 import { useEnhet } from "../../../hooks/brreg";
+
 
 interface ScopeDetailProps {
   scope: ApiScope;
@@ -26,12 +27,12 @@ function ScopeDetails(props: ScopeDetailProps) {
   );
 
   const onMakeClient = () => {
-    if (window.env.WHITELIST.indexOf(props.scope.scope) == -1) {
+    if (window.env.WHITELIST.indexOf(props.scope.scope) === -1) {
       alert("Denne tilbyderen deltar ikke i forenklet onboarding-piloten, og du kan derfor ikke opprette integrasjonen din gjennom denne løsningen. Du må bruke Samarbeidsportalen istedenfor.")
       return;
     }
     setShowModal(true);
-  }
+  };
 
   const renderNoClientBox = () => {
     return (
@@ -71,6 +72,16 @@ function ScopeDetails(props: ScopeDetailProps) {
             <Label size={"large"}>
               <KeyHorizontalFillIcon />
               {props.scope.scope}
+              {props.scope.accessible_for_all && (
+                <Tag
+                  color={"secondary"}
+                  variant={"outlined"}
+                  size={"small"}
+                  className={styles.publicTag}
+                >
+                  Public
+                </Tag>
+              )}
             </Label>
           </div>
           <Label>
@@ -99,10 +110,7 @@ function ScopeDetails(props: ScopeDetailProps) {
             )
           : renderNoClientBox()}
         <div className={styles.buttonRow}>
-          <Button
-            className={styles.opprettButton}
-            onClick={onMakeClient}
-          >
+          <Button className={styles.opprettButton} onClick={onMakeClient}>
             Opprett integrasjon
           </Button>
         </div>

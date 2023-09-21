@@ -1,0 +1,74 @@
+@import "src/style/variables";
+
+.container {
+  padding: 1rem;
+}
+
+.header {
+  margin-top: 2rem;
+}
+
+.filterbox {
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+.search {
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+  gap: 2rem;
+}
+
+.result {
+  cursor: pointer;
+  background-color: transparent;
+  width: 90%;
+  padding: 2rem;
+  gap: 5rem;
+  display: flex;
+  border-radius: 0.25rem;
+  border: 1px solid $colors-gray;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0.2rem 0.2rem 0.75rem $colors-lightgray;
+  transition:
+    transform 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
+
+  &:hover {
+    transform: translateY(-0.25rem);
+  }
+}
+
+.resultsInfo {
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+  text-align: left;
+
+  div {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+}
+
+.addIcon {
+  width: 2rem;
+  height: 2rem;
+
+  path {
+    fill: $colors-interface-highlight;
+  }
+}
+
+.pagination {
+  margin-top: 1rem;
+}

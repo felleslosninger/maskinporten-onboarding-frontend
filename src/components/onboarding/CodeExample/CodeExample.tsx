@@ -70,9 +70,8 @@ function CodeExample(props: Props) {
     const conf = client && config ? config[client.env] : config?.["test"];
     return {
       __CLIENT_ID__: client?.clientId || "<CLIENT-UUID>",
-      __SCOPE__: client?.scopes.join(",") || "<SCOPE:WITHPREFIX>",
-      __MASKINPORTEN_URL__:
-        conf?.issuer || "__MASKINPORTEN_URL__",
+      __SCOPE__: client?.scopes.join(" ") || "<SCOPE:WITHPREFIX>",
+      __MASKINPORTEN_URL__: conf?.issuer || "__MASKINPORTEN_URL__",
       __MASKINPORTEN_TOKEN_URL__:
         conf?.token_endpoint || "__MASKINPORTEN_TOKEN_URL__",
       __KID__: client?.keys?.[0].kid || "__KID__",

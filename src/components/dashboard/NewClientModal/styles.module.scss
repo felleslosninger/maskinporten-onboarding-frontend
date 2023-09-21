@@ -40,6 +40,11 @@
   }
 }
 
+.required label:after {
+  content: " *";
+  color: red;
+}
+
 .radioButtonLabel {
   display: flex;
   gap: 0.5rem;
@@ -88,6 +93,17 @@
     label {
       font-weight: bold;
     }
+  }
+}
+
+.infoFields {
+  width: 100%;
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+
+  div {
+    flex: 1;
   }
 }
 

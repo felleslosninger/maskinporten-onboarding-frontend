@@ -10,9 +10,15 @@ import {
   TextField,
   Radio,
   HelpText,
+  Chip,
+  Select,
 } from "@digdir/design-system-react";
 import Modal from "../../common/Modal/Modal";
-import { useClientMutation } from "../../../hooks/api";
+import {
+  useClientMutation,
+  usePublicScopes,
+  useScopes,
+} from "../../../hooks/api";
 import StyledLink from "../../common/StyledLink/StyledLink";
 import { bold, link } from "../../util/textTransforms";
 import { RequestApiClientBody } from "../../../types/api";
@@ -37,6 +43,8 @@ function NewClientModal(props: Props) {
     isIdle,
     data,
   } = useClientMutation(props.env);
+  const { data: publicScopes } = usePublicScopes(props.env);
+  const { data: privateScopes } = useScopes(props.env);
   const isLoading = !isIdle && !isError && !isSuccess;
   const [useKeys, setUseKeys] = useState(false);
   const [step, setStep] = useState(1);
@@ -46,6 +54,7 @@ function NewClientModal(props: Props) {
   const [chosenIntegration, setChosenIntegration] = useState(false);
   const [kid, setKid] = useState("");
   const [errorMessage, setErrorMessage] = useState<string>();
+  const [scopes, setScopes] = useState<string[]>([]);
   const nanoid = customAlphabet(
     "abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ",
     10,
@@ -67,7 +76,7 @@ function NewClientModal(props: Props) {
     setErrorMessage(undefined);
     const requestBody: RequestApiClientBody = {
       description: description,
-      scopes: [props.scope],
+      scopes: [props.scope].concat(scopes),
     };
 
     if (useKeys) {
@@ -138,11 +147,15 @@ function NewClientModal(props: Props) {
                   className={styles.helpText}
                   title={"Mer info om integrasjoner"}
                 >
-                  Det finnes flere måter å integrere mot Maskinporten.
-                  Bruk av nøkkel og virkomshetssertifikate er tilgjengelig
-                  via forenklet onboarding og flere via Samarbeidsportalen.
+                  Det finnes flere måter å integrere mot Maskinporten. Bruk av
+                  nøkkel og virkomshetssertifikate er tilgjengelig via forenklet
+                  onboarding og flere via Samarbeidsportalen.
                   <br />
-                  {link("/guide", "Se beskrivelse av de forskjellige metodene her", true)}
+                  {link(
+                    "/guide",
+                    "Se beskrivelse av de forskjellige metodene her",
+                    true,
+                  )}
                 </HelpText>
               </div>
             }
@@ -178,7 +191,6 @@ function NewClientModal(props: Props) {
               "-----BEGIN RSA PUBLIC KEY-----\n" +
               "MIIBCgKCAQEA+xGZ/wcz9ugFpP07Nspo6U17l0YhFiFpxxU4pTk3Lifz9R3zsIsu\n" +
               "ERwta7+fWIfxOo208ett/jhskiVodSEt3QBGh4XBipyWopKwZ93HHaDVZAALi/2A\n" +
-              "+xTBtWdEo7XGUujKDvC2/aZKukfjpOiUI8AhLAfjmlcD/UZ1QPh0mHsglRNCmpCw\n" +
               "mwSXA9VNmhz+PiB+Dml4WWnKW/VHo2ujTXxq7+efMU4H2fny3Se3KYOsFPFGZ1TN\n" +
               "QSYlFuShWrHPtiLmUdPoP6CV2mML1tk+l7DIIqXrQhLUKDACeM5roMx0kLhUWB8P\n" +
               "+0uj1CNlNN4JRZlC7xFfqiMbFRU9Z4N6YwIDAQAB\n" +
@@ -191,24 +203,54 @@ function NewClientModal(props: Props) {
     </>
   );
 
+  const selectableScopes = () => {
+    if (!publicScopes || !privateScopes) {
+      return [{ value: props.scope, label: props.scope }];
+    }
+
+    return privateScopes
+      .concat(publicScopes)
+      .filter((scope) => scope.scope !== props.scope)
+      .map((scope) => ({ value: scope.scope, label: scope.scope }));
+  };
+
   const renderInputScreenOne = () => (
     <>
-      <TextField
-        label={"Valgt miljø:"}
-        value={props.env}
-        readOnly={"readonlyInfo"}
-      />
-      <TextField
-        value={props.scope}
-        label={"Valgt API:"}
-        readOnly={"readonlyInfo"}
-      />
-      <TextField
-        label={"Hva skal du bruke integrasjonen til?"}
-        required
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
+      <div className={styles.infoFields}>
+        <div className={styles.required}>
+          <TextField
+            label={"Valgt miljø:"}
+            value={props.env}
+            readOnly={"readonlyInfo"}
+          />
+        </div>
+        <div className={styles.required}>
+          <TextField
+            label={"Valgt tilgang:"}
+            value={props.scope}
+            readOnly={"readonlyInfo"}
+          />
+        </div>
+      </div>
+      <div>
+        <Select
+          options={selectableScopes()}
+          multiple
+          onChange={(scope) => setScopes(scope)}
+          label={"Legg til flere API-tilganger (frivillig)"}
+          value={scopes}
+        />
+      </div>
+
+      <div className={styles.required}>
+        <TextField
+          label={"Hva skal du bruke integrasjonen til?"}
+          required
+          value={description}
+          placeholder={"Beskrivelse"}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+      </div>
     </>
   );
 

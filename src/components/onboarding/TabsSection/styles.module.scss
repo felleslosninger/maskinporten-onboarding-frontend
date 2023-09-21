@@ -34,7 +34,7 @@
   }
 
   &.active {
-    background-color: #e6eff8;
+    background-color: $colors-background-blue;
   }
 
   &.inactive {
@@ -44,7 +44,7 @@
 
 .tabsContentContainer {
   width: 100%;
-  background-color: #e6eff8;
+  background-color: $colors-background-blue;
   display: flex;
   justify-content: center;
 }
