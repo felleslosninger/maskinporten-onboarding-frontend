@@ -15,6 +15,7 @@ import OnboardingCard from "../common/OnboardingCard/OnboardingCard";
 import { useQueryClient } from "@tanstack/react-query";
 import ScopeSkeleton from "./ScopeSkeleton";
 import PublicScopes from "./PublicScopes/PublicScopes";
+import NoScopesImage from "../../assets/noScopes.png";
 import { ApiScopes } from "../../types/api";
 
 function Dashboard({ user, config }: AuthProps) {
@@ -41,7 +42,7 @@ function Dashboard({ user, config }: AuthProps) {
 
   useEffect(() => {
     const list: string[] = [];
-    !isLoading &&
+    !isLoading && !isError &&
       clientsData!!.forEach((client) => {
         client.scopes.forEach((clientScope) => {
           if (!scopesData!!.some((scope) => scope.scope === clientScope)) {
@@ -99,7 +100,15 @@ function Dashboard({ user, config }: AuthProps) {
           )}
           {!isLoading &&
             ((scopesData && scopesData.length === 0) || isError) && (
-              <div className={styles.noScopesBox}>Du har ingen scopes</div>
+              <div className={styles.noScopesBox}>
+                <img src={NoScopesImage} className={styles.noScopesImage}/>
+                <span className={styles.noScopesHeader}>
+                  Ingen tilganger her
+                </span>
+                <span className={styles.noScopesText}>
+                    Når organisasjonen din får tilgang til noe i maskinporten, dukker det opp her.
+                </span>
+              </div>
             )}
           {!isLoading &&
             clientsData &&

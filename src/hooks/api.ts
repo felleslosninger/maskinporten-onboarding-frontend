@@ -36,6 +36,7 @@ export const useScopes = (env: string) => {
       const res = await axios.get<ApiScopes>(path, axiosConfig);
       return res.data;
     },
+    retry: 0,
   });
 };
 
@@ -112,9 +113,11 @@ export const useAllClientsInEnvironments = () => {
       const requests = envs.map((env) => {
         const path = `${baseUrl}/api/${env}/datasharing/consumer/client`;
         return axios.get<ApiClients>(path, axiosConfig).then((res) => {
-          res.data.forEach((client) => {
-            client.env = env;
-          });
+          if (res.status === 200) {
+            res.data.forEach((client) => {
+              client.env = env;
+            });
+          }
           return res.data;
         });
       });
