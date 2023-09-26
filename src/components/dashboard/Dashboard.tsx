@@ -24,7 +24,7 @@ function Dashboard({ user, config }: AuthProps) {
   const [env, setEnv] = useState(Object.keys(config)[0]);
   const [publicScopeList, setPublicScopeList] = useState<string[]>([]);
   const [renderedScopes, setRenderedScopes] = useState<ApiScopes>([]);
-  const { data: publicScopes } = usePublicScopes(env);
+  const { data: publicScopes, isLoading: isPublicScopesLoading } = usePublicScopes(env);
   const {
     data: scopesData,
     isLoading: isScopesLoading,
@@ -35,7 +35,7 @@ function Dashboard({ user, config }: AuthProps) {
     isLoading: isClientsLoading,
     isError: isClientsError,
   } = useClients(env);
-  const isLoading = isScopesLoading || isClientsLoading || !minLoadtimeOver;
+  const isLoading = isScopesLoading || isClientsLoading || isPublicScopesLoading || !minLoadtimeOver;
   const isError = isScopesError || isClientsError;
 
   setTimeout(() => setMinLoadtimeOver(true), 600);
@@ -99,9 +99,9 @@ function Dashboard({ user, config }: AuthProps) {
             </>
           )}
           {!isLoading &&
-            ((scopesData && scopesData.length === 0) || isError) && (
+            ((renderedScopes && renderedScopes.length === 0) || isError) && (
               <div className={styles.noScopesBox}>
-                <img src={NoScopesImage} className={styles.noScopesImage}/>
+                <img src={NoScopesImage} className={styles.noScopesImage} alt={"Ingen tilgjengelige tilganger"}/>
                 <span className={styles.noScopesHeader}>
                   Ingen tilganger her
                 </span>
