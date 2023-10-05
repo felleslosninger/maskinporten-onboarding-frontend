@@ -1,41 +1,61 @@
-import React, { createRef, useEffect, useState } from "react";
+import React, {createContext, createRef, useEffect, useState} from "react";
 import styles from "./styles.module.scss";
-import {
-  Alert,
-  Button,
-  Label,
-  Paragraph,
-  Spinner,
-  TextArea,
-  TextField,
-  Radio,
-  HelpText,
-  Chip,
-  Select,
-} from "@digdir/design-system-react";
+import {Button, Label, Spinner} from "@digdir/design-system-react";
 import Modal from "../../common/Modal/Modal";
-import {
-  useClientMutation,
-  usePublicScopes,
-  useScopes,
-} from "../../../hooks/api";
-import StyledLink from "../../common/StyledLink/StyledLink";
-import { bold, link } from "../../util/textTransforms";
-import { RequestApiClientBody } from "../../../types/api";
+import {useClientMutation} from "../../../hooks/api";
+import {ApiClient, RequestApiClientBody} from "../../../types/api";
 import { CSSTransition } from "react-transition-group";
-import { customAlphabet } from "nanoid";
 import { exportJWK, importSPKI } from "jose";
 import { XMarkOctagonFillIcon } from "@navikt/aksel-icons";
-import { Link } from "react-router-dom";
+import Step1 from "./Step1";
+import Step3 from "./Step3";
+import Step2 from "./Step2";
+import {AxiosResponse} from "axios";
 
-interface Props {
+
+export type NewClientContextProps = {
+  requestResponse: AxiosResponse<ApiClient, any> | undefined;
+  error: {
+    get: string | undefined;
+    set: (err: string | undefined) => void;
+  };
+  scopes: {
+    get: string[];
+    set: (scopes: string[]) => void;
+  };
+  description:  {
+    get: string;
+    set: (desc: string) => void;
+  };
+  kid: {
+    get: string;
+    set: (kid: string) => void;
+  };
+  isKeys: {
+    get: boolean;
+    set: (isKeys: boolean) => void;
+  };
+  key: {
+    get: string;
+    set: (key: string) => void;
+  },
+  isIntegrationChosen: {
+    get: boolean,
+    set: (isChosen: boolean) => void;
+  }
+};
+
+export const NewClientContext = createContext<NewClientContextProps | null>(null);
+
+
+interface NewClientProps {
   env: string;
   scope: string;
   open: boolean;
   closeModal: () => void;
 }
 
-function NewClientModal(props: Props) {
+function NewClientModal(props: NewClientProps) {
   const {
     mutate: addClient,
     isSuccess,
@@ -43,8 +63,6 @@ function NewClientModal(props: Props) {
     isIdle,
     data,
   } = useClientMutation(props.env);
-  const { data: publicScopes } = usePublicScopes(props.env);
-  const { data: privateScopes } = useScopes(props.env);
   const isLoading = !isIdle && !isError && !isSuccess;
   const [useKeys, setUseKeys] = useState(false);
   const [step, setStep] = useState(1);
@@ -55,17 +73,15 @@ function NewClientModal(props: Props) {
   const [kid, setKid] = useState("");
   const [errorMessage, setErrorMessage] = useState<string>();
   const [scopes, setScopes] = useState<string[]>([]);
-  const nanoid = customAlphabet(
-    "abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-    10,
-  );
 
+  // Go to success step on client POST success
   useEffect(() => {
     if (isSuccess) {
       setStep(3);
     }
   }, [isSuccess]);
 
+  // Show error on client POST error
   useEffect(() => {
     if (isError) {
       setErrorMessage("Ukjent feil under opprettelse");
@@ -123,260 +139,125 @@ function NewClientModal(props: Props) {
     setStep(2);
   };
 
-  const onChangeIntegration = (val: string | undefined) => {
-    if (val === "true") {
-      setUseKeys(true);
-      setKid(nanoid(10));
-    } else {
-      setUseKeys(false);
-    }
-    setErrorMessage(undefined);
-    setChosenIntegration(true);
-  };
-
-  const renderInputScreenTwo = () => (
-    <>
-      <div className={styles.integrationSelect}>
-        <div className={styles.radioButtons}>
-          <Radio.Group
-            onChange={onChangeIntegration}
-            legend={
-              <div className={styles.radioButtonLabel}>
-                Hvordan vil du integrere med tjenesten
-                <HelpText
-                  className={styles.helpText}
-                  title={"Mer info om integrasjoner"}
-                >
-                  Det finnes flere måter å integrere mot Maskinporten. Bruk av
-                  nøkkel og virkomshetssertifikate er tilgjengelig via forenklet
-                  onboarding og flere via Samarbeidsportalen.
-                  <br />
-                  {link(
-                    "/guide",
-                    "Se beskrivelse av de forskjellige metodene her",
-                    true,
-                  )}
-                </HelpText>
-              </div>
-            }
-          >
-            <Radio value={"true"}>Med manuelt opplastet nøkkel</Radio>
-            <Radio value={"false"}>
-              Signere direkte med virksomhetssertifikat
-            </Radio>
-          </Radio.Group>
-        </div>
-        <div className={styles.integrationInfo}>
-          {useKeys && (
-            <>
-              <Label size={"large"}>
-                Nøkkelen din får følgende key-id (kid):
-              </Label>
-              <Label size={"large"} className={styles.kid}>
-                {kid}
-              </Label>
-              <Label size={"small"}>Vi støtter kun RSA256 nøkler.</Label>
-            </>
-          )}
-        </div>
-      </div>
-
-      {useKeys && (
-        <div className={styles.keyTextArea}>
-          <TextArea
-            label={"Legg til public-delen av nøkkelen du vil bruke"}
-            required
-            value={publicKey}
-            placeholder={
-              "-----BEGIN RSA PUBLIC KEY-----\n" +
-              "MIIBCgKCAQEA+xGZ/wcz9ugFpP07Nspo6U17l0YhFiFpxxU4pTk3Lifz9R3zsIsu\n" +
-              "ERwta7+fWIfxOo208ett/jhskiVodSEt3QBGh4XBipyWopKwZ93HHaDVZAALi/2A\n" +
-              "mwSXA9VNmhz+PiB+Dml4WWnKW/VHo2ujTXxq7+efMU4H2fny3Se3KYOsFPFGZ1TN\n" +
-              "QSYlFuShWrHPtiLmUdPoP6CV2mML1tk+l7DIIqXrQhLUKDACeM5roMx0kLhUWB8P\n" +
-              "+0uj1CNlNN4JRZlC7xFfqiMbFRU9Z4N6YwIDAQAB\n" +
-              "-----END RSA PUBLIC KEY-----"
-            }
-            onChange={(e) => setPublicKey(e.target.value)}
-          />
-        </div>
-      )}
-    </>
-  );
-
-  const selectableScopes = () => {
-    if (!publicScopes || !privateScopes) {
-      return [{ value: props.scope, label: props.scope }];
-    }
-
-    return privateScopes
-      .concat(publicScopes)
-      .filter((scope) => scope.scope !== props.scope)
-      .filter(scope => window.env.WHITELIST.includes(scope.scope))
-      .map((scope) => ({ value: scope.scope, label: scope.scope }));
-  };
-
-  const renderInputScreenOne = () => (
-    <>
-      <div className={styles.infoFields}>
-        <div className={styles.required}>
-          <TextField
-            label={"Valgt miljø:"}
-            value={props.env}
-            readOnly={"readonlyInfo"}
-          />
-        </div>
-        <div className={styles.required}>
-          <TextField
-            label={"Valgt tilgang:"}
-            value={props.scope}
-            readOnly={"readonlyInfo"}
-          />
-        </div>
-      </div>
-      <div>
-        <Select
-          options={selectableScopes()}
-          multiple
-          onChange={(scope) => setScopes(scope)}
-          label={"Legg til flere API-tilganger (frivillig)"}
-          value={scopes}
-        />
-      </div>
-
-      <div className={styles.required}>
-        <TextField
-          label={"Hva skal du bruke integrasjonen til?"}
-          required
-          value={description}
-          placeholder={"Beskrivelse"}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-      </div>
-    </>
-  );
-
-  const renderSuccessScreen = () => (
-    <div className={styles.successContainer}>
-      <div>
-        <div className={styles.responseInfo}>
-          <div className={styles.responseInfoContent}>
-            <div>
-              <Label>Miljø:</Label>
-              <Paragraph>{props.env}</Paragraph>
-            </div>
-            <div>
-              <Label>API tilgang:</Label>
-              <Paragraph>{props.scope}</Paragraph>
-            </div>
-            <div>
-              <Label>Integrasjonsbeskrivelse:</Label>
-              <Paragraph>{data?.data.description}</Paragraph>
-            </div>
-            <div>
-              <Label>Client-id:</Label>
-              <Paragraph>{data?.data.clientId}</Paragraph>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className={styles.usageInfo}>
-        <Label>{bold("Ta i bruk integrasjon?")}</Label>
-        <Paragraph>
-          Følg var onboardingsguide for informasjon om hvordan du kan ta i bruk
-          integrasjonen din
-        </Paragraph>
-        <div className={styles.usageButtons}>
-          <StyledLink to={"/guide"}>Gå til Onboardingsguiden</StyledLink>
-        </div>
-      </div>
-    </div>
-  );
-
   const steps = [
-    renderInputScreenOne,
-    renderInputScreenTwo,
-    renderSuccessScreen,
+    () => <Step1 scope={props.scope} env={props.env} />,
+    () => <Step2 />,
+    () => <Step3 scope={props.scope} env={props.env} />,
   ];
 
   return (
-    <Modal
-      open={props.open}
-      closeModal={props.closeModal}
-      title={
-        isSuccess
-          ? "Integrasjonen er opprettet"
-          : `Opprett ny integrasjon (${step} / ${steps.length - 1})`
-      }
-      className={styles.modal}
+    <NewClientContext.Provider
+      value={{
+        requestResponse: data,
+        error: {
+          get: errorMessage,
+          set: setErrorMessage
+        },
+        scopes: {
+          get: scopes,
+          set: setScopes
+        },
+        description: {
+          get: description,
+          set: setDescription
+        },
+        kid: {
+          get: kid,
+          set: setKid
+        },
+        isKeys: {
+          get: useKeys,
+          set: setUseKeys
+        },
+        key: {
+          get: publicKey,
+          set: setPublicKey
+        },
+        isIntegrationChosen: {
+          get: chosenIntegration,
+          set: setChosenIntegration
+        }
+      }}
     >
-      <>
-        {steps.map((render, index) => {
-          const ref = createRef<HTMLDivElement>();
-          return (
-            <CSSTransition
-              in={step === index + 1}
-              key={index}
-              timeout={1000}
-              classNames={isNext ? nextClassNames : prevClassNames}
-              nodeRef={ref}
-              mountOnEnter
-              unmountOnExit
-            >
-              <div
-                className={`${styles.form} ${
-                  isNext ? styles.rightToLeft : styles.leftToRight
-                }`}
-                ref={ref}
+      <Modal
+        open={props.open}
+        closeModal={props.closeModal}
+        title={
+          isSuccess
+            ? "Integrasjonen er opprettet"
+            : `Opprett ny integrasjon (${step} / ${steps.length - 1})`
+        }
+        className={styles.modal}
+      >
+        <>
+          {steps.map((render, index) => {
+            const ref = createRef<HTMLDivElement>();
+            return (
+              <CSSTransition
+                in={step === index + 1}
+                key={index}
+                timeout={1000}
+                classNames={isNext ? nextClassNames : prevClassNames}
+                nodeRef={ref}
+                mountOnEnter
+                unmountOnExit
               >
-                {render()}
-              </div>
-            </CSSTransition>
-          );
-        })}
-
-        <div className={styles.modalButtons}>
-          {step === 1 && (
-            <>
-              <Button variant={"outline"} onClick={props.closeModal}>
-                Avbryt
-              </Button>
-              <Button onClick={onNeste} disabled={description.length === 0}>
-                Neste
-              </Button>
-            </>
-          )}
-          {step === 2 && (
-            <>
-              <Button variant={"outline"} onClick={onForrige}>
-                Forrige
-              </Button>
-              <Button
-                onClick={handleSubmit}
-                disabled={
-                  !chosenIntegration || (useKeys && publicKey.length === 0)
-                }
-              >
-                {isLoading && (
-                  <Spinner variant={"interaction"} title={"laster"} />
-                )}
-                {isLoading ? "Oppretter integrasjon" : "Opprett integrasjon"}
-              </Button>
-              {errorMessage && (
-                <div className={styles.alert}>
-                  <XMarkOctagonFillIcon />
-                  <Label>{errorMessage}</Label>
+                <div
+                  className={`${styles.form} ${
+                    isNext ? styles.rightToLeft : styles.leftToRight
+                  }`}
+                  ref={ref}
+                >
+                  {render()}
                 </div>
-              )}
-            </>
-          )}
-          {step === 3 && (
-            <Button variant={"outline"} onClick={props.closeModal}>
-              Tilbake til oversikten
-            </Button>
-          )}
-        </div>
-      </>
-    </Modal>
+              </CSSTransition>
+            );
+          })}
+
+          <div className={styles.modalButtons}>
+            {step === 1 && (
+              <>
+                <Button variant={"outline"} onClick={props.closeModal}>
+                  Avbryt
+                </Button>
+                <Button onClick={onNeste} disabled={description.length === 0}>
+                  Neste
+                </Button>
+              </>
+            )}
+            {step === 2 && (
+              <>
+                <Button variant={"outline"} onClick={onForrige}>
+                  Forrige
+                </Button>
+                <Button
+                  onClick={handleSubmit}
+                  disabled={
+                    !chosenIntegration || (useKeys && publicKey.length === 0)
+                  }
+                >
+                  {isLoading && (
+                    <Spinner variant={"interaction"} title={"laster"} />
+                  )}
+                  {isLoading ? "Oppretter integrasjon" : "Opprett integrasjon"}
+                </Button>
+                {errorMessage && (
+                  <div className={styles.alert}>
+                    <XMarkOctagonFillIcon />
+                    <Label>{errorMessage}</Label>
+                  </div>
+                )}
+              </>
+            )}
+            {step === 3 && (
+              <Button variant={"outline"} onClick={props.closeModal}>
+                Tilbake til oversikten
+              </Button>
+            )}
+          </div>
+        </>
+      </Modal>
+    </NewClientContext.Provider>
   );
 }
 

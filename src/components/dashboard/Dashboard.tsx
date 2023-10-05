@@ -20,7 +20,6 @@ import { ApiScopes } from "../../types/api";
 
 function Dashboard({ user, config }: AuthProps) {
   const queryClient = useQueryClient();
-  const [minLoadtimeOver, setMinLoadtimeOver] = useState(false);
   const [env, setEnv] = useState(Object.keys(config)[0]);
   const [publicScopeList, setPublicScopeList] = useState<string[]>([]);
   const [renderedScopes, setRenderedScopes] = useState<ApiScopes>([]);
@@ -34,11 +33,9 @@ function Dashboard({ user, config }: AuthProps) {
     data: clientsData,
     isLoading: isClientsLoading,
     isError: isClientsError,
-  } = useClients(env);
-  const isLoading = isScopesLoading || isClientsLoading || isPublicScopesLoading || !minLoadtimeOver;
+  } = useClients(env, !!scopesData);
+  const isLoading = isScopesLoading || isClientsLoading || isPublicScopesLoading;
   const isError = isScopesError || isClientsError;
-
-  setTimeout(() => setMinLoadtimeOver(true), 600);
 
   useEffect(() => {
     const list: string[] = [];
