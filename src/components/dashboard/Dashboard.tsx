@@ -23,7 +23,8 @@ function Dashboard({ user, config }: AuthProps) {
   const [env, setEnv] = useState(Object.keys(config)[0]);
   const [publicScopeList, setPublicScopeList] = useState<string[]>([]);
   const [renderedScopes, setRenderedScopes] = useState<ApiScopes>([]);
-  const { data: publicScopes, isLoading: isPublicScopesLoading } = usePublicScopes(env);
+  const { data: publicScopes, isLoading: isPublicScopesLoading } =
+    usePublicScopes(env);
   const {
     data: scopesData,
     isLoading: isScopesLoading,
@@ -34,12 +35,14 @@ function Dashboard({ user, config }: AuthProps) {
     isLoading: isClientsLoading,
     isError: isClientsError,
   } = useClients(env, !!scopesData);
-  const isLoading = isScopesLoading || isClientsLoading || isPublicScopesLoading;
+  const isLoading =
+    isScopesLoading || isClientsLoading || isPublicScopesLoading;
   const isError = isScopesError || isClientsError;
 
   useEffect(() => {
     const list: string[] = [];
-    !isLoading && !isError &&
+    !isLoading &&
+      !isError &&
       clientsData!!.forEach((client) => {
         client.scopes.forEach((clientScope) => {
           if (!scopesData!!.some((scope) => scope.scope === clientScope)) {
@@ -98,12 +101,17 @@ function Dashboard({ user, config }: AuthProps) {
           {!isLoading &&
             ((renderedScopes && renderedScopes.length === 0) || isError) && (
               <div className={styles.noScopesBox}>
-                <img src={NoScopesImage} className={styles.noScopesImage} alt={"Ingen tilgjengelige tilganger"}/>
+                <img
+                  src={NoScopesImage}
+                  className={styles.noScopesImage}
+                  alt={"Ingen tilgjengelige tilganger"}
+                />
                 <span className={styles.noScopesHeader}>
                   Ingen tilganger her
                 </span>
                 <span className={styles.noScopesText}>
-                    Når organisasjonen din får tilgang til noe i maskinporten, dukker det opp her.
+                  Når organisasjonen din får tilgang til noe i maskinporten,
+                  dukker det opp her.
                 </span>
               </div>
             )}

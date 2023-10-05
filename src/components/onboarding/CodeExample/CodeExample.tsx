@@ -1,15 +1,15 @@
-import React, {ReactNode, useEffect, useState} from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import styles from "./styles.module.scss";
-import {useClients} from "../../../hooks/api";
+import { useClients } from "../../../hooks/api";
 import { Heading, Paragraph, Select } from "@digdir/design-system-react";
 import CodeLanguage from "./CodeLanguage";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { bold } from "../../util/textTransforms";
 import {
-  KeyHorizontalIcon,
-  ClipboardIcon,
   BranchingIcon,
+  ClipboardIcon,
+  KeyHorizontalIcon,
 } from "@navikt/aksel-icons";
 import { ApiClient } from "../../../types/api";
 import { useConfig } from "../../../hooks/auth";
@@ -23,9 +23,15 @@ interface Props {
 
 function CodeExample(props: Props) {
   const { data: config } = useConfig();
-  const { data: testClients } = useClients(Object.keys(config || "")[0], !!config);
-  const { data: prodClients } = useClients(Object.keys(config || "")[1], !!testClients);
-  const [ clients, setClients ] = useState<ApiClient[]>([]);
+  const { data: testClients } = useClients(
+    Object.keys(config || "")[0],
+    !!config,
+  );
+  const { data: prodClients } = useClients(
+    Object.keys(config || "")[1],
+    !!testClients,
+  );
+  const [clients, setClients] = useState<ApiClient[]>([]);
   const [selectValue, setSelectValue] = useState<string>();
   const [selectedTab, setSelectedTab] = useState(0);
 
@@ -34,7 +40,6 @@ function CodeExample(props: Props) {
       setClients(testClients.concat(prodClients));
     }
   }, [testClients, prodClients]);
-
 
   const formatLabel = (client: ApiClient) => (
     <div className={styles.selectFormattedBox}>

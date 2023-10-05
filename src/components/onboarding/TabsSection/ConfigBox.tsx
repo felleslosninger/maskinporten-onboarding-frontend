@@ -1,12 +1,17 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styles from "./styles.module.scss";
-import {Heading, Label, Paragraph, ToggleButtonGroup} from "@digdir/design-system-react";
+import {
+  Heading,
+  Label,
+  Paragraph,
+  ToggleButtonGroup,
+} from "@digdir/design-system-react";
 import InfoBox from "../InfoBox/InfoBox";
-import {bold} from "../../util/textTransforms";
-import {useConfig} from "../../../hooks/auth";
+import { bold } from "../../util/textTransforms";
+import { useConfig } from "../../../hooks/auth";
 
 function ConfigBox() {
-  const {data: config} = useConfig();
+  const { data: config } = useConfig();
   const [selectedConfig, setSelectedConfig] = useState("test");
 
   if (!config) {
@@ -32,8 +37,7 @@ function ConfigBox() {
       </div>
 
       <Paragraph spacing>
-        Dette er endepunktene som Digdir bruker til uthenting av
-        access-tokens.
+        Dette er endepunktene som Digdir bruker til uthenting av access-tokens.
       </Paragraph>
       <InfoBox className={styles.configBox}>
         <Label>

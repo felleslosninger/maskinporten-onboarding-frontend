@@ -1,7 +1,7 @@
 import React from "react";
-import {Heading, Paragraph} from "@digdir/design-system-react";
+import { Heading, Paragraph } from "@digdir/design-system-react";
 import InfoBox from "../InfoBox/InfoBox";
-import {bold, link} from "../../util/textTransforms";
+import { bold, link } from "../../util/textTransforms";
 import styles from "./styles.module.scss";
 import CodeExample from "../CodeExample/CodeExample";
 import CodeLanguage from "../CodeExample/CodeLanguage";
@@ -32,27 +32,30 @@ function KeySection() {
           <li>
             Du har opprettet et asymmentrisk nøkkelpar av typen RSA256 og har
             public-delen av nøkkelen tilgjengelig. Om du ikke har et
-            eksisterende nøkkelpar kan du opprette et med kommandoene.
-            Om du ikke trenger en keystore, kan du hoppe over punkt to.
+            eksisterende nøkkelpar kan du opprette et med kommandoene. Om du
+            ikke trenger en keystore, kan du hoppe over punkt to.
             <ol>
               <li>
                 <code>
-                  openssl req -newkey rsa:2048 -x509 -keyout key.pem -out cert.pem -days 365
+                  openssl req -newkey rsa:2048 -x509 -keyout key.pem -out
+                  cert.pem -days 365
                 </code>
                 oppretter en ny nøkkel og selvsignert sertifikat
               </li>
               <li>
                 <code>
-                  openssl pkcs12 -export -in cert.pem -inkey key.pem -out certificate.p12 -name "certificate"
+                  openssl pkcs12 -export -in cert.pem -inkey key.pem -out
+                  certificate.p12 -name "certificate"
                 </code>
-                lager en keystore som passer java-eksempelet under med navn "certificate".
-                Denne er ikke nøvendig om du ikke trenger en keystore.
+                lager en keystore som passer java-eksempelet under med navn
+                "certificate". Denne er ikke nøvendig om du ikke trenger en
+                keystore.
               </li>
               <li>
                 <code>
                   openssl rsa -in key.pem -pubout -out maskinporten.pem.pub
                 </code>
-                henter ut public-delen til fila maskinporten.pem.pub{" "}.
+                henter ut public-delen til fila maskinporten.pem.pub .
               </li>
             </ol>
           </li>
@@ -83,7 +86,8 @@ function KeySection() {
               ønsker å bruke
             </li>
             <li>
-              Bodyfeltet <code>aud</code>: Maskinporten sin issuer-url, se miljøspesifikke url under Konfigurasjonsfelter
+              Bodyfeltet <code>aud</code>: Maskinporten sin issuer-url, se
+              miljøspesifikke url under Konfigurasjonsfelter
             </li>
             <li>
               Bodyfeltet <code>iss</code>: client-id for integrasjonen du ønsker

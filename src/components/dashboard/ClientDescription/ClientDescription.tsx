@@ -66,7 +66,9 @@ const ClientDescription = (props: ClientDescriptionProps) => {
               {bold("Inkluderte scopes:")}
               <div className={styles.scopeFields}>
                 {props.client.scopes.map((scope, index) => (
-                  <CopyField copyValue={scope} key={index}>{scope}</CopyField>
+                  <CopyField copyValue={scope} key={index}>
+                    {scope}
+                  </CopyField>
                 ))}
               </div>
             </div>

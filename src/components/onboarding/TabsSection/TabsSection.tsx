@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import styles from "./styles.module.scss";
-import {Label} from "@digdir/design-system-react";
+import { Label } from "@digdir/design-system-react";
 import {
-  TasklistIcon,
-  KeyHorizontalIcon,
   BagdeIcon,
+  KeyHorizontalIcon,
+  TasklistIcon,
 } from "@navikt/aksel-icons";
 import KeySection from "./KeySection";
 import OtherSection from "./OtherSection";

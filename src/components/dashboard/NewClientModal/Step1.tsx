@@ -1,8 +1,8 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import styles from "./styles.module.scss";
-import {Select, TextField} from "@digdir/design-system-react";
-import {usePublicScopes, useScopes} from "../../../hooks/api";
-import {NewClientContext} from "./NewClientModal";
+import { Select, TextField } from "@digdir/design-system-react";
+import { usePublicScopes, useScopes } from "../../../hooks/api";
+import { NewClientContext } from "./NewClientModal";
 
 interface Props {
   env: string;
@@ -26,7 +26,7 @@ const Step1 = (props: Props) => {
     return privateScopes
       .concat(publicScopes)
       .filter((scope) => scope.scope !== props.scope)
-      .filter(scope => window.env.WHITELIST.includes(scope.scope))
+      .filter((scope) => window.env.WHITELIST.includes(scope.scope))
       .map((scope) => ({ value: scope.scope, label: scope.scope }));
   };
 

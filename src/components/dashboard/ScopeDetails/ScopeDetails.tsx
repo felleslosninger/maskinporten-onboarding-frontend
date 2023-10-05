@@ -12,7 +12,6 @@ import {
 } from "@navikt/aksel-icons";
 import { useEnhet } from "../../../hooks/brreg";
 
-
 interface ScopeDetailProps {
   scope: ApiScope;
   clients: ApiClients;
@@ -28,7 +27,9 @@ function ScopeDetails(props: ScopeDetailProps) {
 
   const onMakeClient = () => {
     if (window.env.WHITELIST.indexOf(props.scope.scope) === -1) {
-      alert("Denne tilbyderen deltar ikke i forenklet onboarding-piloten, og du kan derfor ikke opprette integrasjonen din gjennom denne løsningen. Du må bruke Samarbeidsportalen istedenfor.")
+      alert(
+        "Denne tilbyderen deltar ikke i forenklet onboarding-piloten, og du kan derfor ikke opprette integrasjonen din gjennom denne løsningen. Du må bruke Samarbeidsportalen istedenfor.",
+      );
       return;
     }
     setShowModal(true);

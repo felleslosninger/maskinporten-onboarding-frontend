@@ -2,13 +2,13 @@ import React from "react";
 import {
   Accordion,
   Alert,
+  Button,
   Heading,
   Ingress,
   Label,
   Paragraph,
+  Tag,
 } from "@digdir/design-system-react";
-import { Button, Tag } from "@digdir/design-system-react";
-import { ReactComponent as MpSvg } from "../../../assets/ikoner/SVG/Maskinporten.svg";
 import styles from "./styles.module.scss";
 import { login } from "../../auth/login";
 import ContentContainer from "../../common/ContentContainer/ContentContainer";
@@ -180,8 +180,9 @@ function Landingpage() {
                 "tilgangsstyrer",
                 true,
               )}{" "}
-              i kombinasjon med enkelttjenesten "{enkelttjenestenavn}". Denne personen vil da kunne delegere
-              enkelttjenesten videre til andre personer.
+              i kombinasjon med enkelttjenesten "{enkelttjenestenavn}". Denne
+              personen vil da kunne delegere enkelttjenesten videre til andre
+              personer.
             </Paragraph>
             <Paragraph spacing>
               Fremgangsmåten for å tildele en enkelttjeneste er beskrevet{" "}

@@ -52,6 +52,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 To escape " and create a valid json array from the content of java-example-fiel
 
 Alternative openssl-commands to save to keystore
+
 ```
 openssl req -newkey rsa:2048 -x509 -keyout key.pem -out cert.pem -days 365
 openssl pkcs12 -export -in cert.pem -inkey key.pem -out certificate.p12 -name "certificate"

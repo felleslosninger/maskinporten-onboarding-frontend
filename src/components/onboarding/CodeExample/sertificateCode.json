@@ -12,7 +12,6 @@
     "let certsPath = '../certs/maskinporten.pem';",
     "var privateKey = fs.readFileSync(certsPath);",
     "",
-
     "const generateToken = function (client) {",
     "  return jwt.sign(",
     "    {",

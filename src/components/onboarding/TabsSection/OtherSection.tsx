@@ -1,6 +1,6 @@
 import React from "react";
-import {Heading, Paragraph} from "@digdir/design-system-react";
-import {link} from "../../util/textTransforms";
+import { Heading, Paragraph } from "@digdir/design-system-react";
+import { link } from "../../util/textTransforms";
 
 function OtherSection() {
   return (

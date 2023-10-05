@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./styles.module.scss";
 import { Heading, Paragraph } from "@digdir/design-system-react";
 import TabsSection from "./TabsSection/TabsSection";
-import { bold, link } from "../util/textTransforms";
+import { bold } from "../util/textTransforms";
 import ContentContainer from "../common/ContentContainer/ContentContainer";
 
 function Onboardingpage() {

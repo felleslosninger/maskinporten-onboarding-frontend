@@ -1,9 +1,9 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import styles from "./styles.module.scss";
-import {HelpText, Label, Radio, TextArea} from "@digdir/design-system-react";
-import {link} from "../../util/textTransforms";
-import {customAlphabet} from "nanoid";
-import {NewClientContext} from "./NewClientModal";
+import { HelpText, Label, Radio, TextArea } from "@digdir/design-system-react";
+import { link } from "../../util/textTransforms";
+import { customAlphabet } from "nanoid";
+import { NewClientContext } from "./NewClientModal";
 
 const Step2 = () => {
   const context = useContext(NewClientContext);

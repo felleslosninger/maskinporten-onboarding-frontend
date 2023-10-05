@@ -1,7 +1,7 @@
 import React from "react";
-import {Heading, Paragraph} from "@digdir/design-system-react";
+import { Heading, Paragraph } from "@digdir/design-system-react";
 import InfoBox from "../InfoBox/InfoBox";
-import {bold, link} from "../../util/textTransforms";
+import { bold, link } from "../../util/textTransforms";
 import styles from "./styles.module.scss";
 import CodeExample from "../CodeExample/CodeExample";
 import CodeLanguage from "../CodeExample/CodeLanguage";
@@ -61,7 +61,8 @@ function SertificateSection() {
               Headerfeltet <code>x5c</code>: Virksomhetssertifikat{" "}
             </li>
             <li>
-              Bodyfeltet <code>aud</code>: Maskinporten sin issuer-url, se miljøspesifikke url under Konfigurasjonsfelter
+              Bodyfeltet <code>aud</code>: Maskinporten sin issuer-url, se
+              miljøspesifikke url under Konfigurasjonsfelter
             </li>
             <li>
               Bodyfeltet <code>iss</code>: client-id for integrasjonen du ønsker

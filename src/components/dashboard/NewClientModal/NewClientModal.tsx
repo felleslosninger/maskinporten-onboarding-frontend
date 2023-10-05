@@ -1,17 +1,16 @@
-import React, {createContext, createRef, useEffect, useState} from "react";
+import React, { createContext, createRef, useEffect, useState } from "react";
 import styles from "./styles.module.scss";
-import {Button, Label, Spinner} from "@digdir/design-system-react";
+import { Button, Label, Spinner } from "@digdir/design-system-react";
 import Modal from "../../common/Modal/Modal";
-import {useClientMutation} from "../../../hooks/api";
-import {ApiClient, RequestApiClientBody} from "../../../types/api";
+import { useClientMutation } from "../../../hooks/api";
+import { ApiClient, RequestApiClientBody } from "../../../types/api";
 import { CSSTransition } from "react-transition-group";
 import { exportJWK, importSPKI } from "jose";
 import { XMarkOctagonFillIcon } from "@navikt/aksel-icons";
 import Step1 from "./Step1";
 import Step3 from "./Step3";
 import Step2 from "./Step2";
-import {AxiosResponse} from "axios";
-
+import { AxiosResponse } from "axios";
 
 export type NewClientContextProps = {
   requestResponse: AxiosResponse<ApiClient, any> | undefined;
@@ -23,7 +22,7 @@ export type NewClientContextProps = {
     get: string[];
     set: (scopes: string[]) => void;
   };
-  description:  {
+  description: {
     get: string;
     set: (desc: string) => void;
   };
@@ -38,15 +37,16 @@ export type NewClientContextProps = {
   key: {
     get: string;
     set: (key: string) => void;
-  },
+  };
   isIntegrationChosen: {
-    get: boolean,
+    get: boolean;
     set: (isChosen: boolean) => void;
-  }
+  };
 };
 
-export const NewClientContext = createContext<NewClientContextProps | null>(null);
-
+export const NewClientContext = createContext<NewClientContextProps | null>(
+  null,
+);
 
 interface NewClientProps {
   env: string;
@@ -151,32 +151,32 @@ function NewClientModal(props: NewClientProps) {
         requestResponse: data,
         error: {
           get: errorMessage,
-          set: setErrorMessage
+          set: setErrorMessage,
         },
         scopes: {
           get: scopes,
-          set: setScopes
+          set: setScopes,
         },
         description: {
           get: description,
-          set: setDescription
+          set: setDescription,
         },
         kid: {
           get: kid,
-          set: setKid
+          set: setKid,
         },
         isKeys: {
           get: useKeys,
-          set: setUseKeys
+          set: setUseKeys,
         },
         key: {
           get: publicKey,
-          set: setPublicKey
+          set: setPublicKey,
         },
         isIntegrationChosen: {
           get: chosenIntegration,
-          set: setChosenIntegration
-        }
+          set: setChosenIntegration,
+        },
       }}
     >
       <Modal
