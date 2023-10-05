@@ -10,9 +10,9 @@ import {
   Tag,
 } from "@digdir/design-system-react";
 import styles from "./styles.module.scss";
-import { login } from "../../auth/login";
-import ContentContainer from "../../common/ContentContainer/ContentContainer";
-import { link } from "../../util/textTransforms";
+import { login } from "../auth/login";
+import ContentContainer from "../common/ContentContainer/ContentContainer";
+import { link } from "../util/textTransforms";
 import { useSearchParams } from "react-router-dom";
 
 const enkelttjenestenavn =

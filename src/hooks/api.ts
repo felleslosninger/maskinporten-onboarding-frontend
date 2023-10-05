@@ -33,6 +33,8 @@ export const useScopes = (env: string) => {
       return res.data;
     },
     retry: 0,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
   });
 };
 
@@ -48,6 +50,8 @@ export const usePublicScopes = (env: string) => {
       );
     },
     retry: 0,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
   });
 };
 
@@ -61,7 +65,9 @@ export const useClients = (env: string, enabled?: boolean) => {
       return res.data;
     },
     retry: 0,
-    enabled: enabled || true, // Avoids concurrency issues with refresh token
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    enabled: enabled, // Avoids concurrency issues with refresh token
   });
 };
 

@@ -13,5 +13,7 @@ export const useEnhet = (orgnr: string) => {
       return res.data;
     },
     retry: 0,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
   });
 };
