@@ -17,4 +17,4 @@ spec:
             - name: SIMPLIFIED_ONBOARDING_API_URL
               value: https://simplified-onboarding-api.staging.fellesdatakatalog.digdir.no
             - name: WHITELIST
-              value: entur:apc.demo,entur:api.1,banenor:traffic.update.read,datanorge:test/catalog.read,datanorge:catalog.read,skatteetaten:kravogbetaling,tiger:accessibleforall
+              value: entur:skyporten/demo,entur:apc.demo,entur:api.1,banenor:traffic.update.read,datanorge:test/catalog.read,datanorge:catalog.read,skatteetaten:kravogbetaling,tiger:accessibleforall
