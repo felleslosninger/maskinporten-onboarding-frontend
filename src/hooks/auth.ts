@@ -33,7 +33,6 @@ export const useUser = () => {
         return { isAuthenticated, user };
       }
     },
-    retry: 0,
   });
 };
 
@@ -47,6 +46,5 @@ export const useConfig = () => {
       });
       return res.data;
     },
-    retry: 0,
   });
 };

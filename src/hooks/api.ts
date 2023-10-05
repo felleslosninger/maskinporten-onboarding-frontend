@@ -32,9 +32,6 @@ export const useScopes = (env: string) => {
       const res = await axios.get<ApiScopes>(path, axiosConfig);
       return res.data;
     },
-    retry: 0,
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
   });
 };
 
@@ -49,9 +46,6 @@ export const usePublicScopes = (env: string) => {
         scope.allowed_integration_types.includes("maskinporten"),
       );
     },
-    retry: 0,
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
   });
 };
 
@@ -64,9 +58,6 @@ export const useClients = (env: string, enabled?: boolean) => {
       res.data.forEach((client) => (client.env = env));
       return res.data;
     },
-    retry: 0,
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
     enabled: enabled, // Avoids concurrency issues with refresh token
   });
 };

@@ -6,7 +6,15 @@ import "@altinn/figma-design-tokens/dist/tokens.css";
 import "./App.css";
 
 function App() {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: 0,
+        refetchOnMount: false,
+        refetchOnWindowFocus: false
+      }
+    }
+  });
 
   return (
     <QueryClientProvider client={queryClient}>
