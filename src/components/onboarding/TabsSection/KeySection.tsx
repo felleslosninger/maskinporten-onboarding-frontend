@@ -39,8 +39,7 @@ function KeySection() {
                 <code>
                   openssl req -newkey rsa:2048 -x509 -keyout key.pem -out
                   cert.pem -days 365
-                </code>
-                oppretter en ny nøkkel og selvsignert sertifikat
+                </code> oppretter en ny nøkkel og selvsignert sertifikat
               </li>
               <li>
                 <code>
