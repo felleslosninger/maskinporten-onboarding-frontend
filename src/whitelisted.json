@@ -3,5 +3,6 @@
   "entur:api.1",
   "banenor:traffic.update.read",
   "datanorge:test/catalog.read",
-  "datanorge:catalog.read"
+  "datanorge:catalog.read",
+  "nav:skyporten:entur.test.write"
 ]
