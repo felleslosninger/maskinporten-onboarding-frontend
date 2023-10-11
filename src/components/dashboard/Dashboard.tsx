@@ -116,6 +116,7 @@ function Dashboard({ user, config }: AuthProps) {
               </div>
             )}
           {!isLoading &&
+            !isError &&
             clientsData &&
             scopesData &&
             renderedScopes.map((scope) => (
