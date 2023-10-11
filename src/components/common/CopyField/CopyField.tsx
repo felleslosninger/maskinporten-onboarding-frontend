@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { ReactNode, useState } from "react";
 import styles from "./styles.module.scss";
 import { Label, Popover } from "@digdir/design-system-react";
 import { CheckmarkIcon } from "@navikt/aksel-icons";

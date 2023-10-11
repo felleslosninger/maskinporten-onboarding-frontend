@@ -1,15 +1,15 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import styles from "./styles.module.scss";
-import { useAllClientsInEnvironments } from "../../../hooks/api";
-import { Heading, Label, Paragraph, Select } from "@digdir/design-system-react";
+import { useClients } from "../../../hooks/api";
+import { Heading, Paragraph, Select } from "@digdir/design-system-react";
 import CodeLanguage from "./CodeLanguage";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { bold } from "../../util/textTransforms";
 import {
-  KeyHorizontalIcon,
-  ClipboardIcon,
   BranchingIcon,
+  ClipboardIcon,
+  KeyHorizontalIcon,
 } from "@navikt/aksel-icons";
 import { ApiClient } from "../../../types/api";
 import { useConfig } from "../../../hooks/auth";
@@ -23,9 +23,23 @@ interface Props {
 
 function CodeExample(props: Props) {
   const { data: config } = useConfig();
-  const { data: clients } = useAllClientsInEnvironments();
+  const { data: testClients } = useClients(
+    Object.keys(config || "")[0],
+    !!config,
+  );
+  const { data: prodClients } = useClients(
+    Object.keys(config || "")[1],
+    !!testClients,
+  );
+  const [clients, setClients] = useState<ApiClient[]>([]);
   const [selectValue, setSelectValue] = useState<string>();
   const [selectedTab, setSelectedTab] = useState(0);
+
+  useEffect(() => {
+    if (!!testClients && !!prodClients) {
+      setClients(testClients.concat(prodClients));
+    }
+  }, [testClients, prodClients]);
 
   const formatLabel = (client: ApiClient) => (
     <div className={styles.selectFormattedBox}>
@@ -45,7 +59,7 @@ function CodeExample(props: Props) {
     </div>
   );
 
-  const client_ids = clients?.filter(props.filter).map((client) => {
+  const client_ids = clients.filter(props.filter).map((client) => {
     return {
       label: client.clientId,
       formattedLabel: formatLabel(client),
@@ -70,9 +84,8 @@ function CodeExample(props: Props) {
     const conf = client && config ? config[client.env] : config?.["test"];
     return {
       __CLIENT_ID__: client?.clientId || "<CLIENT-UUID>",
-      __SCOPE__: client?.scopes.join(",") || "<SCOPE:WITHPREFIX>",
-      __MASKINPORTEN_URL__:
-        conf?.authorization_server || "__MASKINPORTEN_URL__",
+      __SCOPE__: client?.scopes.join(" ") || "<SCOPE:WITHPREFIX>",
+      __MASKINPORTEN_URL__: conf?.issuer || "__MASKINPORTEN_URL__",
       __MASKINPORTEN_TOKEN_URL__:
         conf?.token_endpoint || "__MASKINPORTEN_TOKEN_URL__",
       __KID__: client?.keys?.[0].kid || "__KID__",
@@ -80,7 +93,7 @@ function CodeExample(props: Props) {
   };
 
   const processCode = (codeString: string): string => {
-    const client = clients?.find((client) => {
+    const client = clients.find((client) => {
       return selectValue === `${client.env}:${client.clientId}`;
     });
 

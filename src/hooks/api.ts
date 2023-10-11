@@ -3,13 +3,12 @@ import axios from "axios";
 import {
   ApiClient,
   ApiClients,
-  ApiConfig,
   ApiScopes,
   RequestApiClientBody,
 } from "../types/api";
-import { QK_CONFIG } from "./auth";
 
 export const QK_SCOPES = "QK_SCOPES";
+export const QK_PUBLIC_SCOPES = "QK_PUBLIC_SCOPES";
 export const QK_CLIENTS = "QK_CLIENTS";
 
 const axiosConfig = { withCredentials: true };
@@ -18,6 +17,7 @@ declare global {
   interface Window {
     env: {
       SIMPLIFIED_ONBOARDING_API_URL: string;
+      WHITELIST: string;
     };
   }
 }
@@ -35,15 +35,30 @@ export const useScopes = (env: string) => {
   });
 };
 
-export const useClients = (env: string) => {
+export const usePublicScopes = (env: string) => {
   return useQuery({
-    queryKey: [QK_CLIENTS],
+    queryKey: [QK_PUBLIC_SCOPES],
+    queryFn: async () => {
+      const path = `${baseUrl}/api/${env}/scopes/all?accessible_for_all=true`;
+      const res = await axios.get<ApiScopes>(path, axiosConfig);
+      res.data.forEach((scope) => (scope.scope = scope.name));
+      return res.data.filter((scope) =>
+        scope.allowed_integration_types.includes("maskinporten"),
+      );
+    },
+  });
+};
+
+export const useClients = (env: string, enabled?: boolean) => {
+  return useQuery({
+    queryKey: [QK_CLIENTS, env],
     queryFn: async () => {
       const path = `${baseUrl}/api/${env}/datasharing/consumer/client`;
       const res = await axios.get<ApiClients>(path, axiosConfig);
+      res.data.forEach((client) => (client.env = env));
       return res.data;
     },
-    retry: 0,
+    enabled: enabled, // Avoids concurrency issues with refresh token
   });
 };
 
@@ -77,37 +92,5 @@ export const useClientDeleteMutation = (env: string) => {
       client.invalidateQueries({ queryKey: [QK_CLIENTS] });
       return res;
     },
-  });
-};
-
-/* NOT CURRENTLY IN USE */
-export const useAllClientsInEnvironments = () => {
-  return useQuery({
-    queryKey: [QK_CONFIG, QK_CLIENTS],
-    queryFn: async () => {
-      const configPath = `${baseUrl}/api/config`;
-      const configRes = await axios.get<ApiConfig>(configPath, axiosConfig);
-      const envs = Object.keys(configRes.data);
-
-      let clients: ApiClient[] = [];
-
-      const requests = envs.map((env) => {
-        const path = `${baseUrl}/api/${env}/datasharing/consumer/client`;
-        return axios.get<ApiClients>(path, axiosConfig).then((res) => {
-          res.data.forEach((client) => {
-            client.env = env;
-          });
-          return res.data;
-        });
-      });
-
-      const responses = await axios.all(requests);
-      responses.forEach((res) => {
-        clients = clients.concat(res);
-      });
-
-      return clients;
-    },
-    retry: 0,
   });
 };

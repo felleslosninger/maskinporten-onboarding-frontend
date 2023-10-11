@@ -4,8 +4,38 @@
   display: flex;
   justify-content: space-between;
   margin-top: 1rem;
-  padding: 2rem;
+  margin-bottom: 1rem;
   position: sticky;
+
+  h1 {
+    margin-left: 2rem;
+  }
+}
+
+.tabs {
+  display: flex;
+  cursor: pointer;
+  gap: 0.5rem;
+  z-index: 99;
+  top: 0.19rem;
+  position: relative;
+
+  * {
+    cursor: pointer;
+  }
+
+  .inactive {
+    background-color: $colors-background-blue;
+    border-bottom: 0.2rem solid $colors-semantic-action-default;
+  }
+
+  .active {
+    border-bottom: 0.25rem solid $colors-white;
+  }
+}
+
+.tabContent {
+  flex: 1;
 }
 
 .infoContainer {
@@ -15,27 +45,10 @@
 .envPicker {
   display: flex;
   align-items: center;
-}
+  gap: 1rem;
 
-.picker {
-  margin-left: 0.5rem;
-  padding: 0.3rem;
-  border-radius: 0.3rem;
-  background-color: $colors-gray;
-
-  button {
-    border: 0;
-    font-size: 1rem;
-    padding: 0.3rem 0.8rem;
-    color: $colors-interface-info-900;
-    border-radius: 0.3rem;
-    cursor: pointer;
-    background-color: transparent;
-
-    &.active {
-      color: $colors-white;
-      background-color: $colors-interface-info-900;
-    }
+  label {
+    white-space: nowrap;
   }
 }
 
@@ -59,7 +72,25 @@
 }
 
 .noScopesBox {
+  margin-top: 3rem;
+  padding: 2rem;
   display: flex;
-  align-items: center;
+  gap: 0.5rem;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+
+  .noScopesImage {
+    width: 70%;
+  }
+
+  .noScopesText {
+    font-size: 1rem;
+    color: $colors-black;
+  }
+
+  .noScopesHeader {
+    color: $colors-semantic-action-default;
+    font-size: 1.5rem;
+  }
 }
