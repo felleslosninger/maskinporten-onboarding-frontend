@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styles from "./styles.module.scss";
-import { HelpText, Label, Radio, TextArea } from "@digdir/design-system-react";
+import { HelpText, Label, Radio, Textarea } from "@digdir/design-system-react";
 import { link } from "../../util/textTransforms";
 import { customAlphabet } from "nanoid";
 import { NewClientContext } from "./NewClientModal";
@@ -77,7 +77,7 @@ const Step2 = () => {
 
       {context.isKeys.get && (
         <div className={styles.keyTextArea}>
-          <TextArea
+          <Textarea
             label={"Legg til public-delen av nøkkelen du vil bruke"}
             required
             value={context.key.get}

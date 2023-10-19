@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styles from "./styles.module.scss";
-import { Select, TextField } from "@digdir/design-system-react";
+import { Select, Textfield } from "@digdir/design-system-react";
 import { usePublicScopes, useScopes } from "../../../hooks/api";
 import { NewClientContext } from "./NewClientModal";
 
@@ -34,17 +34,17 @@ const Step1 = (props: Props) => {
     <>
       <div className={styles.infoFields}>
         <div className={styles.required}>
-          <TextField
+          <Textfield
             label={"Valgt miljø:"}
             value={props.env}
-            readOnly={"readonlyInfo"}
+            readOnly
           />
         </div>
         <div className={styles.required}>
-          <TextField
+          <Textfield
             label={"Valgt tilgang:"}
             value={props.scope}
-            readOnly={"readonlyInfo"}
+            readOnly
           />
         </div>
       </div>
@@ -59,7 +59,7 @@ const Step1 = (props: Props) => {
       </div>
 
       <div className={styles.required}>
-        <TextField
+        <Textfield
           label={"Hva skal du bruke integrasjonen til?"}
           required
           value={context.description.get}

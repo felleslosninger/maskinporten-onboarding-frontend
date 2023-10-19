@@ -3,8 +3,8 @@ import styles from "./styles.module.scss";
 import {
   Heading,
   Label,
-  Paragraph,
-  ToggleButtonGroup,
+  LegacyToggleButtonGroup,
+  Paragraph
 } from "@digdir/design-system-react";
 import InfoBox from "../InfoBox/InfoBox";
 import { bold } from "../../util/textTransforms";
@@ -29,7 +29,7 @@ function ConfigBox() {
     <>
       <div className={styles.configHeader}>
         <Heading size={"large"}>Konfigurasjonsfelter</Heading>
-        <ToggleButtonGroup
+        <LegacyToggleButtonGroup
           items={items}
           selectedValue={selectedConfig}
           onChange={(value) => setSelectedConfig(value)}
