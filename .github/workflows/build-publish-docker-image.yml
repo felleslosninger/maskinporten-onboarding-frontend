@@ -10,11 +10,8 @@ env:
   TRIVY_OFFLINE_SCAN: true
 
   # Expose these to VARS in the various ENVS later...
-  SIMPLIFIED_ONBOARDING_API_URL: "http://localhost:8080",
+  SIMPLIFIED_ONBOARDING_API_URL: "http://localhost:8080"
   WHITELIST: "entur:apc.demo,entur:api.1,banenor:traffic.update.read,datanorge:test/catalog.read,datanorge:catalog.read,tiger:accessibleforall"
-
-  # Might need this later
-  CALLBACK_URL: ${{secrets.CALLBACK_URL }}
 
 jobs:
   build-publish-image:
