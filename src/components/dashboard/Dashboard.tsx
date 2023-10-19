@@ -4,7 +4,7 @@ import {
   Heading,
   Ingress,
   Label,
-  ToggleButtonGroup,
+  LegacyToggleButtonGroup,
 } from "@digdir/design-system-react";
 import withAuth, { AuthProps } from "../auth/withAuth";
 import { useClients, usePublicScopes, useScopes } from "../../hooks/api";
@@ -81,7 +81,7 @@ function Dashboard({ user, config }: AuthProps) {
           <Heading size={"small"}>Mine tilganger</Heading>
           <div className={styles.envPicker}>
             <Label>Valgt miljø:</Label>
-            <ToggleButtonGroup
+            <LegacyToggleButtonGroup
               items={Object.keys(config).map((env) => ({
                 label: env.toUpperCase(),
                 value: env,

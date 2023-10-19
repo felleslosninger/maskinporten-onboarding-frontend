@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Modal from "../Modal/Modal";
-import { Button, TextField } from "@digdir/design-system-react";
+import { Button, Textfield } from "@digdir/design-system-react";
 import styles from "./styles.module.scss";
 
 interface Props {
@@ -12,12 +12,12 @@ interface Props {
 }
 
 function ConfirmAlert(props: Props) {
-  const textRef = React.createRef<HTMLInputElement>();
-  const [inputError, setInputError] = useState(false);
+  const [text, setText] = useState<string>();
+  const [error, setError] = useState(false);
 
   const validateAndConfirm = () => {
-    if (!textRef.current || !(textRef.current.value === props.confirmText)) {
-      setInputError(true);
+    if (!text || !(text === props.confirmText)) {
+      setError(true);
       return;
     }
 
@@ -27,10 +27,12 @@ function ConfirmAlert(props: Props) {
 
   return (
     <Modal title={props.title} open={props.open} closeModal={props.closeModal}>
-      <TextField
+      <Textfield
         label={"Fyll ut boksen under for å bekrefte"}
-        ref={textRef}
-        isValid={!inputError}
+        type={"text"}
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        error={error}
         placeholder={props.confirmText}
       />
       <div className={styles.buttonRow}>
