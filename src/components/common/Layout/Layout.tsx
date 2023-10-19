@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../Header/Header";
 import { Route, Routes } from "react-router-dom";
-import Landingpage from "../../landing/Landingpage/Landingpage";
+import Landingpage from "../../landing/Landingpage";
 import Onboardingpage from "../../onboarding/Onboardingpage";
 import Dashboard from "../../dashboard/Dashboard";
 import Footer from "../Footer/Footer";

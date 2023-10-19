@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./styles.module.scss";
 import StyledLink from "../StyledLink/StyledLink";
-import { FigureIcon, EnvelopeClosedIcon, PhoneIcon } from "@navikt/aksel-icons";
+import { EnvelopeClosedIcon, FigureIcon, PhoneIcon } from "@navikt/aksel-icons";
 
 function Footer() {
   return (

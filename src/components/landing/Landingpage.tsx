@@ -2,17 +2,17 @@ import React from "react";
 import {
   Accordion,
   Alert,
+  Button,
   Heading,
   Ingress,
   Label,
   Paragraph,
+  Tag,
 } from "@digdir/design-system-react";
-import { Button, Tag } from "@digdir/design-system-react";
-import { ReactComponent as MpSvg } from "../../../assets/ikoner/SVG/Maskinporten.svg";
 import styles from "./styles.module.scss";
-import { login } from "../../auth/login";
-import ContentContainer from "../../common/ContentContainer/ContentContainer";
-import { link } from "../../util/textTransforms";
+import { login } from "../auth/login";
+import ContentContainer from "../common/ContentContainer/ContentContainer";
+import { link } from "../util/textTransforms";
 import { useSearchParams } from "react-router-dom";
 
 const enkelttjenestenavn =
@@ -43,8 +43,8 @@ function Landingpage() {
                 innehavere.
               </Paragraph>
               <Paragraph>
-                Dersom du ikke kjenner deg igjen i den beskrivelsen, kan du prøve
-                å logge inn med enkelttjeneste-tilgang.
+                Dersom du ikke kjenner deg igjen i den beskrivelsen, kan du
+                prøve å logge inn med enkelttjeneste-tilgang.
               </Paragraph>
             </>
           ) : (
@@ -116,7 +116,10 @@ function Landingpage() {
         </Accordion.Item>
         <Accordion.Item>
           <Accordion.Header>
-            <Label size={"large"}>Hva hvis jeg ikke får logget inn eller mangler rettigheter som må til?</Label>
+            <Label size={"large"}>
+              Hva hvis jeg ikke får logget inn eller mangler rettigheter som må
+              til?
+            </Label>
           </Accordion.Header>
           <Accordion.Content>
             <Paragraph spacing>
@@ -177,7 +180,9 @@ function Landingpage() {
                 "tilgangsstyrer",
                 true,
               )}{" "}
-              som også kan bistå med dette.
+              i kombinasjon med enkelttjenesten "{enkelttjenestenavn}". Denne
+              personen vil da kunne delegere enkelttjenesten videre til andre
+              personer.
             </Paragraph>
             <Paragraph spacing>
               Fremgangsmåten for å tildele en enkelttjeneste er beskrevet{" "}

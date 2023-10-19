@@ -61,6 +61,18 @@ const ClientDescription = (props: ClientDescriptionProps) => {
               </CopyField>
             </div>
           )}
+          {props.client.scopes.length > 1 && (
+            <div>
+              {bold("Inkluderte scopes:")}
+              <div className={styles.scopeFields}>
+                {props.client.scopes.map((scope, index) => (
+                  <CopyField copyValue={scope} key={index}>
+                    {scope}
+                  </CopyField>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         <Button
