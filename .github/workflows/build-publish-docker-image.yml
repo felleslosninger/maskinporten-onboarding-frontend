@@ -1,0 +1,68 @@
+name: Build and publish Docker image & update image version in argoCD repo
+
+on:
+  push:
+    branches: [dev]
+
+env:
+  IMAGE-NAME: selvbetjening-onboarding-maskinporten-gui
+  NODE_ENV: production
+  TRIVY_OFFLINE_SCAN: true
+
+  # Expose these to VARS in the various ENVS later...
+  SIMPLIFIED_ONBOARDING_API_URL: "http://localhost:8080",
+  WHITELIST: "entur:apc.demo,entur:api.1,banenor:traffic.update.read,datanorge:test/catalog.read,datanorge:catalog.read,tiger:accessibleforall"
+
+  # Might need this later
+  CALLBACK_URL: ${{secrets.CALLBACK_URL }}
+
+jobs:
+  build-publish-image:
+    runs-on: ubuntu-latest
+    outputs:
+      imagetag: ${{ steps.output-image-tag.outputs.imagetag }}
+      imagedigest: ${{ steps.output-image-digest.outputs.imagedigest }}
+      imagename: ${{ steps.output-image-name.outputs.imagename }}
+
+    steps:
+      - name: Set imagetag as env variable
+        run: echo "IMAGETAG=$(date +'%Y-%m-%d-%H%M')-${GITHUB_SHA::8}" >> "$GITHUB_ENV"
+
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Build image with Dockerfile
+        run: docker build -t ${{ secrets.REGISTRY_URL }}/${{env.IMAGE-NAME}}:${{env.IMAGETAG}} .
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ secrets.REGISTRY_URL }}/${{env.IMAGE-NAME}}:${{env.IMAGETAG}}
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
+
+      - name: "Login Azure docker container registery"
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.REGISTRY_URL }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
+      - name: "Push image"
+        run: |
+          docker push ${{ secrets.REGISTRY_URL }}/${{env.IMAGE-NAME}}:${{env.IMAGETAG}}
+
+      - run: |
+          echo "IMAGE_DIGEST=$(docker inspect --format='{{.RepoDigests}}' ${{ secrets.REGISTRY_URL }}/${{env.IMAGE-NAME}}:${{env.IMAGETAG}}|cut -d '@' -f 2|cut -d ']' -f 1)" >> "$GITHUB_ENV"
+
+      - id: output-image-tag
+        run: echo "::set-output name=imagetag::${{env.IMAGETAG}}"
+
+      - id: output-image-digest
+        run: echo "::set-output name=imagedigest::${{env.IMAGE_DIGEST}}"
+
+      - id: output-image-name
+        run: echo "::set-output name=imagename::${{env.IMAGE-NAME}}"
