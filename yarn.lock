@@ -1897,17 +1897,17 @@
     "@svgr/plugin-svgo" "^5.5.0"
     loader-utils "^2.0.0"
 
-"@tanstack/query-core@^5.0.0-alpha.43":
-  version "5.0.0-alpha.55"
-  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.0.0-alpha.55.tgz#b2a5e28ec78652d0f6f9730abd3ec5546ada724e"
-  integrity sha512-Ektl29X8ZoMLRb7N8u4wwBAVbHBrzPb4JzTVRObOaZ3TZx6DQJS/ST22ZOXE2MscxD1sRS8y6YmLK4KbuUAkIw==
+"@tanstack/query-core@5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.0.0.tgz#b37a50bb3a4f54336b6131db00b72cd29e79b480"
+  integrity sha512-Y1BpiA6BblJd/UlVqxEVeAG7IACn568YJuTTItAiecBI7En+33g780kg+/8lhgl+BzcUPN7o+NjBrSRGJoemyQ==
 
-"@tanstack/react-query@^5.0.0-alpha.55":
-  version "5.0.0-alpha.55"
-  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-5.0.0-alpha.55.tgz#8a90bd5ee4551e167bf6aee06b8d3c1b2b328457"
-  integrity sha512-pGwCicNQ2amUV5nz7Qs1aVYUCuEXDlozApIwfZWAHe8A9CELBFp7nwe1wI3ajrXx08SjQyM0wZJcdMTdAU6UTg==
+"@tanstack/react-query@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-5.0.0.tgz#707fecb71cf53ae098f682f45520d7b1640bcaa9"
+  integrity sha512-diQoC8FNBcO5Uf5yuaJlXthTtbO1xM8kzOX+pSBUMT9n/cqQ/u1wJGCtukvhDWA+6j07WmIj4bfqNbd2KOB6jQ==
   dependencies:
-    "@tanstack/query-core" "^5.0.0-alpha.43"
+    "@tanstack/query-core" "5.0.0"
 
 "@testing-library/dom@^8.5.0":
   version "8.20.0"
@@ -5101,6 +5101,11 @@ htmlparser2@^6.1.0:
     domhandler "^4.0.0"
     domutils "^2.5.2"
     entities "^2.0.0"
+
+http-cache-semantics@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/http-cache-semantics/-/http-cache-semantics-4.1.1.tgz#abe02fcb2985460bf0323be664436ec3476a6d5a"
+  integrity sha512-er295DKPVsV82j5kw1Gjt+ADA/XYHsajl82cGNQG2eyoPkvgUhX+nDIyelzhIWbbsXP39EHcI6l5tYs2FYqYXQ==
 
 http-deceiver@^1.2.7:
   version "1.2.7"
