@@ -75,7 +75,7 @@ function ScopeDetails(props: ScopeDetailProps) {
               {props.scope.scope}
               {props.scope.accessible_for_all && (
                 <Tag
-                  color={"secondary"}
+                  color={"second"}
                   variant={"outlined"}
                   size={"small"}
                   className={styles.publicTag}
