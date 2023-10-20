@@ -2,7 +2,7 @@ name: Build and publish Docker image & update image version in argoCD repo
 
 on:
   push:
-    branches: [dev]
+    branches: [main]
 
 env:
   IMAGE-NAME: selvbetjening-onboarding-maskinporten-gui
