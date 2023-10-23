@@ -4,13 +4,12 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "weekly"
-      day: "sunday"
+      interval: "daily"
+    open-pull-requests-limit: 10
 
   # Maintain dependencies for yarn
   - package-ecosystem: "npm"
     directory: "/"
-    target-branch: "dev"
     schedule:
-      interval: "weekly"
-      day: "sunday"
+      interval: "daily"
+    open-pull-requests-limit: 10
