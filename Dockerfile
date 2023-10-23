@@ -1,4 +1,4 @@
-FROM node:19.9.0 as build
+FROM node:20.8.1 as build
 WORKDIR /app
 COPY package.json yarn.lock ./
 
@@ -13,7 +13,7 @@ COPY src ./src
 COPY public ./public
 RUN npm run build
 
-FROM node:19.9.0-alpine3.17
+FROM node:20.8.1-alpine3.18
 RUN apk add gettext
 
 ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
