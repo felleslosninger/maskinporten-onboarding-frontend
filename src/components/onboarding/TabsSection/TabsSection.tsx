@@ -9,6 +9,7 @@ import {
 import KeySection from "./KeySection";
 import OtherSection from "./OtherSection";
 import SertificateSection from "./SertificateSection";
+import ContentContainer from "../../common/ContentContainer/ContentContainer";
 
 function TabsSection() {
   const [selectedTab, setSelectedTab] = useState(1);
@@ -44,13 +45,13 @@ function TabsSection() {
           <Label size={"large"}>Andre fremgangsmåter</Label>
         </div>
       </div>
-      <div className={styles.tabsContentContainer}>
+      <ContentContainer className={styles.tabsContentContainer}>
         <div className={styles.tabsContent}>
           {selectedTab === 1 && <SertificateSection />}
           {selectedTab === 2 && <KeySection />}
           {selectedTab === 3 && <OtherSection />}
         </div>
-      </div>
+      </ContentContainer>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ApiPublicScopes } from "../../../types/api";
+import { ApiScopes } from "../../../types/api";
 import {
   Button,
   Heading,
@@ -11,7 +11,7 @@ import { PlusIcon } from "@navikt/aksel-icons";
 import styles from "./styles.module.scss";
 
 interface Props {
-  scopeList: ApiPublicScopes;
+  scopeList: ApiScopes;
   resultsPerPage: number;
   env: string;
 }

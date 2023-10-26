@@ -11,7 +11,7 @@ import { useClients, usePublicScopes, useScopes } from "../../hooks/api";
 import styles from "./styles.module.scss";
 import ScopeDetails from "./ScopeDetails/ScopeDetails";
 import ContentContainer from "../common/ContentContainer/ContentContainer";
-import OnboardingCard from "../common/OnboardingCard/OnboardingCard";
+import OnboardingCard from "./OnboardingCard/OnboardingCard";
 import { useQueryClient } from "@tanstack/react-query";
 import ScopeSkeleton from "./ScopeSkeleton";
 import PublicScopes from "./PublicScopes/PublicScopes";
@@ -51,7 +51,7 @@ function Dashboard({ user, config }: AuthProps) {
         });
         setPublicScopeList(list);
       });
-  }, [clientsData, isLoading, scopesData]);
+  }, [clientsData, isLoading, scopesData, isError]);
 
   useEffect(() => {
     const publicScopess =

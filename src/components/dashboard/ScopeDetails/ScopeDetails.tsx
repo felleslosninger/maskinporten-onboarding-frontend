@@ -11,6 +11,7 @@ import {
   TerminalIcon,
 } from "@navikt/aksel-icons";
 import { useEnhet } from "../../../hooks/brreg";
+import {useMediaQuery} from "react-responsive";
 
 interface ScopeDetailProps {
   scope: ApiScope;
@@ -20,6 +21,7 @@ interface ScopeDetailProps {
 
 function ScopeDetails(props: ScopeDetailProps) {
   const { data: enhet, isLoading, isError } = useEnhet(props.scope.owner_orgno);
+  const isLargeScreen = useMediaQuery({query: '(min-width: 1300px)'});
   const [showModal, setShowModal] = useState(false);
   const currentClients = props.clients.filter((client) =>
     client.scopes.includes(props.scope.scope),
@@ -94,7 +96,7 @@ function ScopeDetails(props: ScopeDetailProps) {
           <TerminalIcon />
           <Label>
             {currentClients.length}{" "}
-            {currentClients.length === 1 ? "integrasjon" : "integrasjoner"}
+            {isLargeScreen && (currentClients.length === 1 ? "integrasjon" : "integrasjoner")}
           </Label>
         </div>
       </Accordion.Header>

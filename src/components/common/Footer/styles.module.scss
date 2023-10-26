@@ -1,4 +1,5 @@
 @import "src/style/variables";
+@import "src/style/mixins";
 
 .footer {
   display: flex;
@@ -14,4 +15,8 @@
   height: 100%;
   justify-content: space-evenly;
   width: $content-width-max;
+
+  @include respond-to("small") {
+    flex-direction: column;
+  }
 }

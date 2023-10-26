@@ -1,7 +1,7 @@
 import React from "react";
 import { Label } from "@digdir/design-system-react";
 import { ReactComponent as FokusSvg } from "../../../assets/fokus.svg";
-import StyledLink from "../StyledLink/StyledLink";
+import StyledLink from "../../common/StyledLink/StyledLink";
 import styles from "./styles.module.scss";
 
 function OnboardingCard() {
@@ -10,7 +10,7 @@ function OnboardingCard() {
       <div className={styles.container}>
         <div className={styles.textSection}>
           <Label>Trenger du hjelp til å komme i gang?</Label>
-          <StyledLink>Gå til Onboardingsguiden</StyledLink>
+          <div className={styles.text}>Gå til Onboardingsguiden</div>
         </div>
         <FokusSvg className={styles.illustration} />
       </div>

@@ -7,13 +7,16 @@ import { ReactComponent as PersonSvg } from "../../../assets/ikoner/SVG/Person.s
 import { Button, Label } from "@digdir/design-system-react";
 import { login, logout } from "../../auth/login";
 import StyledLink from "../StyledLink/StyledLink";
-import { useLocation } from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import { Dropdown } from "../Dropdown";
-import { ChevronRightIcon, LeaveIcon } from "@navikt/aksel-icons";
+import {BroadcastIcon, ChevronRightIcon, LeaveIcon, MenuHamburgerIcon} from "@navikt/aksel-icons";
+import {useMediaQuery} from "react-responsive";
 
 function Header() {
   const { data, isLoading } = useUser();
+  const isSmallScreen = useMediaQuery({query: '(max-width: 767px)'});
   const location = useLocation();
+  const navigate = useNavigate();
   const isLoggedIn = !isLoading && data!!.isAuthenticated;
 
   return (
@@ -60,50 +63,80 @@ function Header() {
               vilkår
             </StyledLink>
           </div>
-          {isLoggedIn ? (
-            <Dropdown>
-              <Dropdown.Trigger>
-                <Button className={styles.userInfo} variant={"quiet"}>
-                  <div>
-                    <Label size={"small"}>{data!!.user!!.name}</Label>
-                    <Label size={"small"}>{data!!.user!!.reporteeName}</Label>
-                  </div>
-                  <BedriftSvg className={styles.loginSvg} />
-                </Button>
-              </Dropdown.Trigger>
-              <Dropdown.Menu>
+          <Dropdown>
+            <Dropdown.Trigger>
+              <Button className={styles.userInfo} variant={"quiet"}>
+                {!isSmallScreen && isLoggedIn && (
+                  <>
+                    <div>
+                      <Label size={"small"}>{data!!.user!!.name}</Label>
+                      <Label size={"small"}>{data!!.user!!.reporteeName}</Label>
+                    </div>
+                    <BedriftSvg className={styles.svg} />
+                  </>
+                )}
+
+                {!isSmallScreen && !isLoggedIn && (
+                  <>
+                    <Label size={"medium"}>LOGG INN</Label>
+                    <PersonSvg className={styles.svg} />
+                  </>
+                )}
+
+                {isSmallScreen && (
+                  <MenuHamburgerIcon className={styles.svg} />
+                )}
+              </Button>
+            </Dropdown.Trigger>
+            <Dropdown.Menu>
+              {isSmallScreen && (
+                <>
+                  {isLoggedIn && (
+                    <Dropdown.Item onSelect={() => navigate("/dashboard")}>
+                      oversikt
+                      <ChevronRightIcon className={styles.svg} />
+                    </Dropdown.Item>
+                  )}
+
+                  {!isLoggedIn && (
+                    <Dropdown.Item onSelect={() => navigate("/")}>
+                      hjem
+                      <ChevronRightIcon className={styles.svg} />
+                    </Dropdown.Item>
+                  )}
+
+                  <Dropdown.Item onSelect={() => navigate("/guide")}>
+                    onboardingsguide
+                    <ChevronRightIcon className={styles.svg} />
+                  </Dropdown.Item>
+                  <Dropdown.Item className={styles.menuLink} onSelect={() => navigate("/terms")}>
+                    vilkår
+                    <ChevronRightIcon className={styles.svg} />
+                  </Dropdown.Item>
+                </>
+              )}
+
+              {isLoggedIn && (
                 <Dropdown.Item className={styles.logoutLabel} onSelect={logout}>
                   Logg ut
-                  <LeaveIcon className={styles.loginSvg} />
+                  <LeaveIcon className={styles.svg} />
                 </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          ) : (
-            <Dropdown>
-              <Dropdown.Trigger>
-                <Button className={styles.loginButton} variant={"quiet"}>
-                  <Label size={"medium"}>LOGG INN</Label>
-                  <PersonSvg className={styles.loginSvg} />
-                </Button>
-              </Dropdown.Trigger>
-              <Dropdown.Menu>
-                <Dropdown.Item
-                  className={styles.loginLabel}
-                  onSelect={() => login(true)}
-                >
-                  <Label size={"medium"}>... som daglig leder</Label>
-                  <ChevronRightIcon className={styles.loginSvg} />
-                </Dropdown.Item>
-                <Dropdown.Item
-                  className={styles.loginLabel}
-                  onSelect={() => login(false)}
-                >
-                  <Label size={"medium"}>... med enkelttjeneste-tilgang</Label>
-                  <ChevronRightIcon className={styles.loginSvg} />
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          )}
+              )}
+
+              {!isLoggedIn && (
+                <>
+                  <Dropdown.Item className={styles.loginLabel} onSelect={() => login(true)}>
+                    <Label size={"medium"}>{isSmallScreen ? "Logg inn" : "..."} som daglig leder</Label>
+                    <ChevronRightIcon className={styles.svg} />
+                  </Dropdown.Item>
+                  <Dropdown.Item className={styles.loginLabel} onSelect={() => login(false)}>
+                    <Label size={"medium"}>{isSmallScreen ? "Logg inn" : "..."} med enkelttjeneste-tilgang</Label>
+                    <ChevronRightIcon className={styles.svg} />
+                  </Dropdown.Item>
+                </>
+              )}
+            </Dropdown.Menu>
+          </Dropdown>
         </>
       </div>
     </header>
