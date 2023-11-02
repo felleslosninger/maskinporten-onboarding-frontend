@@ -1670,10 +1670,10 @@
   resolved "https://registry.yarnpkg.com/@navikt/aksel-icons/-/aksel-icons-3.4.2.tgz#fa858e1a5fb0557d61b62ad7cdf0d75e26fc89d7"
   integrity sha512-9fj+Jb4UrX3SDDzqJpKP3fvizdxtACIFNXgDiPaP/N/61pbeY4tZz/zrtWGtExLpDeg7dAyaiFH/hfo7nBg6nw==
 
-"@navikt/aksel-icons@^4.4.0":
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/@navikt/aksel-icons/-/aksel-icons-4.4.0.tgz#c5a5086226e7a738da887f253b0d37675db0e2ac"
-  integrity sha512-0ocpEXeg8doTfVBnjqqxvuMcBrAzUKMKBUewlJ1hyma53VLWVBfDQZqlr/9QvvWyN5wx8Go4jrwVye3AViXirg==
+"@navikt/aksel-icons@^5.9.1":
+  version "5.9.1"
+  resolved "https://registry.yarnpkg.com/@navikt/aksel-icons/-/aksel-icons-5.9.1.tgz#161559aed12119b6f8e797864106fc1bec087575"
+  integrity sha512-Vvxpp29MA2T28lzOSCceGA9VhiveLETmpDyJUNqtR03wsqBjvbK0BEkenQE4XW2esaIEdudLiB5wcXhAOmQQPQ==
 
 "@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1":
   version "5.1.1-v1"
