@@ -222,7 +222,7 @@ function NewClientModal(props: NewClientProps) {
           <div className={styles.modalButtons}>
             {step === 1 && (
               <>
-                <Button variant={"outline"} onClick={props.closeModal}>
+                <Button variant={"tertiary"} onClick={props.closeModal}>
                   Avbryt
                 </Button>
                 <Button onClick={onNeste} disabled={description.length === 0}>
@@ -232,7 +232,7 @@ function NewClientModal(props: NewClientProps) {
             )}
             {step === 2 && (
               <>
-                <Button variant={"outline"} onClick={onForrige}>
+                <Button variant={"tertiary"} onClick={onForrige}>
                   Forrige
                 </Button>
                 <Button
@@ -242,7 +242,7 @@ function NewClientModal(props: NewClientProps) {
                   }
                 >
                   {isLoading && (
-                    <Spinner variant={"interaction"} title={"Oppretter integrasjon"} />
+                    <Spinner size={"small"} variant={"interaction"} title={"Oppretter integrasjon"} />
                   )}
                   {isLoading ? "Oppretter integrasjon" : "Opprett integrasjon"}
                 </Button>
@@ -258,7 +258,7 @@ function NewClientModal(props: NewClientProps) {
               </>
             )}
             {step === 3 && (
-              <Button variant={"outline"} onClick={props.closeModal}>
+              <Button variant={"tertiary"} onClick={props.closeModal}>
                 Tilbake til oversikten
               </Button>
             )}

@@ -34,7 +34,7 @@ function Modal(props: ModalProps) {
         <div className={styles.modal}>
           <div className={styles.card} onClick={(e) => e.stopPropagation()}>
             <Button
-              variant={"quiet"}
+              variant={"tertiary"}
               onClick={props.closeModal}
               icon={<XMarkIcon />}
               className={styles.closeButton}

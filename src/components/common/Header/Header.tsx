@@ -9,7 +9,7 @@ import { login, logout } from "../../auth/login";
 import StyledLink from "../StyledLink/StyledLink";
 import {useLocation, useNavigate} from "react-router-dom";
 import { Dropdown } from "../Dropdown";
-import {BroadcastIcon, ChevronRightIcon, LeaveIcon, MenuHamburgerIcon} from "@navikt/aksel-icons";
+import {ChevronRightIcon, LeaveIcon, MenuHamburgerIcon} from "@navikt/aksel-icons";
 import {useMediaQuery} from "react-responsive";
 
 function Header() {
@@ -68,7 +68,7 @@ function Header() {
           </div>
           <Dropdown>
             <Dropdown.Trigger>
-              <Button className={styles.userInfo} variant={"quiet"}>
+              <Button className={styles.userInfo} variant={"tertiary"}>
                 {!isSmallScreen && isLoggedIn && (
                   <>
                     <div>

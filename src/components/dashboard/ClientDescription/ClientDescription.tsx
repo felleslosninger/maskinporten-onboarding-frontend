@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ApiClient } from "../../../types/api";
 import styles from "../ClientDescription/styles.module.scss";
-import { Button, Heading, Popover } from "@digdir/design-system-react";
+import {Button, Heading, Tooltip} from "@digdir/design-system-react";
 import { BagdeIcon, KeyHorizontalIcon, TrashIcon } from "@navikt/aksel-icons";
 import { useClientDeleteMutation } from "../../../hooks/api";
 import ConfirmAlert from "../../common/ConfirmAlert/ConfirmAlert";
@@ -16,7 +16,6 @@ interface ClientDescriptionProps {
 const ClientDescription = (props: ClientDescriptionProps) => {
   const { mutate: deleteClient } = useClientDeleteMutation(props.env);
   const [modalOpen, setModalOpen] = useState(false);
-  const [showPopover, setShowPopover] = useState(false);
 
   return (
     <div className={styles.container}>
@@ -30,20 +29,13 @@ const ClientDescription = (props: ClientDescriptionProps) => {
         />
       )}
       <div className={styles.content}>
-        <div
-          className={styles.icon}
-          onMouseOver={() => setShowPopover(true)}
-          onMouseLeave={() => setShowPopover(false)}
-        >
-          <Popover
+        <div className={styles.icon}>
+          <Tooltip
+            content={`Denne integrasjonen bruker ${props.client.keys ? "nøkkel" : "virksomhetssertifikat"}`}
             placement={"top"}
-            variant={"info"}
-            trigger={props.client.keys ? <KeyHorizontalIcon /> : <BagdeIcon />}
-            open={showPopover}
           >
-            Denne integrasjonen bruker{" "}
-            {props.client.keys ? "nøkkel" : "virksomhetssertifikat"}
-          </Popover>
+            {props.client.keys ? <KeyHorizontalIcon /> : <BagdeIcon />}
+          </Tooltip>
         </div>
         <div className={styles.info}>
           <Heading size={"xsmall"}>{props.client.description}</Heading>
@@ -76,7 +68,7 @@ const ClientDescription = (props: ClientDescriptionProps) => {
         </div>
 
         <Button
-          variant={"quiet"}
+          variant={"tertiary"}
           color={"danger"}
           className={styles.deleteButton}
           onClick={() => setModalOpen(true)}

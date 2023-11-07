@@ -43,7 +43,7 @@ function PublicScopes(props: Props) {
     <div className={styles.container}>
       {!showList && (
         <Button
-          variant={"quiet"}
+          variant={"tertiary"}
           size={"large"}
           onClick={() => setShowList(true)}
         >

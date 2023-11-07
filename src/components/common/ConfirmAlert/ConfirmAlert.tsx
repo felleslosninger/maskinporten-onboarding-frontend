@@ -39,7 +39,7 @@ function ConfirmAlert(props: Props) {
         <Button color={"danger"} onClick={validateAndConfirm}>
           Bekreft
         </Button>
-        <Button variant={"outline"} onClick={props.closeModal}>
+        <Button variant={"tertiary"} onClick={props.closeModal}>
           Avbryt
         </Button>
       </div>
