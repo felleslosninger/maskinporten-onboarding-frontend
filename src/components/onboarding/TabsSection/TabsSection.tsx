@@ -17,7 +17,7 @@ function TabsSection() {
   return (
     <div className={styles.tabsContainer}>
       <div className={styles.tabs}>
-        <div
+        <button
           className={`${styles.tab} ${
             selectedTab === 1 ? styles.active : styles.inactive
           }`}
@@ -25,8 +25,8 @@ function TabsSection() {
         >
           <BagdeIcon />
           <Label size={"large"}>Virksomhetssertifikat</Label>
-        </div>
-        <div
+        </button>
+        <button
           className={`${styles.tab} ${
             selectedTab === 2 ? styles.active : styles.inactive
           }`}
@@ -34,8 +34,8 @@ function TabsSection() {
         >
           <KeyHorizontalIcon />
           <Label size={"large"}>Manuelt opplastet nøkkel</Label>
-        </div>
-        <div
+        </button>
+        <button
           className={`${styles.tab} ${
             selectedTab === 3 ? styles.active : styles.inactive
           }`}
@@ -43,15 +43,15 @@ function TabsSection() {
         >
           <TasklistIcon />
           <Label size={"large"}>Andre fremgangsmåter</Label>
-        </div>
+        </button>
       </div>
-      <ContentContainer className={styles.tabsContentContainer}>
-        <div className={styles.tabsContent}>
+      <div className={styles.tabsContentContainer}>
+        <ContentContainer className={styles.tabsContent}>
           {selectedTab === 1 && <SertificateSection />}
           {selectedTab === 2 && <KeySection />}
           {selectedTab === 3 && <OtherSection />}
-        </div>
-      </ContentContainer>
+        </ContentContainer>
+      </div>
     </div>
   );
 }

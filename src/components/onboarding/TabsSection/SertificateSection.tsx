@@ -54,39 +54,39 @@ function SertificateSection() {
           </li>
           <ol>
             <li>
-              Headerfeltet <code>alg</code>: RS256, RS384 eller RS512 er mulige
+              Headerfeltet <code lang={"en"}>alg</code>: RS256, RS384 eller RS512 er mulige
               verdier støttet av Maskinporten
             </li>
             <li>
-              Headerfeltet <code>x5c</code>: Virksomhetssertifikat{" "}
+              Headerfeltet <code lang={"en"}>x5c</code>: Virksomhetssertifikat{" "}
             </li>
             <li>
-              Bodyfeltet <code>aud</code>: Maskinporten sin issuer-url, se
+              Bodyfeltet <code lang={"en"}>aud</code>: Maskinporten sin issuer-url, se
               miljøspesifikke url under Konfigurasjonsfelter
             </li>
             <li>
-              Bodyfeltet <code>iss</code>: client-id for integrasjonen du ønsker
+              Bodyfeltet <code lang={"en"}>iss</code>: client-id for integrasjonen du ønsker
               å bruke
             </li>
             <li>
-              Bodyfeltet <code>scope</code>: scopet knyttet til apiet du vil
+              Bodyfeltet <code lang={"en"}>scope</code>: scopet knyttet til apiet du vil
               aksessere
             </li>
             <li>
-              Bodyfeltet <code>ita</code>: Timestamp i UTC-tid
+              Bodyfeltet <code lang={"en"}>iat</code>: Timestamp i UTC-tid
             </li>
             <li>
-              Bodyfeltet <code>exp</code>: Timestamp for utgått tilgang i
+              Bodyfeltet <code lang={"en"}>exp</code>: Timestamp for utgått tilgang i
               UTC-tid
             </li>
           </ol>
           Anbefalt eller knyttet til APIet som skal benyttes
           <ol>
             <li>
-              Bodyfeltet <code>jti</code>: unik uuid
+              Bodyfeltet <code lang={"en"}>jti</code>: unik uuid
             </li>
             <li>
-              Bodyfeltet <code>resource</code>: Dersom API-tilbyder har
+              Bodyfeltet <code lang={"en"}>resource</code>: Dersom API-tilbyder har
               spesifisert en audience-begrensning på sitt API må den settes her.
               Gyldige verdier må beskrives av API-tilbyder. Se mer om{" "}
               {link(
@@ -96,30 +96,30 @@ function SertificateSection() {
               )}
             </li>
           </ol>
-          <li>Signer JWT-grant med virksomhetssertifikatet</li>
+          <li>Signer <span lang={"en"}>JWT-grant</span> med virksomhetssertifikatet</li>
           <li>
-            POST med content-type <code>application/x-www-form-urlencoded</code>{" "}
+            POST med content-type <code lang={"en"}>application/x-www-form-urlencoded</code>{" "}
             til Maskinporten sitt token-endepunkt* og følgende parametre i body
             <ol>
               <li>
-                <code>grant</code> med verdi{" "}
-                <code>urn:ietf:params:oauth:grant-type:jwt-bearer</code>
+                <code lang={"en"}>grant</code> med verdi{" "}
+                <code lang={"en"}>urn:ietf:params:oauth:grant-type:jwt-bearer</code>
               </li>
               <li>
-                <code>assertion</code> med serialisert JWT-grant som verdi
+                <code lang={"en"}>assertion</code> med serialisert JWT-grant som verdi
               </li>
             </ol>
           </li>
           <li>
             I POST-responsen vil du motta et JSON. Feltet{" "}
-            <code>access_token</code> vil være autentisering som trengs mot
-            tjenestetilbyder. <code>expiresIn</code> vil beskrive hvor lenge
+            <code lang={"en"}>access_token</code> vil være autentisering som trengs mot
+            tjenestetilbyder. <code lang={"en"}>expiresIn</code> vil beskrive hvor lenge
             tokenet er gyldig, vanligvis 2 minutter.
           </li>
           <li>
             Gjør en kall til API-tjenesten med innholdet i{" "}
-            <code>access_token</code> som en del av http-headeren:{" "}
-            <code>Authentication: Bearer accesstoken-verdi</code>{" "}
+            <code lang={"en"}>access_token</code> som en del av http-headeren:{" "}
+            <code lang={"en"}>Authentication: Bearer [accesstoken]</code>{" "}
           </li>
         </ol>
       </InfoBox>
@@ -127,7 +127,6 @@ function SertificateSection() {
       <ConfigBox />
 
       <CodeExample
-        title={"Eksempelkode"}
         filter={(client) => !client.keys}
         filterText={"virksomhetssertifikat"}
       >
@@ -135,6 +134,7 @@ function SertificateSection() {
           title={"Java 8"}
           language={"java"}
           code={sertificateCode.java}
+          dependencies={sertificateCode.dependencies.java}
         />
       </CodeExample>
     </>

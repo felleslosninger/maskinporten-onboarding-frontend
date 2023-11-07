@@ -4,6 +4,7 @@ import { HelpText, Label, Radio, Textarea } from "@digdir/design-system-react";
 import { link } from "../../util/textTransforms";
 import { customAlphabet } from "nanoid";
 import { NewClientContext } from "./NewClientModal";
+import {importSPKI} from "jose";
 
 const Step2 = () => {
   const context = useContext(NewClientContext);
@@ -24,8 +25,28 @@ const Step2 = () => {
     } else {
       context.isKeys.set(false);
     }
-    context.error.set(undefined);
+    context.message.set(undefined);
     context.isIntegrationChosen.set(true);
+  };
+
+  const onKeyChanged = async (key: string) => {
+    context.message.set(undefined); // reset error message if exists
+    context.key.set(key);
+
+    try {
+      const spki: CryptoKey = await importSPKI(key, "RS256", { extractable: true });
+      const alg = spki.algorithm as RsaKeyAlgorithm;
+      if (alg.modulusLength < 2048) {
+        const tip = (
+          <HelpText title={"Mer info"}>
+            Denne nøkkelen bruker en modulus på lengde {alg.modulusLength}. Vi anbefaler en lengde på minimum 2048 bits.
+          </HelpText>
+        );
+        context.message.set({message: <span>Denne nøkkelen kan være usikker {tip}</span>, level: "warn"});
+      }
+    } catch (e) {
+      context.message.set({message: "Du har lastet opp en ugyldig RSA public key", level: "err"});
+    }
   };
 
   return (
@@ -40,6 +61,7 @@ const Step2 = () => {
                 <HelpText
                   className={styles.helpText}
                   title={"Mer info om integrasjoner"}
+                  aria-label={"Les mer"}
                 >
                   Det finnes flere måter å integrere mot Maskinporten. Bruk av
                   nøkkel og virkomshetssertifikate er tilgjengelig via forenklet
@@ -69,7 +91,7 @@ const Step2 = () => {
               <Label size={"large"} className={styles.kid}>
                 {context.kid.get}
               </Label>
-              <Label size={"small"}>Vi støtter kun RSA256 nøkler.</Label>
+              <Label size={"small"}>Vi støtter kun RSA nøkler.</Label>
             </>
           )}
         </div>
@@ -90,7 +112,7 @@ const Step2 = () => {
               "+0uj1CNlNN4JRZlC7xFfqiMbFRU9Z4N6YwIDAQAB\n" +
               "-----END RSA PUBLIC KEY-----"
             }
-            onChange={(e) => context.key.set(e.target.value)}
+            onChange={(e) => onKeyChanged(e.target.value)}
           />
         </div>
       )}

@@ -4,10 +4,14 @@ import { Heading, Paragraph } from "@digdir/design-system-react";
 import TabsSection from "./TabsSection/TabsSection";
 import { bold } from "../util/textTransforms";
 import ContentContainer from "../common/ContentContainer/ContentContainer";
+import {Helmet} from "react-helmet";
 
 function Onboardingpage() {
   return (
     <div className={styles.container}>
+      <Helmet>
+        <title>Guide | Forenklet Onboarding</title>
+      </Helmet>
       <ContentContainer className={styles.content}>
         <Heading size={"xlarge"}>Onboardingsguide</Heading>
         <Heading className={styles.subheader} size={"large"}>

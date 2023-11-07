@@ -24,7 +24,7 @@ const Step3 = (props: Props) => {
           <div className={styles.responseInfoContent}>
             <div>
               <Label>Miljø:</Label>
-              <Paragraph>{context.requestResponse?.data.env}</Paragraph>
+              <Paragraph>{props.env}</Paragraph>
             </div>
             <div>
               <Label>API tilgang:</Label>

@@ -33,6 +33,7 @@ function Header() {
                     ? styles.active
                     : styles.inactive
                 }
+                ariaLabel={"Gå til oversikt"}
               >
                 oversikt
               </StyledLink>
@@ -42,6 +43,7 @@ function Header() {
                 className={
                   location.pathname === "/" ? styles.active : styles.inactive
                 }
+                ariaLabel={"Gå til hjemside"}
               >
                 hjem
               </StyledLink>
@@ -51,6 +53,7 @@ function Header() {
               className={
                 location.pathname === "/guide" ? styles.active : styles.inactive
               }
+              ariaLabel={"Gå til Guiden"}
             >
               onboardingsguide
             </StyledLink>

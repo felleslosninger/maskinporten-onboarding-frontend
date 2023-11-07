@@ -36,7 +36,10 @@ function PublicScopeResult(props: Props) {
           closeModal={() => setShowModal(false)}
         />
       )}
-      <button className={styles.result} onClick={onMakeClient}>
+      <button className={styles.result}
+              onClick={onMakeClient}
+              aria-label={`Opprett integrasjon med scope ${props.scope.name}`}
+      >
         <div className={styles.resultsInfo}>
           <div>
             <KeyHorizontalFillIcon />

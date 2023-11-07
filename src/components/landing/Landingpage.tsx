@@ -14,6 +14,7 @@ import { login } from "../auth/login";
 import ContentContainer from "../common/ContentContainer/ContentContainer";
 import { link } from "../util/textTransforms";
 import { useSearchParams } from "react-router-dom";
+import {Helmet} from "react-helmet";
 
 const enkelttjenestenavn =
   "Selvbetjening av integrasjoner i ID-porten/Maskinporten";
@@ -25,6 +26,9 @@ function Landingpage() {
 
   return (
     <ContentContainer className={styles.container}>
+      <Helmet>
+        <title>Forenklet Onboarding</title>
+      </Helmet>
       {error && auth && (
         <Alert className={styles.errorMessage} severity={"warning"}>
           <Heading level={2} size={"xsmall"} spacing>

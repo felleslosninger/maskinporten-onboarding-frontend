@@ -18,7 +18,7 @@ function CopyField(props: Props) {
   };
 
   return (
-    <div
+    <button
       className={`${styles.box} ${isCopied && styles.clicked}`}
       onClick={onCopy}
       onMouseEnter={() => setShowTooltip(true)}
@@ -35,7 +35,7 @@ function CopyField(props: Props) {
           {isCopied ? "Kopiert" : "Kopier"}
         </Label>
       </Popover>
-    </div>
+    </button>
   );
 }
 

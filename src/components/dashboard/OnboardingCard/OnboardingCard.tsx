@@ -6,7 +6,7 @@ import styles from "./styles.module.scss";
 
 function OnboardingCard() {
   return (
-    <StyledLink to={"/guide"} className={styles.link}>
+    <StyledLink to={"/guide"} className={styles.link} ariaLabel={"Gå til onboardingsguide"}>
       <div className={styles.container}>
         <div className={styles.textSection}>
           <Label>Trenger du hjelp til å komme i gang?</Label>

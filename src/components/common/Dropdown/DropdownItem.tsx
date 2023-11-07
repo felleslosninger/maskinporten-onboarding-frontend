@@ -21,11 +21,11 @@ export const DropdownItem = (props: Props) => {
   };
 
   return (
-    <div
+    <button
       className={`${props.className} ${styles.dropdownItem}`}
       onClick={handleClicked}
     >
       {props.children}
-    </div>
+    </button>
   );
 };

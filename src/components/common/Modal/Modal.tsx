@@ -30,7 +30,7 @@ function Modal(props: ModalProps) {
 
   if (props.open) {
     return (
-      <div className={styles.modalOverlay} onClick={props.closeModal}>
+      <div className={styles.modalOverlay} tabIndex={-1} role={"dialog"} onClick={props.closeModal} aria-hidden={true}>
         <div className={styles.modal}>
           <div className={styles.card} onClick={(e) => e.stopPropagation()}>
             <Button

@@ -1,4 +1,4 @@
-import React, { createContext, createRef, useEffect, useState } from "react";
+import React, {createContext, createRef, ReactNode, useEffect, useState} from "react";
 import styles from "./styles.module.scss";
 import { Button, Label, Spinner } from "@digdir/design-system-react";
 import Modal from "../../common/Modal/Modal";
@@ -6,17 +6,22 @@ import { useClientMutation } from "../../../hooks/api";
 import { ApiClient, RequestApiClientBody } from "../../../types/api";
 import { CSSTransition } from "react-transition-group";
 import { exportJWK, importSPKI } from "jose";
-import { XMarkOctagonFillIcon } from "@navikt/aksel-icons";
+import { XMarkOctagonFillIcon, ExclamationmarkTriangleFillIcon } from "@navikt/aksel-icons";
 import Step1 from "./Step1";
 import Step3 from "./Step3";
 import Step2 from "./Step2";
 import { AxiosResponse } from "axios";
 
+export interface FeedbackMessage {
+  message: ReactNode;
+  level: "err" | "warn";
+}
+
 export type NewClientContextProps = {
   requestResponse: AxiosResponse<ApiClient, any> | undefined;
-  error: {
-    get: string | undefined;
-    set: (err: string | undefined) => void;
+  message: {
+    get: FeedbackMessage | undefined;
+    set: (err: FeedbackMessage | undefined) => void;
   };
   scopes: {
     get: string[];
@@ -71,7 +76,7 @@ function NewClientModal(props: NewClientProps) {
   const [isNext, setIsNext] = useState(true);
   const [chosenIntegration, setChosenIntegration] = useState(false);
   const [kid, setKid] = useState("");
-  const [errorMessage, setErrorMessage] = useState<string>();
+  const [message, setMessage] = useState<FeedbackMessage>();
   const [scopes, setScopes] = useState<string[]>([]);
 
   // Go to success step on client POST success
@@ -84,12 +89,12 @@ function NewClientModal(props: NewClientProps) {
   // Show error on client POST error
   useEffect(() => {
     if (isError) {
-      setErrorMessage("Ukjent feil under opprettelse");
+      setMessage({message: "Ukjent feil under opprettelse", level: "err"})
     }
   }, [isError]);
 
   const handleSubmit = async () => {
-    setErrorMessage(undefined);
+    setMessage(undefined);
     const requestBody: RequestApiClientBody = {
       description: description,
       scopes: [props.scope].concat(scopes),
@@ -104,7 +109,7 @@ function NewClientModal(props: NewClientProps) {
         jwk.use = "sig";
         requestBody.keys = [jwk];
       } catch (e) {
-        setErrorMessage("Du har lastet opp en ugyldig public key");
+        setMessage({message: "Du har lastet opp en ugyldig RSA public key", level: "err"});
         return;
       }
     }
@@ -129,7 +134,7 @@ function NewClientModal(props: NewClientProps) {
   const onForrige = () => {
     setUseKeys(false);
     setChosenIntegration(false);
-    setErrorMessage(undefined);
+    setMessage(undefined);
     setIsNext(false);
     setStep(1);
   };
@@ -149,9 +154,9 @@ function NewClientModal(props: NewClientProps) {
     <NewClientContext.Provider
       value={{
         requestResponse: data,
-        error: {
-          get: errorMessage,
-          set: setErrorMessage,
+        message: {
+          get: message,
+          set: setMessage,
         },
         scopes: {
           get: scopes,
@@ -233,18 +238,21 @@ function NewClientModal(props: NewClientProps) {
                 <Button
                   onClick={handleSubmit}
                   disabled={
-                    !chosenIntegration || (useKeys && publicKey.length === 0)
+                    !chosenIntegration || (useKeys && (message?.level === "err" || publicKey.length === 0))
                   }
                 >
                   {isLoading && (
-                    <Spinner variant={"interaction"} title={"laster"} />
+                    <Spinner variant={"interaction"} title={"Oppretter integrasjon"} />
                   )}
                   {isLoading ? "Oppretter integrasjon" : "Opprett integrasjon"}
                 </Button>
-                {errorMessage && (
-                  <div className={styles.alert}>
-                    <XMarkOctagonFillIcon />
-                    <Label>{errorMessage}</Label>
+                {message && (
+                  <div
+                    className={`${styles.alert} ${message.level === "err" ? styles.err : styles.warn}`}
+                    role={"alert"}
+                  >
+                    {message.level === "err" ? <XMarkOctagonFillIcon /> : <ExclamationmarkTriangleFillIcon />}
+                    <Label>{message.message}</Label>
                   </div>
                 )}
               </>

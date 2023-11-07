@@ -30,13 +30,22 @@
   align-items: center;
   gap: 0.5rem;
 
+  span {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  &.err svg path{
+    fill: $colors-danger-red;
+  }
+
+  &.warn svg path{
+    fill: $colors-warning-orange;
+  }
+
   svg {
     height: 1.5rem;
     width: 1.5rem;
-
-    path {
-      fill: $colors-danger-red;
-    }
   }
 }
 

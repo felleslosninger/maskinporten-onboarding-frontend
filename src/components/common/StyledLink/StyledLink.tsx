@@ -7,11 +7,12 @@ interface LinkProps {
   children: ReactNode | ReactNode[];
   icon?: ReactComponentElement<any>;
   className?: string;
+  ariaLabel?: string;
 }
 
 function StyledLink(props: LinkProps) {
   return (
-    <Link to={props.to} className={`${styles.link} ${props.className}`}>
+    <Link to={props.to} className={`${styles.link} ${props.className}`} aria-label={props.ariaLabel}>
       {props.icon && props.icon}
       {props.children}
     </Link>

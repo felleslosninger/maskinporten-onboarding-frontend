@@ -24,6 +24,11 @@
   gap: 0.5rem;
   padding: 1rem;
   cursor: pointer;
+  color:inherit;
+  border: 0;
+  background: none;
+  font: inherit;
+  outline: inherit;
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
 
@@ -38,6 +43,10 @@
 
   &.active {
     background-color: $colors-background-blue;
+  }
+
+  &:focus {
+    outline: 0.15rem solid $colors-interface-highlight;
   }
 
   &.inactive {

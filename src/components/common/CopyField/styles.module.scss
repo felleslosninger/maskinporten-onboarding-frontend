@@ -1,6 +1,8 @@
 @import "src/style/variables";
 
 .box {
+  outline: inherit;
+  font: inherit;
   width: fit-content;
   background-color: $colors-white;
   border-radius: 1rem;
@@ -9,7 +11,7 @@
   transition: border 0.15s ease-in-out;
   cursor: pointer;
 
-  &:hover {
+  &:hover, &:focus {
     border: 0.2rem solid $colors-interface-highlight;
   }
 

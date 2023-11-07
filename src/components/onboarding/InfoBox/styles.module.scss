@@ -7,4 +7,12 @@
   width: fit-content;
   border: 1px solid $colors-semantic-action-default;
   margin-bottom: 5rem;
+
+  code {
+    font-family: Monaco, monospace;
+    background-color: #eee;
+    padding: 0.2em;
+    letter-spacing: -0.05em;
+    word-break: normal;
+  }
 }
