@@ -5,7 +5,7 @@ import { link } from "../../util/textTransforms";
 function OtherSection() {
   return (
     <>
-      <Heading size={"large"} spacing>
+      <Heading level={2} size={"large"} spacing>
         Andre fremgangsmåter
       </Heading>
       <Paragraph spacing>
@@ -13,7 +13,7 @@ function OtherSection() {
         bruke et manuelt opplastet virksomhetssertifikat.
       </Paragraph>
 
-      <Heading size={"large"} spacing>
+      <Heading level={3} size={"large"} spacing>
         Via selvbetjenings-API
       </Heading>
       <Paragraph spacing>
@@ -45,7 +45,7 @@ function OtherSection() {
         .
       </Paragraph>
 
-      <Heading size={"large"} spacing>
+      <Heading level={3} size={"large"} spacing>
         Med manuelt opplastet virksomhetssertifikat
       </Heading>
       <Paragraph spacing>

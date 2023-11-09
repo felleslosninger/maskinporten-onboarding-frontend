@@ -3,8 +3,7 @@ import {
   Accordion,
   Heading,
   Ingress,
-  Label,
-  LegacyToggleButtonGroup,
+  LegacyToggleButtonGroup, Paragraph,
 } from "@digdir/design-system-react";
 import withAuth, { AuthProps } from "../auth/withAuth";
 import { useClients, usePublicScopes, useScopes } from "../../hooks/api";
@@ -17,7 +16,7 @@ import ScopeSkeleton from "./ScopeSkeleton";
 import PublicScopes from "./PublicScopes/PublicScopes";
 import NoScopesImage from "../../assets/noScopes.png";
 import { ApiScopes } from "../../types/api";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 function Dashboard({ user, config }: AuthProps) {
   const queryClient = useQueryClient();
@@ -82,9 +81,9 @@ function Dashboard({ user, config }: AuthProps) {
         </div>
 
         <div className={styles.accordionListHeader}>
-          <Heading size={"small"}>Mine tilganger</Heading>
+          <Heading level={2} size={"small"}>Mine tilganger</Heading>
           <div className={styles.envPicker}>
-            <Label>Valgt miljø:</Label>
+            <Paragraph>Valgt miljø:</Paragraph>
             <LegacyToggleButtonGroup
               items={Object.keys(config).map((env) => ({
                 label: env.toUpperCase(),

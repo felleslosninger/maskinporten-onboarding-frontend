@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ApiClients, ApiScope } from "../../../types/api";
 import styles from "./styles.module.scss";
-import { Accordion, Button, Label, Tag } from "@digdir/design-system-react";
+import {Accordion, Button, Label, Paragraph, Tag} from "@digdir/design-system-react";
 import ClientDescription from "../ClientDescription/ClientDescription";
 import NewClientModal from "../NewClientModal/NewClientModal";
 import {
@@ -40,11 +40,11 @@ function ScopeDetails(props: ScopeDetailProps) {
   const renderNoClientBox = () => {
     return (
       <div className={styles.noClientBox}>
-        <Label>
+        <Paragraph>
           Dette APIet er tildelt din organisasjon, men har ingen integrasjon
           registrert.
-        </Label>
-        <Label>Opprett en ny integrasjon via knappen nedenfor.</Label>
+        </Paragraph>
+        <Paragraph>Opprett en ny integrasjon via knappen nedenfor.</Paragraph>
       </div>
     );
   };
@@ -59,10 +59,10 @@ function ScopeDetails(props: ScopeDetailProps) {
           closeModal={() => setShowModal(false)}
         />
       )}
-      <Accordion.Header level={4} className={styles.headerRow}>
+      <Accordion.Header level={3} className={styles.headerRow}>
         <div className={styles.scopeInfo}>
           <div className={styles.scopeInfoTop}>
-            <Label size={"large"}>
+            <Paragraph size={"large"}>
               <Buldings2Icon />
               {isError && props.scope.owner_orgno}
               {isLoading && (
@@ -71,8 +71,8 @@ function ScopeDetails(props: ScopeDetailProps) {
                 </span>
               )}
               {enhet && enhet.navn}
-            </Label>
-            <Label size={"large"}>
+            </Paragraph>
+            <Paragraph size={"large"}>
               <KeyHorizontalFillIcon />
               {props.scope.scope}
               {props.scope.accessible_for_all && (
@@ -85,7 +85,7 @@ function ScopeDetails(props: ScopeDetailProps) {
                   Public
                 </Tag>
               )}
-            </Label>
+            </Paragraph>
           </div>
           <Label>
             <InformationSquareIcon />
@@ -94,10 +94,10 @@ function ScopeDetails(props: ScopeDetailProps) {
         </div>
         <div className={styles.statusIcon}>
           <TerminalIcon />
-          <Label>
+          <Paragraph>
             {currentClients.length}{" "}
             {isLargeScreen && (currentClients.length === 1 ? "integrasjon" : "integrasjoner")}
-          </Label>
+          </Paragraph>
         </div>
       </Accordion.Header>
       <Accordion.Content>

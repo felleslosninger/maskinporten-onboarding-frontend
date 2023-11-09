@@ -1,6 +1,6 @@
 import React, {createContext, createRef, ReactNode, useEffect, useState} from "react";
 import styles from "./styles.module.scss";
-import { Button, Label, Spinner } from "@digdir/design-system-react";
+import {Button, Paragraph, Spinner} from "@digdir/design-system-react";
 import Modal from "../../common/Modal/Modal";
 import { useClientMutation } from "../../../hooks/api";
 import { ApiClient, RequestApiClientBody } from "../../../types/api";
@@ -11,6 +11,7 @@ import Step1 from "./Step1";
 import Step3 from "./Step3";
 import Step2 from "./Step2";
 import { AxiosResponse } from "axios";
+import VisuallyHidden from "../../common/VisuallyHidden/VisuallyHidden";
 
 export interface FeedbackMessage {
   message: ReactNode;
@@ -84,7 +85,7 @@ function NewClientModal(props: NewClientProps) {
     if (isSuccess) {
       setStep(3);
     }
-  }, [isSuccess]);
+  }, [data]);
 
   // Show error on client POST error
   useEffect(() => {
@@ -188,7 +189,7 @@ function NewClientModal(props: NewClientProps) {
         open={props.open}
         closeModal={props.closeModal}
         title={
-          isSuccess
+          step === 3
             ? "Integrasjonen er opprettet"
             : `Opprett ny integrasjon (${step} / ${steps.length - 1})`
         }
@@ -222,18 +223,27 @@ function NewClientModal(props: NewClientProps) {
           <div className={styles.modalButtons}>
             {step === 1 && (
               <>
-                <Button variant={"tertiary"} onClick={props.closeModal}>
+                <Button variant={"secondary"} onClick={props.closeModal}>
                   Avbryt
+                  <VisuallyHidden>
+                    oppretting
+                  </VisuallyHidden>
                 </Button>
                 <Button onClick={onNeste} disabled={description.length === 0}>
                   Neste
+                  <VisuallyHidden>
+                    side
+                  </VisuallyHidden>
                 </Button>
               </>
             )}
             {step === 2 && (
               <>
-                <Button variant={"tertiary"} onClick={onForrige}>
+                <Button variant={"secondary"} onClick={onForrige}>
                   Forrige
+                  <VisuallyHidden>
+                    side
+                  </VisuallyHidden>
                 </Button>
                 <Button
                   onClick={handleSubmit}
@@ -252,13 +262,13 @@ function NewClientModal(props: NewClientProps) {
                     role={"alert"}
                   >
                     {message.level === "err" ? <XMarkOctagonFillIcon /> : <ExclamationmarkTriangleFillIcon />}
-                    <Label>{message.message}</Label>
+                    <Paragraph>{message.message}</Paragraph>
                   </div>
                 )}
               </>
             )}
             {step === 3 && (
-              <Button variant={"tertiary"} onClick={props.closeModal}>
+              <Button variant={"secondary"} onClick={props.closeModal}>
                 Tilbake til oversikten
               </Button>
             )}

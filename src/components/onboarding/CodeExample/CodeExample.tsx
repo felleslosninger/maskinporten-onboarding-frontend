@@ -124,7 +124,7 @@ function CodeExample(props: Props) {
 
   return (
     <>
-      <Heading spacing size={"large"}>Eksempelkode</Heading>
+      <Heading level={3} spacing size={"large"}>Eksempelkode</Heading>
 
       {client_ids && client_ids.length > 0 && (
         <>
@@ -163,7 +163,7 @@ function CodeExample(props: Props) {
               </button>
             ))}
         </div>
-        <div className={styles.codeExampleContent}>
+        <div className={styles.codeExampleContent} lang={"en"}>
           {getDependencies() && (
             <ToggleGroup
               className={styles.dependencies}

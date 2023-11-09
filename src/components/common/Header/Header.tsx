@@ -4,7 +4,7 @@ import styles from "./styles.module.scss";
 import { ReactComponent as Logo } from "../../../assets/logo.svg";
 import { ReactComponent as BedriftSvg } from "../../../assets/bedrift.svg";
 import { ReactComponent as PersonSvg } from "../../../assets/ikoner/SVG/Person.svg";
-import { Button, Label } from "@digdir/design-system-react";
+import {Button, Paragraph} from "@digdir/design-system-react";
 import { login, logout } from "../../auth/login";
 import StyledLink from "../StyledLink/StyledLink";
 import {useLocation, useNavigate} from "react-router-dom";
@@ -72,8 +72,8 @@ function Header() {
                 {!isSmallScreen && isLoggedIn && (
                   <>
                     <div>
-                      <Label size={"small"}>{data!!.user!!.name}</Label>
-                      <Label size={"small"}>{data!!.user!!.reporteeName}</Label>
+                      <Paragraph size={"small"}>{data!!.user!!.name}</Paragraph>
+                      <Paragraph size={"small"}>{data!!.user!!.reporteeName}</Paragraph>
                     </div>
                     <BedriftSvg className={styles.svg} />
                   </>
@@ -81,7 +81,7 @@ function Header() {
 
                 {!isSmallScreen && !isLoggedIn && (
                   <>
-                    <Label size={"medium"}>LOGG INN</Label>
+                    <Paragraph size={"medium"}>LOGG INN</Paragraph>
                     <PersonSvg className={styles.svg} />
                   </>
                 )}
@@ -129,11 +129,11 @@ function Header() {
               {!isLoggedIn && (
                 <>
                   <Dropdown.Item className={styles.loginLabel} onSelect={() => login(true)}>
-                    <Label size={"medium"}>{isSmallScreen ? "Logg inn" : "..."} som daglig leder</Label>
+                    <Paragraph size={"medium"}>{isSmallScreen ? "Logg inn" : "..."} som daglig leder</Paragraph>
                     <ChevronRightIcon className={styles.svg} />
                   </Dropdown.Item>
                   <Dropdown.Item className={styles.loginLabel} onSelect={() => login(false)}>
-                    <Label size={"medium"}>{isSmallScreen ? "Logg inn" : "..."} med enkelttjeneste-tilgang</Label>
+                    <Paragraph size={"medium"}>{isSmallScreen ? "Logg inn" : "..."} med enkelttjeneste-tilgang</Paragraph>
                     <ChevronRightIcon className={styles.svg} />
                   </Dropdown.Item>
                 </>

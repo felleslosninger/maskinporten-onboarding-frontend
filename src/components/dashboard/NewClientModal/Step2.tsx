@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styles from "./styles.module.scss";
-import { HelpText, Label, Radio, Textarea } from "@digdir/design-system-react";
+import {HelpText, Label, Paragraph, Radio, Textarea} from "@digdir/design-system-react";
 import { link } from "../../util/textTransforms";
 import { customAlphabet } from "nanoid";
 import { NewClientContext } from "./NewClientModal";
@@ -45,7 +45,7 @@ const Step2 = () => {
         context.message.set({message: <span>Denne nøkkelen kan være usikker {tip}</span>, level: "warn"});
       }
     } catch (e) {
-      context.message.set({message: "Du har lastet opp en ugyldig RSA public key", level: "err"});
+      context.message.set({message: "Dette er en ugyldig RSA public key", level: "err"});
     }
   };
 
@@ -85,13 +85,13 @@ const Step2 = () => {
         <div className={styles.integrationInfo}>
           {context.isKeys.get && (
             <>
-              <Label size={"large"}>
+              <Paragraph size={"large"}>
                 Nøkkelen din får følgende key-id (kid):
-              </Label>
-              <Label size={"large"} className={styles.kid}>
+              </Paragraph>
+              <Paragraph size={"large"} className={styles.kid}>
                 {context.kid.get}
-              </Label>
-              <Label size={"small"}>Vi støtter kun RSA nøkler.</Label>
+              </Paragraph>
+              <Paragraph size={"small"}>Vi støtter kun RSA nøkler.</Paragraph>
             </>
           )}
         </div>

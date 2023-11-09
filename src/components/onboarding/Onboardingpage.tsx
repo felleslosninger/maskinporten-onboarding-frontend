@@ -4,7 +4,7 @@ import { Heading, Paragraph } from "@digdir/design-system-react";
 import TabsSection from "./TabsSection/TabsSection";
 import { bold } from "../util/textTransforms";
 import ContentContainer from "../common/ContentContainer/ContentContainer";
-import {Helmet} from "react-helmet";
+import {Helmet} from "react-helmet-async";
 
 function Onboardingpage() {
   return (
@@ -14,7 +14,7 @@ function Onboardingpage() {
       </Helmet>
       <ContentContainer className={styles.content}>
         <Heading size={"xlarge"}>Onboardingsguide</Heading>
-        <Heading className={styles.subheader} size={"large"}>
+        <Heading level={2} className={styles.subheader} size={"large"}>
           Kom i gang
         </Heading>
         <Paragraph className={styles.paragraph}>
@@ -28,7 +28,7 @@ function Onboardingpage() {
           skal integrere med, er manuelt opplastede nøkler den korteste veien.
           Det er mulig å bruke dette i test og virksomhetssertifikat i prod.
         </Paragraph>
-        <Heading className={styles.subheader} size={"large"}>
+        <Heading level={2} className={styles.subheader} size={"large"}>
           Velg integrasjonsmetode du vil se guide for
         </Heading>
       </ContentContainer>

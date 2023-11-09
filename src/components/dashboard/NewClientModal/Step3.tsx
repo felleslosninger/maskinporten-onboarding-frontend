@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styles from "./styles.module.scss";
-import { Label, Paragraph } from "@digdir/design-system-react";
+import { Paragraph } from "@digdir/design-system-react";
 import { bold } from "../../util/textTransforms";
 import StyledLink from "../../common/StyledLink/StyledLink";
 import { NewClientContext } from "./NewClientModal";
@@ -23,28 +23,28 @@ const Step3 = (props: Props) => {
         <div className={styles.responseInfo}>
           <div className={styles.responseInfoContent}>
             <div>
-              <Label>Miljø:</Label>
+              <Paragraph>Miljø:</Paragraph>
               <Paragraph>{props.env}</Paragraph>
             </div>
             <div>
-              <Label>API tilgang:</Label>
+              <Paragraph>API tilgang:</Paragraph>
               <Paragraph>
                 {context.requestResponse?.data.scopes.join(",")}
               </Paragraph>
             </div>
             <div>
-              <Label>Integrasjonsbeskrivelse:</Label>
+              <Paragraph>Integrasjonsbeskrivelse:</Paragraph>
               <Paragraph>{context.requestResponse?.data.description}</Paragraph>
             </div>
             <div>
-              <Label>Klient-id:</Label>
+              <Paragraph>Klient-id:</Paragraph>
               <Paragraph>{context.requestResponse?.data.clientId}</Paragraph>
             </div>
           </div>
         </div>
       </div>
       <div className={styles.usageInfo}>
-        <Label>{bold("Ta i bruk integrasjon?")}</Label>
+        <Paragraph>{bold("Ta i bruk integrasjon?")}</Paragraph>
         <Paragraph>
           Følg var onboardingsguide for informasjon om hvordan du kan ta i bruk
           integrasjonen din

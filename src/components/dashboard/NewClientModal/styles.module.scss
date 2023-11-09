@@ -99,7 +99,7 @@
       border-bottom: none;
     }
 
-    label {
+    p:first-child {
       font-weight: bold;
     }
   }
@@ -122,7 +122,7 @@
   flex-basis: 0;
   flex-grow: 1;
 
-  label {
+  p {
     margin-bottom: 1rem;
   }
 }

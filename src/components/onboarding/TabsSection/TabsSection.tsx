@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./styles.module.scss";
-import { Label } from "@digdir/design-system-react";
+import {Paragraph} from "@digdir/design-system-react";
 import {
   BagdeIcon,
   KeyHorizontalIcon,
@@ -24,7 +24,7 @@ function TabsSection() {
           onClick={() => setSelectedTab(1)}
         >
           <BagdeIcon />
-          <Label size={"large"}>Virksomhetssertifikat</Label>
+          <Paragraph size={"large"}>Virksomhetssertifikat</Paragraph>
         </button>
         <button
           className={`${styles.tab} ${
@@ -33,7 +33,7 @@ function TabsSection() {
           onClick={() => setSelectedTab(2)}
         >
           <KeyHorizontalIcon />
-          <Label size={"large"}>Manuelt opplastet nøkkel</Label>
+          <Paragraph size={"large"}>Manuelt opplastet nøkkel</Paragraph>
         </button>
         <button
           className={`${styles.tab} ${
@@ -42,7 +42,7 @@ function TabsSection() {
           onClick={() => setSelectedTab(3)}
         >
           <TasklistIcon />
-          <Label size={"large"}>Andre fremgangsmåter</Label>
+          <Paragraph size={"large"}>Andre fremgangsmåter</Paragraph>
         </button>
       </div>
       <div className={styles.tabsContentContainer}>

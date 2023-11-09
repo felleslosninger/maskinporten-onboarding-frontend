@@ -1,7 +1,7 @@
 import React from "react";
 import { Heading, Paragraph } from "@digdir/design-system-react";
 import InfoBox from "../InfoBox/InfoBox";
-import { bold, link } from "../../util/textTransforms";
+import { link } from "../../util/textTransforms";
 import styles from "./styles.module.scss";
 import CodeExample from "../CodeExample/CodeExample";
 import CodeLanguage from "../CodeExample/CodeLanguage";
@@ -11,7 +11,7 @@ import ConfigBox from "./ConfigBox";
 function SertificateSection() {
   return (
     <>
-      <Heading spacing size={"large"}>
+      <Heading level={2} spacing size={"large"}>
         Signere direkte med virksomhetssertifikat
       </Heading>
       <Paragraph spacing>
@@ -22,7 +22,7 @@ function SertificateSection() {
         virksomhetssertifikat og kan signere med hvilket du vil.
       </Paragraph>
       <InfoBox>
-        {bold("Forutsetninger:")}
+        <Heading level={3} size={"xxsmall"}>Forutsetninger:</Heading>
         <ol className={`${styles.bottomSpacing} ${styles.orderedList}`}>
           <li>
             Det finnes et virksomhetssertifikat tilgjengelig for rett miljø.{" "}
@@ -42,7 +42,7 @@ function SertificateSection() {
             opprettet med integrasjonsmetode "virksomhetssertifikat"
           </li>
         </ol>
-        <Heading size={"medium"}>Fremgangsmåte</Heading>
+        <Heading level={3} size={"medium"}>Fremgangsmåte</Heading>
         <ol className={styles.orderedList}>
           <li>
             Lag JWT-grant i henhold til{" "}

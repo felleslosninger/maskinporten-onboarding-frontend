@@ -1,7 +1,7 @@
 import React from "react";
 import { Heading, Paragraph } from "@digdir/design-system-react";
 import InfoBox from "../InfoBox/InfoBox";
-import { bold, link } from "../../util/textTransforms";
+import { link } from "../../util/textTransforms";
 import styles from "./styles.module.scss";
 import CodeExample from "../CodeExample/CodeExample";
 import CodeLanguage from "../CodeExample/CodeLanguage";
@@ -11,18 +11,18 @@ import ConfigBox from "./ConfigBox";
 function KeySection() {
   return (
     <>
-      <Heading size={"large"} spacing>
+      <Heading level={2} size={"large"} spacing>
         Med manuelt opplastet nøkkel
       </Heading>
       <Paragraph spacing>
         Her lager du ditt eget asymmentriske nøkkelpar. Når du oppretter en ny
         integrasjon, legger du ved public-nøkkelen du ønsker å bruke. Du får en
-        key id (kid) som du kan referer til som en del av JWT-grant og bruker
-        privatnøkkelen til å signere hele JWT-tokenet
+        {" "}<span lang={"en"}>key</span> id (kid) som du kan referer til som en del
+        av JWT-grant og bruker privatnøkkelen til å signere hele JWT-tokenet
       </Paragraph>
 
       <InfoBox>
-        {bold("Forutsetninger:")}
+        <Heading level={3} size={"xxsmall"}>Forutsetninger:</Heading>
         <ol className={`${styles.bottomSpacing} ${styles.orderedList}`}>
           <li>
             API-tilgangen er gitt til din virksomhet av organisasjonen som
@@ -65,7 +65,7 @@ function KeySection() {
             public-delen av nøkkelen du ønsker å bruke ved opprettelse.
           </li>
         </ol>
-        <Heading size={"medium"}>Fremgangsmåte</Heading>
+        <Heading level={3} size={"medium"}>Fremgangsmåte</Heading>
         <ol className={styles.orderedList}>
           <li>
             Lag JWT-grant i henhold til{" "}

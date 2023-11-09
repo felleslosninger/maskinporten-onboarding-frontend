@@ -40,7 +40,7 @@ const ClientDescription = (props: ClientDescriptionProps) => {
         <div className={styles.info}>
           <Heading size={"xsmall"}>{props.client.description}</Heading>
           <div>
-            {bold("KlientId:")}
+            {bold("IntegrasjonsId:")}
             <CopyField copyValue={props.client.clientId}>
               {props.client.clientId}
             </CopyField>

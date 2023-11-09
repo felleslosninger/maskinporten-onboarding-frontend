@@ -15,13 +15,14 @@
   border: 1px solid $colors-gray;
   border-radius: 0.3rem;
   box-shadow: 0.5rem 0.5rem 0.75rem lightgray;
+  transition: transform 0.1s ease-in-out;
+
+  &:hover {
+    transform: translateY(-0.25rem);
+  }
 
   @include respond-to("small") {
     padding: 1rem 2rem;
-  }
-
-  label {
-    cursor: pointer;
   }
 }
 
@@ -38,10 +39,6 @@
 .textSection {
   display: flex;
   flex-direction: column;
-
-  label:first-child {
-    margin-bottom: 1rem;
-  }
 }
 
 .illustration {
