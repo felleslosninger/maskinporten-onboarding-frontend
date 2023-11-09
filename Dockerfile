@@ -31,7 +31,8 @@ WORKDIR /app
 COPY --chown=app:app --from=build /app/build ./
 
 COPY --chown=app:app entrypoint.sh template.config.js ./
-RUN dos2unix entrypoint.sh && chmod +x entrypoint.sh
+RUN chmod +x entrypoint.sh
+RUN dos2unix entrypoint.sh
 
 ENTRYPOINT ["./entrypoint.sh"]
 EXPOSE 3000
