@@ -6,8 +6,6 @@ RUN npm set progress=false && \
   npm config set depth 0 && \
   yarn install --frozen-lockfile
 
-
-
 COPY tsconfig.json ./
 COPY src ./src
 COPY public ./public
