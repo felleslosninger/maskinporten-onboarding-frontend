@@ -15,17 +15,10 @@ FROM node:20.8.1-alpine3.18
 RUN apk add gettext
 
 ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
+ENV PORT=8080
 ENV PATH=$PATH:/home/node/.npm-global/bin
 RUN npm install -g serve
 
-# RUN mkdir /app
-
-# RUN addgroup -g 1001 -S app && \
-#   adduser -u 1001 -S app -G app && \
-#   chown -R app:app /app && \
-#   chmod 770 /app
-
-# USER app:app
 WORKDIR /app
 
 COPY --from=build /app/build ./
@@ -35,4 +28,4 @@ RUN chmod 777 /app
 RUN dos2unix entrypoint.sh
 
 ENTRYPOINT ["./entrypoint.sh"]
-EXPOSE 3000
+EXPOSE 8080
