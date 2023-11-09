@@ -31,6 +31,7 @@ WORKDIR /app
 COPY --from=build /app/build ./
 COPY --chmod=777 entrypoint.sh template.config.js ./
 
+RUN chmod 777 /app
 RUN dos2unix entrypoint.sh
 
 ENTRYPOINT ["./entrypoint.sh"]
