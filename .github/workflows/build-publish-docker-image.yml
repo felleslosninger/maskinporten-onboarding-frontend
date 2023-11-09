@@ -5,13 +5,9 @@ on:
     branches: [main]
 
 env:
-  IMAGE-NAME: selvbetjening-onboarding-maskinporten-gui
+  IMAGE-NAME: maskinporten-onboarding-frontend
   NODE_ENV: production
   TRIVY_OFFLINE_SCAN: true
-
-  # Expose these to VARS in the various ENVS later...
-  SIMPLIFIED_ONBOARDING_API_URL: "http://localhost:8080"
-  WHITELIST: "entur:apc.demo,entur:api.1,banenor:traffic.update.read,datanorge:test/catalog.read,datanorge:catalog.read,tiger:accessibleforall"
 
 jobs:
   build-publish-image:
@@ -63,3 +59,12 @@ jobs:
 
       - id: output-image-name
         run: echo "::set-output name=imagename::${{env.IMAGE-NAME}}"
+
+  call-update-image-version:
+    uses: felleslosninger/github-workflows/.github/workflows/ci-update-image-version.yml@main
+    needs: build-publish-image
+    with:
+      kubernetes-repo: kundetjenester-cd-external
+      image-version: ${{ needs.build-publish-image.outputs.imagetag }}
+      image-digest: ${{ needs.build-publish-image.outputs.imagedigest }}
+    secrets: inherit
