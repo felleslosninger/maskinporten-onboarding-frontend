@@ -22,9 +22,9 @@ RUN npm install -g serve
 WORKDIR /app
 
 COPY --from=build /app/build ./
-COPY --chmod=777 entrypoint.sh template.config.js ./
+COPY --chmod=755 entrypoint.sh template.config.js ./
 
-RUN chmod 777 /app
+RUN chmod 777 ./config.js # We need to modify this file in entrypoint.sh
 RUN dos2unix entrypoint.sh
 
 ENTRYPOINT ["./entrypoint.sh"]
