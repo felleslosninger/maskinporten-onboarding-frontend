@@ -5,7 +5,7 @@ import { link } from "../../util/textTransforms";
 function OtherSection() {
   return (
     <>
-      <Heading size={"large"} spacing>
+      <Heading level={2} size={"large"} spacing>
         Andre fremgangsmåter
       </Heading>
       <Paragraph spacing>
@@ -13,15 +13,15 @@ function OtherSection() {
         bruke et manuelt opplastet virksomhetssertifikat.
       </Paragraph>
 
-      <Heading size={"large"} spacing>
+      <Heading level={3} size={"large"} spacing>
         Via selvbetjenings-API
       </Heading>
       <Paragraph spacing>
         Dersom du har mange servere og ønsker å ha kortlevde, unike nøkler, kan
         du benytte deg av Maskinportens selvbetjenings-API. Dette gir mulighet
         for å automatisere inn- og utmelding av integrasjoner, men kan kreve mer
-        av et platform- eller utviklingsteam.Dersom din virksomhet har et eget
-        Kubernets-cluster, har NAV open-sourcet sin cluster operator{" "}
+        av et platform- eller utviklingsteam. Dersom din virksomhet har et eget
+        Kubernetes-cluster, har NAV open-sourcet sin cluster operator{" "}
         {link("https://github.com/nais/digdirator", "digdirator", true)} som
         automatiserer prosessen.
       </Paragraph>
@@ -33,10 +33,10 @@ function OtherSection() {
           true,
         )}
         . Pålogging til APIet er igjen sikret med Maskinporten og krever en egen
-        klient med scope `idporten:scopes.write`. Denne løsningen for forenklet
+        klient med scope `<span lang={"en"}>idporten:scopes.write</span>`. Denne løsningen for forenklet
         onboarding støtter foreløpig ikke prosessen videre for å få tak i denne
         tilgangen og du må sende en forespørsel til servicedesk@digdir.no. Se
-        mer informasjon
+        mer informasjon {" "}
         {link(
           "https://docs.digdir.no/docs/Maskinporten/maskinporten_sjolvbetjening_api#tilgang-administrasjon-av-api",
           "her",
@@ -45,7 +45,7 @@ function OtherSection() {
         .
       </Paragraph>
 
-      <Heading size={"large"} spacing>
+      <Heading level={3} size={"large"} spacing>
         Med manuelt opplastet virksomhetssertifikat
       </Heading>
       <Paragraph spacing>

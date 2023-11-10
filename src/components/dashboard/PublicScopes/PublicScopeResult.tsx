@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ApiPublicScope } from "../../../types/api";
+import { ApiScope } from "../../../types/api";
 import NewClientModal from "../NewClientModal/NewClientModal";
 import { Ingress, Paragraph } from "@digdir/design-system-react";
 import styles from "./styles.module.scss";
@@ -7,7 +7,7 @@ import { KeyHorizontalFillIcon, PlusCircleIcon } from "@navikt/aksel-icons";
 import { bold } from "../../util/textTransforms";
 
 interface Props {
-  scope: ApiPublicScope;
+  scope: ApiScope;
   env: string;
 }
 
@@ -36,7 +36,10 @@ function PublicScopeResult(props: Props) {
           closeModal={() => setShowModal(false)}
         />
       )}
-      <button className={styles.result} onClick={onMakeClient}>
+      <button className={styles.result}
+              onClick={onMakeClient}
+              aria-label={`Opprett integrasjon med scope ${props.scope.name}`}
+      >
         <div className={styles.resultsInfo}>
           <div>
             <KeyHorizontalFillIcon />

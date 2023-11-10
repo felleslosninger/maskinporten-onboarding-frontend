@@ -8,7 +8,16 @@ $colors-background-blue: #e6eff8;
 $colors-white: #ffffff;
 $colors-black: #000000;
 $colors-danger-red: #e02e49;
+$colors-warning-orange: #ff8c06;
 $colors-success: #118849;
 
 $content-width-max: 80rem;
 $content-text-width-max: 60rem;
+
+$breakpoints: (
+  'tiny': 516px,
+  'small': 767px,
+  'medium': 992px,
+  'large': 1300px,
+  'wide': 1650px
+);

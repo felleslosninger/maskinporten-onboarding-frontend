@@ -1,8 +1,8 @@
 import React, { ReactNode, useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 import { useClients } from "../../../hooks/api";
-import { Heading, Paragraph, Select } from "@digdir/design-system-react";
-import CodeLanguage from "./CodeLanguage";
+import {Heading, Paragraph, Select, ToggleGroup} from "@digdir/design-system-react";
+import CodeLanguage, {CodeDependency} from "./CodeLanguage";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { bold } from "../../util/textTransforms";
@@ -15,7 +15,6 @@ import { ApiClient } from "../../../types/api";
 import { useConfig } from "../../../hooks/auth";
 
 interface Props {
-  title: string;
   children: ReactNode[] | ReactNode;
   filter: (client: ApiClient) => boolean;
   filterText: string;
@@ -34,6 +33,7 @@ function CodeExample(props: Props) {
   const [clients, setClients] = useState<ApiClient[]>([]);
   const [selectValue, setSelectValue] = useState<string>();
   const [selectedTab, setSelectedTab] = useState(0);
+  const [selectedCode, setSelectedCode] = useState("code");
 
   useEffect(() => {
     if (!!testClients && !!prodClients) {
@@ -76,9 +76,26 @@ function CodeExample(props: Props) {
         title: child.props.title,
         lang: child.props.language,
         code: child.props.code,
+        dependencies: child.props.dependencies
       };
     }
   });
+
+  const getDependencies = () => {
+    type DependencyInfo = {
+      [name: string]: CodeDependency;
+    };
+
+    if (examples?.at(selectedTab)!!.dependencies) {
+      return examples?.at(selectedTab)!!.dependencies as DependencyInfo;
+    }
+    return null;
+  }
+
+  const onTabSelect = (index: number) => {
+    setSelectedCode("code");
+    setSelectedTab(index);
+  }
 
   const makeFieldMap = (client?: ApiClient) => {
     const conf = client && config ? config[client.env] : config?.["test"];
@@ -107,7 +124,7 @@ function CodeExample(props: Props) {
 
   return (
     <>
-      <Heading size={"large"}>{props.title}</Heading>
+      <Heading level={3} spacing size={"large"}>Eksempelkode</Heading>
 
       {client_ids && client_ids.length > 0 && (
         <>
@@ -133,23 +150,38 @@ function CodeExample(props: Props) {
           </div>
         </>
       )}
-      <Heading className={styles.smallHeading} size={"small"}>
-        Kode-eksempel:
-      </Heading>
       <div className={styles.codeExampleBox}>
         <div className={styles.codeExampleTabs}>
           {examples &&
             examples.map((example, index) => (
-              <span
+              <button
                 key={index}
-                className={selectedTab === index ? styles.active : ""}
-                onClick={() => setSelectedTab(index)}
+                className={`${styles.codeExampleTab} ${selectedTab === index ? styles.active : ""}`}
+                onClick={() => onTabSelect(index)}
               >
                 {example.title}
-              </span>
+              </button>
             ))}
         </div>
-        <div className={styles.codeExampleContent}>
+        <div className={styles.codeExampleContent} lang={"en"}>
+          {getDependencies() && (
+            <ToggleGroup
+              className={styles.dependencies}
+              size={"small"}
+              value={selectedCode}
+              onChange={(val) => setSelectedCode(val)}
+            >
+              <ToggleGroup.Item value={"code"}>
+                Kode
+              </ToggleGroup.Item>
+              {Object.values(getDependencies()!!).map((dependency, index) => (
+                <ToggleGroup.Item key={index} value={dependency.id}>
+                  {(dependency as CodeDependency).name}
+                </ToggleGroup.Item>
+              ))}
+            </ToggleGroup>
+          )}
+
           {examples && (
             <SyntaxHighlighter
               customStyle={{ backgroundColor: "white" }}
@@ -157,9 +189,13 @@ function CodeExample(props: Props) {
               showLineNumbers={true}
               wrapLines={false}
               wrapLongLines={false}
-              language={examples.at(selectedTab)!!.lang}
+              language={(getDependencies() && selectedCode !== "code") ? getDependencies()!![selectedCode].lang : examples.at(selectedTab)!!.lang}
             >
-              {processCode(examples.at(selectedTab)!!.code.join("\n"))}
+              {
+                getDependencies() && selectedCode !== "code"
+                ? getDependencies()!![selectedCode].code.join("\n")
+                : processCode(examples.at(selectedTab)!!.code.join("\n"))
+              }
             </SyntaxHighlighter>
           )}
         </div>

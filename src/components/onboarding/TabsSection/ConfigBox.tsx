@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styles from "./styles.module.scss";
 import {
   Heading,
-  Label,
   LegacyToggleButtonGroup,
   Paragraph
 } from "@digdir/design-system-react";
@@ -28,7 +27,7 @@ function ConfigBox() {
   return (
     <>
       <div className={styles.configHeader}>
-        <Heading size={"large"}>Konfigurasjonsfelter</Heading>
+        <Heading level={3} size={"large"}>Konfigurasjonsfelter</Heading>
         <LegacyToggleButtonGroup
           items={items}
           selectedValue={selectedConfig}
@@ -37,15 +36,15 @@ function ConfigBox() {
       </div>
 
       <Paragraph spacing>
-        Dette er endepunktene som Digdir bruker til uthenting av access-tokens.
+        Dette er endepunktene som Digdir bruker til uthenting av <span lang={"en"}>access-tokens</span>.
       </Paragraph>
       <InfoBox className={styles.configBox}>
-        <Label>
+        <Paragraph lang={"en"}>
           {bold("Issuer Url:")} {config[selectedConfig].issuer}
-        </Label>
-        <Label>
+        </Paragraph>
+        <Paragraph lang={"en"}>
           {bold("Token Url:")} {config[selectedConfig].token_endpoint}
-        </Label>
+        </Paragraph>
       </InfoBox>
     </>
   );

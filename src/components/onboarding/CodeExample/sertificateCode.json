@@ -1,9 +1,5 @@
 {
   "node": [
-    "// Eksempel hentet fra",
-    "// https://raw.githubusercontent.com/entur/exploratory-maskinporten-token/main/src/maskinporten.js",
-    "",
-    "",
     "const fetch = require('node-fetch');",
     "var jwt = require('jsonwebtoken');",
     "var fs = require('fs');",
@@ -49,20 +45,6 @@
   ],
   "java": [
     "package no.difi.oauth2.utils;",
-    "",
-    "/** ",
-    "Relevant utdrag fra pom.xml",
-    "<dependency>",
-    "    <groupId>com.nimbusds</groupId>",
-    "    <artifactId>nimbus-jose-jwt</artifactId>",
-    "    <version>9.31</version>",
-    "</dependency>",
-    "<dependency>",
-    "    <groupId>org.apache.httpcomponents.client5</groupId>",
-    "    <artifactId>httpclient5-fluent</artifactId>",
-    "    <version>5.2.1</version>",
-    "</dependency>",
-    "**/",
     "",
     "import com.nimbusds.jose.JWSAlgorithm;",
     "import com.nimbusds.jose.JWSHeader;",
@@ -147,6 +129,7 @@
     "",
     "            HttpEntity e = ((BasicClassicHttpResponse) response.returnResponse()).getEntity();",
     "            String result = EntityUtils.toString(e);",
+    "            System.out.println(result);",
     "",
     "            // Use access_token in result as authentication header to the service you wish to connect to",
     "",
@@ -160,5 +143,41 @@
     "}",
     ""
   ],
-  "python": []
+  "python": [],
+  "dependencies": {
+    "java": {
+      "maven": {
+        "code": [
+          "<dependency>",
+          "    <groupId>com.nimbusds</groupId>",
+          "    <artifactId>nimbus-jose-jwt</artifactId>",
+          "    <version>9.31</version>",
+          "</dependency>",
+          "<dependency>",
+          "    <groupId>org.apache.httpcomponents.client5</groupId>",
+          "    <artifactId>httpclient5-fluent</artifactId>",
+          "    <version>5.2.1</version>",
+          "</dependency>",
+          "<dependency>",
+          "    <groupId>org.slf4j</groupId>",
+          "    <artifactId>slf4j-log4j12</artifactId>",
+          "    <version>1.5.2</version>",
+          "</dependency>"
+        ],
+        "lang": "xml",
+        "name": "Maven",
+        "id": "maven"
+      },
+      "gradle": {
+        "code": [
+          "implementation \"com.nimbusds:nimbus-jose-jwt:9.31\"",
+          "implementation \"org.apache.httpcomponents.client5:httpclient5-fluent:5.2.1\"",
+          "implementation \"org.slf4j:slf4j-log4j12:1.5.2\""
+        ],
+        "lang": "gradle",
+        "name": "Gradle",
+        "id": "gradle"
+      }
+    }
+  }
 }
