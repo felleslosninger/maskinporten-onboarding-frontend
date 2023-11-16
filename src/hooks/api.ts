@@ -13,15 +13,6 @@ export const QK_CLIENTS = "QK_CLIENTS";
 
 const axiosConfig = { withCredentials: true };
 
-declare global {
-  interface Window {
-    env: {
-      SIMPLIFIED_ONBOARDING_API_URL: string;
-      WHITELIST: string;
-    };
-  }
-}
-
 const baseUrl = window.env.SIMPLIFIED_ONBOARDING_API_URL;
 
 export const useScopes = (env: string) => {

@@ -3,20 +3,20 @@ import {
   Accordion,
   Heading,
   Ingress,
-  Label,
-  LegacyToggleButtonGroup,
+  LegacyToggleButtonGroup, Paragraph,
 } from "@digdir/design-system-react";
 import withAuth, { AuthProps } from "../auth/withAuth";
 import { useClients, usePublicScopes, useScopes } from "../../hooks/api";
 import styles from "./styles.module.scss";
 import ScopeDetails from "./ScopeDetails/ScopeDetails";
 import ContentContainer from "../common/ContentContainer/ContentContainer";
-import OnboardingCard from "../common/OnboardingCard/OnboardingCard";
+import OnboardingCard from "./OnboardingCard/OnboardingCard";
 import { useQueryClient } from "@tanstack/react-query";
 import ScopeSkeleton from "./ScopeSkeleton";
 import PublicScopes from "./PublicScopes/PublicScopes";
 import NoScopesImage from "../../assets/noScopes.png";
 import { ApiScopes } from "../../types/api";
+import { Helmet } from "react-helmet-async";
 
 function Dashboard({ user, config }: AuthProps) {
   const queryClient = useQueryClient();
@@ -51,7 +51,7 @@ function Dashboard({ user, config }: AuthProps) {
         });
         setPublicScopeList(list);
       });
-  }, [clientsData, isLoading, scopesData]);
+  }, [clientsData, isLoading, scopesData, isError]);
 
   useEffect(() => {
     const publicScopess =
@@ -69,6 +69,9 @@ function Dashboard({ user, config }: AuthProps) {
   return (
     <>
       <ContentContainer>
+        <Helmet>
+          <title>Oversikt | Forenklet Onboarding</title>
+        </Helmet>
         <div className={styles.infoContainer}>
           <Heading size={"large"}>API-tilganger i Maskinporten</Heading>
           <Ingress>
@@ -78,9 +81,9 @@ function Dashboard({ user, config }: AuthProps) {
         </div>
 
         <div className={styles.accordionListHeader}>
-          <Heading size={"small"}>Mine tilganger</Heading>
+          <Heading level={2} size={"small"}>Mine tilganger</Heading>
           <div className={styles.envPicker}>
-            <Label>Valgt miljø:</Label>
+            <Paragraph>Valgt miljø:</Paragraph>
             <LegacyToggleButtonGroup
               items={Object.keys(config).map((env) => ({
                 label: env.toUpperCase(),
@@ -91,43 +94,48 @@ function Dashboard({ user, config }: AuthProps) {
             />
           </div>
         </div>
-        <Accordion color={"neutral"}>
-          {isLoading && (
-            <>
-              <ScopeSkeleton />
-              <ScopeSkeleton />
-            </>
-          )}
-          {!isLoading &&
-            ((renderedScopes && renderedScopes.length === 0) || isError) && (
-              <div className={styles.noScopesBox}>
-                <img
-                  src={NoScopesImage}
-                  className={styles.noScopesImage}
-                  alt={"Ingen tilgjengelige tilganger"}
-                />
-                <span className={styles.noScopesHeader}>
+        {!isLoading &&
+          ((renderedScopes && renderedScopes.length === 0) || isError) && (
+            <div className={styles.noScopesBox}>
+              <img
+                src={NoScopesImage}
+                className={styles.noScopesImage}
+                alt={"Ingen tilgjengelige tilganger"}
+              />
+              <span className={styles.noScopesHeader}>
                   Ingen tilganger her
                 </span>
-                <span className={styles.noScopesText}>
+              <span className={styles.noScopesText}>
                   Når organisasjonen din får tilgang til noe i maskinporten,
                   dukker det opp her.
                 </span>
-              </div>
-            )}
-          {!isLoading &&
-            !isError &&
-            clientsData &&
-            scopesData &&
-            renderedScopes.map((scope) => (
-              <ScopeDetails
-                scope={scope}
-                clients={clientsData}
-                env={env}
-                key={scope.scope}
-              />
-            ))}
-        </Accordion>
+            </div>
+          )
+        }
+        {isLoading && (
+          <Accordion color={"neutral"} role={"status"}>
+            <ScopeSkeleton />
+            <ScopeSkeleton />
+          </Accordion>
+        )}
+        {!isLoading &&
+          !isError &&
+          clientsData &&
+          scopesData && (
+            <Accordion color={"neutral"}>
+              {
+                renderedScopes.map((scope) => (
+                  <ScopeDetails
+                    scope={scope}
+                    clients={clientsData}
+                    env={env}
+                    key={scope.scope}
+                  />
+                ))
+              }
+            </Accordion>
+          )
+        }
         {publicScopes && (
           <PublicScopes scopeList={publicScopes} resultsPerPage={5} env={env} />
         )}
