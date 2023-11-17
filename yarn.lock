@@ -1302,6 +1302,11 @@
   resolved "https://registry.yarnpkg.com/@digdir/design-system-tokens/-/design-system-tokens-0.8.1.tgz#b27a54a2072090db92f8d520954aa8c3bc00bbe2"
   integrity sha512-OREcL4qeEmrysgLdZ9USZHOJkFMhzK0iC5bD4FkIAE/lMN/xiJ0eFcI9+hmjHh1xyyj20fjLxk2Gxxo1cByArA==
 
+"@digdir/design-system-tokens@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@digdir/design-system-tokens/-/design-system-tokens-0.9.0.tgz#2b1bad4568a139f707461cc3cd895f838b686b5a"
+  integrity sha512-d0psCdll51NGZdEj+9sd7KSNZrCsJmmJGR08itzlu7KvT/AVr26FIBQPUpYXyozrSX26pTggJyEfWRogDF+J6A==
+
 "@eslint-community/eslint-utils@^4.2.0":
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/@eslint-community/eslint-utils/-/eslint-utils-4.4.0.tgz#a23514e8fb9af1269d5f7788aa556798d61c6b59"
@@ -9188,10 +9193,10 @@ typedarray-to-buffer@^3.1.5:
   dependencies:
     is-typedarray "^1.0.0"
 
-typescript@^4.4.2:
-  version "4.9.5"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.9.5.tgz#095979f9bcc0d09da324d58d03ce8f8374cbe65a"
-  integrity sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==
+typescript@^5.2.2:
+  version "5.2.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.2.2.tgz#5ebb5e5a5b75f085f22bc3f8460fba308310fa78"
+  integrity sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==
 
 unbox-primitive@^1.0.2:
   version "1.0.2"
