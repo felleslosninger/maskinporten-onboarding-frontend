@@ -19,6 +19,10 @@
 }
 
 .dropdownItem {
+  outline: inherit;
+  font: inherit;
+  border: none;
+  background: none;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -26,6 +30,7 @@
   white-space: nowrap;
   cursor: pointer;
   border-bottom: 1px solid $colors-gray;
+  width: 100%;
 
   * {
     cursor: pointer;
@@ -34,6 +39,10 @@
   &:first-child {
     border-top-left-radius: 0.25rem;
     border-top-right-radius: 0.25rem;
+  }
+
+  &:focus {
+    outline: 0.15rem solid $colors-interface-highlight !important;
   }
 
   &:last-child {

@@ -1,6 +1,7 @@
 @import "src/style/variables";
 
 .selectionContainer {
+  margin-bottom: 2rem;
   input {
     padding: 0.5rem !important;
     width: fit-content;
@@ -21,12 +22,26 @@
 
 .codeExampleTabs {
   display: flex;
+  align-items: center;
   gap: 1rem;
   border-bottom: 2px solid $colors-gray;
 
-  span {
-    padding: 1rem 2rem 0 2rem;
+  .codeExampleTab {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    padding: 1rem 2rem;
     cursor: pointer;
+    outline: inherit;
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+
+    &:focus {
+      outline: 0.1rem solid $colors-interface-highlight;
+    }
 
     &.active {
       color: $colors-semantic-action-default;
@@ -43,7 +58,20 @@
   }
 }
 
+.dependencies {
+  width: fit-content;
+  position: absolute;
+  right: 1rem;
+  opacity: 0.25;
+  transition: opacity 0.1s linear;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
 .codeExampleContent {
+  position: relative;
   padding: 1rem;
 }
 

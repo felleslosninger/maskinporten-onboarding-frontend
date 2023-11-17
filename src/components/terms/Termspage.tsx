@@ -2,10 +2,14 @@ import React from "react";
 import styles from "./styles.module.scss";
 import { Heading, Paragraph } from "@digdir/design-system-react";
 import ContentContainer from "../common/ContentContainer/ContentContainer";
+import {Helmet} from "react-helmet-async";
 
 function Termspage() {
   return (
     <ContentContainer className={styles.container}>
+      <Helmet>
+        <title>Vilkår | Forenklet Onboarding</title>
+      </Helmet>
       <Heading className={styles.subheader} size={"large"}>
         Vilkår for bruk av Maskinporten som konsument gjennom forenklet
         onboarding

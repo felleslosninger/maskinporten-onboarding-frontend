@@ -5,7 +5,6 @@ import {
   Button,
   Heading,
   Ingress,
-  Label,
   Paragraph,
   Tag,
 } from "@digdir/design-system-react";
@@ -14,6 +13,7 @@ import { login } from "../auth/login";
 import ContentContainer from "../common/ContentContainer/ContentContainer";
 import { link } from "../util/textTransforms";
 import { useSearchParams } from "react-router-dom";
+import {Helmet} from "react-helmet-async";
 
 const enkelttjenestenavn =
   "Selvbetjening av integrasjoner i ID-porten/Maskinporten";
@@ -25,6 +25,9 @@ function Landingpage() {
 
   return (
     <ContentContainer className={styles.container}>
+      <Helmet>
+        <title>Forenklet Onboarding</title>
+      </Helmet>
       {error && auth && (
         <Alert className={styles.errorMessage} severity={"warning"}>
           <Heading level={2} size={"xsmall"} spacing>
@@ -62,7 +65,7 @@ function Landingpage() {
 
       <Heading size={"xlarge"} className={styles.heading} spacing>
         Velkommen til Forenklet Onboarding
-        <Tag color={"second"} variant={"outlined"}>
+        <Tag color={"second"} variant={"secondary"}>
           Pilot
         </Tag>
       </Heading>
@@ -99,7 +102,7 @@ function Landingpage() {
       <Accordion className={styles.faq}>
         <Accordion.Item>
           <Accordion.Header>
-            <Label size={"large"}>Hva betyr enkelttjeneste-tilgang?</Label>
+            <Paragraph size={"large"}>Hva betyr enkelttjeneste-tilgang?</Paragraph>
           </Accordion.Header>
           <Accordion.Content>
             <Paragraph spacing>
@@ -116,10 +119,10 @@ function Landingpage() {
         </Accordion.Item>
         <Accordion.Item>
           <Accordion.Header>
-            <Label size={"large"}>
+            <Paragraph size={"large"}>
               Hva hvis jeg ikke får logget inn eller mangler rettigheter som må
               til?
-            </Label>
+            </Paragraph>
           </Accordion.Header>
           <Accordion.Content>
             <Paragraph spacing>
@@ -149,7 +152,7 @@ function Landingpage() {
         </Accordion.Item>
         <Accordion.Item>
           <Accordion.Header>
-            <Label size={"large"}>Hvem kan jeg kontakte for tilgang?</Label>
+            <Paragraph size={"large"}>Hvem kan jeg kontakte for tilgang?</Paragraph>
           </Accordion.Header>
           <Accordion.Content>
             <Paragraph spacing>
@@ -202,7 +205,7 @@ function Landingpage() {
 
         <Accordion.Item>
           <Accordion.Header>
-            <Label size={"large"}>Hva betyr det at dette er en pilot?</Label>
+            <Paragraph size={"large"}>Hva betyr det at dette er en pilot?</Paragraph>
           </Accordion.Header>
           <Accordion.Content>
             <Paragraph spacing>

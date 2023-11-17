@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./styles.module.scss";
-import { Label } from "@digdir/design-system-react";
+import {Paragraph} from "@digdir/design-system-react";
 import {
   BagdeIcon,
   KeyHorizontalIcon,
@@ -9,6 +9,7 @@ import {
 import KeySection from "./KeySection";
 import OtherSection from "./OtherSection";
 import SertificateSection from "./SertificateSection";
+import ContentContainer from "../../common/ContentContainer/ContentContainer";
 
 function TabsSection() {
   const [selectedTab, setSelectedTab] = useState(1);
@@ -16,40 +17,40 @@ function TabsSection() {
   return (
     <div className={styles.tabsContainer}>
       <div className={styles.tabs}>
-        <div
+        <button
           className={`${styles.tab} ${
             selectedTab === 1 ? styles.active : styles.inactive
           }`}
           onClick={() => setSelectedTab(1)}
         >
           <BagdeIcon />
-          <Label size={"large"}>Virksomhetssertifikat</Label>
-        </div>
-        <div
+          <Paragraph size={"large"}>Virksomhetssertifikat</Paragraph>
+        </button>
+        <button
           className={`${styles.tab} ${
             selectedTab === 2 ? styles.active : styles.inactive
           }`}
           onClick={() => setSelectedTab(2)}
         >
           <KeyHorizontalIcon />
-          <Label size={"large"}>Manuelt opplastet nøkkel</Label>
-        </div>
-        <div
+          <Paragraph size={"large"}>Manuelt opplastet nøkkel</Paragraph>
+        </button>
+        <button
           className={`${styles.tab} ${
             selectedTab === 3 ? styles.active : styles.inactive
           }`}
           onClick={() => setSelectedTab(3)}
         >
           <TasklistIcon />
-          <Label size={"large"}>Andre fremgangsmåter</Label>
-        </div>
+          <Paragraph size={"large"}>Andre fremgangsmåter</Paragraph>
+        </button>
       </div>
       <div className={styles.tabsContentContainer}>
-        <div className={styles.tabsContent}>
+        <ContentContainer className={styles.tabsContent}>
           {selectedTab === 1 && <SertificateSection />}
           {selectedTab === 2 && <KeySection />}
           {selectedTab === 3 && <OtherSection />}
-        </div>
+        </ContentContainer>
       </div>
     </div>
   );

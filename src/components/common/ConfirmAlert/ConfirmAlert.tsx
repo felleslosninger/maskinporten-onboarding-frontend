@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Modal from "../Modal/Modal";
 import { Button, Textfield } from "@digdir/design-system-react";
 import styles from "./styles.module.scss";
+import VisuallyHidden from "../VisuallyHidden/VisuallyHidden";
 
 interface Props {
   title: string;
@@ -12,11 +13,11 @@ interface Props {
 }
 
 function ConfirmAlert(props: Props) {
-  const [text, setText] = useState<string>();
+  const [text, setText] = useState<string>("");
   const [error, setError] = useState(false);
 
   const validateAndConfirm = () => {
-    if (!text || !(text === props.confirmText)) {
+    if (text !== props.confirmText) {
       setError(true);
       return;
     }
@@ -38,9 +39,15 @@ function ConfirmAlert(props: Props) {
       <div className={styles.buttonRow}>
         <Button color={"danger"} onClick={validateAndConfirm}>
           Bekreft
+          <VisuallyHidden>
+            sletting
+          </VisuallyHidden>
         </Button>
-        <Button variant={"outline"} onClick={props.closeModal}>
+        <Button variant={"secondary"} onClick={props.closeModal}>
           Avbryt
+          <VisuallyHidden>
+            sletting
+          </VisuallyHidden>
         </Button>
       </div>
     </Modal>
