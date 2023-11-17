@@ -1,6 +1,7 @@
 import React from "react";
-import { Heading, Paragraph } from "@digdir/design-system-react";
+import { Heading, Paragraph, Link as DigdirLink } from "@digdir/design-system-react";
 import { link } from "../../util/textTransforms";
+
 
 function OtherSection() {
   return (
@@ -33,10 +34,10 @@ function OtherSection() {
           true,
         )}
         . Pålogging til APIet er igjen sikret med Maskinporten og krever en egen
-        klient med scope `<span lang={"en"}>idporten:scopes.write</span>`. Denne løsningen for forenklet
+        klient med scope <code lang={"en"}>idporten:scopes.write</code>. Denne løsningen for forenklet
         onboarding støtter foreløpig ikke prosessen videre for å få tak i denne
-        tilgangen og du må sende en forespørsel til servicedesk@digdir.no. Se
-        mer informasjon {" "}
+        tilgangen og du må sende en forespørsel til {" "}<DigdirLink href="mailto:servicedesk@digdir.no">servicedesk@digdir.no</DigdirLink>.
+        Se mer informasjon {" "}
         {link(
           "https://docs.digdir.no/docs/Maskinporten/maskinporten_sjolvbetjening_api#tilgang-administrasjon-av-api",
           "her",
@@ -52,8 +53,9 @@ function OtherSection() {
         Dersom du kun ønsker å ha <strong>ett</strong> gyldig
         virksomhetssertifikat å signere med for hver integrasjon, støtter vi
         dessverre ikke dette for øyeblikket som en del av forenklet
-        onboarding-løsningen. I dette tilfellet, ta kontakt med
-        servicedesk@digdir.no for å få tilgang til Samarbeidsportalen.
+        onboarding-løsningen. I dette tilfellet, ta kontakt med {" "}
+        <DigdirLink href="mailto:servicedesk@digdir.no">servicedesk@digdir.no</DigdirLink> for
+        å få tilgang til Samarbeidsportalen.
       </Paragraph>
     </>
   );
