@@ -7900,20 +7900,18 @@ react-error-overlay@^6.0.11:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.11.tgz#92835de5841c5cf08ba00ddd2d677b6d17ff9adb"
   integrity sha512-/6UZ2qgEyH2aqzYZgQPxEnz33NJ2gNsnHA2o5+o4wW9bLM/JYQitNP9xPhsXwC08hMMovfGe/8retsdDsczPRg==
 
-react-fast-compare@^3.2.0:
+react-fast-compare@^3.2.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.2.tgz#929a97a532304ce9fee4bcae44234f1ce2c21d49"
   integrity sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==
 
-react-helmet-async@*, react-helmet-async@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/react-helmet-async/-/react-helmet-async-1.3.0.tgz#7bd5bf8c5c69ea9f02f6083f14ce33ef545c222e"
-  integrity sha512-9jZ57/dAn9t3q6hneQS0wukqC2ENOBgMNVEhb/ZG9ZSxUetzVIw4iAmEU38IaVg3QGYauQPhSeUTuIUtFglWpg==
+react-helmet-async@*, react-helmet-async@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/react-helmet-async/-/react-helmet-async-2.0.0.tgz#730c07280fb1f2392768a780fa56058057137803"
+  integrity sha512-pYYyVtyNkPuCENuHZkIy8CWmlINWO3oeh8HCBAw80CY4+rOc/pJwGgay5EUMSGBy5ii123Q8rncKvi+Jpt1scw==
   dependencies:
-    "@babel/runtime" "^7.12.5"
     invariant "^2.2.4"
-    prop-types "^15.7.2"
-    react-fast-compare "^3.2.0"
+    react-fast-compare "^3.2.2"
     shallowequal "^1.1.0"
 
 react-is@^16.13.1:
