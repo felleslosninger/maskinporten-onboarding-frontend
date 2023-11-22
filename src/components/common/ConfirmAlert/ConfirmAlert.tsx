@@ -1,5 +1,5 @@
 import React, {RefObject, useState} from "react";
-import {Button, Textfield, Modal, Divider} from "@digdir/design-system-react";
+import {Button, Textfield, Modal} from "@digdir/design-system-react";
 import styles from "./styles.module.scss";
 import VisuallyHidden from "../VisuallyHidden/VisuallyHidden";
 

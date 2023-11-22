@@ -19,7 +19,7 @@ function PublicScopeResult(props: Props) {
     if (showModal) {
       modalRef.current?.showModal();
     }
-  }, [showModal]);
+  }, [showModal, modalRef]);
 
   const onMakeClient = () => {
     if (window.env.WHITELIST.indexOf(props.scope.name) === -1) {

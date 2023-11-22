@@ -1,7 +1,8 @@
 @import "src/style/variables";
 
 .modal {
-  min-width: 90%;
+  width: 90%;
+  max-width: $content-width-max;
 }
 
 .form {

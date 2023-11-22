@@ -32,7 +32,7 @@ function ScopeDetails(props: ScopeDetailProps) {
     if (showModal) {
       modalRef.current?.showModal();
     }
-  }, [showModal]);
+  }, [showModal, modalRef]);
 
   const onMakeClient = () => {
     if (window.env.WHITELIST.indexOf(props.scope.scope) === -1) {

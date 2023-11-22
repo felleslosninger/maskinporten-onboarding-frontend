@@ -84,7 +84,7 @@ const NewClientModal = React.forwardRef<HTMLDialogElement, NewClientProps>((prop
     if (isSuccess) {
       setStep(3);
     }
-  }, [data]);
+  }, [isSuccess]);
 
   // Show error on client POST error
   useEffect(() => {
