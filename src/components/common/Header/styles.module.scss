@@ -69,7 +69,7 @@
 
 .userInfo {
   display: flex;
-  height: fit-content;
+  height: fit-content !important;
   align-items: center;
 
   svg {

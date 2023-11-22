@@ -3,8 +3,8 @@ import { ApiScopes } from "../../../types/api";
 import {
   Button,
   Heading,
-  Pagination, Search,
-  Textfield,
+  Pagination,
+  Search,
 } from "@digdir/design-system-react";
 import PublicScopeResult from "./PublicScopeResult";
 import { PlusIcon } from "@navikt/aksel-icons";

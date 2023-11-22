@@ -1,7 +1,6 @@
-import React, {createContext, createRef, ReactNode, useEffect, useState} from "react";
+import React, {createContext, createRef, ReactNode, RefObject, useEffect, useState} from "react";
 import styles from "./styles.module.scss";
-import {Button, Paragraph, Spinner} from "@digdir/design-system-react";
-import Modal from "../../common/Modal/Modal";
+import {Button, Paragraph, Spinner, Modal} from "@digdir/design-system-react";
 import { useClientMutation } from "../../../hooks/api";
 import { ApiClient, RequestApiClientBody } from "../../../types/api";
 import { CSSTransition } from "react-transition-group";
@@ -57,11 +56,10 @@ export const NewClientContext = createContext<NewClientContextProps | null>(
 interface NewClientProps {
   env: string;
   scope: string;
-  open: boolean;
   closeModal: () => void;
 }
 
-function NewClientModal(props: NewClientProps) {
+const NewClientModal = React.forwardRef<HTMLDialogElement, NewClientProps>((props, ref) => {
   const {
     mutate: addClient,
     isSuccess,
@@ -79,6 +77,7 @@ function NewClientModal(props: NewClientProps) {
   const [kid, setKid] = useState("");
   const [message, setMessage] = useState<FeedbackMessage>();
   const [scopes, setScopes] = useState<string[]>([]);
+  const modalRef = ref as RefObject<HTMLDialogElement>;
 
   // Go to success step on client POST success
   useEffect(() => {
@@ -186,25 +185,26 @@ function NewClientModal(props: NewClientProps) {
       }}
     >
       <Modal
-        open={props.open}
-        closeModal={props.closeModal}
-        title={
-          step === 3
-            ? "Integrasjonen er opprettet"
-            : `Opprett ny integrasjon (${step} / ${steps.length - 1})`
-        }
+        ref={ref}
+        onInteractOutside={() => modalRef.current?.close()}
+        onClose={() => props.closeModal()}
         className={styles.modal}
       >
-        <>
+        <Modal.Header>
+          {step === 3
+            ? "Integrasjonen er opprettet"
+            : `Opprett ny integrasjon (${step} / ${steps.length - 1})`}
+        </Modal.Header>
+        <Modal.Content className={styles.modalContent}>
           {steps.map((render, index) => {
-            const ref = createRef<HTMLDivElement>();
+            const divRef = createRef<HTMLDivElement>();
             return (
               <CSSTransition
                 in={step === index + 1}
                 key={index}
                 timeout={1000}
                 classNames={isNext ? nextClassNames : prevClassNames}
-                nodeRef={ref}
+                nodeRef={divRef}
                 mountOnEnter
                 unmountOnExit
               >
@@ -212,18 +212,19 @@ function NewClientModal(props: NewClientProps) {
                   className={`${styles.form} ${
                     isNext ? styles.rightToLeft : styles.leftToRight
                   }`}
-                  ref={ref}
+                  ref={divRef}
                 >
                   {render()}
                 </div>
               </CSSTransition>
             );
           })}
-
+        </Modal.Content>
+        <Modal.Footer>
           <div className={styles.modalButtons}>
             {step === 1 && (
               <>
-                <Button variant={"secondary"} onClick={props.closeModal}>
+                <Button variant={"secondary"} onClick={() => modalRef.current?.close()}>
                   Avbryt
                   <VisuallyHidden>
                     oppretting
@@ -268,15 +269,15 @@ function NewClientModal(props: NewClientProps) {
               </>
             )}
             {step === 3 && (
-              <Button variant={"secondary"} onClick={props.closeModal}>
+              <Button variant={"secondary"} onClick={() => modalRef.current?.close()}>
                 Tilbake til oversikten
               </Button>
             )}
           </div>
-        </>
+        </Modal.Footer>
       </Modal>
     </NewClientContext.Provider>
   );
-}
+});
 
 export default NewClientModal;

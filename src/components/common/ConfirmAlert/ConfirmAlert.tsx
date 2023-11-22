@@ -1,4 +1,4 @@
-import React, {createRef, ForwardedRef, RefObject, useRef, useState} from "react";
+import React, {RefObject, useState} from "react";
 import {Button, Textfield, Modal, Divider} from "@digdir/design-system-react";
 import styles from "./styles.module.scss";
 import VisuallyHidden from "../VisuallyHidden/VisuallyHidden";
@@ -31,8 +31,7 @@ const ConfirmAlert = React.forwardRef<HTMLDialogElement, Props>((props, ref) => 
   return (
     <Modal ref={ref} onInteractOutside={() => modalRef.current?.close()}>
       <Modal.Header>{props.title}</Modal.Header>
-      <Divider color={"subtle"} />
-      <Modal.Content>
+      <Modal.Content className={styles.modalContent}>
         <Textfield
           label={`Fyll ut '${props.confirmText}' i boksen under for å bekrefte`}
           type={"text"}

@@ -1,4 +1,4 @@
-import React, {createRef, useRef, useState} from "react";
+import React, {useRef, useState} from "react";
 import { useUser } from "../../../hooks/auth";
 import styles from "./styles.module.scss";
 import { ReactComponent as Logo } from "../../../assets/logo.svg";
@@ -7,8 +7,7 @@ import { ReactComponent as PersonSvg } from "../../../assets/ikoner/SVG/Person.s
 import {Button, DropdownMenu, Label, Paragraph} from "@digdir/design-system-react";
 import { login, logout } from "../../auth/login";
 import StyledLink from "../StyledLink/StyledLink";
-import {useLocation, useNavigate} from "react-router-dom";
-import { Dropdown } from "../Dropdown";
+import {useLocation} from "react-router-dom";
 import {ChevronRightIcon, LeaveIcon, MenuHamburgerIcon, XMarkIcon} from "@navikt/aksel-icons";
 import {useMediaQuery} from "react-responsive";
 
@@ -18,7 +17,6 @@ function Header() {
   const [open, setOpen] = useState(false);
   const isSmallScreen = useMediaQuery({query: '(max-width: 767px)'});
   const location = useLocation();
-  const navigate = useNavigate();
   const isLoggedIn = !isLoading && data!!.isAuthenticated;
 
   return (

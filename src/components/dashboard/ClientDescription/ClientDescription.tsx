@@ -1,4 +1,4 @@
-import React, {createRef, useState} from "react";
+import React, {createRef} from "react";
 import { ApiClient } from "../../../types/api";
 import styles from "../ClientDescription/styles.module.scss";
 import {Button, Heading, Tooltip} from "@digdir/design-system-react";
