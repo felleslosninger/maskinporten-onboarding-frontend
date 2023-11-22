@@ -3,7 +3,7 @@ import { ApiScopes } from "../../../types/api";
 import {
   Button,
   Heading,
-  Pagination,
+  Pagination, Search,
   Textfield,
 } from "@digdir/design-system-react";
 import PublicScopeResult from "./PublicScopeResult";
@@ -57,11 +57,7 @@ function PublicScopes(props: Props) {
             <Heading size={"small"} spacing>
               Velg tilgangen du vil legge til
             </Heading>
-            <Textfield
-              type={"search"}
-              placeholder={"Søk"}
-              onChange={onSearch}
-              className={styles.search}
+            <Search onChange={onSearch}
             />
           </div>
           <div className={styles.results}>

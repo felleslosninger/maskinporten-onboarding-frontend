@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {createRef, useState} from "react";
 import { ApiClient } from "../../../types/api";
 import styles from "../ClientDescription/styles.module.scss";
 import {Button, Heading, Tooltip} from "@digdir/design-system-react";
@@ -14,20 +14,17 @@ interface ClientDescriptionProps {
 }
 
 const ClientDescription = (props: ClientDescriptionProps) => {
+  const modalRef = createRef<HTMLDialogElement>();
   const { mutate: deleteClient } = useClientDeleteMutation(props.env);
-  const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <div className={styles.container}>
-      {modalOpen && (
-        <ConfirmAlert
-          title={"Ekstra bekreftelse er påkrevet for denne handlingen"}
-          open={modalOpen}
-          confirmText={"SLETT"}
-          closeModal={() => setModalOpen(false)}
-          onConfirm={() => deleteClient(props.client.clientId)}
-        />
-      )}
+      <ConfirmAlert
+        ref={modalRef}
+        title={"Ekstra bekreftelse er påkrevet for denne handlingen"}
+        confirmText={"SLETT"}
+        onConfirm={() => deleteClient(props.client.clientId)}
+      />
       <div className={styles.content}>
         <div className={styles.icon}>
           <Tooltip
@@ -71,7 +68,7 @@ const ClientDescription = (props: ClientDescriptionProps) => {
           variant={"tertiary"}
           color={"danger"}
           className={styles.deleteButton}
-          onClick={() => setModalOpen(true)}
+          onClick={() => modalRef.current?.showModal()}
           title={"Slett integrasjon"}
         >
           <TrashIcon />
