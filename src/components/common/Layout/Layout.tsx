@@ -18,6 +18,7 @@ function Layout() {
           <Route path={"/dashboard"} element={<Dashboard />} />
           <Route path={"/guide"} element={<Onboardingpage />} />
           <Route path={"/terms"} element={<Termspage />} />
+          <Route path={"*"} element={<Dashboard />} />
         </Routes>
       </div>
       <Footer />

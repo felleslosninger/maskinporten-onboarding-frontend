@@ -7,6 +7,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  li {
+    list-style: none;
+  }
+
 }
 
 .content {
@@ -27,13 +32,6 @@
     }
   }
 
-  a {
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
   p {
     color: $colors-interface-info-900;
   }
@@ -49,6 +47,10 @@
   }
 
   a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: $colors-interface-highlight;
   }
 
@@ -67,7 +69,7 @@
 
 .userInfo {
   display: flex;
-  height: 100%;
+  height: fit-content !important;
   align-items: center;
 
   svg {
@@ -82,8 +84,14 @@
   }
 }
 
-.menuLink {
+.smallMenuButton {
+  display: flex;
+  align-items: center !important;
+  justify-content: center;
 
+  label {
+    color: $colors-semantic-action-default;
+  }
 }
 
 .svg {
@@ -101,7 +109,11 @@
 }
 
 .logoutLabel {
-  color: $colors-danger-red;
+  color: $colors-danger-red !important;
+}
+
+.loginLabel, .logoutLabel {
+  justify-content: space-between !important;
 }
 
 .loginLabel p,

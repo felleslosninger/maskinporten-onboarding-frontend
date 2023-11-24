@@ -4,7 +4,7 @@ import {
   Button,
   Heading,
   Pagination,
-  Textfield,
+  Search,
 } from "@digdir/design-system-react";
 import PublicScopeResult from "./PublicScopeResult";
 import { PlusIcon } from "@navikt/aksel-icons";
@@ -57,11 +57,7 @@ function PublicScopes(props: Props) {
             <Heading size={"small"} spacing>
               Velg tilgangen du vil legge til
             </Heading>
-            <Textfield
-              type={"search"}
-              placeholder={"Søk"}
-              onChange={onSearch}
-              className={styles.search}
+            <Search onChange={onSearch}
             />
           </div>
           <div className={styles.results}>
