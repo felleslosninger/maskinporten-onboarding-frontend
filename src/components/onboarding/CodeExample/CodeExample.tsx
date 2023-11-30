@@ -43,19 +43,21 @@ function CodeExample(props: Props) {
 
   const formatLabel = (client: ApiClient) => (
     <div className={styles.selectFormattedBox}>
-      {bold(client.clientId)}
-      <span>
-        <ClipboardIcon />
-        {client.description}
-      </span>
-      <span>
-        <KeyHorizontalIcon />
-        {client.scopes.length > 1 ? `${client.scopes[0]}...` : client.scopes[0]}
-      </span>
-      <span>
+      <div className={styles.labelBoxBranch}>
         <BranchingIcon />
         {client.env}
+      </div>
+      <div>
+        <span className={styles.labelBoxTitle}>{bold(client.description)}</span>
+        <span>
+        <ClipboardIcon />
+          {client.clientId}
       </span>
+        <span>
+        <KeyHorizontalIcon />
+          {client.scopes.length > 1 ? `${client.scopes[0]}...` : client.scopes[0]}
+      </span>
+      </div>
     </div>
   );
 
