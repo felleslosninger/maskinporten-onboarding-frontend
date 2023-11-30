@@ -46,7 +46,7 @@ export const useClients = (env: string, enabled?: boolean) => {
     queryFn: async () => {
       const path = `${baseUrl}/api/${env}/datasharing/consumer/client`;
       const res = await axios.get<ApiClients>(path, axiosConfig);
-      res.data.forEach((client) => (client.env = env));
+      res.data.forEach((client) => (client.env = env.toUpperCase()));
       return res.data;
     },
     enabled: enabled, // Avoids concurrency issues with refresh token
