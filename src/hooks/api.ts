@@ -50,6 +50,8 @@ export const useClients = (env: string, enabled?: boolean) => {
       return res.data;
     },
     enabled: enabled, // Avoids concurrency issues with refresh token
+    refetchInterval: 9 * 60 * 1000, // Avoids token expiration while app is in use
+    refetchIntervalInBackground: true
   });
 };
 
