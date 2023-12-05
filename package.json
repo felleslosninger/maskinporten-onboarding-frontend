@@ -1,5 +1,5 @@
 {
-  "name": "api-access-request-gui",
+  "name": "maskinporten-onboarding-frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -31,9 +31,12 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!axios)/\"",
     "eject": "react-scripts eject",
     "prettier": "npx prettier . --write"
+  },
+  "jest": {
+    "resetMocks": false
   },
   "eslintConfig": {
     "extends": [
