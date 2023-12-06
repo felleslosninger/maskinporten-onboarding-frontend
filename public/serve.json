@@ -1,0 +1,7 @@
+{
+  "redirects": [
+    { "source": "/health", "destination": "/health.json" },
+    { "source": "/health/readiness", "destination": "/readiness.json" },
+    { "source": "/health/liveness", "destination": "/readiness.json" }
+  ]
+}
