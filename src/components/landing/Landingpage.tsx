@@ -218,7 +218,7 @@ function Landingpage() {
               Piloten er laget slik at alle integrasjoner som administeres i
               piloten også kan administeres via dagens offisielle løsing,
               Samarbeidsportalen. Om behovet for forenklet onboarding ikke er
-              tilstede, vil integrasjonene fortsatt fungere, men videre
+              til stede, vil integrasjonene fortsatt fungere, men videre
               administrasjon må skje i Samarbeidsportalen. Det er altså ingen
               risiko for dobbeltarbeid eller migrering forbundet med bruk av
               piloten.
@@ -227,11 +227,17 @@ function Landingpage() {
               Gi oss gjerne en tilbakemelding om du har ris eller ros. Du kan
               lage en feedback-sak til oss på{" "}
               {link(
-                "https://github.com/fellesdatakatalog/api-access-request-gui/issues",
+                "https://github.com/felleslosninger/maskinporten-onboarding-frontend/issues",
                 "github",
                 true,
               )}{" "}
-              eller sende en mail til servicedesk@digdir.no med emne Forenklet
+              eller sende en mail til{" "}
+              {link(
+                "servicedesk@digdir.no",
+                "servicedesk@digdir.no",
+                true,
+              )}{" "}
+              med emne Forenklet
               onboarding.
             </Paragraph>
           </Accordion.Content>
