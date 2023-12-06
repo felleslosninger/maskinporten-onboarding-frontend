@@ -60,8 +60,7 @@ function KeySection() {
           </li>
           <li>
             Det er opprett en {link("/dashboard", "ny integrasjon ")} eller en
-            eksisterende integrasjon som du ønsker å gjenbruke et eksisterende
-            nøkkelsett. Dersom du oppretter ny integrasjon, last opp
+            eksisterende integrasjon registrert med en public-nøkkel. Dersom du oppretter ny integrasjon, last opp
             public-delen av nøkkelen du ønsker å bruke ved opprettelse.
           </li>
         </ol>
@@ -78,10 +77,11 @@ function KeySection() {
           <ol>
             <li>
               Headerfeltet <code lang={"en"}>alg</code>: RS256, RS384 eller RS512 er mulige
-              verdier støttet av Maskinporten
+              verdier støttet av Maskinporten. Integrasjoner opprettet med public-nøkkel på
+              Forenklet Onboarding bruker alltid RS256.
             </li>
             <li>
-              Headerfeltet <code lang={"en"}>kid</code>: key-id (kid) fra integrasjonen du
+              Headerfeltet <code lang={"en"}>kid</code>: Key-id (kid) fra integrasjonen du
               ønsker å bruke
             </li>
             <li>
@@ -89,11 +89,11 @@ function KeySection() {
               miljøspesifikke url under Konfigurasjonsfelter
             </li>
             <li>
-              Bodyfeltet <code lang={"en"}>iss</code>: client-id for integrasjonen du ønsker
+              Bodyfeltet <code lang={"en"}>iss</code>: Integrasjons-id for integrasjonen du ønsker
               å bruke
             </li>
             <li>
-              Bodyfeltet <code lang={"en"}>scope</code>: scopet knyttet til apiet du vil
+              Bodyfeltet <code lang={"en"}>scope</code>: Scopet knyttet til apiet du vil
               aksessere
             </li>
             <li>
@@ -101,13 +101,13 @@ function KeySection() {
             </li>
             <li>
               Bodyfeltet <code lang={"en"}>exp</code>: Timestamp for utgått tilgang i
-              UTC-tid
+              UTC-tid. Maksimal tillatt verdi her er 120 sekunder etter <code lang={"en"}>iat</code> timestamp.
             </li>
           </ol>
           Anbefalt eller knyttet til APIet som skal benyttes
           <ol>
             <li>
-              Bodyfeltet <code lang={"en"}>jti</code>: unik uuid
+              Bodyfeltet <code lang={"en"}>jti</code>: Unik uuid for hver grant. Kan ikke gjenbrukes.
             </li>
             <li>
               Bodyfeltet <code lang={"en"}>resource</code>: Dersom API-tilbyder har
@@ -123,19 +123,19 @@ function KeySection() {
           <li>Signer JWT-grant med privatnøkkelen du har opprettet</li>
           <li>
             POST med content-type <code lang={"en"}>application/x-www-form-urlencoded</code>{" "}
-            til Maskinporten sitt token-endepunkt* og følgende parametre i body
+            til Maskinporten sitt token-endepunkt (se url-er i seksjonen Konfigurasjonsfelter) og følgende parametre i body
             <ol>
               <li>
-                <code lang={"en"}>grant</code> med verdi{" "}
+                <code lang={"en"}>grant</code>: Skal alltid ha verdien {" "}
                 <code lang={"en"}>urn:ietf:params:oauth:grant-type:jwt-bearer</code>
               </li>
               <li>
-                <code lang={"en"}>assertion</code> med serialisert JWT-grant som verdi
+                <code lang={"en"}>assertion</code>: Serialisert og ferdigsignert JWT-grant
               </li>
             </ol>
           </li>
           <li>
-            I POST-responsen vil du motta et JSON. Feltet{" "}
+            I POST-responsen vil du motta et JSON objekt. Feltet{" "}
             <code lang={"en"}>access_token</code> vil være autentisering som trengs mot
             tjenestetilbyder. <code lang={"en"}>expiresIn</code> vil beskrive hvor lenge
             tokenet er gyldig, vanligvis 2 minutter.

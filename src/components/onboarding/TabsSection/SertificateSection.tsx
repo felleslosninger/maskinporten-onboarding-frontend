@@ -38,7 +38,7 @@ function SertificateSection() {
           </li>
           <li>
             Det er opprett en {link("/dashboard", "ny integrasjon ")} eller en
-            eksisterende integrasjon som du ønsker å gjenbruke . Denne må være
+            eksisterende integrasjon som du ønsker å gjenbruke. Denne må være
             opprettet med integrasjonsmetode "virksomhetssertifikat"
           </li>
         </ol>
@@ -58,18 +58,18 @@ function SertificateSection() {
               verdier støttet av Maskinporten
             </li>
             <li>
-              Headerfeltet <code lang={"en"}>x5c</code>: Virksomhetssertifikat{" "}
+              Headerfeltet <code lang={"en"}>x5c</code>: Virksomhetssertifikat på X.509 format.
             </li>
             <li>
               Bodyfeltet <code lang={"en"}>aud</code>: Maskinporten sin issuer-url, se
               miljøspesifikke url under Konfigurasjonsfelter
             </li>
             <li>
-              Bodyfeltet <code lang={"en"}>iss</code>: client-id for integrasjonen du ønsker
+              Bodyfeltet <code lang={"en"}>iss</code>: Integrasjons-id for integrasjonen du ønsker
               å bruke
             </li>
             <li>
-              Bodyfeltet <code lang={"en"}>scope</code>: scopet knyttet til apiet du vil
+              Bodyfeltet <code lang={"en"}>scope</code>: Scopet knyttet til apiet du vil
               aksessere
             </li>
             <li>
@@ -77,13 +77,13 @@ function SertificateSection() {
             </li>
             <li>
               Bodyfeltet <code lang={"en"}>exp</code>: Timestamp for utgått tilgang i
-              UTC-tid
+              UTC-tid. Maksimal tillatt verdi her er 120 sekunder etter <code lang={"en"}>iat</code> timestamp.
             </li>
           </ol>
           Anbefalt eller knyttet til APIet som skal benyttes
           <ol>
             <li>
-              Bodyfeltet <code lang={"en"}>jti</code>: unik uuid
+              Bodyfeltet <code lang={"en"}>jti</code>: Unik uuid for hver grant. Kan ikke gjenbrukes.
             </li>
             <li>
               Bodyfeltet <code lang={"en"}>resource</code>: Dersom API-tilbyder har
@@ -99,14 +99,14 @@ function SertificateSection() {
           <li>Signer <span lang={"en"}>JWT-grant</span> med virksomhetssertifikatet</li>
           <li>
             POST med content-type <code lang={"en"}>application/x-www-form-urlencoded</code>{" "}
-            til Maskinporten sitt token-endepunkt* og følgende parametre i body
+            til Maskinporten sitt token-endepunkt (se url-er i seksjonen Konfigurasjonsfelter) og følgende parametre i body
             <ol>
               <li>
-                <code lang={"en"}>grant</code> med verdi{" "}
+                <code lang={"en"}>grant</code>: Skal alltid ha verdien {" "}
                 <code lang={"en"}>urn:ietf:params:oauth:grant-type:jwt-bearer</code>
               </li>
               <li>
-                <code lang={"en"}>assertion</code> med serialisert JWT-grant som verdi
+                <code lang={"en"}>assertion</code>: Serialisert og ferdigsignert JWT-grant
               </li>
             </ol>
           </li>
