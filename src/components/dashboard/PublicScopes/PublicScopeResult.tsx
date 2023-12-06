@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {createRef, useEffect, useState} from "react";
 import { ApiScope } from "../../../types/api";
 import NewClientModal from "../NewClientModal/NewClientModal";
 import { Ingress, Paragraph } from "@digdir/design-system-react";
@@ -12,7 +12,14 @@ interface Props {
 }
 
 function PublicScopeResult(props: Props) {
+  const modalRef = createRef<HTMLDialogElement>();
   const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    if (showModal) {
+      modalRef.current?.showModal();
+    }
+  }, [showModal, modalRef]);
 
   const onMakeClient = () => {
     if (window.env.WHITELIST.indexOf(props.scope.name) === -1) {
@@ -32,8 +39,8 @@ function PublicScopeResult(props: Props) {
         <NewClientModal
           env={props.env}
           scope={props.scope.name}
-          open={showModal}
           closeModal={() => setShowModal(false)}
+          ref={modalRef}
         />
       )}
       <button className={styles.result}

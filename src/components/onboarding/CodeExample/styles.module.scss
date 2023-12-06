@@ -77,9 +77,23 @@
 
 .selectFormattedBox {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 0.25rem;
+  padding: 0.5rem;
+  align-items: center;
+  gap: 1.5rem;
+
+  .labelBoxBranch {
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+  }
+
+  .labelBoxTitle {
+    font-size: 1.20rem;
+    margin-bottom: 0.5rem;
+  }
 
   span {
     display: flex;

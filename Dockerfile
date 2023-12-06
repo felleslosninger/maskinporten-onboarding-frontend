@@ -9,6 +9,10 @@ RUN npm set progress=false && \
 COPY tsconfig.json ./
 COPY src ./src
 COPY public ./public
+
+ENV CI=true
+RUN npm run test
+ENV CI=false
 RUN npm run build
 
 FROM node:20.8.1-alpine3.18

@@ -3,14 +3,14 @@
   "name": "Forenklet onboarding av maskinporten",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "192x192 64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "favicon.svg",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/svg+xml"
     },
     {
-      "src": "logo512.png",
+      "src": "logo192.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "192x192"
     }
   ],
   "start_url": ".",

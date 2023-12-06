@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {createRef, useEffect, useState} from "react";
 import { ApiClients, ApiScope } from "../../../types/api";
 import styles from "./styles.module.scss";
 import {Accordion, Button, Label, Paragraph, Tag} from "@digdir/design-system-react";
@@ -20,12 +20,19 @@ interface ScopeDetailProps {
 }
 
 function ScopeDetails(props: ScopeDetailProps) {
+  const modalRef = createRef<HTMLDialogElement>();
   const { data: enhet, isLoading, isError } = useEnhet(props.scope.owner_orgno);
   const isLargeScreen = useMediaQuery({query: '(min-width: 1300px)'});
   const [showModal, setShowModal] = useState(false);
   const currentClients = props.clients.filter((client) =>
     client.scopes.includes(props.scope.scope),
   );
+
+  useEffect(() => {
+    if (showModal) {
+      modalRef.current?.showModal();
+    }
+  }, [showModal, modalRef]);
 
   const onMakeClient = () => {
     if (window.env.WHITELIST.indexOf(props.scope.scope) === -1) {
@@ -55,8 +62,8 @@ function ScopeDetails(props: ScopeDetailProps) {
         <NewClientModal
           env={props.env}
           scope={props.scope.scope}
-          open={showModal}
           closeModal={() => setShowModal(false)}
+          ref={modalRef}
         />
       )}
       <Accordion.Header level={3} className={styles.headerRow}>
