@@ -1,0 +1,29 @@
+name: Build Docker image and scan for vulnerabilities
+
+on:
+  pull_request:
+    branches: [ main ]
+
+env:
+  IMAGE-NAME: maskinporten-onboarding-frontend
+  NODE_ENV: production
+
+jobs:
+  build-scan-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set imagetag as env variable
+        run: echo "IMAGETAG=$(date +'%Y-%m-%d-%H%M')-${GITHUB_SHA::8}" >> "$GITHUB_ENV"
+
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Build image with Dockerfile
+        run: docker build -t ${{secrets.REGISTRY_URL}}/${{env.IMAGE-NAME}}:${{env.IMAGETAG}} --build-arg="BUILD_VERSION=${{env.IMAGETAG}}" .
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ secrets.REGISTRY_URL }}/${{env.IMAGE-NAME}}:${{env.IMAGETAG}}
+          exit-code: '1'
+          severity: 'CRITICAL,HIGH'
