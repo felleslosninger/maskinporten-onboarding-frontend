@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styles from "./styles.module.scss";
-import {HelpText, Label, Paragraph, Radio, Textarea} from "@digdir/design-system-react";
+import {HelpText, Paragraph, Radio, Textarea} from "@digdir/design-system-react";
 import { link } from "../../util/textTransforms";
 import { customAlphabet } from "nanoid";
 import { NewClientContext } from "./NewClientModal";
