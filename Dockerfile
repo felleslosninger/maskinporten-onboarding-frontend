@@ -1,4 +1,7 @@
 FROM node:20.8.1 as build
+
+ARG BUILD_VERSION=DEV-SNAPSHOT
+
 WORKDIR /app
 COPY package.json yarn.lock ./
 
@@ -9,6 +12,9 @@ RUN npm set progress=false && \
 COPY tsconfig.json ./
 COPY src ./src
 COPY public ./public
+
+# Inject build version
+RUN sed -i "s/BUILD_VERSION/${BUILD_VERSION}/g" ./public/version.json
 
 ENV CI=true
 RUN npm run test
