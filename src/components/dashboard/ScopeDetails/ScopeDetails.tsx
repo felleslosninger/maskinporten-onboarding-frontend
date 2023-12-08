@@ -1,7 +1,13 @@
-import React, {createRef, useEffect, useState} from "react";
+import React, { createRef, useEffect, useState } from "react";
 import { ApiClients, ApiScope } from "../../../types/api";
 import styles from "./styles.module.scss";
-import {Accordion, Button, Label, Paragraph, Tag} from "@digdir/design-system-react";
+import {
+  Accordion,
+  Button,
+  Label,
+  Paragraph,
+  Tag,
+} from "@digdir/design-system-react";
 import ClientDescription from "../ClientDescription/ClientDescription";
 import NewClientModal from "../NewClientModal/NewClientModal";
 import {
@@ -11,7 +17,7 @@ import {
   TerminalIcon,
 } from "@navikt/aksel-icons";
 import { useEnhet } from "../../../hooks/brreg";
-import {useMediaQuery} from "react-responsive";
+import { useMediaQuery } from "react-responsive";
 
 interface ScopeDetailProps {
   scope: ApiScope;
@@ -22,7 +28,7 @@ interface ScopeDetailProps {
 function ScopeDetails(props: ScopeDetailProps) {
   const modalRef = createRef<HTMLDialogElement>();
   const { data: enhet, isLoading, isError } = useEnhet(props.scope.owner_orgno);
-  const isLargeScreen = useMediaQuery({query: '(min-width: 1300px)'});
+  const isLargeScreen = useMediaQuery({ query: "(min-width: 1300px)" });
   const [showModal, setShowModal] = useState(false);
   const currentClients = props.clients.filter((client) =>
     client.scopes.includes(props.scope.scope),
@@ -103,7 +109,8 @@ function ScopeDetails(props: ScopeDetailProps) {
           <TerminalIcon />
           <Paragraph>
             {currentClients.length}{" "}
-            {isLargeScreen && (currentClients.length === 1 ? "integrasjon" : "integrasjoner")}
+            {isLargeScreen &&
+              (currentClients.length === 1 ? "integrasjon" : "integrasjoner")}
           </Paragraph>
         </div>
       </Accordion.Header>

@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./styles.module.scss";
 import { Heading, Paragraph } from "@digdir/design-system-react";
 import ContentContainer from "../common/ContentContainer/ContentContainer";
-import {Helmet} from "react-helmet-async";
+import { Helmet } from "react-helmet-async";
 
 function Termspage() {
   return (

@@ -34,18 +34,10 @@ const Step1 = (props: Props) => {
     <>
       <div className={styles.infoFields}>
         <div className={styles.required}>
-          <Textfield
-            label={"Valgt miljø:"}
-            value={props.env}
-            readOnly
-          />
+          <Textfield label={"Valgt miljø:"} value={props.env} readOnly />
         </div>
         <div className={styles.required}>
-          <Textfield
-            label={"Valgt tilgang:"}
-            value={props.scope}
-            readOnly
-          />
+          <Textfield label={"Valgt tilgang:"} value={props.scope} readOnly />
         </div>
       </div>
       <div>

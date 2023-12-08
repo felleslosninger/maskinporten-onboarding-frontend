@@ -3,7 +3,8 @@ import {
   Accordion,
   Heading,
   Ingress,
-  LegacyToggleButtonGroup, Paragraph,
+  LegacyToggleButtonGroup,
+  Paragraph,
 } from "@digdir/design-system-react";
 import withAuth, { AuthProps } from "../auth/withAuth";
 import { useClients, usePublicScopes, useScopes } from "../../hooks/api";
@@ -81,7 +82,9 @@ function Dashboard({ user, config }: AuthProps) {
         </div>
 
         <div className={styles.accordionListHeader}>
-          <Heading level={2} size={"small"}>Mine tilganger</Heading>
+          <Heading level={2} size={"small"}>
+            Mine tilganger
+          </Heading>
           <div className={styles.envPicker}>
             <Paragraph>Valgt miljø:</Paragraph>
             <LegacyToggleButtonGroup
@@ -102,40 +105,31 @@ function Dashboard({ user, config }: AuthProps) {
                 className={styles.noScopesImage}
                 alt={"Ingen tilgjengelige tilganger"}
               />
-              <span className={styles.noScopesHeader}>
-                  Ingen tilganger her
-                </span>
+              <span className={styles.noScopesHeader}>Ingen tilganger her</span>
               <span className={styles.noScopesText}>
-                  Når organisasjonen din får tilgang til noe i maskinporten,
-                  dukker det opp her.
-                </span>
+                Når organisasjonen din får tilgang til noe i maskinporten,
+                dukker det opp her.
+              </span>
             </div>
-          )
-        }
+          )}
         {isLoading && (
           <Accordion color={"neutral"} role={"status"}>
             <ScopeSkeleton />
             <ScopeSkeleton />
           </Accordion>
         )}
-        {!isLoading &&
-          !isError &&
-          clientsData &&
-          scopesData && (
-            <Accordion color={"neutral"}>
-              {
-                renderedScopes.map((scope) => (
-                  <ScopeDetails
-                    scope={scope}
-                    clients={clientsData}
-                    env={env}
-                    key={scope.scope}
-                  />
-                ))
-              }
-            </Accordion>
-          )
-        }
+        {!isLoading && !isError && clientsData && scopesData && (
+          <Accordion color={"neutral"}>
+            {renderedScopes.map((scope) => (
+              <ScopeDetails
+                scope={scope}
+                clients={clientsData}
+                env={env}
+                key={scope.scope}
+              />
+            ))}
+          </Accordion>
+        )}
         {publicScopes && (
           <PublicScopes scopeList={publicScopes} resultsPerPage={5} env={env} />
         )}

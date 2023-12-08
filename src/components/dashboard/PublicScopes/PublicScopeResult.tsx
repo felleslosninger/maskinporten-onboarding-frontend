@@ -1,4 +1,4 @@
-import React, {createRef, useEffect, useState} from "react";
+import React, { createRef, useEffect, useState } from "react";
 import { ApiScope } from "../../../types/api";
 import NewClientModal from "../NewClientModal/NewClientModal";
 import { Ingress, Paragraph } from "@digdir/design-system-react";
@@ -43,9 +43,10 @@ function PublicScopeResult(props: Props) {
           ref={modalRef}
         />
       )}
-      <button className={styles.result}
-              onClick={onMakeClient}
-              aria-label={`Opprett integrasjon med scope ${props.scope.name}`}
+      <button
+        className={styles.result}
+        onClick={onMakeClient}
+        aria-label={`Opprett integrasjon med scope ${props.scope.name}`}
       >
         <div className={styles.resultsInfo}>
           <div>

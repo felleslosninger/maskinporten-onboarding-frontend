@@ -8,7 +8,9 @@ function Footer() {
     <div className={styles.footer}>
       <div className={styles.footerContent}>
         <StyledLink
-          to={"https://uustatus.no/nb/erklaringer/publisert/ccbb00f4-c1db-4ccf-9ec6-a0d9f163613a"}
+          to={
+            "https://uustatus.no/nb/erklaringer/publisert/ccbb00f4-c1db-4ccf-9ec6-a0d9f163613a"
+          }
           icon={<FigureIcon />}
           target={"_blank"}
           ariaLabel={"Gå til tilgjengelighetserklæring"}

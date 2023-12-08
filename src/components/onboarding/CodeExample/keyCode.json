@@ -189,10 +189,7 @@
     },
     "node": {
       "npm": {
-        "code": [
-          "npm install node-fetch",
-          "npm install jsonwebtoken"
-        ],
+        "code": ["npm install node-fetch", "npm install jsonwebtoken"],
         "lang": "shell",
         "name": "NPM",
         "id": "npm"

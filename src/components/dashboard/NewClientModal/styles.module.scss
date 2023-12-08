@@ -38,11 +38,11 @@
     gap: 0.5rem;
   }
 
-  &.err svg path{
+  &.err svg path {
     fill: $colors-danger-red;
   }
 
-  &.warn svg path{
+  &.warn svg path {
     fill: $colors-warning-orange;
   }
 

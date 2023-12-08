@@ -13,7 +13,7 @@ import { login } from "../auth/login";
 import ContentContainer from "../common/ContentContainer/ContentContainer";
 import { link } from "../util/textTransforms";
 import { useSearchParams } from "react-router-dom";
-import {Helmet} from "react-helmet-async";
+import { Helmet } from "react-helmet-async";
 
 const enkelttjenestenavn =
   "Selvbetjening av integrasjoner i ID-porten/Maskinporten";
@@ -102,7 +102,9 @@ function Landingpage() {
       <Accordion className={styles.faq}>
         <Accordion.Item>
           <Accordion.Header>
-            <Paragraph size={"large"}>Hva betyr enkelttjeneste-tilgang?</Paragraph>
+            <Paragraph size={"large"}>
+              Hva betyr enkelttjeneste-tilgang?
+            </Paragraph>
           </Accordion.Header>
           <Accordion.Content>
             <Paragraph spacing>
@@ -152,7 +154,9 @@ function Landingpage() {
         </Accordion.Item>
         <Accordion.Item>
           <Accordion.Header>
-            <Paragraph size={"large"}>Hvem kan jeg kontakte for tilgang?</Paragraph>
+            <Paragraph size={"large"}>
+              Hvem kan jeg kontakte for tilgang?
+            </Paragraph>
           </Accordion.Header>
           <Accordion.Content>
             <Paragraph spacing>
@@ -205,7 +209,9 @@ function Landingpage() {
 
         <Accordion.Item>
           <Accordion.Header>
-            <Paragraph size={"large"}>Hva betyr det at dette er en pilot?</Paragraph>
+            <Paragraph size={"large"}>
+              Hva betyr det at dette er en pilot?
+            </Paragraph>
           </Accordion.Header>
           <Accordion.Content>
             <Paragraph spacing>
@@ -232,13 +238,8 @@ function Landingpage() {
                 true,
               )}{" "}
               eller sende en mail til{" "}
-              {link(
-                "servicedesk@digdir.no",
-                "servicedesk@digdir.no",
-                true,
-              )}{" "}
-              med emne Forenklet
-              onboarding.
+              {link("servicedesk@digdir.no", "servicedesk@digdir.no", true)} med
+              emne Forenklet onboarding.
             </Paragraph>
           </Accordion.Content>
         </Accordion.Item>

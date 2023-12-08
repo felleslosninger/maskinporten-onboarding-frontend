@@ -4,7 +4,7 @@ import { Heading, Paragraph } from "@digdir/design-system-react";
 import TabsSection from "./TabsSection/TabsSection";
 import { bold } from "../util/textTransforms";
 import ContentContainer from "../common/ContentContainer/ContentContainer";
-import {Helmet} from "react-helmet-async";
+import { Helmet } from "react-helmet-async";
 
 function Onboardingpage() {
   return (

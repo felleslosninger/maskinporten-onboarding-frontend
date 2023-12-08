@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from "react";
 import styles from "./styles.module.scss";
-import {Tooltip} from "@digdir/design-system-react";
+import { Tooltip } from "@digdir/design-system-react";
 
 interface Props {
   copyValue: string;
@@ -16,10 +16,7 @@ function CopyField(props: Props) {
   };
 
   return (
-    <Tooltip
-      content={isCopied ? "Kopiert" : "Kopier"}
-      placement={"top"}
-    >
+    <Tooltip content={isCopied ? "Kopiert" : "Kopier"} placement={"top"}>
       <button
         className={`${styles.box} ${isCopied && styles.clicked}`}
         onClick={onCopy}
