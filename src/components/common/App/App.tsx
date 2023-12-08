@@ -6,7 +6,7 @@ import { useUser } from "../../../hooks/auth";
 import Layout from "../Layout/Layout";
 import "@digdir/design-system-tokens/brand/digdir/tokens.css";
 import "@altinn/figma-design-tokens/dist/tokens.css";
-import "./App.css";
+import styles from "./styles.module.css";
 
 function App() {
   const { data } = useUser();
@@ -20,7 +20,7 @@ function App() {
   return (
     <HelmetProvider>
       <IdleTimerProvider timeout={10 * 60 * 1000} onIdle={onIdle}>
-        <div className="App">
+        <div className={styles.App}>
           <Layout />
         </div>
       </IdleTimerProvider>
