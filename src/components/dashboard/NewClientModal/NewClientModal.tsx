@@ -202,7 +202,6 @@ const NewClientModal = React.forwardRef<HTMLDialogElement, NewClientProps>(
       >
         <Modal
           ref={ref}
-          onInteractOutside={() => modalRef.current?.close()}
           onClose={() => props.closeModal()}
           className={styles.modal}
         >

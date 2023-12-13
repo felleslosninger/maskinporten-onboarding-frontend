@@ -30,7 +30,7 @@ const ConfirmAlert = React.forwardRef<HTMLDialogElement, Props>(
     };
 
     return (
-      <Modal ref={ref} onInteractOutside={() => modalRef.current?.close()}>
+      <Modal ref={ref}>
         <Modal.Header>{props.title}</Modal.Header>
         <Modal.Content className={styles.modalContent}>
           <Textfield
