@@ -1,21 +1,31 @@
-import React, {useRef, useState} from "react";
+import React, { useRef, useState } from "react";
 import { useUser } from "../../../hooks/auth";
 import styles from "./styles.module.scss";
 import { ReactComponent as Logo } from "../../../assets/logo.svg";
 import { ReactComponent as BedriftSvg } from "../../../assets/bedrift.svg";
 import { ReactComponent as PersonSvg } from "../../../assets/ikoner/SVG/Person.svg";
-import {Button, DropdownMenu, Label, Paragraph} from "@digdir/design-system-react";
+import {
+  Button,
+  DropdownMenu,
+  Label,
+  Paragraph,
+} from "@digdir/design-system-react";
 import { login, logout } from "../../auth/login";
 import StyledLink from "../StyledLink/StyledLink";
-import {useLocation} from "react-router-dom";
-import {ChevronRightIcon, LeaveIcon, MenuHamburgerIcon, XMarkIcon} from "@navikt/aksel-icons";
-import {useMediaQuery} from "react-responsive";
+import { useLocation } from "react-router-dom";
+import {
+  ChevronRightIcon,
+  LeaveIcon,
+  MenuHamburgerIcon,
+  XMarkIcon,
+} from "@navikt/aksel-icons";
+import { useMediaQuery } from "react-responsive";
 
 function Header() {
   const menuRef = useRef(null);
   const { data, isLoading } = useUser();
   const [open, setOpen] = useState(false);
-  const isSmallScreen = useMediaQuery({query: '(max-width: 767px)'});
+  const isSmallScreen = useMediaQuery({ query: "(max-width: 767px)" });
   const location = useLocation();
   const isLoggedIn = !isLoading && data!!.isAuthenticated;
 
@@ -71,7 +81,7 @@ function Header() {
             ref={menuRef}
             className={styles.userInfo}
             variant={"tertiary"}
-            aria-haspopup='menu'
+            aria-haspopup="menu"
             aria-expanded={open}
             onClick={() => setOpen(!open)}
           >
@@ -79,7 +89,9 @@ function Header() {
               <>
                 <div>
                   <Paragraph size={"small"}>{data!!.user!!.name}</Paragraph>
-                  <Paragraph size={"small"}>{data!!.user!!.reporteeName}</Paragraph>
+                  <Paragraph size={"small"}>
+                    {data!!.user!!.reporteeName}
+                  </Paragraph>
                 </div>
                 <BedriftSvg className={styles.svg} />
               </>
@@ -97,7 +109,6 @@ function Header() {
                 {open ? <XMarkIcon /> : <MenuHamburgerIcon />}
                 <Label>Meny</Label>
               </div>
-
             )}
           </Button>
 
@@ -107,53 +118,67 @@ function Header() {
             open={open}
             onClose={() => setOpen(false)}
           >
-              {isSmallScreen && (
-                <>
-                  <DropdownMenu.Item
-                    as={"a"}
-                    href={isLoggedIn ? "/dashboard" : "/"}
-                    icon={<ChevronRightIcon />}
-                  >
-                    {isLoggedIn ? "oversikt" : "hjem"}
-                  </DropdownMenu.Item>
-
-                  <DropdownMenu.Item
-                    as={"a"}
-                    href={"/guide"}
-                    icon={<ChevronRightIcon />}
-                  >
-                    onboardingsguide
-                  </DropdownMenu.Item>
-
-                  <DropdownMenu.Item
-                    as={"a"}
-                    href={"/terms"}
-                    icon={<ChevronRightIcon />}
-                  >
-                    vilkår
-                  </DropdownMenu.Item>
-                </>
-              )}
-
-              {isLoggedIn && (
-                <DropdownMenu.Item className={styles.logoutLabel} onClick={logout}>
-                  Logg ut
-                  <LeaveIcon className={styles.svg} />
+            {isSmallScreen && (
+              <>
+                <DropdownMenu.Item
+                  as={"a"}
+                  href={isLoggedIn ? "/dashboard" : "/"}
+                  icon={<ChevronRightIcon />}
+                >
+                  {isLoggedIn ? "oversikt" : "hjem"}
                 </DropdownMenu.Item>
-              )}
 
-              {!isLoggedIn && (
-                <>
-                  <DropdownMenu.Item className={styles.loginLabel} onClick={() => login(true)}>
-                    <Paragraph size={"medium"}>{isSmallScreen ? "Logg inn" : "..."} som daglig leder</Paragraph>
-                    <ChevronRightIcon className={styles.svg} />
-                  </DropdownMenu.Item>
-                  <DropdownMenu.Item className={styles.loginLabel} onClick={() => login(false)}>
-                    <Paragraph size={"medium"}>{isSmallScreen ? "Logg inn" : "..."} med enkelttjeneste-tilgang</Paragraph>
-                    <ChevronRightIcon className={styles.svg} />
-                  </DropdownMenu.Item>
-                </>
-              )}
+                <DropdownMenu.Item
+                  as={"a"}
+                  href={"/guide"}
+                  icon={<ChevronRightIcon />}
+                >
+                  onboardingsguide
+                </DropdownMenu.Item>
+
+                <DropdownMenu.Item
+                  as={"a"}
+                  href={"/terms"}
+                  icon={<ChevronRightIcon />}
+                >
+                  vilkår
+                </DropdownMenu.Item>
+              </>
+            )}
+
+            {isLoggedIn && (
+              <DropdownMenu.Item
+                className={styles.logoutLabel}
+                onClick={logout}
+              >
+                Logg ut
+                <LeaveIcon className={styles.svg} />
+              </DropdownMenu.Item>
+            )}
+
+            {!isLoggedIn && (
+              <>
+                <DropdownMenu.Item
+                  className={styles.loginLabel}
+                  onClick={() => login(true)}
+                >
+                  <Paragraph size={"medium"}>
+                    {isSmallScreen ? "Logg inn" : "..."} som daglig leder
+                  </Paragraph>
+                  <ChevronRightIcon className={styles.svg} />
+                </DropdownMenu.Item>
+                <DropdownMenu.Item
+                  className={styles.loginLabel}
+                  onClick={() => login(false)}
+                >
+                  <Paragraph size={"medium"}>
+                    {isSmallScreen ? "Logg inn" : "..."} med
+                    enkelttjeneste-tilgang
+                  </Paragraph>
+                  <ChevronRightIcon className={styles.svg} />
+                </DropdownMenu.Item>
+              </>
+            )}
           </DropdownMenu>
         </>
       </div>

@@ -1,10 +1,15 @@
 import React, { useContext } from "react";
 import styles from "./styles.module.scss";
-import {HelpText, Label, Paragraph, Radio, Textarea} from "@digdir/design-system-react";
+import {
+  HelpText,
+  Paragraph,
+  Radio,
+  Textarea,
+} from "@digdir/design-system-react";
 import { link } from "../../util/textTransforms";
 import { customAlphabet } from "nanoid";
 import { NewClientContext } from "./NewClientModal";
-import {importSPKI} from "jose";
+import { importSPKI } from "jose";
 
 const Step2 = () => {
   const context = useContext(NewClientContext);
@@ -34,18 +39,27 @@ const Step2 = () => {
     context.key.set(key);
 
     try {
-      const spki: CryptoKey = await importSPKI(key, "RS256", { extractable: true });
+      const spki: CryptoKey = await importSPKI(key, "RS256", {
+        extractable: true,
+      });
       const alg = spki.algorithm as RsaKeyAlgorithm;
       if (alg.modulusLength < 2048) {
         const tip = (
           <HelpText title={"Mer info"}>
-            Denne nøkkelen bruker en modulus på lengde {alg.modulusLength}. Vi anbefaler en lengde på minimum 2048 bits.
+            Denne nøkkelen bruker en modulus på lengde {alg.modulusLength}. Vi
+            anbefaler en lengde på minimum 2048 bits.
           </HelpText>
         );
-        context.message.set({message: <span>Denne nøkkelen kan være usikker {tip}</span>, level: "warn"});
+        context.message.set({
+          message: <span>Denne nøkkelen kan være usikker {tip}</span>,
+          level: "warn",
+        });
       }
     } catch (e) {
-      context.message.set({message: "Dette er en ugyldig RSA public key", level: "err"});
+      context.message.set({
+        message: "Dette er en ugyldig RSA public key",
+        level: "err",
+      });
     }
   };
 

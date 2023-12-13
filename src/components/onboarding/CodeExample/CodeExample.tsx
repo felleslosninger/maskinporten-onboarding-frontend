@@ -1,8 +1,13 @@
 import React, { ReactNode, useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 import { useClients } from "../../../hooks/api";
-import {Heading, Paragraph, Select, ToggleGroup} from "@digdir/design-system-react";
-import CodeLanguage, {CodeDependency} from "./CodeLanguage";
+import {
+  Heading,
+  Paragraph,
+  Select,
+  ToggleGroup,
+} from "@digdir/design-system-react";
+import CodeLanguage, { CodeDependency } from "./CodeLanguage";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { bold } from "../../util/textTransforms";
@@ -50,13 +55,15 @@ function CodeExample(props: Props) {
       <div>
         <span className={styles.labelBoxTitle}>{bold(client.description)}</span>
         <span>
-        <ClipboardIcon />
+          <ClipboardIcon />
           {client.clientId}
-      </span>
+        </span>
         <span>
-        <KeyHorizontalIcon />
-          {client.scopes.length > 1 ? `${client.scopes[0]}...` : client.scopes[0]}
-      </span>
+          <KeyHorizontalIcon />
+          {client.scopes.length > 1
+            ? `${client.scopes[0]}...`
+            : client.scopes[0]}
+        </span>
       </div>
     </div>
   );
@@ -78,7 +85,7 @@ function CodeExample(props: Props) {
         title: child.props.title,
         lang: child.props.language,
         code: child.props.code,
-        dependencies: child.props.dependencies
+        dependencies: child.props.dependencies,
       };
     }
   });
@@ -92,12 +99,12 @@ function CodeExample(props: Props) {
       return examples?.at(selectedTab)!!.dependencies as DependencyInfo;
     }
     return null;
-  }
+  };
 
   const onTabSelect = (index: number) => {
     setSelectedCode("code");
     setSelectedTab(index);
-  }
+  };
 
   const makeFieldMap = (client?: ApiClient) => {
     const conf = client && config ? config[client.env] : config?.["test"];
@@ -126,7 +133,9 @@ function CodeExample(props: Props) {
 
   return (
     <>
-      <Heading level={3} spacing size={"large"}>Eksempelkode</Heading>
+      <Heading level={3} spacing size={"large"}>
+        Eksempelkode
+      </Heading>
 
       {client_ids && client_ids.length > 0 && (
         <>
@@ -158,7 +167,9 @@ function CodeExample(props: Props) {
             examples.map((example, index) => (
               <button
                 key={index}
-                className={`${styles.codeExampleTab} ${selectedTab === index ? styles.active : ""}`}
+                className={`${styles.codeExampleTab} ${
+                  selectedTab === index ? styles.active : ""
+                }`}
                 onClick={() => onTabSelect(index)}
               >
                 {example.title}
@@ -173,9 +184,7 @@ function CodeExample(props: Props) {
               value={selectedCode}
               onChange={(val) => setSelectedCode(val)}
             >
-              <ToggleGroup.Item value={"code"}>
-                Kode
-              </ToggleGroup.Item>
+              <ToggleGroup.Item value={"code"}>Kode</ToggleGroup.Item>
               {Object.values(getDependencies()!!).map((dependency, index) => (
                 <ToggleGroup.Item key={index} value={dependency.id}>
                   {(dependency as CodeDependency).name}
@@ -191,13 +200,15 @@ function CodeExample(props: Props) {
               showLineNumbers={true}
               wrapLines={false}
               wrapLongLines={false}
-              language={(getDependencies() && selectedCode !== "code") ? getDependencies()!![selectedCode].lang : examples.at(selectedTab)!!.lang}
-            >
-              {
+              language={
                 getDependencies() && selectedCode !== "code"
-                ? getDependencies()!![selectedCode].code.join("\n")
-                : processCode(examples.at(selectedTab)!!.code.join("\n"))
+                  ? getDependencies()!![selectedCode].lang
+                  : examples.at(selectedTab)!!.lang
               }
+            >
+              {getDependencies() && selectedCode !== "code"
+                ? getDependencies()!![selectedCode].code.join("\n")
+                : processCode(examples.at(selectedTab)!!.code.join("\n"))}
             </SyntaxHighlighter>
           )}
         </div>

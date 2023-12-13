@@ -3,7 +3,7 @@ import styles from "./styles.module.scss";
 import {
   Heading,
   LegacyToggleButtonGroup,
-  Paragraph
+  Paragraph,
 } from "@digdir/design-system-react";
 import InfoBox from "../InfoBox/InfoBox";
 import { bold } from "../../util/textTransforms";
@@ -27,7 +27,9 @@ function ConfigBox() {
   return (
     <>
       <div className={styles.configHeader}>
-        <Heading level={3} size={"large"}>Konfigurasjonsfelter</Heading>
+        <Heading level={3} size={"large"}>
+          Konfigurasjonsfelter
+        </Heading>
         <LegacyToggleButtonGroup
           items={items}
           selectedValue={selectedConfig}
@@ -36,7 +38,8 @@ function ConfigBox() {
       </div>
 
       <Paragraph spacing>
-        Dette er endepunktene som Digdir bruker til uthenting av <span lang={"en"}>access-tokens</span>.
+        Dette er endepunktene som Digdir bruker til uthenting av{" "}
+        <span lang={"en"}>access-tokens</span>.
       </Paragraph>
       <InfoBox className={styles.configBox}>
         <Paragraph lang={"en"}>

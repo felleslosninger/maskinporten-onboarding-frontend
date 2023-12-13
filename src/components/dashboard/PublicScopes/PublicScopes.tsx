@@ -57,8 +57,7 @@ function PublicScopes(props: Props) {
             <Heading size={"small"} spacing>
               Velg tilgangen du vil legge til
             </Heading>
-            <Search onChange={onSearch}
-            />
+            <Search onChange={onSearch} />
           </div>
           <div className={styles.results}>
             {paginatedList.map((scope) => (

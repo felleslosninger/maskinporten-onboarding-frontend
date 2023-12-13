@@ -1,7 +1,7 @@
-import React, {createRef} from "react";
+import React, { createRef } from "react";
 import { ApiClient } from "../../../types/api";
 import styles from "../ClientDescription/styles.module.scss";
-import {Button, Heading, Tooltip} from "@digdir/design-system-react";
+import { Button, Heading, Tooltip } from "@digdir/design-system-react";
 import { BagdeIcon, KeyHorizontalIcon, TrashIcon } from "@navikt/aksel-icons";
 import { useClientDeleteMutation } from "../../../hooks/api";
 import ConfirmAlert from "../../common/ConfirmAlert/ConfirmAlert";
@@ -28,7 +28,9 @@ const ClientDescription = (props: ClientDescriptionProps) => {
       <div className={styles.content}>
         <div className={styles.icon}>
           <Tooltip
-            content={`Denne integrasjonen bruker ${props.client.keys ? "nøkkel" : "virksomhetssertifikat"}`}
+            content={`Denne integrasjonen bruker ${
+              props.client.keys ? "nøkkel" : "virksomhetssertifikat"
+            }`}
             placement={"top"}
           >
             {props.client.keys ? <KeyHorizontalIcon /> : <BagdeIcon />}
