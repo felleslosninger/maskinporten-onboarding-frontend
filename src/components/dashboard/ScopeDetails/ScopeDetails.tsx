@@ -35,7 +35,7 @@ function ScopeDetails(props: ScopeDetailProps) {
   );
 
   useEffect(() => {
-    if (showModal) {
+    if (showModal && !modalRef.current?.open) {
       modalRef.current?.showModal();
     }
   }, [showModal, modalRef]);
