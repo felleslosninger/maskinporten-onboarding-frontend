@@ -13,10 +13,10 @@
     <meta http-equiv="Content-Security-Policy"
           content="
           default-src 'self';
-          script-src 'self' 'unsafe-inline' https://app-script.monsido.com;
+          script-src 'self' 'unsafe-inline' app-script.monsido.com heatmaps.monsido.com pagecorrect.monsido.com;
           style-src 'self' 'unsafe-inline';
-          connect-src 'self' https://data.brreg.no localhost:8080 api-onboarding.maskinporten.dev api-onboarding.test.maskinporten.no api-onboarding.maskinporten.no;
-          img-src 'self';
+          connect-src 'self' https://data.brreg.no localhost:8080 api-onboarding.maskinporten.dev api-onboarding.test.maskinporten.no api-onboarding.maskinporten.no heatmaps.monsido.com pagecorrect.monsido.com;
+          img-src 'self' tracking.monsido.com;
           frame-src 'none';
           object-src 'none';"
     >
@@ -30,27 +30,39 @@
     <div id="root"></div>
 
     <script type="text/javascript">
-      window._monsido = window._monsido || {
-          token: "rRa2NYYXzxj-FhPOGJV1cg",
+      const scriptToken = 'ANALYTICS_TOKEN' in window.env ? window.env.ANALYTICS_TOKEN : '';
+      const scriptUrl = 'ANALYTICS_SCRIPT' in window.env ? window.env.ANALYTICS_SCRIPT : '';
+      const empty = ['', 'none', 'undefined', 'null'];
+
+      if (!empty.includes(scriptToken) && !empty.includes(scriptUrl)) {
+        window._monsido = window._monsido || {
+          token: scriptToken,
           statistics: {
+            enabled: true,
+            cookieLessTracking: true,
+            documentTracking: {
               enabled: true,
-              cookieLessTracking: true,
-              documentTracking: {
-                  enabled: true,
-                  documentCls: "monsido_download",
-                  documentIgnoreCls: "monsido_ignore_download",
-                  documentExt: [],
-              },
+              documentCls: "monsido_download",
+              documentIgnoreCls: "monsido_ignore_download",
+              documentExt: []
+            }
           },
           heatmap: {
-              enabled: true,
+              enabled: false
           },
           pageCorrect: {
-              enabled: true,
-          },
-      };
+              enabled: true
+          }
+        };
+
+        const script = document.createElement('script');
+        script.src = scriptUrl;
+        script.async = true;
+        document.body.appendChild(script);
+      } else {
+        console.log('Analytics not enabled');
+      }
   </script>
-  <script type="text/javascript" async src="https://app-script.monsido.com/v2/monsido-script.js"></script>
   </body>
 
 </html>
