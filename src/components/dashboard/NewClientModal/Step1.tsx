@@ -44,6 +44,7 @@ const Step1 = (props: Props) => {
         <Select
           options={selectableScopes()}
           multiple
+          portal={false}
           onChange={(scope) => context.scopes.set(scope)}
           label={"Legg til flere API-tilganger (frivillig)"}
           value={context.scopes.get}
