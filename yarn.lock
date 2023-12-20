@@ -1286,10 +1286,10 @@
   resolved "https://registry.yarnpkg.com/@csstools/selector-specificity/-/selector-specificity-2.2.0.tgz#2cbcf822bf3764c9658c4d2e568bd0c0cb748016"
   integrity sha512-+OJ9konv95ClSTOJCmMZqpd5+YGsB2S+x6w3E1oaM8UuR5j8nTNHYSz8c9BEPGDOCMQYIEEGlVPj/VY64iTbGw==
 
-"@digdir/design-system-react@^0.37.0":
-  version "0.37.0"
-  resolved "https://registry.yarnpkg.com/@digdir/design-system-react/-/design-system-react-0.37.0.tgz#5d2fbb18c024e7fe59c12a890cf4487f1df53d53"
-  integrity sha512-jpmdGVEaHEwTmnfMTj68iVt8f6EWsuxAdKi5dj/72XHidXUZI/M+hEvSioHK+4kcvzT9gdtM6djCGvqre01n6Q==
+"@digdir/design-system-react@^0.40.0":
+  version "0.40.0"
+  resolved "https://registry.yarnpkg.com/@digdir/design-system-react/-/design-system-react-0.40.0.tgz#28666fdec8c6ad74daf44390d01471914fda949a"
+  integrity sha512-SPkQTRo9bM5wXywyW8M1E9r6ZTOLDAYSfStYRlIp0n41fBE/DIX1AbG9gH1XMGWzs2w5DGKT4DBofCZLl9a3rA==
   dependencies:
     "@altinn/figma-design-tokens" "^6.0.1"
     "@digdir/design-system-tokens" "^0.10.0"
