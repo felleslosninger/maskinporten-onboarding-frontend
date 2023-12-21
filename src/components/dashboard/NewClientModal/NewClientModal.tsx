@@ -7,7 +7,7 @@ import React, {
   useState,
 } from "react";
 import styles from "./styles.module.scss";
-import { Button, Paragraph, Spinner, Modal } from "@digdir/design-system-react";
+import {Button, Paragraph, Spinner, Modal, Checkbox} from "@digdir/design-system-react";
 import { useClientMutation } from "../../../hooks/api";
 import { ApiClient, RequestApiClientBody } from "../../../types/api";
 import { CSSTransition } from "react-transition-group";
@@ -21,6 +21,7 @@ import Step3 from "./Step3";
 import Step2 from "./Step2";
 import { AxiosResponse } from "axios";
 import VisuallyHidden from "../../common/VisuallyHidden/VisuallyHidden";
+import {link} from "../../util/textTransforms";
 
 export interface FeedbackMessage {
   message: ReactNode;
@@ -57,6 +58,10 @@ export type NewClientContextProps = {
     get: boolean;
     set: (isChosen: boolean) => void;
   };
+  isTermsAccepted: {
+    get: boolean;
+    set: (isAccepted: boolean) => void;
+  };
 };
 
 export const NewClientContext = createContext<NewClientContextProps | null>(
@@ -88,6 +93,7 @@ const NewClientModal = React.forwardRef<HTMLDialogElement, NewClientProps>(
     const [kid, setKid] = useState("");
     const [message, setMessage] = useState<FeedbackMessage>();
     const [scopes, setScopes] = useState<string[]>([]);
+    const [isTermsAccepted, setIsTermsAccepted] = useState(false);
     const modalRef = ref as RefObject<HTMLDialogElement>;
 
     // Go to success step on client POST success
@@ -198,6 +204,10 @@ const NewClientModal = React.forwardRef<HTMLDialogElement, NewClientProps>(
             get: chosenIntegration,
             set: setChosenIntegration,
           },
+          isTermsAccepted: {
+            get: isTermsAccepted,
+            set: setIsTermsAccepted,
+          }
         }}
       >
         <Modal
@@ -235,7 +245,7 @@ const NewClientModal = React.forwardRef<HTMLDialogElement, NewClientProps>(
               );
             })}
           </Modal.Content>
-          <Modal.Footer>
+          <Modal.Footer className={styles.modalFooter}>
             <div className={styles.modalButtons}>
               {step === 1 && (
                 <>
@@ -248,51 +258,60 @@ const NewClientModal = React.forwardRef<HTMLDialogElement, NewClientProps>(
                   </Button>
                   <Button onClick={onNeste} disabled={description.length === 0}>
                     Neste
-                    <VisuallyHidden>side</VisuallyHidden>
+                    <VisuallyHidden>steg</VisuallyHidden>
                   </Button>
                 </>
               )}
               {step === 2 && (
-                <>
-                  <Button variant={"secondary"} onClick={onForrige}>
-                    Forrige
-                    <VisuallyHidden>side</VisuallyHidden>
-                  </Button>
-                  <Button
-                    onClick={handleSubmit}
-                    disabled={
-                      !chosenIntegration ||
-                      (useKeys &&
-                        (message?.level === "err" || publicKey.length === 0))
-                    }
+                <div className={styles.step2ButtonRow}>
+                  <Checkbox
+                    value={"licence"}
+                    checked={isTermsAccepted}
+                    onChange={(val) => setIsTermsAccepted(val.target.checked)}
                   >
-                    {isLoading && (
-                      <Spinner
-                        size={"small"}
-                        variant={"interaction"}
-                        title={"Oppretter integrasjon"}
-                      />
-                    )}
-                    {isLoading
-                      ? "Oppretter integrasjon"
-                      : "Opprett integrasjon"}
-                  </Button>
-                  {message && (
-                    <div
-                      className={`${styles.alert} ${
-                        message.level === "err" ? styles.err : styles.warn
-                      }`}
-                      role={"alert"}
+                    Jeg aksepterer {link("/terms", "vilkårene for bruk", true)}
+                  </Checkbox>
+                  <div>
+                    <Button variant={"secondary"} onClick={onForrige}>
+                      Forrige
+                      <VisuallyHidden>steg</VisuallyHidden>
+                    </Button>
+                    <Button
+                      onClick={handleSubmit}
+                      disabled={
+                        !isTermsAccepted || (!chosenIntegration ||
+                        (useKeys &&
+                          (message?.level === "err" || publicKey.length === 0)))
+                      }
                     >
-                      {message.level === "err" ? (
-                        <XMarkOctagonFillIcon />
-                      ) : (
-                        <ExclamationmarkTriangleFillIcon />
+                      {isLoading && (
+                        <Spinner
+                          size={"small"}
+                          variant={"interaction"}
+                          title={"Oppretter integrasjon"}
+                        />
                       )}
-                      <Paragraph>{message.message}</Paragraph>
-                    </div>
-                  )}
-                </>
+                      {isLoading
+                        ? "Oppretter integrasjon"
+                        : "Opprett integrasjon"}
+                    </Button>
+                    {message && (
+                      <div
+                        className={`${styles.alert} ${
+                          message.level === "err" ? styles.err : styles.warn
+                        }`}
+                        role={"alert"}
+                      >
+                        {message.level === "err" ? (
+                          <XMarkOctagonFillIcon />
+                        ) : (
+                          <ExclamationmarkTriangleFillIcon />
+                        )}
+                        <Paragraph>{message.message}</Paragraph>
+                      </div>
+                    )}
+                  </div>
+                </div>
               )}
               {step === 3 && (
                 <Button

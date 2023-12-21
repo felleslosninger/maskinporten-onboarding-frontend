@@ -78,7 +78,7 @@ const Step2 = () => {
                   aria-label={"Les mer"}
                 >
                   Det finnes flere måter å integrere mot Maskinporten. Bruk av
-                  nøkkel og virkomshetssertifikate er tilgjengelig via forenklet
+                  nøkkel og virkomshetssertifikat er tilgjengelig via forenklet
                   onboarding og flere via Samarbeidsportalen.
                   <br />
                   {link(

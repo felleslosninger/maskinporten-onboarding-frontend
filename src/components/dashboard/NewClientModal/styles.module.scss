@@ -22,10 +22,14 @@
 
 .modalContent {
   margin-top: 1rem;
-  height: 27rem;
+  height: 25rem;
   box-sizing: border-box;
   width: 100%;
   overflow: hidden;
+}
+
+.modalFooter {
+  height: 10rem;
 }
 
 .alert {
@@ -65,6 +69,17 @@
 .keyTextArea {
   textarea {
     height: 10rem;
+  }
+}
+
+.step2ButtonRow {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  div {
+    display: flex;
+    gap: 1rem;
   }
 }
 
