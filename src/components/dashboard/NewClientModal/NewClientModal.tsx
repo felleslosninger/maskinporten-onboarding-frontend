@@ -7,7 +7,7 @@ import React, {
   useState,
 } from "react";
 import styles from "./styles.module.scss";
-import {Button, Paragraph, Spinner, Modal, Checkbox} from "@digdir/design-system-react";
+import { Button, Paragraph, Spinner, Modal, Checkbox } from "@digdir/design-system-react";
 import { useClientMutation } from "../../../hooks/api";
 import { ApiClient, RequestApiClientBody } from "../../../types/api";
 import { CSSTransition } from "react-transition-group";
@@ -57,10 +57,6 @@ export type NewClientContextProps = {
   isIntegrationChosen: {
     get: boolean;
     set: (isChosen: boolean) => void;
-  };
-  isTermsAccepted: {
-    get: boolean;
-    set: (isAccepted: boolean) => void;
   };
 };
 
@@ -204,10 +200,6 @@ const NewClientModal = React.forwardRef<HTMLDialogElement, NewClientProps>(
             get: chosenIntegration,
             set: setChosenIntegration,
           },
-          isTermsAccepted: {
-            get: isTermsAccepted,
-            set: setIsTermsAccepted,
-          }
         }}
       >
         <Modal
