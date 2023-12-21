@@ -19,11 +19,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build image with Dockerfile
-        run: docker build -t ${{secrets.REGISTRY_URL}}/${{env.IMAGE-NAME}}:${{env.IMAGETAG}} --build-arg="BUILD_VERSION=${{env.IMAGETAG}}" .
+        run: docker build -t ${{env.IMAGE-NAME}}:${{env.IMAGETAG}} --build-arg="BUILD_VERSION=${{env.IMAGETAG}}" .
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: ${{ secrets.REGISTRY_URL }}/${{env.IMAGE-NAME}}:${{env.IMAGETAG}}
+          image-ref: ${{env.IMAGE-NAME}}:${{env.IMAGETAG}}
           exit-code: '1'
           severity: 'CRITICAL,HIGH'

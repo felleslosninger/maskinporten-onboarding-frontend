@@ -48,13 +48,13 @@ jobs:
           echo "IMAGE_DIGEST=$(docker inspect --format='{{.RepoDigests}}' ${{ secrets.REGISTRY_URL }}/${{env.IMAGE-NAME}}:${{env.IMAGETAG}}|cut -d '@' -f 2|cut -d ']' -f 1)" >> "$GITHUB_ENV"
 
       - id: output-image-tag
-        run: echo "::set-output name=imagetag::${{env.IMAGETAG}}"
+        run: echo "imagetag=${{env.IMAGETAG}}" >> "$GITHUB_OUTPUT"
 
       - id: output-image-digest
-        run: echo "::set-output name=imagedigest::${{env.IMAGE_DIGEST}}"
+        run: echo "imagedigest=${{env.IMAGE_DIGEST}}" >> "$GITHUB_OUTPUT"
 
       - id: output-image-name
-        run: echo "::set-output name=imagename::${{env.IMAGE-NAME}}"
+        run: echo "imagename=${{env.IMAGE-NAME}}" >> "$GITHUB_OUTPUT"
 
   call-update-image-version:
     uses: felleslosninger/github-workflows/.github/workflows/ci-update-image-version.yml@main
