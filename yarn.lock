@@ -1286,21 +1286,21 @@
   resolved "https://registry.yarnpkg.com/@csstools/selector-specificity/-/selector-specificity-2.2.0.tgz#2cbcf822bf3764c9658c4d2e568bd0c0cb748016"
   integrity sha512-+OJ9konv95ClSTOJCmMZqpd5+YGsB2S+x6w3E1oaM8UuR5j8nTNHYSz8c9BEPGDOCMQYIEEGlVPj/VY64iTbGw==
 
-"@digdir/design-system-react@^0.41.1":
-  version "0.41.1"
-  resolved "https://registry.yarnpkg.com/@digdir/design-system-react/-/design-system-react-0.41.1.tgz#91c96cbfe4f84b2dfc8096e057831c698f9c6c54"
-  integrity sha512-GIU4HYWfgb9kEwW1ITxFlSzOEba9yvKIN5ppJ5e85s9L41rahvZzoglb3nXnwT7d6rr1cRlx0B1gUQtz2AThpw==
+"@digdir/design-system-react@^0.43.0":
+  version "0.43.0"
+  resolved "https://registry.yarnpkg.com/@digdir/design-system-react/-/design-system-react-0.43.0.tgz#c773bf02390927dd055a959983be5b6f3a3fc69c"
+  integrity sha512-HowuhV9pK3gS/iB1s1oZ8pSukrnHv743ECls4Yny3tiSdK/RVnr7i4/1EWvtGM9XI03QD9YjUDhVA1Ly3S2oOA==
   dependencies:
     "@altinn/figma-design-tokens" "^6.0.1"
-    "@digdir/design-system-tokens" "^0.11.0"
+    "@digdir/design-system-tokens" "^0.11.1"
     "@floating-ui/react" "0.26.4"
-    "@navikt/aksel-icons" "^5.12.1"
+    "@navikt/aksel-icons" "^5.12.2"
     react-number-format "5.3.1"
 
-"@digdir/design-system-tokens@^0.11.0":
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@digdir/design-system-tokens/-/design-system-tokens-0.11.0.tgz#795de317334e8dbcf3a6c92b04ae3a8e3de746cb"
-  integrity sha512-rw3aZYiSe2TsqDMuJYlK/J9Fex5c3yVTMAAEfJTUr9A6i6oKCC3zBdKYpv3ESMTl8/ws1qPxyFE+kOg0+HuEpQ==
+"@digdir/design-system-tokens@^0.11.0", "@digdir/design-system-tokens@^0.11.1":
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/@digdir/design-system-tokens/-/design-system-tokens-0.11.1.tgz#f4af7ee1b4974dc554498c6e8247bf62b8db8fdc"
+  integrity sha512-HC+qdKHnEfZn5EBC6wAeu0wJ/bXpn0Mpex893yG5TaB/+H5hxPpS16YwFRGS1ZqFxueq0YmL2B1T45E6HLOVIA==
 
 "@eslint-community/eslint-utils@^4.2.0":
   version "4.4.0"
@@ -1686,12 +1686,7 @@
   resolved "https://registry.yarnpkg.com/@leichtgewicht/ip-codec/-/ip-codec-2.0.4.tgz#b2ac626d6cb9c8718ab459166d4bb405b8ffa78b"
   integrity sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==
 
-"@navikt/aksel-icons@^5.10.3":
-  version "5.11.4"
-  resolved "https://registry.yarnpkg.com/@navikt/aksel-icons/-/aksel-icons-5.11.4.tgz#9eab45d1624b61d38e54ea293d346d49da5d8502"
-  integrity sha512-QhiM3Y2OQuaF3Dsq0pgESHSo9k2ffwN3S8wN9ik9P2eq9rZMe1jSDhkGeSeo1ungVqIdnUX4p62gO+cwQumPcA==
-
-"@navikt/aksel-icons@^5.12.1":
+"@navikt/aksel-icons@^5.10.3", "@navikt/aksel-icons@^5.12.2":
   version "5.12.2"
   resolved "https://registry.yarnpkg.com/@navikt/aksel-icons/-/aksel-icons-5.12.2.tgz#3d4668974284a0ca9042503cf5917dfb22f05458"
   integrity sha512-dfjvEM0KoklKFmyeUUmzsoZZ+/6nvAfA8mrDFJkbUMgzRxZGyadxYOoIIdTQePDPFfl787S5M5fhvRzAHN8+bw==
