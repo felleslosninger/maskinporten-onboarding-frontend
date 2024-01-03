@@ -4,7 +4,7 @@ import { useClients } from "../../../hooks/api";
 import {
   Heading,
   Paragraph,
-  Select,
+  LegacySelect,
   ToggleGroup,
 } from "@digdir/design-system-react";
 import CodeLanguage, { CodeDependency } from "./CodeLanguage";
@@ -152,7 +152,7 @@ function CodeExample(props: Props) {
               listen under.
             </Paragraph>
             <div className={styles.selectionContainer}>
-              <Select
+              <LegacySelect
                 value={selectValue}
                 options={client_ids}
                 onChange={(value) => setSelectValue(value)}

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styles from "./styles.module.scss";
-import { Select, Textfield } from "@digdir/design-system-react";
+import { Combobox, Textfield } from "@digdir/design-system-react";
 import { usePublicScopes, useScopes } from "../../../hooks/api";
 import { NewClientContext } from "./NewClientModal";
 
@@ -40,15 +40,24 @@ const Step1 = (props: Props) => {
           <Textfield label={"Valgt tilgang:"} value={props.scope} readOnly />
         </div>
       </div>
+
       <div>
-        <Select
-          options={selectableScopes()}
+        <Combobox
+          value={context.scopes.get}
           multiple
           portal={false}
-          onChange={(scope) => context.scopes.set(scope)}
+          onValueChange={(scope) => context.scopes.set(scope)}
           label={"Legg til flere API-tilganger (frivillig)"}
-          value={context.scopes.get}
-        />
+        >
+          <Combobox.Empty>
+            Fant ingen scopes
+          </Combobox.Empty>
+          {selectableScopes().map((scope) => (
+            <Combobox.Option value={scope.value}>
+              {scope.label}
+            </Combobox.Option>
+          ))}
+        </Combobox>
       </div>
 
       <div className={styles.required}>
