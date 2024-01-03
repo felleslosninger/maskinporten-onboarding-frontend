@@ -1297,10 +1297,10 @@
     "@navikt/aksel-icons" "^5.12.1"
     react-number-format "5.3.1"
 
-"@digdir/design-system-tokens@^0.11.0":
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@digdir/design-system-tokens/-/design-system-tokens-0.11.0.tgz#795de317334e8dbcf3a6c92b04ae3a8e3de746cb"
-  integrity sha512-rw3aZYiSe2TsqDMuJYlK/J9Fex5c3yVTMAAEfJTUr9A6i6oKCC3zBdKYpv3ESMTl8/ws1qPxyFE+kOg0+HuEpQ==
+"@digdir/design-system-tokens@^0.11.0", "@digdir/design-system-tokens@^0.11.1":
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/@digdir/design-system-tokens/-/design-system-tokens-0.11.1.tgz#f4af7ee1b4974dc554498c6e8247bf62b8db8fdc"
+  integrity sha512-HC+qdKHnEfZn5EBC6wAeu0wJ/bXpn0Mpex893yG5TaB/+H5hxPpS16YwFRGS1ZqFxueq0YmL2B1T45E6HLOVIA==
 
 "@eslint-community/eslint-utils@^4.2.0":
   version "4.4.0"
