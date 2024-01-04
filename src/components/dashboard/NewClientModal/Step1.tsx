@@ -53,7 +53,7 @@ const Step1 = (props: Props) => {
             Fant ingen scopes
           </Combobox.Empty>
           {selectableScopes().map((scope) => (
-            <Combobox.Option value={scope.value}>
+            <Combobox.Option value={scope.value} key={scope.value}>
               {scope.label}
             </Combobox.Option>
           ))}

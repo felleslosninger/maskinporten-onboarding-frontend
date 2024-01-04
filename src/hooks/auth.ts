@@ -5,6 +5,7 @@ import axios from "axios";
 
 export const QK_USER = "QK_USER";
 export const QK_CONFIG = "QK_CONFIG";
+export const QK_SIGNED_ORGS = "QK_SIGNED_ORGS"
 
 // Get logged in user with the possibility of not being logged in
 export const useUser = () => {
@@ -48,3 +49,16 @@ export const useConfig = () => {
     },
   });
 };
+
+export const useOrgList = () => {
+  return useQuery({
+    queryKey: [QK_SIGNED_ORGS],
+    queryFn: async () => {
+      const path = `${window.env.SIMPLIFIED_ONBOARDING_API_URL}/api/signedOrgs`;
+      const res = await axios.get<string>(path, {
+        withCredentials: true,
+      });
+      return res.data;
+    }
+  });
+}

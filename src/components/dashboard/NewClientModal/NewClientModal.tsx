@@ -22,6 +22,8 @@ import Step2 from "./Step2";
 import { AxiosResponse } from "axios";
 import VisuallyHidden from "../../common/VisuallyHidden/VisuallyHidden";
 import {link} from "../../util/textTransforms";
+import {useOrgList, useUser} from "../../../hooks/auth";
+import {AuthProps} from "../../auth/withAuth";
 
 export interface FeedbackMessage {
   message: ReactNode;
@@ -90,7 +92,10 @@ const NewClientModal = React.forwardRef<HTMLDialogElement, NewClientProps>(
     const [message, setMessage] = useState<FeedbackMessage>();
     const [scopes, setScopes] = useState<string[]>([]);
     const [isTermsAccepted, setIsTermsAccepted] = useState(false);
+    const [shouldAcceptTerms, setShouldAcceptTerms] = useState(true);
     const modalRef = ref as RefObject<HTMLDialogElement>;
+    const { data: signedOrgsList } = useOrgList();
+    const { data: auth } = useUser();
 
     // Go to success step on client POST success
     useEffect(() => {
@@ -105,6 +110,20 @@ const NewClientModal = React.forwardRef<HTMLDialogElement, NewClientProps>(
         setMessage({ message: "Ukjent feil under opprettelse", level: "err" });
       }
     }, [isError]);
+
+    // Remove terms checkbox if org has agreement with digdir.
+    useEffect(() => {
+      if (signedOrgsList && auth && auth.user) {
+        const orgList = signedOrgsList
+          .split(",")
+          .map(org => org.trim());
+
+        if (orgList.includes(auth.user.reporteeId)) {
+          setIsTermsAccepted(true);
+          setShouldAcceptTerms(false);
+        }
+      }
+    }, [signedOrgsList, auth]);
 
     const handleSubmit = async () => {
       setMessage(undefined);
@@ -256,13 +275,15 @@ const NewClientModal = React.forwardRef<HTMLDialogElement, NewClientProps>(
               )}
               {step === 2 && (
                 <div className={styles.step2ButtonRow}>
-                  <Checkbox
-                    value={"licence"}
-                    checked={isTermsAccepted}
-                    onChange={(val) => setIsTermsAccepted(val.target.checked)}
-                  >
-                    Jeg aksepterer {link("/terms", "vilkårene for bruk", true)}
-                  </Checkbox>
+                  {shouldAcceptTerms && (
+                    <Checkbox
+                      value={"licence"}
+                      checked={isTermsAccepted}
+                      onChange={(val) => setIsTermsAccepted(val.target.checked)}
+                    >
+                      Jeg aksepterer {link("/terms", "vilkårene for bruk", true)}
+                    </Checkbox>
+                  )}
                   <div>
                     <Button variant={"secondary"} onClick={onForrige}>
                       Forrige
