@@ -23,7 +23,6 @@ import { AxiosResponse } from "axios";
 import VisuallyHidden from "../../common/VisuallyHidden/VisuallyHidden";
 import {link} from "../../util/textTransforms";
 import {useOrgList, useUser} from "../../../hooks/auth";
-import {AuthProps} from "../../auth/withAuth";
 
 export interface FeedbackMessage {
   message: ReactNode;

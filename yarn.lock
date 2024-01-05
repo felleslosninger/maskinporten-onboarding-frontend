@@ -1136,6 +1136,13 @@
   dependencies:
     regenerator-runtime "^0.14.0"
 
+"@babel/runtime@^7.13.10":
+  version "7.23.7"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.23.7.tgz#dd7c88deeb218a0f8bd34d5db1aa242e0f203193"
+  integrity sha512-w06OXVOFso7LcbzMiDGt+3X7Rh7Ho8MmgPoWU3rarH+8upf+wSU/grlGbWzQyr3DkdN6ZeuMFjpdwW0Q+HxobA==
+  dependencies:
+    regenerator-runtime "^0.14.0"
+
 "@babel/template@^7.22.15", "@babel/template@^7.3.3":
   version "7.22.15"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.22.15.tgz#09576efc3830f0430f4548ef971dde1350ef2f38"
@@ -1286,21 +1293,22 @@
   resolved "https://registry.yarnpkg.com/@csstools/selector-specificity/-/selector-specificity-2.2.0.tgz#2cbcf822bf3764c9658c4d2e568bd0c0cb748016"
   integrity sha512-+OJ9konv95ClSTOJCmMZqpd5+YGsB2S+x6w3E1oaM8UuR5j8nTNHYSz8c9BEPGDOCMQYIEEGlVPj/VY64iTbGw==
 
-"@digdir/design-system-react@^0.41.1":
-  version "0.41.1"
-  resolved "https://registry.yarnpkg.com/@digdir/design-system-react/-/design-system-react-0.41.1.tgz#91c96cbfe4f84b2dfc8096e057831c698f9c6c54"
-  integrity sha512-GIU4HYWfgb9kEwW1ITxFlSzOEba9yvKIN5ppJ5e85s9L41rahvZzoglb3nXnwT7d6rr1cRlx0B1gUQtz2AThpw==
+"@digdir/design-system-react@^0.44.0":
+  version "0.44.0"
+  resolved "https://registry.yarnpkg.com/@digdir/design-system-react/-/design-system-react-0.44.0.tgz#ce7ee7a170d18f8c4e483df2a7a95e45615c2521"
+  integrity sha512-0qRWrYAftaddQd9GKGxZLF1VmUuu+CGFZoWzPpAP6We2Fm2YKziN6VA4/xp8ue7umnAu71PDJ6xMR6GCH1hrMw==
   dependencies:
     "@altinn/figma-design-tokens" "^6.0.1"
-    "@digdir/design-system-tokens" "^0.11.0"
+    "@digdir/design-system-tokens" "^0.11.2"
     "@floating-ui/react" "0.26.4"
-    "@navikt/aksel-icons" "^5.12.1"
+    "@navikt/aksel-icons" "^5.12.2"
+    "@radix-ui/react-slot" "^1.0.2"
     react-number-format "5.3.1"
 
-"@digdir/design-system-tokens@^0.11.0":
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@digdir/design-system-tokens/-/design-system-tokens-0.11.0.tgz#795de317334e8dbcf3a6c92b04ae3a8e3de746cb"
-  integrity sha512-rw3aZYiSe2TsqDMuJYlK/J9Fex5c3yVTMAAEfJTUr9A6i6oKCC3zBdKYpv3ESMTl8/ws1qPxyFE+kOg0+HuEpQ==
+"@digdir/design-system-tokens@^0.11.2":
+  version "0.11.2"
+  resolved "https://registry.yarnpkg.com/@digdir/design-system-tokens/-/design-system-tokens-0.11.2.tgz#64c3f0815828af2cd54ccfa7a1e4dc6c45913461"
+  integrity sha512-C3zejRUGq1FsTNJZqC7do/kYGRTO7A9/13wP+zTP/DPT6IZvqHzk2UEdMD72T0mtMRe6uazEmw0GQweyniscyQ==
 
 "@eslint-community/eslint-utils@^4.2.0":
   version "4.4.0"
@@ -1691,10 +1699,10 @@
   resolved "https://registry.yarnpkg.com/@navikt/aksel-icons/-/aksel-icons-5.11.4.tgz#9eab45d1624b61d38e54ea293d346d49da5d8502"
   integrity sha512-QhiM3Y2OQuaF3Dsq0pgESHSo9k2ffwN3S8wN9ik9P2eq9rZMe1jSDhkGeSeo1ungVqIdnUX4p62gO+cwQumPcA==
 
-"@navikt/aksel-icons@^5.12.1":
-  version "5.12.2"
-  resolved "https://registry.yarnpkg.com/@navikt/aksel-icons/-/aksel-icons-5.12.2.tgz#3d4668974284a0ca9042503cf5917dfb22f05458"
-  integrity sha512-dfjvEM0KoklKFmyeUUmzsoZZ+/6nvAfA8mrDFJkbUMgzRxZGyadxYOoIIdTQePDPFfl787S5M5fhvRzAHN8+bw==
+"@navikt/aksel-icons@^5.12.2":
+  version "5.12.4"
+  resolved "https://registry.yarnpkg.com/@navikt/aksel-icons/-/aksel-icons-5.12.4.tgz#334dece9ff367bc6285b0781a075fa4f4221e3bc"
+  integrity sha512-fl7obYaXzCELY1NUy66Wl4uS94xROC+aZ/1s8uSy1U0bhfL49tIevkigE1n/sL8ELsrH3DnzBJi6DktdtnE9tg==
 
 "@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1":
   version "5.1.1-v1"
@@ -1738,6 +1746,21 @@
     loader-utils "^2.0.4"
     schema-utils "^3.0.0"
     source-map "^0.7.3"
+
+"@radix-ui/react-compose-refs@1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-compose-refs/-/react-compose-refs-1.0.1.tgz#7ed868b66946aa6030e580b1ffca386dd4d21989"
+  integrity sha512-fDSBgd44FKHa1FRMU59qBMPFcl2PZE+2nmqunj+BWFyYYjnhIDWL2ItDs3rrbJDQOtzt5nIebLCQc4QRfz6LJw==
+  dependencies:
+    "@babel/runtime" "^7.13.10"
+
+"@radix-ui/react-slot@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-slot/-/react-slot-1.0.2.tgz#a9ff4423eade67f501ffb32ec22064bc9d3099ab"
+  integrity sha512-YeTpuq4deV+6DusvVUW4ivBgnkHwECUu0BiN43L5UCDFgdhsRUWAghhTF5MbvNTPzmiFOx90asDSUjWuCNapwg==
+  dependencies:
+    "@babel/runtime" "^7.13.10"
+    "@radix-ui/react-compose-refs" "1.0.1"
 
 "@remix-run/router@1.14.0":
   version "1.14.0"

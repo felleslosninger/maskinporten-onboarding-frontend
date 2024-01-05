@@ -1,6 +1,10 @@
 import React from "react";
-import { Accordion } from "@digdir/design-system-react";
-import Skeleton from "../common/Skeleton/Skeleton";
+import {
+  Accordion,
+  Label,
+  Paragraph,
+  Skeleton
+} from "@digdir/design-system-react";
 import styles from "./styles.module.scss";
 
 function ScopeSkeleton() {
@@ -9,12 +13,12 @@ function ScopeSkeleton() {
       <Accordion.Header className={styles.skeletonHeader}>
         <div className={styles.skeleton}>
           <div className={styles.skeletonTop}>
-            <Skeleton width={"10rem"} heigth={"1.5rem"} />
-            <Skeleton width={"10rem"} heigth={"1.5rem"} />
+            <Paragraph size={"large"} as={Skeleton.Text} style={{width: "10rem"}} />
+            <Paragraph size={"large"} as={Skeleton.Text} style={{width: "10rem"}} />
           </div>
-          <Skeleton width={"17rem"} heigth={"1.25rem"} />
+          <Label as={Skeleton.Text} style={{width: "17rem"}} />
         </div>
-        <Skeleton width={"10rem"} heigth={"1.5rem"} />
+        <Paragraph as={Skeleton.Text} style={{width: "10rem"}} />
       </Accordion.Header>
     </Accordion.Item>
   );
