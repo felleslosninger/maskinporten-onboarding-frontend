@@ -4,18 +4,11 @@ import { useClients } from "../../../hooks/api";
 import {
   Heading,
   Paragraph,
-  LegacySelect,
   ToggleGroup, Combobox,
 } from "@digdir/design-system-react";
 import CodeLanguage, { CodeDependency } from "./CodeLanguage";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
-import { bold } from "../../util/textTransforms";
-import {
-  BranchingIcon,
-  ClipboardIcon,
-  KeyHorizontalIcon,
-} from "@navikt/aksel-icons";
 import { ApiClient } from "../../../types/api";
 import { useConfig } from "../../../hooks/auth";
 
