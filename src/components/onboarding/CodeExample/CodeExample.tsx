@@ -107,7 +107,7 @@ function CodeExample(props: Props) {
   };
 
   const makeFieldMap = (client?: ApiClient) => {
-    const conf = client && config ? config[client.env] : config?.["test"];
+    const conf = client && config ? config[client.env.toLowerCase()] : config?.["test"];
     return {
       __CLIENT_ID__: client?.clientId || "<CLIENT-UUID>",
       __SCOPE__: client?.scopes.join(" ") || "<SCOPE:WITHPREFIX>",
