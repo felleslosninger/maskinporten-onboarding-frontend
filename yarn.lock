@@ -1293,7 +1293,7 @@
   resolved "https://registry.yarnpkg.com/@csstools/selector-specificity/-/selector-specificity-2.2.0.tgz#2cbcf822bf3764c9658c4d2e568bd0c0cb748016"
   integrity sha512-+OJ9konv95ClSTOJCmMZqpd5+YGsB2S+x6w3E1oaM8UuR5j8nTNHYSz8c9BEPGDOCMQYIEEGlVPj/VY64iTbGw==
 
-"@digdir/design-system-react@^0.44.0":
+"@digdir/design-system-react@0.44.0":
   version "0.44.0"
   resolved "https://registry.yarnpkg.com/@digdir/design-system-react/-/design-system-react-0.44.0.tgz#ce7ee7a170d18f8c4e483df2a7a95e45615c2521"
   integrity sha512-0qRWrYAftaddQd9GKGxZLF1VmUuu+CGFZoWzPpAP6We2Fm2YKziN6VA4/xp8ue7umnAu71PDJ6xMR6GCH1hrMw==
@@ -1305,7 +1305,7 @@
     "@radix-ui/react-slot" "^1.0.2"
     react-number-format "5.3.1"
 
-"@digdir/design-system-tokens@^0.11.2":
+"@digdir/design-system-tokens@0.11.2", "@digdir/design-system-tokens@^0.11.2":
   version "0.11.2"
   resolved "https://registry.yarnpkg.com/@digdir/design-system-tokens/-/design-system-tokens-0.11.2.tgz#64c3f0815828af2cd54ccfa7a1e4dc6c45913461"
   integrity sha512-C3zejRUGq1FsTNJZqC7do/kYGRTO7A9/13wP+zTP/DPT6IZvqHzk2UEdMD72T0mtMRe6uazEmw0GQweyniscyQ==
