@@ -5,7 +5,7 @@ import {
   Heading,
   Paragraph,
   LegacySelect,
-  ToggleGroup,
+  ToggleGroup, Combobox,
 } from "@digdir/design-system-react";
 import CodeLanguage, { CodeDependency } from "./CodeLanguage";
 import SyntaxHighlighter from "react-syntax-highlighter";
@@ -36,7 +36,7 @@ function CodeExample(props: Props) {
     !!testClients,
   );
   const [clients, setClients] = useState<ApiClient[]>([]);
-  const [selectValue, setSelectValue] = useState<string>();
+  const [selectValue, setSelectValue] = useState<string[]>();
   const [selectedTab, setSelectedTab] = useState(0);
   const [selectedCode, setSelectedCode] = useState("code");
 
@@ -45,36 +45,6 @@ function CodeExample(props: Props) {
       setClients(testClients.concat(prodClients));
     }
   }, [testClients, prodClients]);
-
-  const formatLabel = (client: ApiClient) => (
-    <div className={styles.selectFormattedBox}>
-      <div className={styles.labelBoxBranch}>
-        <BranchingIcon />
-        {client.env}
-      </div>
-      <div>
-        <span className={styles.labelBoxTitle}>{bold(client.description)}</span>
-        <span>
-          <ClipboardIcon />
-          {client.clientId}
-        </span>
-        <span>
-          <KeyHorizontalIcon />
-          {client.scopes.length > 1
-            ? `${client.scopes[0]}...`
-            : client.scopes[0]}
-        </span>
-      </div>
-    </div>
-  );
-
-  const client_ids = clients.filter(props.filter).map((client) => {
-    return {
-      label: client.clientId,
-      formattedLabel: formatLabel(client),
-      value: `${client.env}:${client.clientId}`,
-    };
-  });
 
   const examples = React.Children.map(props.children, (child) => {
     if (
@@ -120,7 +90,7 @@ function CodeExample(props: Props) {
 
   const processCode = (codeString: string): string => {
     const client = clients.find((client) => {
-      return selectValue === `${client.env}:${client.clientId}`;
+      return selectValue?.includes(`${client.env}:${client.clientId}`);
     });
 
     const fieldMap = makeFieldMap(client);
@@ -137,7 +107,7 @@ function CodeExample(props: Props) {
         Eksempelkode
       </Heading>
 
-      {client_ids && client_ids.length > 0 && (
+      {clients && clients.filter(props.filter).length > 0 && (
         <>
           <Paragraph>
             Ved å legge inn hvilken tilgang du skal ta i bruk kan vi gi deg
@@ -152,11 +122,25 @@ function CodeExample(props: Props) {
               listen under.
             </Paragraph>
             <div className={styles.selectionContainer}>
-              <LegacySelect
+              <Combobox
                 value={selectValue}
-                options={client_ids}
-                onChange={(value) => setSelectValue(value)}
-              />
+                onValueChange={val => setSelectValue(val)}
+              >
+                <Combobox.Empty>
+                  Fant ingen integrasjoner
+                </Combobox.Empty>
+                {clients.filter(props.filter).map(client => (
+                  <Combobox.Option
+                    key={`${client.env}:${client.clientId}`}
+                    value={`${client.env}:${client.clientId}`}
+                    description={`Integrasjons-id: ${client.clientId}`}
+                    displayValue={client.clientId}
+                  >
+                    {`${client.env}: ${client.description}`}
+                  </Combobox.Option>
+                ))
+                }
+              </Combobox>
             </div>
           </div>
         </>
