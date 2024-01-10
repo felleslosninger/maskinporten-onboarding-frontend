@@ -21,8 +21,8 @@ import Step3 from "./Step3";
 import Step2 from "./Step2";
 import { AxiosResponse } from "axios";
 import VisuallyHidden from "../../common/VisuallyHidden/VisuallyHidden";
-import {link} from "../../util/textTransforms";
-import {useOrgList, useUser} from "../../../hooks/auth";
+import { link } from "../../util/textTransforms";
+import { useSignStatus, useUser } from "../../../hooks/auth";
 
 export interface FeedbackMessage {
   message: ReactNode;
@@ -80,21 +80,20 @@ const NewClientModal = React.forwardRef<HTMLDialogElement, NewClientProps>(
       isIdle,
       data,
     } = useClientMutation(props.env);
+    const { data: auth } = useUser();
+    const { data: shouldSign } = useSignStatus(auth?.user?.reporteeId);
     const isLoading = !isIdle && !isError && !isSuccess;
     const [useKeys, setUseKeys] = useState(false);
     const [step, setStep] = useState(1);
     const [description, setDescription] = useState("");
     const [publicKey, setPublicKey] = useState("");
     const [isNext, setIsNext] = useState(true);
-    const [chosenIntegration, setChosenIntegration] = useState(false);
+    const [hasChosenIntegration, setHasChosenIntegration] = useState(false);
     const [kid, setKid] = useState("");
     const [message, setMessage] = useState<FeedbackMessage>();
     const [scopes, setScopes] = useState<string[]>([]);
     const [isTermsAccepted, setIsTermsAccepted] = useState(false);
-    const [shouldAcceptTerms, setShouldAcceptTerms] = useState(true);
     const modalRef = ref as RefObject<HTMLDialogElement>;
-    const { data: signedOrgsList } = useOrgList();
-    const { data: auth } = useUser();
 
     // Go to success step on client POST success
     useEffect(() => {
@@ -110,19 +109,13 @@ const NewClientModal = React.forwardRef<HTMLDialogElement, NewClientProps>(
       }
     }, [isError]);
 
-    // Remove terms checkbox if org has agreement with digdir.
+    // Kind of ugly, but is necessary to avoid terms checkbox
+    // being checked while sign status is loading
     useEffect(() => {
-      if (signedOrgsList && auth && auth.user) {
-        const orgList = signedOrgsList
-          .split(",")
-          .map(org => org.trim());
-
-        if (orgList.includes(auth.user.reporteeId)) {
-          setIsTermsAccepted(true);
-          setShouldAcceptTerms(false);
-        }
+      if (!(shouldSign === undefined) && !shouldSign) {
+        setIsTermsAccepted(true);
       }
-    }, [signedOrgsList, auth]);
+    }, [shouldSign]);
 
     const handleSubmit = async () => {
       setMessage(undefined);
@@ -169,7 +162,7 @@ const NewClientModal = React.forwardRef<HTMLDialogElement, NewClientProps>(
 
     const onForrige = () => {
       setUseKeys(false);
-      setChosenIntegration(false);
+      setHasChosenIntegration(false);
       setMessage(undefined);
       setIsNext(false);
       setStep(1);
@@ -215,8 +208,8 @@ const NewClientModal = React.forwardRef<HTMLDialogElement, NewClientProps>(
             set: setPublicKey,
           },
           isIntegrationChosen: {
-            get: chosenIntegration,
-            set: setChosenIntegration,
+            get: hasChosenIntegration,
+            set: setHasChosenIntegration,
           },
         }}
       >
@@ -274,7 +267,7 @@ const NewClientModal = React.forwardRef<HTMLDialogElement, NewClientProps>(
               )}
               {step === 2 && (
                 <div className={styles.step2ButtonRow}>
-                  {shouldAcceptTerms && (
+                  {shouldSign && (
                     <Checkbox
                       value={"licence"}
                       checked={isTermsAccepted}
@@ -291,7 +284,7 @@ const NewClientModal = React.forwardRef<HTMLDialogElement, NewClientProps>(
                     <Button
                       onClick={handleSubmit}
                       disabled={
-                        !isTermsAccepted || (!chosenIntegration ||
+                        !isTermsAccepted || (!hasChosenIntegration ||
                         (useKeys &&
                           (message?.level === "err" || publicKey.length === 0)))
                       }

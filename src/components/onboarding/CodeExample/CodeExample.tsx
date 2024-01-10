@@ -4,7 +4,8 @@ import { useClients } from "../../../hooks/api";
 import {
   Heading,
   Paragraph,
-  ToggleGroup, Combobox,
+  ToggleGroup,
+  Combobox,
 } from "@digdir/design-system-react";
 import CodeLanguage, { CodeDependency } from "./CodeLanguage";
 import SyntaxHighlighter from "react-syntax-highlighter";
