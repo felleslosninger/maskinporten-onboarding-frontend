@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@digdir/design-system-react": "0.44.0",
-    "@digdir/design-system-tokens": "0.11.2",
+    "@digdir/design-system-tokens": "0.12.0",
     "@navikt/aksel-icons": "^5.12.4",
     "@tanstack/react-query": "^5.17.9",
     "@types/node": "^20.10.7",
