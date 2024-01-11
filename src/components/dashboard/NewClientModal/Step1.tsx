@@ -20,14 +20,14 @@ const Step1 = (props: Props) => {
 
   const selectableScopes = () => {
     if (!publicScopes || !privateScopes) {
-      return [{ value: props.scope, label: props.scope }];
+      return [{ value: props.scope, label: props.scope, public: false }];
     }
 
     return privateScopes
       .concat(publicScopes)
       .filter((scope) => scope.scope !== props.scope)
       .filter((scope) => window.env.WHITELIST.includes(scope.scope))
-      .map((scope) => ({ value: scope.scope, label: scope.scope }));
+      .map((scope) => ({ value: scope.scope, label: scope.scope, public: scope.accessible_for_all }));
   };
 
   return (
@@ -53,7 +53,11 @@ const Step1 = (props: Props) => {
             Fant ingen scopes
           </Combobox.Empty>
           {selectableScopes().map((scope) => (
-            <Combobox.Option value={scope.value} key={scope.value}>
+            <Combobox.Option
+              value={scope.value}
+              key={scope.value}
+              description={scope.public ? "Offentlig tilgang" : ""}
+            >
               {scope.label}
             </Combobox.Option>
           ))}

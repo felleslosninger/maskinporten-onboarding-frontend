@@ -68,6 +68,7 @@ const Step2 = () => {
       <div className={styles.integrationSelect}>
         <div className={styles.radioButtons}>
           <Radio.Group
+            value={context.isIntegrationChosen.get ? context.isKeys.get.toString() : "init"}
             onChange={onChangeIntegration}
             legend={
               <div className={styles.radioButtonLabel}>

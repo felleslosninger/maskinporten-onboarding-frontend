@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { HelmetProvider } from "react-helmet-async";
 import { IdleTimerProvider } from "react-idle-timer";
 import { logout } from "../../auth/login";
@@ -10,6 +10,41 @@ import styles from "./styles.module.css";
 
 function App() {
   const { data } = useUser();
+
+  useEffect(() => {
+    const scriptToken = window.env.ANALYTICS_TOKEN;
+    const scriptUrl = window.env.ANALYTICS_SCRIPT;
+
+    if (scriptToken === "" || scriptUrl === "") {
+      console.log('Analytics not enabled');
+      return;
+    }
+
+    window._monsido = window._monsido || {
+      token: scriptToken,
+      statistics: {
+        enabled: true,
+        cookieLessTracking: true,
+        documentTracking: {
+          enabled: true,
+          documentCls: "monsido_download",
+          documentIgnoreCls: "monsido_ignore_download",
+          documentExt: []
+        }
+      },
+      heatmap: {
+        enabled: true
+      },
+      pageCorrect: {
+        enabled: true
+      }
+    };
+
+    const script = document.createElement('script');
+    script.src = scriptUrl;
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
 
   const onIdle = () => {
     if (data && data.isAuthenticated) {

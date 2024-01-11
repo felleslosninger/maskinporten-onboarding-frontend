@@ -5,7 +5,7 @@ import axios from "axios";
 
 export const QK_USER = "QK_USER";
 export const QK_CONFIG = "QK_CONFIG";
-export const QK_SIGNED_ORGS = "QK_SIGNED_ORGS"
+export const QK_SIGN_STATUS = "QK_SIGN_STATUS"
 
 // Get logged in user with the possibility of not being logged in
 export const useUser = () => {
@@ -50,15 +50,19 @@ export const useConfig = () => {
   });
 };
 
-export const useOrgList = () => {
+export const useSignStatus = (orgno: string | undefined) => {
   return useQuery({
-    queryKey: [QK_SIGNED_ORGS],
+    queryKey: [QK_SIGN_STATUS],
     queryFn: async () => {
-      const path = `${window.env.SIMPLIFIED_ONBOARDING_API_URL}/api/signedOrgs`;
-      const res = await axios.get<string>(path, {
+      const path = `${window.env.SIMPLIFIED_ONBOARDING_API_URL}/api/shouldSign`;
+      const params = new URLSearchParams();
+      params.append("org", orgno || "");
+      const res = await axios.get<boolean>(path, {
+        params: params,
         withCredentials: true,
       });
       return res.data;
-    }
+    },
+    enabled: !!orgno
   });
 }
