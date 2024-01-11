@@ -57,10 +57,14 @@ jobs:
         run: echo "imagename=${{env.IMAGE-NAME}}" >> "$GITHUB_OUTPUT"
 
   call-update-image-version:
-    uses: felleslosninger/github-workflows/.github/workflows/ci-update-image-version.yml@main
+    uses: felleslosninger/github-workflows/.github/workflows/update-image-version.yml@main
     needs: build-publish-image
     with:
+      application-name: maskinporten-onboarding-frontend
+      product-name: onboarding
       kubernetes-repo: kundetjenester-cd-external
       image-version: ${{ needs.build-publish-image.outputs.imagetag }}
       image-digest: ${{ needs.build-publish-image.outputs.imagedigest }}
+      image-name: maskinporten-onboarding-frontend
+      deployment-environment: systest
     secrets: inherit
