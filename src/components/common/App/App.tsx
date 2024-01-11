@@ -14,8 +14,9 @@ function App() {
   useEffect(() => {
     const scriptToken = window.env.ANALYTICS_TOKEN;
     const scriptUrl = window.env.ANALYTICS_SCRIPT;
+    const empty = ['', 'none', 'undefined', 'null'];
 
-    if (scriptToken === "" || scriptUrl === "") {
+    if (empty.includes(scriptToken) || empty.includes(scriptUrl)) {
       console.log('Analytics not enabled');
       return;
     }
