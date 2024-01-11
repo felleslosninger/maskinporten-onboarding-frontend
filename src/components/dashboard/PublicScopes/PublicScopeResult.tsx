@@ -21,18 +21,6 @@ function PublicScopeResult(props: Props) {
     }
   }, [showModal, modalRef]);
 
-  const onMakeClient = () => {
-    if (window.env.WHITELIST.indexOf(props.scope.name) === -1) {
-      alert(
-        "Denne tilbyderen deltar ikke i forenklet onboarding-piloten, og du kan " +
-          "derfor ikke opprette integrasjonen din gjennom denne løsningen. " +
-          "Du må bruke Samarbeidsportalen istedenfor.",
-      );
-      return;
-    }
-    setShowModal(true);
-  };
-
   return (
     <>
       {showModal && (
@@ -45,7 +33,7 @@ function PublicScopeResult(props: Props) {
       )}
       <button
         className={styles.result}
-        onClick={onMakeClient}
+        onClick={() => setShowModal(true)}
         aria-label={`Opprett integrasjon med scope ${props.scope.name}`}
       >
         <div className={styles.resultsInfo}>

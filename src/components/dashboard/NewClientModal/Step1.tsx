@@ -26,7 +26,6 @@ const Step1 = (props: Props) => {
     return privateScopes
       .concat(publicScopes)
       .filter((scope) => scope.scope !== props.scope)
-      .filter((scope) => window.env.WHITELIST.includes(scope.scope))
       .map((scope) => ({ value: scope.scope, label: scope.scope, public: scope.accessible_for_all }));
   };
 

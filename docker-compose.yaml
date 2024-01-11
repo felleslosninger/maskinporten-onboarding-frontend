@@ -7,6 +7,6 @@ services:
       dockerfile: Dockerfile
     environment:
       SIMPLIFIED_ONBOARDING_API_URL: https://api-onboarding.maskinporten.dev
-      WHITELIST: nav:skyporten:entur.test.write,entur:skyporten.demo,entur:apc.demo,entur:api.1,banenor:traffic.update.read,datanorge:test/catalog.read,datanorge:catalog.read,skatteetaten:kravogbetaling,tiger:accessibleforall
+      WHITELIST:
     ports:
       - "3000:8080"
