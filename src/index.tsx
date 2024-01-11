@@ -11,7 +11,10 @@ declare global {
     env: {
       SIMPLIFIED_ONBOARDING_API_URL: string;
       WHITELIST: string;
+      ANALYTICS_TOKEN: string;
+      ANALYTICS_SCRIPT: string;
     };
+    _monsido: object;
   }
 }
 
@@ -38,7 +41,6 @@ root.render(
     </BrowserRouter>
   </React.StrictMode>,
 );
-
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
