@@ -65,7 +65,7 @@ function Landingpage() {
 
       <Heading size={"xlarge"} className={styles.heading} spacing>
         Velkommen til Forenklet Onboarding
-        <Tag color={"second"} variant={"secondary"}>
+        <Tag color={"second"}>
           Pilot
         </Tag>
       </Heading>

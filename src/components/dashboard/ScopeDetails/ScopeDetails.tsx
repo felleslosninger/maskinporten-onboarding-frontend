@@ -40,16 +40,6 @@ function ScopeDetails(props: ScopeDetailProps) {
     }
   }, [showModal, modalRef]);
 
-  const onMakeClient = () => {
-    if (window.env.WHITELIST.indexOf(props.scope.scope) === -1) {
-      alert(
-        "Denne tilbyderen deltar ikke i forenklet onboarding-piloten, og du kan derfor ikke opprette integrasjonen din gjennom denne løsningen. Du må bruke Samarbeidsportalen istedenfor.",
-      );
-      return;
-    }
-    setShowModal(true);
-  };
-
   const renderNoClientBox = () => {
     return (
       <div className={styles.noClientBox}>
@@ -91,7 +81,6 @@ function ScopeDetails(props: ScopeDetailProps) {
               {props.scope.accessible_for_all && (
                 <Tag
                   color={"second"}
-                  variant={"secondary"}
                   size={"small"}
                   className={styles.publicTag}
                 >
@@ -127,7 +116,7 @@ function ScopeDetails(props: ScopeDetailProps) {
             )
           : renderNoClientBox()}
         <div className={styles.buttonRow}>
-          <Button className={styles.opprettButton} onClick={onMakeClient}>
+          <Button className={styles.opprettButton} onClick={() => setShowModal(true)}>
             Opprett integrasjon
           </Button>
         </div>

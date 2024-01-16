@@ -10,7 +10,8 @@ global.TextEncoder = TextEncoder;
 
 window.env = {
   SIMPLIFIED_ONBOARDING_API_URL: "dummy",
-  WHITELIST: "dummy",
+  ANALYTICS_SCRIPT: "",
+  ANALYTICS_TOKEN: "",
 };
 
 jest.mock("react", () => {
