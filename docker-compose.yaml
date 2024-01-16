@@ -7,6 +7,5 @@ services:
       dockerfile: Dockerfile
     environment:
       SIMPLIFIED_ONBOARDING_API_URL: https://api-onboarding.maskinporten.dev
-      WHITELIST:
     ports:
       - "3000:8080"
