@@ -1293,16 +1293,17 @@
   resolved "https://registry.yarnpkg.com/@csstools/selector-specificity/-/selector-specificity-2.2.0.tgz#2cbcf822bf3764c9658c4d2e568bd0c0cb748016"
   integrity sha512-+OJ9konv95ClSTOJCmMZqpd5+YGsB2S+x6w3E1oaM8UuR5j8nTNHYSz8c9BEPGDOCMQYIEEGlVPj/VY64iTbGw==
 
-"@digdir/design-system-react@^0.45.0":
-  version "0.45.0"
-  resolved "https://registry.yarnpkg.com/@digdir/design-system-react/-/design-system-react-0.45.0.tgz#5df49442444d7963fb99c1cf25d20c6d6f72ed9b"
-  integrity sha512-ElNeu5mm2Z1oL5pAyuQ7xwI3ZxJNR57Gu40hLJkWVcx9p0oUkaQmt4cPEiTKX0w10gguZbEsXe8CJq7TEGlhew==
+"@digdir/design-system-react@^0.47.0":
+  version "0.47.0"
+  resolved "https://registry.yarnpkg.com/@digdir/design-system-react/-/design-system-react-0.47.0.tgz#a4764897a28898ab0d768d6f723afe8bb96d3e1a"
+  integrity sha512-glZjOyllDTn22zRWWb9XOrnzYlC8kr+mBf6y2NQlS6mtvB36scRpSiPMfWmYy4v8BqbRlHyy9tn7R8Wqdp+Ylg==
   dependencies:
     "@altinn/figma-design-tokens" "^6.0.1"
     "@digdir/design-system-tokens" "^0.12.0"
     "@floating-ui/react" "0.26.4"
     "@navikt/aksel-icons" "^5.12.2"
     "@radix-ui/react-slot" "^1.0.2"
+    "@tanstack/react-virtual" "^3.0.1"
     react-number-format "5.3.1"
 
 "@digdir/design-system-tokens@^0.12.0":
@@ -1952,6 +1953,18 @@
   integrity sha512-M5E9gwUq1Stby/pdlYjBlL24euIVuGbWKIFCbtnQxSdXI4PgzjTSdXdV3QE6fc+itF+TUvX/JPTKIwq8yuBXcg==
   dependencies:
     "@tanstack/query-core" "5.17.9"
+
+"@tanstack/react-virtual@^3.0.1":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-virtual/-/react-virtual-3.0.2.tgz#e5a979f2585d3f583944840319cddf2c2d1b0e51"
+  integrity sha512-9XbRLPKgnhMwwmuQMnJMv+5a9sitGNCSEtf/AZXzmJdesYk7XsjYHaEDny+IrJzvPNwZliIIDwCRiaUqR3zzCA==
+  dependencies:
+    "@tanstack/virtual-core" "3.0.0"
+
+"@tanstack/virtual-core@3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@tanstack/virtual-core/-/virtual-core-3.0.0.tgz#637bee36f0cabf96a1d436887c90f138a7e9378b"
+  integrity sha512-SYXOBTjJb05rXa2vl55TTwO40A6wKu0R5i1qQwhJYNDIqaIGF7D0HsLw+pJAyi2OvntlEIVusx3xtbbgSUi6zg==
 
 "@testing-library/dom@^9.0.0":
   version "9.3.3"
