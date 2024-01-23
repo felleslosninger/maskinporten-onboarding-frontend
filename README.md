@@ -4,7 +4,7 @@ This react project contains the frontend code for the website
 currently running at [onboarding.maskinporten.no](https://onboarding.maskinporten.no).
 
 The intent of this website is to simplify the steps needed to get
-started with maskinporten.
+started with Maskinporten.
 
 ## Local Development
 
