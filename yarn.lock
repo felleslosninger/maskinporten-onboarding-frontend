@@ -1293,22 +1293,28 @@
   resolved "https://registry.yarnpkg.com/@csstools/selector-specificity/-/selector-specificity-2.2.0.tgz#2cbcf822bf3764c9658c4d2e568bd0c0cb748016"
   integrity sha512-+OJ9konv95ClSTOJCmMZqpd5+YGsB2S+x6w3E1oaM8UuR5j8nTNHYSz8c9BEPGDOCMQYIEEGlVPj/VY64iTbGw==
 
-"@digdir/design-system-react@^0.45.0":
-  version "0.45.0"
-  resolved "https://registry.yarnpkg.com/@digdir/design-system-react/-/design-system-react-0.45.0.tgz#5df49442444d7963fb99c1cf25d20c6d6f72ed9b"
-  integrity sha512-ElNeu5mm2Z1oL5pAyuQ7xwI3ZxJNR57Gu40hLJkWVcx9p0oUkaQmt4cPEiTKX0w10gguZbEsXe8CJq7TEGlhew==
+"@digdir/design-system-react@^0.50.0":
+  version "0.50.0"
+  resolved "https://registry.yarnpkg.com/@digdir/design-system-react/-/design-system-react-0.50.0.tgz#1dd5fd606ab87ee5d9ba22322721dd47318eb007"
+  integrity sha512-SV9TihBmfS9yyeb0J5LAhOoPk6zCbBNGxxijMg38P+6tuzUXwrWYW/BST09OXpKmebJ9yWO4ZsvsS/Qv8n5Ngw==
   dependencies:
     "@altinn/figma-design-tokens" "^6.0.1"
-    "@digdir/design-system-tokens" "^0.12.0"
+    "@digdir/design-system-tokens" "^0.13.0"
     "@floating-ui/react" "0.26.4"
     "@navikt/aksel-icons" "^5.12.2"
     "@radix-ui/react-slot" "^1.0.2"
+    "@tanstack/react-virtual" "^3.0.1"
     react-number-format "5.3.1"
 
 "@digdir/design-system-tokens@^0.12.0":
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/@digdir/design-system-tokens/-/design-system-tokens-0.12.0.tgz#388fdeb1e008885efa29cb2016614e4ac3514ff4"
   integrity sha512-vq9x3j3u+08Lr+p9O58RfLkDNeQom3Bzon0Jn/QP5Iujog3f1zXR8M1kM9rtBS60QmjYCodv+9b/NN3AM5LzZA==
+
+"@digdir/design-system-tokens@^0.13.0":
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/@digdir/design-system-tokens/-/design-system-tokens-0.13.0.tgz#4cbe8c1398cd74de534d87910c9cd3be5d076a83"
+  integrity sha512-4ow+zmD7RLQnzesrYnWfHZCZtN3n8gkd4b/WnE/3Yb+dL5j3DTrR++p/O4GVsnUDQlMz72CrUW8ipu6RCc8vTQ==
 
 "@eslint-community/eslint-utils@^4.2.0":
   version "4.4.0"
@@ -1952,6 +1958,18 @@
   integrity sha512-M5E9gwUq1Stby/pdlYjBlL24euIVuGbWKIFCbtnQxSdXI4PgzjTSdXdV3QE6fc+itF+TUvX/JPTKIwq8yuBXcg==
   dependencies:
     "@tanstack/query-core" "5.17.9"
+
+"@tanstack/react-virtual@^3.0.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-virtual/-/react-virtual-3.1.1.tgz#0f239bd0323344ebf045b6579d98018123e49a0e"
+  integrity sha512-9tW9xwEW7exSa/8bxu29IPCcB5c9Xlq+whETixIIgYZYKuUY4ZOr000q3oLpL4bkOkolQbB4WXM0MoQGgJXqDg==
+  dependencies:
+    "@tanstack/virtual-core" "3.1.1"
+
+"@tanstack/virtual-core@3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@tanstack/virtual-core/-/virtual-core-3.1.1.tgz#5d8d517fa60ec073a83a7a01e3041ad2d75657e8"
+  integrity sha512-I5lerX+RWxLM+zw35gwwQIoLvtkOm0ecuQUlEjNey+Ga6TnR66WKLBnSHre59onugxhpDLT2nofRYzxf+izDFQ==
 
 "@testing-library/dom@^9.0.0":
   version "9.3.3"
