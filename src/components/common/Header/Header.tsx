@@ -83,7 +83,7 @@ function Header() {
             variant={"tertiary"}
             aria-haspopup="menu"
             aria-expanded={open}
-            onClick={() => setOpen(!open)}
+            onClick={isLoggedIn ? () => setOpen(!open) : login}
           >
             {!isSmallScreen && isLoggedIn && (
               <>
@@ -112,41 +112,41 @@ function Header() {
             )}
           </Button>
 
-          <DropdownMenu
-            anchorEl={menuRef.current}
-            placement={"bottom-end"}
-            open={open}
-            onClose={() => setOpen(false)}
-          >
-            {isSmallScreen && (
-              <>
-                <DropdownMenu.Item
-                  as={"a"}
-                  href={isLoggedIn ? "/dashboard" : "/"}
-                  icon={<ChevronRightIcon />}
-                >
-                  {isLoggedIn ? "oversikt" : "hjem"}
-                </DropdownMenu.Item>
+          {isLoggedIn && (
+            <DropdownMenu
+              anchorEl={menuRef.current}
+              placement={"bottom-end"}
+              open={open}
+              onClose={() => setOpen(false)}
+            >
+              {isSmallScreen && (
+                <>
+                  <DropdownMenu.Item
+                    as={"a"}
+                    href={isLoggedIn ? "/dashboard" : "/"}
+                    icon={<ChevronRightIcon />}
+                  >
+                    {isLoggedIn ? "oversikt" : "hjem"}
+                  </DropdownMenu.Item>
 
-                <DropdownMenu.Item
-                  as={"a"}
-                  href={"/guide"}
-                  icon={<ChevronRightIcon />}
-                >
-                  onboardingsguide
-                </DropdownMenu.Item>
+                  <DropdownMenu.Item
+                    as={"a"}
+                    href={"/guide"}
+                    icon={<ChevronRightIcon />}
+                  >
+                    onboardingsguide
+                  </DropdownMenu.Item>
 
-                <DropdownMenu.Item
-                  as={"a"}
-                  href={"/terms"}
-                  icon={<ChevronRightIcon />}
-                >
-                  vilkår
-                </DropdownMenu.Item>
-              </>
-            )}
+                  <DropdownMenu.Item
+                    as={"a"}
+                    href={"/terms"}
+                    icon={<ChevronRightIcon />}
+                  >
+                    vilkår
+                  </DropdownMenu.Item>
+                </>
+              )}
 
-            {isLoggedIn && (
               <DropdownMenu.Item
                 className={styles.logoutLabel}
                 onClick={logout}
@@ -154,32 +154,8 @@ function Header() {
                 Logg ut
                 <LeaveIcon className={styles.svg} />
               </DropdownMenu.Item>
-            )}
-
-            {!isLoggedIn && (
-              <>
-                <DropdownMenu.Item
-                  className={styles.loginLabel}
-                  onClick={() => login(true)}
-                >
-                  <Paragraph size={"medium"}>
-                    {isSmallScreen ? "Logg inn" : "..."} som daglig leder
-                  </Paragraph>
-                  <ChevronRightIcon className={styles.svg} />
-                </DropdownMenu.Item>
-                <DropdownMenu.Item
-                  className={styles.loginLabel}
-                  onClick={() => login(false)}
-                >
-                  <Paragraph size={"medium"}>
-                    {isSmallScreen ? "Logg inn" : "..."} med
-                    enkelttjeneste-tilgang
-                  </Paragraph>
-                  <ChevronRightIcon className={styles.svg} />
-                </DropdownMenu.Item>
-              </>
-            )}
-          </DropdownMenu>
+            </DropdownMenu>
+          )}
         </>
       </div>
     </header>
