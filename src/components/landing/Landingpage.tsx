@@ -85,17 +85,10 @@ function Landingpage() {
       <div className={styles.loginRow}>
         <Button
           className={styles.loginButton}
-          onClick={() => login(true)}
+          onClick={login}
           size={"large"}
         >
-          Logg inn som daglig leder
-        </Button>
-        <Button
-          className={styles.loginButton}
-          onClick={() => login(false)}
-          size={"large"}
-        >
-          Logg inn med enkeltjeneste-tilgang
+          Logg inn
         </Button>
       </div>
 

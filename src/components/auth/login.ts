@@ -1,5 +1,5 @@
-export const login = (admin: boolean) => {
-  const regId = admin ? "ansattporten-2480" : "ansattporten-5613";
+export const login = () => {
+  const regId = "ansattporten";
   window.location.href = `${window.env.SIMPLIFIED_ONBOARDING_API_URL}/oauth2/authorization/${regId}`;
 };
 
