@@ -23,6 +23,8 @@ export const useScopes = (env: string) => {
       const res = await axios.get<ApiScopes>(path, axiosConfig);
       return res.data;
     },
+    refetchInterval: 5 * 60 * 1000, // Avoids token expiration while app is in use
+    refetchIntervalInBackground: true,
   });
 };
 
@@ -50,7 +52,7 @@ export const useClients = (env: string, enabled?: boolean) => {
       return res.data;
     },
     enabled: enabled, // Avoids concurrency issues with refresh token
-    refetchInterval: 9 * 60 * 1000, // Avoids token expiration while app is in use
+    refetchInterval: 5 * 60 * 1000, // Avoids token expiration while app is in use
     refetchIntervalInBackground: true,
   });
 };
