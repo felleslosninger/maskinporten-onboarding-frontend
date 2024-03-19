@@ -1694,15 +1694,15 @@
   resolved "https://registry.yarnpkg.com/@leichtgewicht/ip-codec/-/ip-codec-2.0.4.tgz#b2ac626d6cb9c8718ab459166d4bb405b8ffa78b"
   integrity sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==
 
+"@navikt/aksel-icons@5.18.3":
+  version "5.18.3"
+  resolved "https://registry.yarnpkg.com/@navikt/aksel-icons/-/aksel-icons-5.18.3.tgz#0e8ff38b54ec91be6c5e8d8574a3341ee87eb792"
+  integrity sha512-kytq0BT1xsJBrG7/eyDuMQLddQZA4OMT3Fw3VLGHsJNqjEWEVOl3uYCGL70Thvg0+du0s/Z3mXPQUQpIaDt7rg==
+
 "@navikt/aksel-icons@^5.12.2":
   version "5.12.4"
   resolved "https://registry.yarnpkg.com/@navikt/aksel-icons/-/aksel-icons-5.12.4.tgz#334dece9ff367bc6285b0781a075fa4f4221e3bc"
   integrity sha512-fl7obYaXzCELY1NUy66Wl4uS94xROC+aZ/1s8uSy1U0bhfL49tIevkigE1n/sL8ELsrH3DnzBJi6DktdtnE9tg==
-
-"@navikt/aksel-icons@^6.2.0":
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/@navikt/aksel-icons/-/aksel-icons-6.2.0.tgz#2bb2e3174b9608894845932ee463f5548418875f"
-  integrity sha512-nwi68avAIuHLAJxAGdTWKYZ9dMzDn+sTC7imlBrzArIe9m4xxEInQORqr++Li3dHd6/nh7Z63YemWMLs1c/chQ==
 
 "@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1":
   version "5.1.1-v1"
