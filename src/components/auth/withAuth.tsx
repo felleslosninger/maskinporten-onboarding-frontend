@@ -2,7 +2,7 @@ import React, { ComponentType, FC } from "react";
 import { Navigate } from "react-router-dom";
 import { useConfig, useUser } from "../../hooks/auth";
 import { Userinfo } from "../../types/tokens";
-import { Spinner } from "@digdir/design-system-react";
+import { Spinner } from "@digdir/designsystemet-react";
 import { ApiConfig } from "../../types/api";
 
 export interface AuthProps {

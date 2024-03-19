@@ -75,7 +75,7 @@ jest.doMock("./components/common/Header/Header", () => {
   return Header;
 });
 
-jest.mock("@digdir/design-system-react", () => ({
+jest.mock("@digdir/designsystemet-react", () => ({
   Label: jest.fn().mockReturnValue("<div />"),
   Button: jest.fn().mockReturnValue("<div />"),
   Logo: jest.fn().mockReturnValue("<div />"),

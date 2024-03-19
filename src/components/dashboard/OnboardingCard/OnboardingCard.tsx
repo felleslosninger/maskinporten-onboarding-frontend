@@ -1,5 +1,5 @@
 import React from "react";
-import { Paragraph } from "@digdir/design-system-react";
+import { Paragraph } from "@digdir/designsystemet-react";
 import { ReactComponent as FokusSvg } from "../../../assets/fokus.svg";
 import StyledLink from "../../common/StyledLink/StyledLink";
 import styles from "./styles.module.scss";

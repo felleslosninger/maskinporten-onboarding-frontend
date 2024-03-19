@@ -4,7 +4,7 @@ import {
   Label,
   Paragraph,
   Skeleton
-} from "@digdir/design-system-react";
+} from "@digdir/designsystemet-react";
 import styles from "./styles.module.scss";
 
 function ScopeSkeleton() {

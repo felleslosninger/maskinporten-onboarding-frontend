@@ -7,7 +7,7 @@ import {
   Ingress,
   Paragraph,
   Tag,
-} from "@digdir/design-system-react";
+} from "@digdir/designsystemet-react";
 import styles from "./styles.module.scss";
 import { login } from "../auth/login";
 import ContentContainer from "../common/ContentContainer/ContentContainer";

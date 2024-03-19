@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { useUser } from "../../../hooks/auth";
 import styles from "./styles.module.scss";
 import { ReactComponent as Logo } from "../../../assets/logo.svg";
@@ -9,12 +9,12 @@ import {
   DropdownMenu,
   Label,
   Paragraph,
-} from "@digdir/design-system-react";
+} from "@digdir/designsystemet-react";
 import { login, logout } from "../../auth/login";
 import StyledLink from "../StyledLink/StyledLink";
 import { useLocation } from "react-router-dom";
 import {
-  ChevronRightIcon,
+  ChevronRightIcon, EnterIcon,
   LeaveIcon,
   MenuHamburgerIcon,
   XMarkIcon,
@@ -22,7 +22,6 @@ import {
 import { useMediaQuery } from "react-responsive";
 
 function Header() {
-  const menuRef = useRef(null);
   const { data, isLoading } = useUser();
   const [open, setOpen] = useState(false);
   const isSmallScreen = useMediaQuery({ query: "(max-width: 767px)" });
@@ -77,85 +76,96 @@ function Header() {
             </StyledLink>
           </div>
 
-          <Button
-            ref={menuRef}
-            className={styles.userInfo}
-            variant={"tertiary"}
-            aria-haspopup="menu"
-            aria-expanded={open}
-            onClick={isLoggedIn ? () => setOpen(!open) : login}
-          >
-            {!isSmallScreen && isLoggedIn && (
-              <>
-                <div>
-                  <Paragraph size={"small"}>{data!!.user!!.name}</Paragraph>
-                  <Paragraph size={"small"}>
-                    {data!!.user!!.reporteeName}
-                  </Paragraph>
-                </div>
-                <BedriftSvg className={styles.svg} />
-              </>
-            )}
-
-            {!isSmallScreen && !isLoggedIn && (
-              <>
-                <Paragraph size={"medium"}>LOGG INN</Paragraph>
-                <PersonSvg className={styles.svg} />
-              </>
-            )}
-
-            {isSmallScreen && (
-              <div className={styles.smallMenuButton}>
-                {open ? <XMarkIcon /> : <MenuHamburgerIcon />}
-                <Label>Meny</Label>
-              </div>
-            )}
-          </Button>
-
-          {isLoggedIn && (
-            <DropdownMenu
-              anchorEl={menuRef.current}
-              placement={"bottom-end"}
-              open={open}
-              onClose={() => setOpen(false)}
+          {!isLoggedIn && (
+            <Button
+              className={styles.userInfo}
+              variant={"tertiary"}
+              onClick={login}
             >
+
+            </Button>
+          )}
+
+          <DropdownMenu
+            placement={"bottom-end"}
+            open={open}
+            onClose={() => setOpen(false)}
+          >
+            <DropdownMenu.Trigger
+              className={styles.userInfo}
+              variant={"tertiary"}
+              onClick={(isLoggedIn || isSmallScreen) ? () => setOpen(!open) : login}
+            >
+              {!isSmallScreen && !isLoggedIn && (
+                <>
+                  <Paragraph size={"medium"}>LOGG INN</Paragraph>
+                  <PersonSvg className={styles.svg} />
+                </>
+              )}
+
+              {!isSmallScreen && isLoggedIn && (
+                <>
+                  <div>
+                    <Paragraph size={"small"}>{data!!.user!!.name}</Paragraph>
+                    <Paragraph size={"small"}>
+                      {data!!.user!!.reporteeName}
+                    </Paragraph>
+                  </div>
+                  <BedriftSvg className={styles.svg} />
+                </>
+              )}
+
+              {isSmallScreen && (
+                <div className={styles.smallMenuButton}>
+                  {open ? <XMarkIcon /> : <MenuHamburgerIcon />}
+                  <Label>Meny</Label>
+                </div>
+              )}
+            </DropdownMenu.Trigger>
+            <DropdownMenu.Content>
               {isSmallScreen && (
                 <>
-                  <DropdownMenu.Item
-                    as={"a"}
-                    href={isLoggedIn ? "/dashboard" : "/"}
-                    icon={<ChevronRightIcon />}
-                  >
-                    {isLoggedIn ? "oversikt" : "hjem"}
+                  <DropdownMenu.Item asChild className={styles.dropdownItem}>
+                    <a href={isLoggedIn ? "/dashboard" : "/"}>
+                      {isLoggedIn ? "oversikt" : "hjem"}
+                      <ChevronRightIcon />
+                    </a>
                   </DropdownMenu.Item>
 
-                  <DropdownMenu.Item
-                    as={"a"}
-                    href={"/guide"}
-                    icon={<ChevronRightIcon />}
-                  >
-                    onboardingsguide
+                  <DropdownMenu.Item asChild className={styles.dropdownItem}>
+                    <a href={"/guide"}>
+                      onboardingsguide
+                      <ChevronRightIcon />
+                    </a>
                   </DropdownMenu.Item>
 
-                  <DropdownMenu.Item
-                    as={"a"}
-                    href={"/terms"}
-                    icon={<ChevronRightIcon />}
-                  >
-                    vilkår
+                  <DropdownMenu.Item asChild className={styles.dropdownItem}>
+                    <a href={"/terms"}>
+                      vilkår
+                      <ChevronRightIcon />
+                    </a>
                   </DropdownMenu.Item>
                 </>
               )}
 
-              <DropdownMenu.Item
-                className={styles.logoutLabel}
-                onClick={logout}
-              >
-                Logg ut
-                <LeaveIcon className={styles.svg} />
+              {isLoggedIn && (
+                <DropdownMenu.Item
+                  className={styles.logoutLabel}
+                  onClick={logout}
+                >
+                  Logg ut
+                  <LeaveIcon className={styles.svg} />
               </DropdownMenu.Item>
-            </DropdownMenu>
-          )}
+              )}
+
+              {!isLoggedIn && (
+                <DropdownMenu.Item onClick={login} className={styles.dropdownItem}>
+                  Logg inn
+                  <EnterIcon className={styles.svg} />
+                </DropdownMenu.Item>
+              )}
+            </DropdownMenu.Content>
+          </DropdownMenu>
         </>
       </div>
     </header>

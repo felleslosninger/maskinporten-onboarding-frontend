@@ -7,7 +7,7 @@ import {
   Label,
   Paragraph,
   Tag,
-} from "@digdir/design-system-react";
+} from "@digdir/designsystemet-react";
 import ClientDescription from "../ClientDescription/ClientDescription";
 import NewClientModal from "../NewClientModal/NewClientModal";
 import {

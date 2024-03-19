@@ -1,5 +1,5 @@
 import React from "react";
-import { Heading, Paragraph } from "@digdir/design-system-react";
+import { Heading, Paragraph } from "@digdir/designsystemet-react";
 import InfoBox from "../InfoBox/InfoBox";
 import { link } from "../../util/textTransforms";
 import styles from "./styles.module.scss";
@@ -17,7 +17,7 @@ function KeySection() {
       <Paragraph spacing>
         Her lager du ditt eget asymmentriske nøkkelpar. Når du oppretter en ny
         integrasjon, legger du ved public-nøkkelen du ønsker å bruke. Du får en{" "}
-        <span lang={"en"}>key</span> id (kid) som du kan referer til som en del
+        <span lang={"en"}>key</span> id (kid) som du kan referere til som en del
         av JWT-grant og bruker privatnøkkelen til å signere hele JWT-tokenet
       </Paragraph>
 

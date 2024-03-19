@@ -1,6 +1,6 @@
 import styles from "./textTransforms.module.scss";
 import React from "react";
-import { Link as DigdirLink } from "@digdir/design-system-react";
+import { Link as DigdirLink } from "@digdir/designsystemet-react";
 import { Link } from "react-router-dom";
 
 export const bold = (text: string) => (

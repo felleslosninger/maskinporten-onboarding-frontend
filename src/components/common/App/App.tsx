@@ -4,8 +4,8 @@ import { IdleTimerProvider } from "react-idle-timer";
 import { logout } from "../../auth/login";
 import { useUser } from "../../../hooks/auth";
 import Layout from "../Layout/Layout";
-import "@digdir/design-system-tokens/brand/digdir/tokens.css";
-import "@altinn/figma-design-tokens/dist/tokens.css";
+import '@digdir/designsystemet-theme';
+import '@digdir/designsystemet-css';
 import styles from "./styles.module.css";
 
 function App() {

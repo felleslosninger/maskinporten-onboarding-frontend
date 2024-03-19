@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import styles from "./styles.module.scss";
 import {
   Heading,
-  LegacyToggleButtonGroup,
+  ToggleGroup,
   Paragraph,
-} from "@digdir/design-system-react";
+} from "@digdir/designsystemet-react";
 import InfoBox from "../InfoBox/InfoBox";
 import { bold } from "../../util/textTransforms";
 import { useConfig } from "../../../hooks/auth";
@@ -17,24 +17,23 @@ function ConfigBox() {
     return null;
   }
 
-  const items = Object.keys(config).map((value) => {
-    return {
-      label: value.toUpperCase(),
-      value: value,
-    };
-  });
-
   return (
     <>
       <div className={styles.configHeader}>
         <Heading level={3} size={"large"}>
           Konfigurasjonsfelter
         </Heading>
-        <LegacyToggleButtonGroup
-          items={items}
-          selectedValue={selectedConfig}
+        <ToggleGroup
+          value={selectedConfig}
+          size={"small"}
           onChange={(value) => setSelectedConfig(value)}
-        />
+        >
+          {Object.keys(config).map((env) => (
+            <ToggleGroup.Item value={env} key={env}>
+              {env.toUpperCase()}
+            </ToggleGroup.Item>
+          ))}
+        </ToggleGroup>
       </div>
 
       <Paragraph spacing>

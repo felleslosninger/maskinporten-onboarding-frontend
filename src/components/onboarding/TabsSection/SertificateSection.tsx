@@ -1,5 +1,5 @@
 import React from "react";
-import { Heading, Paragraph } from "@digdir/design-system-react";
+import { Heading, Paragraph } from "@digdir/designsystemet-react";
 import InfoBox from "../InfoBox/InfoBox";
 import { link } from "../../util/textTransforms";
 import styles from "./styles.module.scss";
