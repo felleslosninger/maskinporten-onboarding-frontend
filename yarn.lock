@@ -1288,17 +1288,27 @@
   resolved "https://registry.yarnpkg.com/@csstools/selector-specificity/-/selector-specificity-2.2.0.tgz#2cbcf822bf3764c9658c4d2e568bd0c0cb748016"
   integrity sha512-+OJ9konv95ClSTOJCmMZqpd5+YGsB2S+x6w3E1oaM8UuR5j8nTNHYSz8c9BEPGDOCMQYIEEGlVPj/VY64iTbGw==
 
-"@digdir/designsystemet-css@^0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@digdir/designsystemet-css/-/designsystemet-css-0.2.1.tgz#9d65c39a96b587b497024b8c11f7e87171a0eae1"
-  integrity sha512-TMx+COXlgJmXF2v+KgFCTZd7H/sLpXkA/BLSQVpnMcKaJ2+rzMVpbPIRYjZAmYc/SdU6Zh6vphyjKR/tSuvECA==
+"@digdir/designsystemet-css@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@digdir/designsystemet-css/-/designsystemet-css-0.2.2.tgz#723b820febabe042264f285469e30a4538f8dcd5"
+  integrity sha512-9LCPiuy4UQM557QNj+Jwr9mKrVQigk2mGkIJ1PSfSxHmGJc0BrQc4/Swv4G4+cU2depTy0ZLtgBvIV35MwZ4hQ==
   dependencies:
-    "@digdir/designsystemet-react" "^0.53.1"
+    "@digdir/designsystemet-react" "^0.54.0"
 
 "@digdir/designsystemet-react@^0.53.1":
   version "0.53.1"
   resolved "https://registry.yarnpkg.com/@digdir/designsystemet-react/-/designsystemet-react-0.53.1.tgz#2a86c1da39e104d1e29389cffa3e4633e0c64b24"
   integrity sha512-zbLNqKu3CBSjOvBGd9wWUWOxTmQnpSJ62bTiyebP0LbjMpAUR4T5UnWTpKS2Aje1+EgyUAV79V2TMHnVO5dySQ==
+  dependencies:
+    "@floating-ui/react" "0.26.4"
+    "@navikt/aksel-icons" "^5.12.2"
+    "@radix-ui/react-slot" "^1.0.2"
+    "@tanstack/react-virtual" "^3.0.1"
+
+"@digdir/designsystemet-react@^0.54.0":
+  version "0.54.0"
+  resolved "https://registry.yarnpkg.com/@digdir/designsystemet-react/-/designsystemet-react-0.54.0.tgz#e8c8de4aae63d71cc2664c6316bdcd760a6abeaf"
+  integrity sha512-5/JB8qLtS57wnuTjHZhMnHOToPlPvFO+c9Y5HNlv6WDoPxRXmQ9ItmdzKm8RhcUe+3gf6NAdQxR1UQ3rIlyNXg==
   dependencies:
     "@floating-ui/react" "0.26.4"
     "@navikt/aksel-icons" "^5.12.2"

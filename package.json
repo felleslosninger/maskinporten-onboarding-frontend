@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@digdir/designsystemet-css": "^0.2.1",
+    "@digdir/designsystemet-css": "^0.2.2",
     "@digdir/designsystemet-react": "^0.53.1",
     "@digdir/designsystemet-theme": "^0.14.1",
     "@navikt/aksel-icons": "5.18.3",
