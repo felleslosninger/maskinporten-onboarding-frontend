@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from "react";
 import styles from "./styles.module.scss";
-import { Tooltip } from "@digdir/design-system-react";
+import { Tooltip } from "@digdir/designsystemet-react";
 
 interface Props {
   copyValue: string;

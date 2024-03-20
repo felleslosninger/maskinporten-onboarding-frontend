@@ -3,7 +3,7 @@ import {
   Heading,
   Paragraph,
   Link as DigdirLink,
-} from "@digdir/design-system-react";
+} from "@digdir/designsystemet-react";
 import { link } from "../../util/textTransforms";
 
 function OtherSection() {

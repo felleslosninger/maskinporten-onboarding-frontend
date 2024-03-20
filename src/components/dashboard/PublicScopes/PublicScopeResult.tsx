@@ -1,7 +1,7 @@
 import React, { createRef, useEffect, useState } from "react";
 import { ApiScope } from "../../../types/api";
 import NewClientModal from "../NewClientModal/NewClientModal";
-import { Ingress, Paragraph } from "@digdir/design-system-react";
+import { Ingress, Paragraph } from "@digdir/designsystemet-react";
 import styles from "./styles.module.scss";
 import { KeyHorizontalFillIcon, PlusCircleIcon } from "@navikt/aksel-icons";
 import { bold } from "../../util/textTransforms";

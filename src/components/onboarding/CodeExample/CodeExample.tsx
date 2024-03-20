@@ -6,7 +6,7 @@ import {
   Paragraph,
   ToggleGroup,
   Combobox,
-} from "@digdir/design-system-react";
+} from "@digdir/designsystemet-react";
 import CodeLanguage, { CodeDependency } from "./CodeLanguage";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";

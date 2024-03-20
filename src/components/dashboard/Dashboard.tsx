@@ -3,9 +3,9 @@ import {
   Accordion,
   Heading,
   Ingress,
-  LegacyToggleButtonGroup,
+  ToggleGroup,
   Paragraph,
-} from "@digdir/design-system-react";
+} from "@digdir/designsystemet-react";
 import withAuth, { AuthProps } from "../auth/withAuth";
 import { useClients, usePublicScopes, useScopes } from "../../hooks/api";
 import styles from "./styles.module.scss";
@@ -87,14 +87,17 @@ function Dashboard({ user, config }: AuthProps) {
           </Heading>
           <div className={styles.envPicker}>
             <Paragraph>Valgt miljø:</Paragraph>
-            <LegacyToggleButtonGroup
-              items={Object.keys(config).map((env) => ({
-                label: env.toUpperCase(),
-                value: env,
-              }))}
+            <ToggleGroup
+              size={"small"}
               onChange={onEnvChanged}
-              selectedValue={env}
-            />
+              value={env}
+            >
+              {Object.keys(config).map((env) => (
+                <ToggleGroup.Item value={env} key={env}>
+                  {env.toUpperCase()}
+                </ToggleGroup.Item>
+              ))}
+            </ToggleGroup>
           </div>
         </div>
         {!isLoading &&

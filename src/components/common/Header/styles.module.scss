@@ -99,7 +99,7 @@
   padding: 0.25rem;
   background-color: transparent;
   border-radius: 50%;
-  margin-left: 1rem;
+  margin-left: auto;
   fill: white;
 
   @include respond-to("small") {
@@ -113,6 +113,7 @@
   justify-content: space-between !important;
 }
 
-.loginButton p {
-  cursor: pointer;
+.dropdownItem a, .dropdownItem button {
+  display: flex;
+  justify-content: space-between !important;
 }

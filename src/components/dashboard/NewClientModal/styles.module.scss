@@ -3,6 +3,7 @@
 .modal {
   width: 90%;
   max-width: $content-width-max !important;
+  overflow: hidden;
 }
 
 .form {
@@ -130,6 +131,18 @@
   }
 }
 
+.keyTextLabel {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.keygenArea {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .usageInfo {
   display: flex;
   flex-direction: column;
@@ -143,6 +156,7 @@
 
 .usageButtons {
   margin-top: 1rem;
+  margin-bottom: 2rem;
 }
 
 .integrationSelect {

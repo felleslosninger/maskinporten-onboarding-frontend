@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styles from "./styles.module.scss";
-import { Paragraph } from "@digdir/design-system-react";
+import {Alert, Paragraph} from "@digdir/designsystemet-react";
 import { bold } from "../../util/textTransforms";
 import StyledLink from "../../common/StyledLink/StyledLink";
 import { NewClientContext } from "./NewClientModal";
@@ -52,6 +52,9 @@ const Step3 = (props: Props) => {
         <div className={styles.usageButtons}>
           <StyledLink to={"/guide"}>Gå til Onboardingsguiden</StyledLink>
         </div>
+        <Alert severity={"warning"}>
+            Det kan ta inntil 10 minutter før integrasjonen din er klar til bruk.
+        </Alert>
       </div>
     </div>
   );

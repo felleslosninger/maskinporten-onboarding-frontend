@@ -1,18 +1,24 @@
-import React, { useContext } from "react";
+import React, {useContext, useState} from "react";
 import styles from "./styles.module.scss";
 import {
+  Alert,
+  Heading,
   HelpText,
   Paragraph,
   Radio,
   Textarea,
-} from "@digdir/design-system-react";
+} from "@digdir/designsystemet-react";
 import { link } from "../../util/textTransforms";
 import { customAlphabet } from "nanoid";
 import { NewClientContext } from "./NewClientModal";
-import { importSPKI } from "jose";
+import { importSPKI, generateKeyPair, exportSPKI, exportPKCS8 } from "jose";
+import DownloadField from "../../common/DownloadField/DownloadField";
 
 const Step2 = () => {
   const context = useContext(NewClientContext);
+  const [integration, setIntegration] = useState("init")
+  const [publicKey, setPublicKey] = useState<string>()
+  const [privateKey, setPrivateKey] = useState<string>()
 
   if (!context) {
     return null;
@@ -23,10 +29,20 @@ const Step2 = () => {
     10,
   );
 
+  const onDownloadPrivateKey = () => {
+    onKeyChanged(publicKey!!);
+  }
+
   const onChangeIntegration = (val: string | undefined) => {
-    if (val === "true") {
+    context.key.set("");
+    setIntegration(val || "init");
+    if (val === "key") {
       context.isKeys.set(true);
       context.kid.set(nanoid(10));
+    } else if (val === "keygen") {
+      context.isKeys.set(true);
+      context.kid.set(nanoid(10));
+      onGenerateKey();
     } else {
       context.isKeys.set(false);
     }
@@ -63,16 +79,24 @@ const Step2 = () => {
     }
   };
 
+  const onGenerateKey = async () => {
+    const keys = await generateKeyPair("RS256", {extractable: true})
+    const publicKey = await exportSPKI(keys.publicKey);
+    const privateKey = await exportPKCS8(keys.privateKey);
+    setPrivateKey(privateKey);
+    setPublicKey(publicKey);
+  };
+
   return (
     <>
       <div className={styles.integrationSelect}>
         <div className={styles.radioButtons}>
           <Radio.Group
-            value={context.isIntegrationChosen.get ? context.isKeys.get.toString() : "init"}
+            value={integration}
             onChange={onChangeIntegration}
             legend={
               <div className={styles.radioButtonLabel}>
-                Hvordan vil du integrere med tjenesten
+                Velg integrasjonsmetode
                 <HelpText
                   className={styles.helpText}
                   title={"Mer info om integrasjoner"}
@@ -91,14 +115,15 @@ const Step2 = () => {
               </div>
             }
           >
-            <Radio value={"true"}>Med manuelt opplastet nøkkel</Radio>
-            <Radio value={"false"}>
-              Signere direkte med virksomhetssertifikat
+            <Radio value={"key"}>Med nøkkel (Last opp)</Radio>
+            <Radio value={"keygen"}>Med nøkkel (Generer for meg)</Radio>
+            <Radio value={"sert"}>
+              Med virksomhetssertifikat
             </Radio>
           </Radio.Group>
         </div>
         <div className={styles.integrationInfo}>
-          {context.isKeys.get && (
+          {(integration === "key" || integration === "keygen") && (
             <>
               <Paragraph size={"large"}>
                 Nøkkelen din får følgende key-id (kid):
@@ -112,7 +137,32 @@ const Step2 = () => {
         </div>
       </div>
 
-      {context.isKeys.get && (
+      {integration === "keygen" && (
+        <div className={styles.keygenArea}>
+
+          <Alert severity={"warning"}>
+            <Heading level={3} size={"xsmall"}>
+              For å gå videre må du laste ned private-key.
+            </Heading>
+            Vi anbefaler at du laster ned public-key i tillegg.
+            Du er selv ansvarlig for å holde privatnøkkelen sikker.
+          </Alert>
+          <div className={styles.keyTextLabel}>
+            <DownloadField downloadValue={publicKey || ""} downloadName={"mp-key.pem.pub"}>
+              Last ned publickey
+            </DownloadField>
+            <DownloadField
+              downloadValue={privateKey || ""}
+              downloadName={"mp-key.pem"}
+              callback={onDownloadPrivateKey}
+            >
+              Last ned privatekey
+            </DownloadField>
+          </div>
+        </div>
+      )}
+
+      {integration === "key" && (
         <div className={styles.keyTextArea}>
           <Textarea
             label={"Legg til public-delen av nøkkelen du vil bruke"}

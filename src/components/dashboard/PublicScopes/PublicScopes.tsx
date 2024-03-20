@@ -5,7 +5,7 @@ import {
   Heading,
   Pagination,
   Search,
-} from "@digdir/design-system-react";
+} from "@digdir/designsystemet-react";
 import PublicScopeResult from "./PublicScopeResult";
 import { PlusIcon } from "@navikt/aksel-icons";
 import styles from "./styles.module.scss";

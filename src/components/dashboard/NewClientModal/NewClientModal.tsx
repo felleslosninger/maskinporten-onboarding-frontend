@@ -2,12 +2,11 @@ import React, {
   createContext,
   createRef,
   ReactNode,
-  RefObject,
   useEffect,
   useState,
 } from "react";
 import styles from "./styles.module.scss";
-import { Button, Paragraph, Spinner, Modal, Checkbox } from "@digdir/design-system-react";
+import { Button, Paragraph, Spinner, Modal, Checkbox } from "@digdir/designsystemet-react";
 import { useClientMutation } from "../../../hooks/api";
 import { ApiClient, RequestApiClientBody } from "../../../types/api";
 import { CSSTransition } from "react-transition-group";
@@ -93,7 +92,6 @@ const NewClientModal = React.forwardRef<HTMLDialogElement, NewClientProps>(
     const [message, setMessage] = useState<FeedbackMessage>();
     const [scopes, setScopes] = useState<string[]>([]);
     const [isTermsAccepted, setIsTermsAccepted] = useState(false);
-    const modalRef = ref as RefObject<HTMLDialogElement>;
 
     // Go to success step on client POST success
     useEffect(() => {
@@ -179,6 +177,20 @@ const NewClientModal = React.forwardRef<HTMLDialogElement, NewClientProps>(
       () => <Step3 scope={props.scope} env={props.env} />,
     ];
 
+    const isClientValid = () => {
+      if (!isTermsAccepted || !hasChosenIntegration) {
+        return false;
+      }
+
+      if (useKeys) {
+        if (message?.level === "err" || publicKey.length === 0) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+
     return (
       <NewClientContext.Provider
         value={{
@@ -215,7 +227,7 @@ const NewClientModal = React.forwardRef<HTMLDialogElement, NewClientProps>(
       >
         <Modal
           ref={ref}
-          onClose={() => props.closeModal()}
+          onBeforeClose={() => props.closeModal()}
           className={styles.modal}
         >
           <Modal.Header>
@@ -254,7 +266,7 @@ const NewClientModal = React.forwardRef<HTMLDialogElement, NewClientProps>(
                 <>
                   <Button
                     variant={"secondary"}
-                    onClick={() => modalRef.current?.close()}
+                    onClick={props.closeModal}
                   >
                     Avbryt
                     <VisuallyHidden>oppretting</VisuallyHidden>
@@ -283,11 +295,7 @@ const NewClientModal = React.forwardRef<HTMLDialogElement, NewClientProps>(
                     </Button>
                     <Button
                       onClick={handleSubmit}
-                      disabled={
-                        !isTermsAccepted || (!hasChosenIntegration ||
-                        (useKeys &&
-                          (message?.level === "err" || publicKey.length === 0)))
-                      }
+                      disabled={!isClientValid()}
                     >
                       {isLoading && (
                         <Spinner
@@ -321,7 +329,7 @@ const NewClientModal = React.forwardRef<HTMLDialogElement, NewClientProps>(
               {step === 3 && (
                 <Button
                   variant={"secondary"}
-                  onClick={() => modalRef.current?.close()}
+                  onClick={props.closeModal}
                 >
                   Tilbake til oversikten
                 </Button>

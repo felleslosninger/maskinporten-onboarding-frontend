@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./styles.module.scss";
-import { Paragraph } from "@digdir/design-system-react";
+import { Paragraph } from "@digdir/designsystemet-react";
 import {
   BagdeIcon,
   KeyHorizontalIcon,

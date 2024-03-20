@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styles from "./styles.module.scss";
-import { Combobox, Textfield } from "@digdir/design-system-react";
+import { Combobox, Textfield } from "@digdir/designsystemet-react";
 import { usePublicScopes, useScopes } from "../../../hooks/api";
 import { NewClientContext } from "./NewClientModal";
 
