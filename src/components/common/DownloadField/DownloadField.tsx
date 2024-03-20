@@ -22,7 +22,7 @@ function DownloadField(props: Props) {
   };
 
   return (
-    <Tooltip content={isDownloaded ? "Kopiert" : "Kopier"} placement={"top"}>
+    <Tooltip content={isDownloaded ? "Nedlastet" : "Last ned"} placement={"top"}>
       <Button
         className={`${styles.box} ${isDownloaded && styles.clicked}`}
         onClick={onDownload}
