@@ -1288,27 +1288,27 @@
   resolved "https://registry.yarnpkg.com/@csstools/selector-specificity/-/selector-specificity-2.2.0.tgz#2cbcf822bf3764c9658c4d2e568bd0c0cb748016"
   integrity sha512-+OJ9konv95ClSTOJCmMZqpd5+YGsB2S+x6w3E1oaM8UuR5j8nTNHYSz8c9BEPGDOCMQYIEEGlVPj/VY64iTbGw==
 
-"@digdir/designsystemet-css@^0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@digdir/designsystemet-css/-/designsystemet-css-0.2.1.tgz#9d65c39a96b587b497024b8c11f7e87171a0eae1"
-  integrity sha512-TMx+COXlgJmXF2v+KgFCTZd7H/sLpXkA/BLSQVpnMcKaJ2+rzMVpbPIRYjZAmYc/SdU6Zh6vphyjKR/tSuvECA==
+"@digdir/designsystemet-css@^0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@digdir/designsystemet-css/-/designsystemet-css-0.2.3.tgz#dda46a3251adf005e97408ac062d2ab742808fad"
+  integrity sha512-20+pk3QZKHW3nT6Liz8wJSGFSJVtQJ/2K4HjyvbkzXcFjKNa+8kpUK5VJIcR+bCiucQU1ZSW0u0ynTYz/UxECw==
   dependencies:
-    "@digdir/designsystemet-react" "^0.53.1"
+    "@digdir/designsystemet-react" "^0.55.0"
 
-"@digdir/designsystemet-react@^0.53.1":
-  version "0.53.1"
-  resolved "https://registry.yarnpkg.com/@digdir/designsystemet-react/-/designsystemet-react-0.53.1.tgz#2a86c1da39e104d1e29389cffa3e4633e0c64b24"
-  integrity sha512-zbLNqKu3CBSjOvBGd9wWUWOxTmQnpSJ62bTiyebP0LbjMpAUR4T5UnWTpKS2Aje1+EgyUAV79V2TMHnVO5dySQ==
+"@digdir/designsystemet-react@^0.55.0":
+  version "0.55.0"
+  resolved "https://registry.yarnpkg.com/@digdir/designsystemet-react/-/designsystemet-react-0.55.0.tgz#c31d3572d803475e2be572a318ed5620d3bf4500"
+  integrity sha512-TxQ7ZOWNKbt7W54EeILIVEUXzBxPb5zIXD8ozVz0faP1ToB9iyVQsO2R43QcWjDpjjI/HpqNONfOpMBLtsp8ww==
   dependencies:
     "@floating-ui/react" "0.26.4"
     "@navikt/aksel-icons" "^5.12.2"
     "@radix-ui/react-slot" "^1.0.2"
     "@tanstack/react-virtual" "^3.0.1"
 
-"@digdir/designsystemet-theme@^0.14.1":
-  version "0.14.1"
-  resolved "https://registry.yarnpkg.com/@digdir/designsystemet-theme/-/designsystemet-theme-0.14.1.tgz#4485b267bf48e24de0eb1646f93da69f9e35aaaa"
-  integrity sha512-eA9bfSXw65L1B/uz4rbe/G6W5rPe1mXddNwhRxxx7kMYz0BlBgkXMgctWuXChOwvg0CKxDO1AdQkrL88wIPSPw==
+"@digdir/designsystemet-theme@^0.15.0":
+  version "0.15.0"
+  resolved "https://registry.yarnpkg.com/@digdir/designsystemet-theme/-/designsystemet-theme-0.15.0.tgz#27e51d07e2f766b9b3a367e00a04a9c7263a7a92"
+  integrity sha512-TlMLYbmIuZ4ThSNnBzVoc6Jg+GF7qtQ+HN07y/zVg9J89BGPkkdSLK8c6evovds0yfKQd2XIxUD+fpQxwG4cTw==
 
 "@eslint-community/eslint-utils@^4.2.0":
   version "4.4.0"

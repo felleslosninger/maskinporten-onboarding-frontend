@@ -31,6 +31,7 @@ function SertificateSection() {
             {link(
               "https://docs.digdir.no/docs/Maskinporten/maskinporten_autentisering#hvem-kan-utstede-virksomhetssertifikater",
               "Hvordan skaffer jeg et virksomhetssertifikat?",
+              true
             )}
           </li>
           <li>
@@ -53,6 +54,7 @@ function SertificateSection() {
             {link(
               "https://docs.digdir.no/docs/Maskinporten/maskinporten_protocol_jwtgrant",
               "standarden",
+              true
             )}
             . Følgende felter er påkrevd
           </li>

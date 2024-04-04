@@ -33,7 +33,7 @@ function TabsSection() {
           onClick={() => setSelectedTab(2)}
         >
           <KeyHorizontalIcon />
-          <Paragraph size={"large"}>Manuelt opplastet nøkkel</Paragraph>
+          <Paragraph size={"large"}>Nøkkel</Paragraph>
         </button>
         <button
           className={`${styles.tab} ${
