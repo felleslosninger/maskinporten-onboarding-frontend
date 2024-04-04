@@ -1305,6 +1305,16 @@
     "@radix-ui/react-slot" "^1.0.2"
     "@tanstack/react-virtual" "^3.0.1"
 
+"@digdir/designsystemet-react@^0.56.0":
+  version "0.56.0"
+  resolved "https://registry.yarnpkg.com/@digdir/designsystemet-react/-/designsystemet-react-0.56.0.tgz#49f9853015b430a2ad1112d0b64390114b66f16f"
+  integrity sha512-p8wRl0cHkDp5HgNky8I0HhB1bhTL1GD4I75sihKUFX1JZUcTG0hpg0Kfn/ot+JD1mpwfC6Ssfj0vi76dfQzj3A==
+  dependencies:
+    "@floating-ui/react" "0.26.4"
+    "@navikt/aksel-icons" "^5.12.2"
+    "@radix-ui/react-slot" "^1.0.2"
+    "@tanstack/react-virtual" "^3.2.0"
+
 "@digdir/designsystemet-theme@^0.15.0":
   version "0.15.0"
   resolved "https://registry.yarnpkg.com/@digdir/designsystemet-theme/-/designsystemet-theme-0.15.0.tgz#27e51d07e2f766b9b3a367e00a04a9c7263a7a92"
@@ -1694,15 +1704,10 @@
   resolved "https://registry.yarnpkg.com/@leichtgewicht/ip-codec/-/ip-codec-2.0.4.tgz#b2ac626d6cb9c8718ab459166d4bb405b8ffa78b"
   integrity sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==
 
-"@navikt/aksel-icons@5.18.3":
+"@navikt/aksel-icons@5.18.3", "@navikt/aksel-icons@^5.12.2":
   version "5.18.3"
   resolved "https://registry.yarnpkg.com/@navikt/aksel-icons/-/aksel-icons-5.18.3.tgz#0e8ff38b54ec91be6c5e8d8574a3341ee87eb792"
   integrity sha512-kytq0BT1xsJBrG7/eyDuMQLddQZA4OMT3Fw3VLGHsJNqjEWEVOl3uYCGL70Thvg0+du0s/Z3mXPQUQpIaDt7rg==
-
-"@navikt/aksel-icons@^5.12.2":
-  version "5.12.4"
-  resolved "https://registry.yarnpkg.com/@navikt/aksel-icons/-/aksel-icons-5.12.4.tgz#334dece9ff367bc6285b0781a075fa4f4221e3bc"
-  integrity sha512-fl7obYaXzCELY1NUy66Wl4uS94xROC+aZ/1s8uSy1U0bhfL49tIevkigE1n/sL8ELsrH3DnzBJi6DktdtnE9tg==
 
 "@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1":
   version "5.1.1-v1"
@@ -1958,17 +1963,17 @@
   dependencies:
     "@tanstack/query-core" "5.17.9"
 
-"@tanstack/react-virtual@^3.0.1":
-  version "3.1.3"
-  resolved "https://registry.yarnpkg.com/@tanstack/react-virtual/-/react-virtual-3.1.3.tgz#4ef2a7dd819a7dd2b634d50cbd6ba498f06529ec"
-  integrity sha512-YCzcbF/Ws/uZ0q3Z6fagH+JVhx4JLvbSflgldMgLsuvB8aXjZLLb3HvrEVxY480F9wFlBiXlvQxOyXb5ENPrNA==
+"@tanstack/react-virtual@^3.0.1", "@tanstack/react-virtual@^3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-virtual/-/react-virtual-3.2.0.tgz#fb70f9c6baee753a5a0f7618ac886205d5a02af9"
+  integrity sha512-OEdMByf2hEfDa6XDbGlZN8qO6bTjlNKqjM3im9JG+u3mCL8jALy0T/67oDI001raUUPh1Bdmfn4ZvPOV5knpcg==
   dependencies:
-    "@tanstack/virtual-core" "3.1.3"
+    "@tanstack/virtual-core" "3.2.0"
 
-"@tanstack/virtual-core@3.1.3":
-  version "3.1.3"
-  resolved "https://registry.yarnpkg.com/@tanstack/virtual-core/-/virtual-core-3.1.3.tgz#77ced625f19ec9350f6e460f142b3be9bff03866"
-  integrity sha512-Y5B4EYyv1j9V8LzeAoOVeTg0LI7Fo5InYKgAjkY1Pu9GjtUwX/EKxNcU7ng3sKr99WEf+bPTcktAeybyMOYo+g==
+"@tanstack/virtual-core@3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@tanstack/virtual-core/-/virtual-core-3.2.0.tgz#874d36135e4badce2719e7bdc556ce240cbaff14"
+  integrity sha512-P5XgYoAw/vfW65byBbJQCw+cagdXDT/qH6wmABiLt4v4YBT2q2vqCOhihe+D1Nt325F/S/0Tkv6C5z0Lv+VBQQ==
 
 "@testing-library/dom@^9.0.0":
   version "9.3.3"
