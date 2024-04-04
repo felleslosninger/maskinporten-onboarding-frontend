@@ -101,6 +101,7 @@ function CodeExample(props: Props) {
         Eksempelkode
       </Heading>
 
+      {console.log(prodClients)}
       {clients && clients.filter(props.filter).length > 0 && (
         <>
           <Paragraph>

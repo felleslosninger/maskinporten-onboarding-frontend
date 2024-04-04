@@ -12,16 +12,22 @@ import styles from "./styles.module.scss";
 import { login } from "../auth/login";
 import ContentContainer from "../common/ContentContainer/ContentContainer";
 import { link } from "../util/textTransforms";
-import { useSearchParams } from "react-router-dom";
+import {Navigate, useSearchParams} from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import {useUser} from "../../hooks/auth";
 
 const enkelttjenestenavn =
   "Selvbetjening av integrasjoner i ID-porten/Maskinporten";
 
 function Landingpage() {
   const [params] = useSearchParams();
+  const {data: user} = useUser();
   const error = params.get("error");
   const auth = params.get("auth");
+
+  if (user && user.isAuthenticated) {
+    return <Navigate to={"/dashboard"} />
+  }
 
   return (
     <ContentContainer className={styles.container}>
@@ -96,25 +102,6 @@ function Landingpage() {
         <Accordion.Item>
           <Accordion.Header>
             <Paragraph size={"large"}>
-              Hva betyr enkelttjeneste-tilgang?
-            </Paragraph>
-          </Accordion.Header>
-          <Accordion.Content>
-            <Paragraph spacing>
-              Enkelttjeneste-tilgang beyr at du har rettighet til
-              enkelttjenesten "{enkelttjenestenavn}" på vegne av virksomheten.
-            </Paragraph>
-            <Paragraph spacing>
-              Du kan se om du har denne rettigheten ved å logge inn i Altinn,
-              velge rett virksomhet og navigere til Profil. Under fanen "Skjema
-              og tjenester du har rettighet til" vil denne komme opp under "Har
-              tilgang til disse [antall] enkelttjenestene".
-            </Paragraph>
-          </Accordion.Content>
-        </Accordion.Item>
-        <Accordion.Item>
-          <Accordion.Header>
-            <Paragraph size={"large"}>
               Hva hvis jeg ikke får logget inn eller mangler rettigheter som må
               til?
             </Paragraph>
@@ -156,7 +143,7 @@ function Landingpage() {
               Dersom du allerede er tilknyttet din virksomhet gjennom en
               eksisterende rolle eller tjeneste i Altinn kan du{" "}
               {link(
-                "https://www.altinn.no/hjelp/profil/sporre-om-rettighet/slik-spor-du-om-rettighet/",
+                "https://info.altinn.no/hjelp/profil/be-om-tilgang/",
                 "etterspørre rettigheten",
                 true,
               )}
@@ -176,7 +163,7 @@ function Landingpage() {
             <Paragraph spacing>
               Virksomheten din kan også ha satt opp rollen{" "}
               {link(
-                "https://www.altinn.no/hjelp/profil/roller-og-rettigheter/hvordan-gi-rettigheter-til-andre/",
+                "https://info.altinn.no/hjelp/profil/enkelttjenester-og-roller/hvordan-gi-en-enkelttjeneste-og-rolle-til-andre/",
                 "tilgangsstyrer",
                 true,
               )}{" "}
@@ -187,7 +174,7 @@ function Landingpage() {
             <Paragraph spacing>
               Fremgangsmåten for å tildele en enkelttjeneste er beskrevet{" "}
               {link(
-                "https://www.altinn.no/hjelp/profil/roller-og-rettigheter/hvordan-gi-rettigheter-til-andre/",
+                "https://info.altinn.no/hjelp/profil/enkelttjenester-og-roller/hvordan-gi-en-enkelttjeneste-og-rolle-til-andre/",
                 "her",
                 true,
               )}{" "}

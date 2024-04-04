@@ -20,13 +20,15 @@ import {
   XMarkIcon,
 } from "@navikt/aksel-icons";
 import { useMediaQuery } from "react-responsive";
+import {useEnhet} from "../../../hooks/brreg";
 
 function Header() {
-  const { data, isLoading } = useUser();
+  const { data: user } = useUser();
+  const { data: orgName } = useEnhet(user?.user?.reporteeId || "", user && !user.user?.trusted)
   const [open, setOpen] = useState(false);
   const isSmallScreen = useMediaQuery({ query: "(max-width: 767px)" });
   const location = useLocation();
-  const isLoggedIn = !isLoading && data!!.isAuthenticated;
+  const isLoggedIn = !!user && user.isAuthenticated;
 
   return (
     <header className={styles.header}>
@@ -106,9 +108,9 @@ function Header() {
               {!isSmallScreen && isLoggedIn && (
                 <>
                   <div>
-                    <Paragraph size={"small"}>{data!!.user!!.name}</Paragraph>
+                    <Paragraph size={"small"}>{user.user!!.name}</Paragraph>
                     <Paragraph size={"small"}>
-                      {data!!.user!!.reporteeName}
+                      {user.user!!.trusted ? user.user!!.reporteeName : orgName?.navn}
                     </Paragraph>
                   </div>
                   <BedriftSvg className={styles.svg} />
