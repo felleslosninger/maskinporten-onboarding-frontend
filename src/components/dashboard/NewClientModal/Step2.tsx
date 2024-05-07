@@ -142,21 +142,21 @@ const Step2 = () => {
 
           <Alert severity={"warning"}>
             <Heading level={3} size={"xsmall"}>
-              For å gå videre må du laste ned private-key.
+              For å gå videre må du laste ned privatnøkkel.
             </Heading>
-            Vi anbefaler at du laster ned public-key i tillegg.
+            Vi anbefaler at du laster ned offentlig nøkkel i tillegg.
             Du er selv ansvarlig for å holde privatnøkkelen sikker.
           </Alert>
           <div className={styles.keyTextLabel}>
             <DownloadField downloadValue={publicKey || ""} downloadName={"mp-key.pem.pub"}>
-              Last ned publickey
+              Last ned offentlig nøkkel
             </DownloadField>
             <DownloadField
               downloadValue={privateKey || ""}
               downloadName={"mp-key.pem"}
               callback={onDownloadPrivateKey}
             >
-              Last ned privatekey
+              Last ned privatnøkkel
             </DownloadField>
           </div>
         </div>

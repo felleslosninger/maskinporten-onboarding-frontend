@@ -16,7 +16,8 @@ function KeySection() {
       </Heading>
       <Paragraph spacing>
         Her lager du ditt eget asymmentriske nøkkelpar. Når du oppretter en ny
-        integrasjon, legger du ved public-nøkkelen du ønsker å bruke. Du får en{" "}
+        integrasjon, legger du ved public-nøkkelen du ønsker å bruke eller
+        velger å få en ferdiggenerert nøkkel. Du får en{" "}
         <span lang={"en"}>key</span> id (kid) som du kan referere til som en del
         av JWT-grant og bruker privatnøkkelen til å signere hele JWT-tokenet
       </Paragraph>
@@ -35,7 +36,8 @@ function KeySection() {
             Du har opprettet et RSA nøkkelpar og har public-delen av nøkkelen
             tilgjengelig. Om du ikke har et eksisterende nøkkelpar kan du
             opprette et med kommandoene. Om du ikke trenger en keystore, kan du
-            hoppe over punkt to.
+            hoppe over punkt to. Om du vil generere nøkkel under oppretting av
+            integrasjon kan du hoppe over alle tre stegene.
             <ol>
               <li>
                 <code lang={"en"}>
@@ -65,7 +67,7 @@ function KeySection() {
             Det er opprett en {link("/dashboard", "ny integrasjon ")} eller en
             eksisterende integrasjon registrert med en public-nøkkel. Dersom du
             oppretter ny integrasjon, last opp public-delen av nøkkelen du
-            ønsker å bruke ved opprettelse.
+            ønsker å bruke eller generer en nøkkel under oppretting.
           </li>
         </ol>
         <Heading level={3} size={"medium"}>
@@ -77,6 +79,7 @@ function KeySection() {
             {link(
               "https://docs.digdir.no/docs/Maskinporten/maskinporten_protocol_jwtgrant",
               "standarden",
+              true
             )}
             . Følgende felter er påkrevd
           </li>
