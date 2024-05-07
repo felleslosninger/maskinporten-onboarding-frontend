@@ -11,8 +11,8 @@
     "const scope = '__SCOPE__';",
     "",
     "// Environment specific variables",
-    "const maskinporten_audience = 'https://test.maskinporten.no/';",
-    "const maskinporten_token_url = 'https://test.maskinporten.no/token';",
+    "const maskinporten_audience = '__MASKINPORTEN_URL__';",
+    "const maskinporten_token_url = '__MASKINPORTEN_TOKEN_URL__';",
     "",
     "const jwt_token = jwt.sign(",
     "  {",
@@ -157,7 +157,7 @@
           "<dependency>",
           "    <groupId>org.slf4j</groupId>",
           "    <artifactId>slf4j-log4j12</artifactId>",
-          "    <version>1.5.2</version>",
+          "    <version>1.6.6</version>",
           "</dependency>"
         ],
         "lang": "xml",
@@ -168,7 +168,7 @@
         "code": [
           "implementation \"com.nimbusds:nimbus-jose-jwt:9.31\"",
           "implementation \"org.apache.httpcomponents.client5:httpclient5-fluent:5.2.1\"",
-          "implementation \"org.slf4j:slf4j-log4j12:1.5.2\""
+          "implementation \"org.slf4j:slf4j-log4j12:1.6.6\""
         ],
         "lang": "gradle",
         "name": "Gradle",

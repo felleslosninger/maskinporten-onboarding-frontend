@@ -146,10 +146,22 @@ function SertificateSection() {
         filterText={"virksomhetssertifikat"}
       >
         <CodeLanguage
-          title={"Java 8"}
+          title={"Java"}
           language={"java"}
           code={sertificateCode.java}
           dependencies={sertificateCode.dependencies.java}
+        />
+        <CodeLanguage
+          title={"Python"}
+          language={"python"}
+          code={sertificateCode.python}
+          dependencies={sertificateCode.dependencies.python}
+        />
+        <CodeLanguage
+          title={"NodeJs"}
+          language={"javascript"}
+          code={sertificateCode.node}
+          dependencies={sertificateCode.dependencies.node}
         />
       </CodeExample>
     </>
