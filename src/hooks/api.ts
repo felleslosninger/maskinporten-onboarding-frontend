@@ -59,7 +59,7 @@ export const useClients = (env: string, enabled?: boolean) => {
 
 export const useClientsInAllEnvs = (envs: string[], enabled?: boolean) => {
   return useQuery({
-    queryKey: [envs],
+    queryKey: [QK_CLIENTS, envs],
     queryFn: async () => {
       const clientList: ApiClient[] = [];
 
