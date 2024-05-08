@@ -30,10 +30,9 @@ function PublicScopes(props: Props) {
     setCurrentPage(page);
   };
 
-  const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const query = e.currentTarget.value.toLowerCase();
+  const onSearch = (query: string) => {
     const list = props.scopeList.filter(
-      (scope) => scope.name.search(query) >= 0,
+      (scope) => scope.name.search(query.toLowerCase()) >= 0,
     );
     setFilteredList(list);
     setCurrentPage(1);
@@ -57,7 +56,9 @@ function PublicScopes(props: Props) {
             <Heading size={"small"} spacing>
               Velg tilgangen du vil legge til
             </Heading>
-            <Search onChange={onSearch} />
+            <Search onChange={e => onSearch(e.currentTarget.value)}
+                    onClear={() => onSearch("")}
+            />
           </div>
           <div className={styles.results}>
             {paginatedList.map((scope) => (
