@@ -11,7 +11,7 @@ import { useConfig } from "../../../hooks/auth";
 
 function ConfigBox() {
   const { data: config } = useConfig();
-  const [selectedConfig, setSelectedConfig] = useState("test");
+  const [selectedConfig, setSelectedConfig] = useState(config ? Object.keys(config)[0] : undefined);
 
   if (!config) {
     return null;
@@ -44,10 +44,10 @@ function ConfigBox() {
       </Paragraph>
       <InfoBox className={styles.configBox}>
         <Paragraph lang={"en"}>
-          {bold("Issuer Url:")} {config[selectedConfig].issuer}
+          {bold("Issuer Url:")} {selectedConfig && config[selectedConfig].issuer}
         </Paragraph>
         <Paragraph lang={"en"}>
-          {bold("Token Url:")} {config[selectedConfig].token_endpoint}
+          {bold("Token Url:")} {selectedConfig && config[selectedConfig].token_endpoint}
         </Paragraph>
       </InfoBox>
     </>
