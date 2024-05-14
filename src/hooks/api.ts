@@ -57,6 +57,27 @@ export const useClients = (env: string, enabled?: boolean) => {
   });
 };
 
+export const useClientsInAllEnvs = (envs: string[], enabled?: boolean) => {
+  return useQuery({
+    queryKey: [QK_CLIENTS, envs],
+    queryFn: async () => {
+      const clientList: ApiClient[] = [];
+
+      for (let env of envs) {
+        const path = `${baseUrl}/api/${env}/datasharing/consumer/client`;
+        const res = await axios.get<ApiClients>(path, axiosConfig);
+        res.data.forEach((client) => (client.env = env.toUpperCase()));
+        clientList.push(...res.data)
+      }
+
+      return clientList;
+    },
+    enabled: enabled,
+    refetchInterval: 5 * 60 * 1000, // Avoids token expiration while app is in use
+    refetchIntervalInBackground: true,
+  });
+};
+
 export const useClientMutation = (env: string) => {
   const client = useQueryClient();
   return useMutation({

@@ -85,20 +85,22 @@ function Dashboard({ user, config }: AuthProps) {
           <Heading level={2} size={"small"}>
             Mine tilganger
           </Heading>
-          <div className={styles.envPicker}>
-            <Paragraph>Valgt miljø:</Paragraph>
-            <ToggleGroup
-              size={"small"}
-              onChange={onEnvChanged}
-              value={env}
-            >
-              {Object.keys(config).map((env) => (
-                <ToggleGroup.Item value={env} key={env}>
-                  {env.toUpperCase()}
-                </ToggleGroup.Item>
-              ))}
-            </ToggleGroup>
-          </div>
+          {Object.keys(config).length > 1 && (
+            <div className={styles.envPicker}>
+              <Paragraph>Valgt miljø:</Paragraph>
+              <ToggleGroup
+                size={"small"}
+                onChange={onEnvChanged}
+                value={env}
+              >
+                {Object.keys(config).map((env) => (
+                  <ToggleGroup.Item value={env} key={env}>
+                    {env.toUpperCase()}
+                  </ToggleGroup.Item>
+                ))}
+              </ToggleGroup>
+            </div>
+          )}
         </div>
         {!isLoading &&
           ((renderedScopes && renderedScopes.length === 0) || isError) && (

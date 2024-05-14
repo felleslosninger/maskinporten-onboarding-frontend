@@ -1,6 +1,6 @@
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { ReactNode, useState } from "react";
 import styles from "./styles.module.scss";
-import { useClients } from "../../../hooks/api";
+import {useClientsInAllEnvs} from "../../../hooks/api";
 import {
   Heading,
   Paragraph,
@@ -21,25 +21,10 @@ interface Props {
 
 function CodeExample(props: Props) {
   const { data: config } = useConfig();
-  const { data: testClients } = useClients(
-    Object.keys(config || "")[0],
-    !!config,
-  );
-  const { data: prodClients } = useClients(
-    Object.keys(config || "")[1],
-    !!testClients,
-  );
-  const [clients, setClients] = useState<ApiClient[]>([]);
+  const { data: clients } = useClientsInAllEnvs(Object.keys(config || []), !!config);
   const [selectValue, setSelectValue] = useState<string[]>();
   const [selectedTab, setSelectedTab] = useState(0);
   const [selectedCode, setSelectedCode] = useState("code");
-
-  useEffect(() => {
-    if (!!testClients && !!prodClients) {
-      setClients(testClients.concat(prodClients));
-    }
-  }, [testClients, prodClients]);
-
   const examples = React.Children.map(props.children, (child) => {
     if (
       React.isValidElement(child) &&
@@ -71,7 +56,7 @@ function CodeExample(props: Props) {
   };
 
   const makeFieldMap = (client?: ApiClient) => {
-    const conf = client && config ? config[client.env.toLowerCase()] : config?.["test"];
+    const conf = client && config && config[client.env.toLowerCase()];
     return {
       __CLIENT_ID__: client?.clientId || "<CLIENT-UUID>",
       __SCOPE__: client?.scopes.join(" ") || "<SCOPE:WITHPREFIX>",
@@ -83,7 +68,7 @@ function CodeExample(props: Props) {
   };
 
   const processCode = (codeString: string): string => {
-    const client = clients.find((client) => {
+    const client = clients?.find((client) => {
       return selectValue?.includes(`${client.env}:${client.clientId}`);
     });
 

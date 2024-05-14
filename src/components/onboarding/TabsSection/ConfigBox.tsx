@@ -23,17 +23,19 @@ function ConfigBox() {
         <Heading level={3} size={"large"}>
           Konfigurasjonsfelter
         </Heading>
-        <ToggleGroup
-          value={selectedConfig}
-          size={"small"}
-          onChange={(value) => setSelectedConfig(value)}
-        >
-          {Object.keys(config).map((env) => (
-            <ToggleGroup.Item value={env} key={env}>
-              {env.toUpperCase()}
-            </ToggleGroup.Item>
-          ))}
-        </ToggleGroup>
+        {Object.keys(config).length > 1 && (
+          <ToggleGroup
+            value={selectedConfig}
+            size={"small"}
+            onChange={(value) => setSelectedConfig(value)}
+          >
+            {Object.keys(config).map((env) => (
+              <ToggleGroup.Item value={env} key={env}>
+                {env.toUpperCase()}
+              </ToggleGroup.Item>
+            ))}
+          </ToggleGroup>
+        )}
       </div>
 
       <Paragraph spacing>
