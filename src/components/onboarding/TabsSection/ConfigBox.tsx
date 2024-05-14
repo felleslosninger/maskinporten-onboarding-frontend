@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import styles from "./styles.module.scss";
 import {
   Heading,
@@ -11,7 +11,13 @@ import { useConfig } from "../../../hooks/auth";
 
 function ConfigBox() {
   const { data: config } = useConfig();
-  const [selectedConfig, setSelectedConfig] = useState(config ? Object.keys(config)[0] : undefined);
+  const [selectedConfig, setSelectedConfig] = useState<string>();
+
+  useEffect(() => {
+    if (config) {
+      setSelectedConfig(Object.keys(config)[0]);
+    }
+  }, [config]);
 
   if (!config) {
     return null;
