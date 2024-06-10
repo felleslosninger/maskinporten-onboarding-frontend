@@ -8,7 +8,9 @@ export const bold = (text: string) => (
 );
 
 export const link = (to: string, text: string, newtab?: boolean) => (
-  <DigdirLink as={Link} to={to} target={newtab ? "_blank" : "_self"}>
-    {text}
+  <DigdirLink asChild>
+    <Link to={to} target={newtab ? "_blank" : "_self"}>
+      {text}
+    </Link>
   </DigdirLink>
 );

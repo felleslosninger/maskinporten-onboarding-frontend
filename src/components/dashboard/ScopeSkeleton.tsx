@@ -13,12 +13,20 @@ function ScopeSkeleton() {
       <Accordion.Header className={styles.skeletonHeader}>
         <div className={styles.skeleton}>
           <div className={styles.skeletonTop}>
-            <Paragraph size={"large"} as={Skeleton.Text} style={{width: "10rem"}} />
-            <Paragraph size={"large"} as={Skeleton.Text} style={{width: "10rem"}} />
+            <Paragraph size={"large"} asChild style={{width: "10rem"}}>
+              <Skeleton.Text />
+            </Paragraph>
+            <Paragraph size={"large"} asChild style={{width: "10rem"}}>
+              <Skeleton.Text />
+            </Paragraph>
           </div>
-          <Label as={Skeleton.Text} style={{width: "17rem"}} />
+          <Label asChild style={{width: "17rem"}}>
+            <Skeleton.Text />
+          </Label>
         </div>
-        <Paragraph as={Skeleton.Text} style={{width: "10rem"}} />
+        <Paragraph asChild style={{width: "10rem"}}>
+          <Skeleton.Text />
+        </Paragraph>
       </Accordion.Header>
     </Accordion.Item>
   );
