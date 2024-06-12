@@ -1,3 +1,4 @@
 # Vulnerability in base Alpine image, ignore until fixed
 CVE-2023-5363
 CVE-2023-5678
+CVE-2024-29415
