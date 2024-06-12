@@ -34,7 +34,7 @@ jobs:
           severity: 'CRITICAL,HIGH'
 
       - name: "Login Azure docker container registery"
-        uses: azure/docker-login@v1
+        uses: azure/docker-login@v2
         with:
           login-server: ${{ secrets.REGISTRY_URL }}
           username: ${{ secrets.REGISTRY_USERNAME }}
