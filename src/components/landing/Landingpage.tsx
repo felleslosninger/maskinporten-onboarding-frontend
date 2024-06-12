@@ -69,7 +69,7 @@ function Landingpage() {
         </Alert>
       )}
 
-      <Heading size={"xlarge"} className={styles.heading} spacing>
+      <Heading size={"large"} className={styles.heading} spacing>
         Velkommen til Forenklet Onboarding
         <Tag color={"second"}>
           Pilot
