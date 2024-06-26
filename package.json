@@ -15,7 +15,7 @@
     "@types/react-syntax-highlighter": "^15.5.13",
     "@types/react-transition-group": "^4.4.10",
     "axios": "^1.7.2",
-    "jose": "^5.4.0",
+    "jose": "^5.5.0",
     "nanoid": "^5.0.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
