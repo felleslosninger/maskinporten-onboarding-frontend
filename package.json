@@ -65,6 +65,6 @@
     "@testing-library/user-event": "^14.5.2",
     "@types/jest": "^29.5.12",
     "prettier": "^3.3.1",
-    "sass": "^1.77.4"
+    "sass": "^1.78.0"
   }
 }
