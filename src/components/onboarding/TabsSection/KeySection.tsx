@@ -160,7 +160,7 @@ function KeySection() {
           <li>
             Gjør en kall til API-tjenesten med innholdet i{" "}
             <code lang={"en"}>access_token</code> som en del av http-headeren:{" "}
-            <code lang={"en"}>Authentication: Bearer [accesstoken]</code>{" "}
+            <code lang={"en"}>Authorization: Bearer [accesstoken]</code>{" "}
           </li>
         </ol>
       </InfoBox>
