@@ -66,5 +66,8 @@
     "@types/jest": "^29.5.12",
     "prettier": "^3.3.1",
     "sass": "^1.77.4"
+  },
+  "resolutions": {
+    "**/cross-spawn": "^7.0.5"
   }
 }
