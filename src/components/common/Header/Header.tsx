@@ -3,7 +3,6 @@ import { useUser } from "../../../hooks/auth";
 import styles from "./styles.module.scss";
 import { ReactComponent as Logo } from "../../../assets/logo.svg";
 import { ReactComponent as BedriftSvg } from "../../../assets/bedrift.svg";
-import { ReactComponent as PersonSvg } from "../../../assets/ikoner/SVG/Person.svg";
 import {
   Button,
   DropdownMenu,
@@ -14,17 +13,21 @@ import { login, logout } from "../../auth/login";
 import StyledLink from "../StyledLink/StyledLink";
 import { useLocation } from "react-router-dom";
 import {
-  ChevronRightIcon, EnterIcon,
+  ChevronRightIcon,
+  EnterIcon,
   LeaveIcon,
   MenuHamburgerIcon,
   XMarkIcon,
 } from "@navikt/aksel-icons";
 import { useMediaQuery } from "react-responsive";
-import {useEnhet} from "../../../hooks/brreg";
+import { useEnhet } from "../../../hooks/brreg";
 
 function Header() {
   const { data: user } = useUser();
-  const { data: orgName } = useEnhet(user?.user?.reporteeId || "", user && !user.user?.trusted)
+  const { data: orgName } = useEnhet(
+    user?.user?.reporteeId || "",
+    user && !user.user?.trusted,
+  );
   const [open, setOpen] = useState(false);
   const isSmallScreen = useMediaQuery({ query: "(max-width: 767px)" });
   const location = useLocation();
@@ -83,9 +86,7 @@ function Header() {
               className={styles.userInfo}
               variant={"tertiary"}
               onClick={login}
-            >
-
-            </Button>
+            ></Button>
           )}
 
           <DropdownMenu
@@ -96,21 +97,22 @@ function Header() {
             <DropdownMenu.Trigger
               className={styles.userInfo}
               variant={"tertiary"}
-              onClick={(isLoggedIn || isSmallScreen) ? () => setOpen(!open) : login}
             >
-              {!isSmallScreen && !isLoggedIn && (
-                <>
-                  <Paragraph size={"medium"}>LOGG INN</Paragraph>
-                  <PersonSvg className={styles.svg} />
-                </>
-              )}
+              {/*{!isSmallScreen && !isLoggedIn && (*/}
+              {/*  <>*/}
+              {/*    <Paragraph size={"medium"}>LOGG INN</Paragraph>*/}
+              {/*    <PersonSvg className={styles.svg} />*/}
+              {/*  </>*/}
+              {/*)}*/}
 
               {!isSmallScreen && isLoggedIn && (
                 <>
                   <div>
                     <Paragraph size={"small"}>{user.user!!.name}</Paragraph>
                     <Paragraph size={"small"}>
-                      {user.user!!.trusted ? user.user!!.reporteeName : orgName?.navn}
+                      {user.user!!.trusted
+                        ? user.user!!.reporteeName
+                        : orgName?.navn}
                     </Paragraph>
                   </div>
                   <BedriftSvg className={styles.svg} />
@@ -157,11 +159,14 @@ function Header() {
                 >
                   Logg ut
                   <LeaveIcon className={styles.svg} />
-              </DropdownMenu.Item>
+                </DropdownMenu.Item>
               )}
 
               {!isLoggedIn && (
-                <DropdownMenu.Item onClick={login} className={styles.dropdownItem}>
+                <DropdownMenu.Item
+                  onClick={login}
+                  className={styles.dropdownItem}
+                >
                   Logg inn
                   <EnterIcon className={styles.svg} />
                 </DropdownMenu.Item>
