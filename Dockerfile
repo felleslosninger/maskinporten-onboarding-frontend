@@ -1,4 +1,4 @@
-FROM node:20 as build
+FROM node:20.8.1 as build
 
 ARG BUILD_VERSION=DEV-SNAPSHOT
 
@@ -21,7 +21,7 @@ RUN npm run test
 ENV CI=false
 RUN npm run build
 
-FROM node:20-alpine3.21
+FROM node:20.8.1-alpine3.18
 RUN apk add gettext
 
 ENV NPM_CONFIG_PREFIX=/home/node/.npm-global

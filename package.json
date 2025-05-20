@@ -15,7 +15,7 @@
     "@types/react-syntax-highlighter": "^15.5.13",
     "@types/react-transition-group": "^4.4.10",
     "axios": "^1.7.2",
-    "jose": "^5.4.2",
+    "jose": "^5.4.0",
     "nanoid": "^5.0.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -59,15 +59,12 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@testing-library/dom": "^10.1.0",
     "@testing-library/jest-dom": "^6.4.5",
+    "@testing-library/dom": "^10.1.0",
     "@testing-library/react": "^16.0.0",
     "@testing-library/user-event": "^14.5.2",
     "@types/jest": "^29.5.12",
     "prettier": "^3.3.1",
     "sass": "^1.77.4"
-  },
-  "resolutions": {
-    "**/cross-spawn": "^7.0.5"
   }
 }
