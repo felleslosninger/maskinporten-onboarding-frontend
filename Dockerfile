@@ -1,4 +1,4 @@
-FROM node:20.8.1 as build
+FROM node:20 as build
 
 ARG BUILD_VERSION=DEV-SNAPSHOT
 
